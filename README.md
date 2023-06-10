@@ -19,7 +19,7 @@ Contains code (currently just structure) for experiments on incorporating dialog
     - *`do_selfplay.py`*
     - *`registry.py`*: A registry for supported (dataset, model, task) triplets and required name to class mappings.
     - *`utils.py`*: Independent utilities used throughout the code.
-- `storage/` : for all storage
+- `storage/` : SUGGESTED - for all storage; gitignored by default
     - `logs/` : log dir for the results and outputs of the tasks.
     - `utilities/` : additional stuff like commands and API keys for connecting to the models. - should never be pushed to the code repository.
 
