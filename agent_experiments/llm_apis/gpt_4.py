@@ -6,7 +6,7 @@ OpenAI models - GPT and variants.
 from models.model import BaseModelHandler
 
 
-class OpenAIHandler(BaseModelHandler):
+class GPT_4_Api(BaseModelHandler):
     """Handler for the OpenAI model."""
 
     def setup_model(self):

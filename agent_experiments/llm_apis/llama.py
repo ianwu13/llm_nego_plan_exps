@@ -3,7 +3,7 @@ Handlers for the Llama models.
 """
 
 
-from models.model import BaseModelHandler
+from llm_apis.model import BaseModelHandler
 
 
 class LlamaHandler(BaseModelHandler):
@@ -20,7 +20,7 @@ class LlamaHandler(BaseModelHandler):
         self.model = None
 
 
-class Llama7BHandler(LlamaHandler):
+class Llama7bApi(LlamaHandler):
 
     def get_model_outputs(self, inputs):
         """Get the model outputs.

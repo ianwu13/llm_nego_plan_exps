@@ -20,7 +20,26 @@ class FalconHandler(BaseModelHandler):
         self.model = None
 
 
-class Falcon7BHandler(FalconHandler):
+class Falcon7bApi(FalconHandler):
+
+    def get_model_outputs(self, inputs):
+        """Get the model outputs.
+        
+        Args:
+            inputs: list of prompts to be passed to the model.
+
+        TODO - we can also shift this method to the parent class if possible.
+        """
+
+        outputs = {}
+        for item in inputs:
+            gen_out = f"This is a dummy output response from the Falcon7B model. The first five words of the input are: {' '.join(item.split()[:5])}."
+            outputs[item] = gen_out
+        
+        return outputs
+
+
+class Falcon40bApi(FalconHandler):
 
     def get_model_outputs(self, inputs):
         """Get the model outputs.
