@@ -14,14 +14,15 @@ Contains code (currently just structure) for experiments on incorporating dialog
     - `interactions/` : code to allow for interaction with/between different models
     - `llm_apis/` : scripts to allow for interfacing with diffferent LLM APIs that are hosted elsewhere
     - `misc/` : miscellaneous one-off scripts for any tasks related to the project - as required.
-    - `models/` : contains weights for dialogue planning models
+    - `models/` : weights for dialogue planning models
     - *`do_chat.py`*
     - *`do_selfplay.py`*
     - *`registry.py`*: A registry for supported (dataset, model, task) triplets and required name to class mappings.
     - *`utils.py`*: Independent utilities used throughout the code.
-- `storage/` : SUGGESTED - for all storage; gitignored by default
-    - `logs/` : log dir for the results and outputs of the tasks.
-    - `utilities/` : additional stuff like commands and API keys for connecting to the models. - should never be pushed to the code repository.
+
+    - `storage/` : SUGGESTED - for all storage, gitignored by default
+        - `logs/` : log dir for the results and outputs of the tasks.
+        - `utilities/` : additional stuff like commands and API keys for connecting to the models. - should never be pushed to the code repository.
 
 # NOT IAN'S
 
