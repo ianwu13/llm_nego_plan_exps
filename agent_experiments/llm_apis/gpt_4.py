@@ -3,7 +3,7 @@ OpenAI models - GPT and variants.
 """
 
 
-from models.model import BaseModelHandler
+from llm_apis.model import BaseModelHandler
 
 
 class GPT_4_Api(BaseModelHandler):

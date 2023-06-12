@@ -3,7 +3,7 @@ Handlers for the Falcon models.
 """
 
 
-from models.model import BaseModelHandler
+from llm_apis.model import BaseModelHandler
 
 
 class FalconHandler(BaseModelHandler):
