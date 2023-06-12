@@ -3,7 +3,7 @@ Dealornodeal dataset: https://huggingface.co/datasets/deal_or_no_dialog
 """
 
 
-from nego_datasets.dataset import BaseDatasetHandler
+from data.dataset import BaseDatasetHandler
 
 
 class DNDHandler(BaseDatasetHandler):

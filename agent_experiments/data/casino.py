@@ -3,7 +3,7 @@ CaSiNo dataset: https://huggingface.co/datasets/casino
 """
 
 
-from nego_datasets.dataset import BaseDatasetHandler
+from data.dataset import BaseDatasetHandler
 
 
 class CasinoHandler(BaseDatasetHandler):
