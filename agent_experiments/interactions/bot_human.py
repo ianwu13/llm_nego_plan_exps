@@ -4,7 +4,18 @@ from interactions.interaction import InteractionManager, InteractionLogger
 class BotHumanChat(InteractionManager):
     """A helper class that runs dialogues."""
     def __init__(self, dialog, ctx_file=None, logger=None, **kwargs):
-        super(BotBotSelfPlay, self).__init__(dialog, ctx_file, logger, **kwargs)
+        if ctx_file is not None:
+            super(BotBotSelfPlay, self).__init__(dialog, ctx_file, logger, **kwargs)
+        else:
+            self.dialog = dialog
+            self.logger = logger if logger else InteractionLogger()
+
+            self.auto_create_ctxs(**kwargs)
+
+    def auto_create_ctxs(num_types=3, num_objects=10, max_score=10, **kwargs):
+        self.num_types = num_types
+        self.num_objects = num_objects
+        self.max_value = max_value
 
     # Override to allowfor manual entry of context for a dialogue
     def iter_ctx():

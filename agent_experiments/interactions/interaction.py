@@ -71,15 +71,11 @@ class InteractionLogger(object):
 class InteractionManager(object):
     """Base handler for every model."""
 
-    def __init__(self, dialog, ctx_file=None, logger=None, **kwargs):
+    def __init__(self, dialog, ctx_file, logger=None, **kwargs):
         self.dialog = dialog
-
-        if ctx_file:
-            create_ctxs(ctx_file)
-        else:
-            auto_create_ctxs(**kwargs)
-
         self.logger = logger if logger else InteractionLogger()
+        
+        self.create_ctxs(ctx_file)
 
     # Utils for interaction setting (context)
     def create_ctxs(ctx_file):
@@ -92,11 +88,6 @@ class InteractionManager(object):
                 if len(ctx_pair) == 2:
                     self.ctxs.append(ctx_pair)
                     ctx_pair = []
-
-    def auto_create_ctxs(num_types=3, num_objects=10, max_score=10, **kwargs):
-        self.num_types = num_types
-        self.num_objects = num_objects
-        self.max_value = max_value
 
     def iter_ctx():
         for e in range(nepoch):
