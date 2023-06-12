@@ -24,3 +24,8 @@ class BaseDatasetHandler:
         Uses params from self.args such as num_instances: the required number of instances.
         """
         raise NotImplementedError
+    
+    def prompts_from_instance(self):
+        """Get prompts from individual instances given a formatting function
+        """
+        raise NotImplementedError
