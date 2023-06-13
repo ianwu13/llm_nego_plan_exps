@@ -6,13 +6,15 @@ import requests
 
 from llm_apis.model import BaseModelHandler
 
+import openai
 
-class OpenAI_Api(BaseModelHandler):
+
+class OpenAI_Api():
     """Handler for the OpenAI model."""
 
     def __init__(
         self, 
-        model_name='test', 
+        model_name='gpt-3.5-turbo', 
         api_key=None, 
         api_url='https://api.openai.com/v1/completions', 
         prompt_formatter=(lambda x: x), 
@@ -36,6 +38,7 @@ class OpenAI_Api(BaseModelHandler):
 
     def setup_model(self):
         """Setup the model."""
+        print("set up model")
         self.model = None
 
     def get_model_outputs(self, inputs):
@@ -46,8 +49,13 @@ class OpenAI_Api(BaseModelHandler):
         """
 
         outputs = []
+        # inputs is a list
         for inp in inputs:
-            formatted_inp = self.prompt_formatter(inp)
+            formatted_inp = inp
+            print(self.api_key)
+            print(formatted_inp)
+            print(self.model_name)
+            # formatted_inp = self.prompt_formatter(inp)
 
             response = requests.post(
                 self.api_url, 
@@ -58,12 +66,15 @@ class OpenAI_Api(BaseModelHandler):
                     "model": self.model_name,
                     "prompt": formatted_inp,
                     "max_tokens": self.max_tokens,
-                    "temperature": self.temperature}
+                    # "messages": [{"role": "user", "content": "Say this is a test!"}],
+                    "temperature": 0.7}
                 )
+            print(response)
             choices = response['choices']
             assert len(choices == 1), "Assumed number of responses per prompt would be 1. If this error is raised we need to handle this"
             gen_out = choices[0]['text']
 
             outputs.append(gen_out)
+            print(gen_out)
 
-        return outputs
+        # return outputs
