@@ -15,6 +15,10 @@ LLM_API_REG = {
     "openai_generic": "models.open_ai.OpenAI_Api",
 }
 
-I2P_REG = {
+I2ANNOT_PROMPT_FUN_REG = {
     "dnd_Utt2Act": "data.conversion.i2p_functions.dnd_utt_to_act"
 }
+
+A2U_PROMPT_FUN_REG = {}
+
+U2A_PROMPT_FUN_REG = {}
