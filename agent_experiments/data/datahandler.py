@@ -25,7 +25,6 @@ class BaseDatasetHandler:
         """
         raise NotImplementedError
     
-    def prompts_from_instance(self):
-        """Get prompts from individual instances given a formatting function
-        """
+    def instance_generator(self):
+        """Yields instances from the dataset one at a time"""
         raise NotImplementedError

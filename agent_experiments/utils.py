@@ -10,19 +10,22 @@ from registry import *
 
 def get_datahandler(handler_id: str):
     if handler_id in DATA_HANDLER_REG.keys():
-        return importlib.import_module(DATA_HANDLER_REG[handler_id])
+        DataHandler = importlib.import_module(DATA_HANDLER_REG[handler_id])
+        return DataHandler()
     else:
         raise Exception(f'Data handler for {handler_id} not found, check registry.py')
 
 
-def get_llm_api(api_id: str):
+def get_llm_api(api_id: str, key=None):
     if api_id in LLM_API_REG.keys():
         AnnotAPI = importlib.import_module(LLM_API_REG[api_id])
         return AnnotAPI()
     else:
         print(f'\nCannot find LLM in registry for argument --llm_api = {api_id}; Assuming {api_id} to be an OpenAI model ID\n')
         AnnotAPI = importlib.import_module(LLM_API_REG['openai_generic'])
-        return AnnotAPI(api_id, MY_OPENAI_KEY)
+        if key is None:
+            raise Exception('An API key must be provided to use the OpenAI generic API')
+        return AnnotAPI(api_id, key)
 
 
 def get_inst2annot_prompt_func(func_id: str):
