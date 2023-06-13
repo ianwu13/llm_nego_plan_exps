@@ -8,13 +8,15 @@ DATA_HANDLER_REG = {
 }
 
 LLM_API_REG = {
+    "openai_generic": "models.open_ai.OpenAI_Api",
+    # TODO: THESE ARE NOT YET IMPLEMENTED
     "llama_7b": "llm_apis.llama.Llama7BHandler",
     "falcon_7b": "models.falcon.Falcon7BHandler",
     "falcon_40b": "models.falcon.Falcon40BHandler",
     "gpt_4": "models.gpt_4.GPT_4_Api",
-    "openai_generic": "models.open_ai.OpenAI_Api",
 }
 
+# TODO: IMPLEMENT THESE FUNNCTIONS TOO
 I2ANNOT_PROMPT_FUN_REG = {
     "dnd_Utt2Act": "data.conversion.i2p_functions.dnd_utt_to_act"
 }
