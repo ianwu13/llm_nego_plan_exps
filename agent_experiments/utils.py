@@ -2,9 +2,9 @@
 Common independent utility functions for the llm_nego_plan_exps package.
 """
 
+import sys
 import importlib
-import json
-import os
+
 from registry import *
 
 
@@ -46,19 +46,27 @@ def get_utt2act_prompt_func(func_id: str):
         raise Exception(f'Function for {func_id} not found, check registry.py')
 
 
-# TODO: FROM E2E, SHOULD UPDATE
-def set_seed(seed):
+def set_seed(seed, torch_needed=False, np_needed=False):
     """Sets random seed everywhere."""
-    torch.manual_seed(seed)
-    if torch.cuda.is_available():
-        torch.cuda.manual_seed(seed)
+    if torch_needed:
+        if 'torch' not in sys.modules.keys():
+            import torch
+        torch.manual_seed(seed)
+        if torch.cuda.is_available():
+            torch.cuda.manual_seed(seed)
+    
+    if np_needed:
+        import numpy as np
+        np.random.seed(seed)
+
     random.seed(seed)
-    np.random.seed(seed)
 
 
-# TODO: FROM E2E, SHOULD UPDATE
+# TODO: THIS NEEDS UPDATE
 def load_model(file_name):
     """Reads model from a file."""
+    if 'torch' not in sys.modules.keys():
+        import torch
 
     if torch.cuda.is_available():
         checkpoint = torch.load(file_name)
