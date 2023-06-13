@@ -19,6 +19,6 @@ I2ANNOT_PROMPT_FUN_REG = {
     "dnd_Utt2Act": "data.conversion.i2p_functions.dnd_utt_to_act"
 }
 
-A2U_PROMPT_FUN_REG = {}
+ACT2UTT_PROMPT_FUN_REG = {}
 
-U2A_PROMPT_FUN_REG = {}
+UTT2ACT_PROMPT_FUN_REG = {}
