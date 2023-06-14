@@ -1,7 +1,7 @@
 # LLM Negotiation Planning Experiments
 Contains code (currently just structure) for experiments on incorporating dialogue planning into LLMs, specifically in the domain of resource negotiation.
 
-## Directory Structure
+## Directory Structure - UPDATE
 
 - `agent_experiments/` : base directory for experiments
     - `agents/` : code/classes for different types of agents, level of interaction (utterance/act, planned/not planned) is handled here
@@ -23,6 +23,40 @@ Contains code (currently just structure) for experiments on incorporating dialog
     - `storage/` : SUGGESTED - for all storage, gitignored by default
         - `logs/` : log dir for the results and outputs of the tasks.
         - `utilities/` : additional stuff like commands and API keys for connecting to the models. - should never be pushed to the code repository.
+
+## Data Annotation - UPDATE
+
+- TODO
+
+## Adding a Dataset - UPDATE
+
+- TODO
+
+## Adding a Data Annotation pipeline - UPDATE
+
+- TODO
+
+## LLM API Usage - UPDATE
+
+### Adding LLM API
+
+- TODO
+
+### Adding Prompt Generation Funcitons - TODO
+
+- "I2ANNOT_PROMPT_FUN_REG"
+- "ACT2UTT_PROMPT_FUN_REG"
+- "UTT2ACT_PROMPT_FUN_REG"
+
+## Selfplay - UPDATE
+
+- TODO
+
+## Chat - UPDATE
+
+- TODO
+
+***
 
 # NOT IAN'S
 

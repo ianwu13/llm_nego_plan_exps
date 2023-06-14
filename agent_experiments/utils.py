@@ -35,6 +35,13 @@ def get_inst2annot_prompt_func(func_id: str):
         raise Exception(f'Function for {func_id} not found, check registry.py')
 
 
+def get_annot_out_formatter_func(func_id: str):
+    if func_id in INST_ANNOT2STR_PROMPT_FUN_REG.keys():
+        return importlib.import_module(INST_ANNOT2STR_PROMPT_FUN_REG[func_id])
+    else:
+        raise Exception(f'Function for {func_id} not found, check registry.py')
+
+
 def get_act2utt_prompt_func(func_id: str):
     if func_id in ACT2UTT_PROMPT_FUN_REG.keys():
         return importlib.import_module(ACT2UTT_PROMPT_FUN_REG[func_id])

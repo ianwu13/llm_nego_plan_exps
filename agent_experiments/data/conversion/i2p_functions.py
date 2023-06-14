@@ -1,5 +1,5 @@
 """
-Functions which convert 
+Functions which convert instances from dataset handlers into a set of annotation prompts for llms
 """
 
 

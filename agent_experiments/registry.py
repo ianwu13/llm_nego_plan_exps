@@ -21,6 +21,10 @@ I2ANNOT_PROMPT_FUN_REG = {
     "dnd_Utt2Act": "data.conversion.i2p_functions.dnd_utt_to_act"  # TODO: Remove - This does not exist, just example
 }
 
+INST_ANNOT2STR_PROMPT_FUN_REG = {
+    "example": "data.conversion.annot2str_functions.example_a2s_func"
+}
+
 # TODO: IMPLEMENT THESE FUNCTIONS TOO
 ACT2UTT_PROMPT_FUN_REG = {}
 
