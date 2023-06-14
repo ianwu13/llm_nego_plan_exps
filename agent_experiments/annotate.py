@@ -26,7 +26,6 @@ def main():
     args = parser.parse_args()
 
     data_handler = utils.get_datahandler(args.dataset)
-    # TODO: DUMMY I2P FUNCTION
     i2p_funct = utils.get_inst2annot_prompt_func(args.inst_to_prompt_funct)
     if args.annot_method == 'llm':
         annot_api = utils.get_llm_api(args.llm_api, args.llm_api_key)

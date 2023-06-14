@@ -16,11 +16,13 @@ LLM_API_REG = {
     "gpt_4": "models.gpt_4.GPT_4_Api",
 }
 
-# TODO: IMPLEMENT THESE FUNNCTIONS TOO
 I2ANNOT_PROMPT_FUN_REG = {
-    "dnd_Utt2Act": "data.conversion.i2p_functions.dnd_utt_to_act"
+    "example": "data.conversion.i2p_functions.example_i2p_func",
+    "dnd_Utt2Act": "data.conversion.i2p_functions.dnd_utt_to_act"  # TODO: Remove - This does not exist, just example
 }
 
+# TODO: IMPLEMENT THESE FUNCTIONS TOO
 ACT2UTT_PROMPT_FUN_REG = {}
 
+# TODO: IMPLEMENT THESE FUNCTIONS TOO
 UTT2ACT_PROMPT_FUN_REG = {}

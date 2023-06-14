@@ -1,5 +1,14 @@
-# assume read file methods are handle outside, and the input for the function is a string.
+"""
+Functions which convert 
+"""
 
+
+def example_i2p_func(inst):  # Just for casino dataset, returns "annotate this: {utterance}"
+    return [f"annotate this: {chat_item['text']}" for chat_item in inst['chat_logs']]
+
+
+# TODO: ZORA UTILS
+# assume read file methods are handle outside, and the input for the function is a string.
 def extract(str,tag):
     sub1 = "<" + tag + ">"
     sub2 = "</"+ tag + ">"
@@ -9,7 +18,6 @@ def extract(str,tag):
 
     output = str[idx1 + len(sub1) + 1: idx2]
     return output
-
 
 # split utterance seperately
 def utters_split_seperate(line):
@@ -61,6 +69,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-    
