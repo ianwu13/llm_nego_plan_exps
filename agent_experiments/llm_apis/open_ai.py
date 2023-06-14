@@ -36,10 +36,47 @@ class OpenAI_Api():
         # set up the model
         self.setup_model()
 
+        openai.api_key = api_key
+    
+    def text_completion(prompt):
+        model = "text-davinci-003"
+        response = openai.Completion.create(
+            engine=model, 
+            prompt=prompt, 
+            max_tokens=50)
+        generated_text = response.choices[0].text
+        print("Result from text_completion from OPEN_AI")
+        print(generated_text)
+        print("----"*10)
+        return generated_text
+    
+    def chat_bot(context, prompt):
+        model = "gpt-3.5-turbo"
+        system_prompt = "You are a helpful assistant."
+        messages = [
+            {"role": "system", "content": f"{system_prompt}"},
+            {"role": "user", "content": prompt},
+        ]
+        response = openai.ChatCompletion.create(
+            model = model,
+            messages = messages,
+            max_tokens = 50
+            )
+        generated_texts = [
+            choice.message["content"].strip() for choice in response["choices"]
+        ]
+        print("Result from chatbox from OPEN_AI")
+        print(generated_texts)
+        print("----"*10)
+        return generated_texts
+
+
     def setup_model(self):
         """Setup the model."""
         print("set up model")
         self.model = None
+
+
 
     def get_model_outputs(self, inputs):
         """Get the model outputs.
