@@ -18,14 +18,14 @@ class CasinoHandler(BaseDatasetHandler):
         self.splits = list(casino_dataset.keys())
         self.dataset_reg = {split: casino_dataset[split] for split in self.splits}
 
-    def get_instances(self):
+    def get_instances(self, split):
         """Get the instances from the dataset."""
         if n < 1:
             return self.dataset_reg[split]
         else:
             return self.dataset_reg[split][:n]
     
-    def instance_generator(self):
+    def instance_generator(self, split):
         """Yields instances from the dataset one at a time"""
         for inst in self.dataset_reg[split]:
             yield inst

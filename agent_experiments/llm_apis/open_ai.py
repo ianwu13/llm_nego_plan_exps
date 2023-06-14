@@ -9,7 +9,7 @@ from llm_apis.model import BaseModelHandler
 import openai
 
 
-class OpenAI_Api():
+class OpenAI_Api(BaseModelHandler):
     """Handler for the OpenAI model."""
 
     def __init__(

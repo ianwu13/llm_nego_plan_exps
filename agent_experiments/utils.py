@@ -10,50 +10,50 @@ from registry import *
 
 def get_datahandler(handler_id: str):
     if handler_id in DATA_HANDLER_REG.keys():
-        DataHandler = importlib.import_module(DATA_HANDLER_REG[handler_id])
-        return DataHandler()
+        module_class = DATA_HANDLER_REG[handler_id]
+        DataHandler = getattr(importlib.import_module(module_class[0]), module_class[1])
+        return DataHandler(handler_id)
     else:
         raise Exception(f'Data handler for {handler_id} not found, check registry.py')
 
 
 def get_llm_api(api_id: str, key=None):
     if api_id in LLM_API_REG.keys():
-        AnnotAPI = importlib.import_module(LLM_API_REG[api_id])
-        return AnnotAPI()
+        module_class = LLM_API_REG[api_id]
+        AnnotAPI = getattr(importlib.import_module(module_class[0]), module_class[1])
+        return AnnotAPI(api_id)
     else:
         print(f'\nCannot find LLM in registry for argument --llm_api = {api_id}; Assuming {api_id} to be an OpenAI model ID\n')
-        AnnotAPI = importlib.import_module(LLM_API_REG['openai_generic'])
         if key is None:
             raise Exception('An API key must be provided to use the OpenAI generic API')
+
+        module_class = LLM_API_REG['openai_generic']
+        AnnotAPI = getattr(importlib.import_module(module_class[0]), module_class[1])
         return AnnotAPI(api_id, key)
 
 
-def get_inst2annot_prompt_func(func_id: str):
-    if func_id in I2ANNOT_PROMPT_FUN_REG.keys():
-        return importlib.import_module(I2ANNOT_PROMPT_FUN_REG[func_id])
+def get_function_from_id(id: str, registry: dict):
+    if id in registry.keys():
+        module_class = registry[id]
+        return getattr(importlib.import_module(module_class[0]), module_class[1])
     else:
-        raise Exception(f'Function for {func_id} not found, check registry.py')
+        raise Exception(f'Function for {id} not found, check registry.py')
+
+
+def get_inst2annot_prompt_func(func_id: str):
+    return get_function_from_id(func_id, I2ANNOT_PROMPT_FUN_REG)
 
 
 def get_annot_out_formatter_func(func_id: str):
-    if func_id in INST_ANNOT2STR_PROMPT_FUN_REG.keys():
-        return importlib.import_module(INST_ANNOT2STR_PROMPT_FUN_REG[func_id])
-    else:
-        raise Exception(f'Function for {func_id} not found, check registry.py')
+    return get_function_from_id(func_id, INST_ANNOT2STR_PROMPT_FUN_REG)
 
 
 def get_act2utt_prompt_func(func_id: str):
-    if func_id in ACT2UTT_PROMPT_FUN_REG.keys():
-        return importlib.import_module(ACT2UTT_PROMPT_FUN_REG[func_id])
-    else:
-        raise Exception(f'Function for {func_id} not found, check registry.py')
+    return get_function_from_id(func_id, ACT2UTT_PROMPT_FUN_REG)
 
 
 def get_utt2act_prompt_func(func_id: str):
-    if func_id in UTT2ACT_PROMPT_FUN_REG.keys():
-        return importlib.import_module(UTT2ACT_PROMPT_FUN_REG[func_id])
-    else:
-        raise Exception(f'Function for {func_id} not found, check registry.py')
+    return get_function_from_id(func_id, UTT2ACT_PROMPT_FUN_REG)
 
 
 def set_seed(seed, torch_needed=False, np_needed=False):

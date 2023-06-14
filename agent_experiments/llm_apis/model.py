@@ -6,7 +6,7 @@ Base class for all models.
 class BaseModelHandler:
     """Base handler for every model."""
 
-    def __init__(self, name, args):
+    def __init__(self, name, args=None):
         """Initialize the model handler."""
         self.name = name
         self.args = args

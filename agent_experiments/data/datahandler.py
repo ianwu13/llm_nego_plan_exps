@@ -6,7 +6,7 @@ Base class for all datasets.
 class BaseDatasetHandler:
     """Base handler for every dataset."""
 
-    def __init__(self, name, args):
+    def __init__(self, name, args=None):
         """Initialize the dataset handler."""
         self.name = name
         self.args = args

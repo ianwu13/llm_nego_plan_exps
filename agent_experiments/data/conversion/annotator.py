@@ -11,12 +11,19 @@ class Annotator():
         prompts = self.inst2promp_funct(inst)
         annotations = self.llm_api.get_model_outputs(prompts)
         return annotations
-        
-    def annotate(self):
-        f = open(self.out_file, 'w')
-        for inst in self.dataset.instance_generator():
+
+    def annotate_split(self, outfile, split='train'):
+        f = open(outfile, 'w')
+        for inst in self.dataset.instance_generator(split):
             annotations = self.annotate_instance(inst)
             out_line = self.output_formatter(inst, annotations)
             f.write(out_line)
-
         f.close()
+        
+    def annotate(self, split=None):
+        if split is None:
+            for sp in self.dataset.splits:
+                sp_file = f'_{sp}.'.join(self.out_file.rsplit('.', 1))
+                self.annotate_split(sp_file, sp)
+        else:
+            self.annotate_split(self.out_file, split)
