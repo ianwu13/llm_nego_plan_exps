@@ -3,7 +3,7 @@ Handlers for the Llama models.
 """
 
 
-from llm_apis.model import BaseModelHandler
+from lang_models.model import BaseModelHandler
 
 
 class LlamaHandler(BaseModelHandler):
