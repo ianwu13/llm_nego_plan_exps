@@ -8,26 +8,26 @@ DATA_HANDLER_REG = {
 }
 
 LLM_API_REG = {
-    'example': ("llm_apis.open_ai", "dummy_api"),
-    "openai_generic": ("llm_apis.open_ai", "OpenAI_Api"),
+    "openai_generic": ("lang_models.llm_apis.open_ai", "OpenAI_Api"),
     # TODO: THESE ARE NOT YET IMPLEMENTED
-    "llama_7b": ("llm_apis.llama", "Llama7BHandler"),
-    "falcon_7b": ("llm_apis.falcon", "Falcon7BHandler"),
-    "falcon_40b": ("llm_apis.falcon", "Falcon40BHandler"),
-    "gpt_4": ("llm_apis.gpt_4", "GPT_4_Api"),
+    "llama_7b": ("lang_models.llm_apis.llama", "Llama7BHandler"),
+    "falcon_7b": ("lang_models.llm_apis.falcon", "Falcon7BHandler"),
+    "falcon_40b": ("lang_models.llm_apis.falcon", "Falcon40BHandler"),
+    "gpt_4": ("lang_models.llm_apis.gpt_4", "GPT_4_Api"),
 }
 
-I2ANNOT_PROMPT_FUN_REG = {
-    "example": ("data.conversion.i2p_functions", "example_i2p_func"),
-    "dnd_Utt2Act": ("data.conversion.i2p_functions", "dnd_utt_to_act")  # TODO: Remove - This does not exist, just example
+INST2ANNOT_PROMPT_FUN_REG = {
+    "example": ("data.conversion.inst2p_functions", "example_inst2p_func"),  # TODO: COMMENTS EXPLAINING PATTERN IN HERE
 }
 
 INST_ANNOT2STR_PROMPT_FUN_REG = {
-    "example": ("data.conversion.annot2str_functions", "example_a2s_func")
+    "example": ("data.conversion.annot2str_functions", "example_annot2s_func")  # TODO: COMMENTS EXPLAINING PATTERN IN HERE
 }
 
-# TODO: IMPLEMENT THESE FUNCTIONS TOO
-ACT2UTT_PROMPT_FUN_REG = {}
+ACT2UTT_PROMPT_FUN_REG = {
+    "example": ("lang_models.llm_apis.prompting.act2utt_functions", "example_a2u_func")  # TODO: COMMENTS EXPLAINING PATTERN IN HERE
+}
 
-# TODO: IMPLEMENT THESE FUNCTIONS TOO
-UTT2ACT_PROMPT_FUN_REG = {}
+UTT2ACT_PROMPT_FUN_REG = {
+    "example": ("lang_models.llm_apis.prompting.utt2act_functions", "example_u2a_func")  # TODO: COMMENTS EXPLAINING PATTERN IN HERE
+}
