@@ -31,3 +31,7 @@ ACT2UTT_PROMPT_FUN_REG = {
 UTT2ACT_PROMPT_FUN_REG = {
     "example": ("lang_models.llm_apis.prompting.utt2act_functions", "example_u2a_func")  # TODO: COMMENTS EXPLAINING PATTERN IN HERE
 }
+
+RESPONSE_PROMPT_FUN_REG = {
+    "example": ("lang_models.llm_apis.prompting.dia_response_funcitons", "example_response_func")  # TODO: COMMENTS EXPLAINING PATTERN IN HERE
+}

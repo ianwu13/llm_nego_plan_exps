@@ -34,6 +34,8 @@ def main():
         help='Function ID from registry.py which converts utterance data into llm prompts for generating acts (Parser)')
     parser.add_argument('--act2utt_prompt_func', type=str, default=None,
         help='Function ID from registry.py which converts act data into llm prompts for generating utterances (Generator)')
+    parser.add_argument('--llm_response_prompt_func', type=str, default=None,
+        help='Function ID from registry.py which generates a prompt for the llm api (if used) to generate the next response in the dialogue')
     parser.add_argument('--rl_module_weight_path', type=str, default=None,
         help='Path to weights for the RL planning module')
 

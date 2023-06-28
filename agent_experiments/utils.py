@@ -65,6 +65,10 @@ def get_utt2act_prompt_func(func_id: str):
     return get_function_from_id(func_id, UTT2ACT_PROMPT_FUN_REG)
 
 
+def get_response_prompt_func(func_id: str):
+    return get_function_from_id(func_id, RESPONSE_PROMPT_FUN_REG)
+
+
 # TODO: WILL PROBABLY NEED TO UPDATE
 def load_rl_module(weights_path: str):
     from lang_models.gru import GRUModel
@@ -72,20 +76,27 @@ def load_rl_module(weights_path: str):
     return GRUModel(weights_path)
 
 
-# TODO: WILL PROBABLY NEED TO UPDATE
 def agent_builder(agent_type: str, args, name: str = 'AI'):
     llm_api = utils.get_llm_api(args.llm_api, args.llm_api_key)
 
     if agent_type == 'llm_no_planning':
-        return SingleLevelAgent(model=llm_api, name=name, args=args)
+        response_prompt_func = get_response_prompt_func(args.llm_response_prompt_func)
+
+        return SingleLevelAgent(model=llm_api, 
+                                name=name,
+                                rpf=response_prompt_func,
+                                args=args)
     elif agent_type == 'llm_self_planning':
         parser_prompt_func = get_utt2act_prompt_func(args.utt2act_prompt_func)
         generator_prompt_func = get_act2utt_prompt_func(args.act2utt_prompt_func)
+
+        response_prompt_func = get_response_prompt_func(args.llm_response_prompt_func)
 
         return DualLevelAgent(pg_model=llm_api,
                               p_prompt_func=parser_prompt_func,
                               g_prompt_func=generator_prompt_func,
                               planning_model=llm_api,
+                              rpf=response_prompt_func,
                               name=name)
     elif agent_type == 'llm_rl_planning':
         parser = get_utt2act_prompt_func(args.utt2act_prompt_func)
