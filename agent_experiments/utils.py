@@ -11,24 +11,33 @@ from registry import *
 def get_datahandler(handler_id: str):
     if handler_id in DATA_HANDLER_REG.keys():
         module_class = DATA_HANDLER_REG[handler_id]
-        DataHandler = getattr(importlib.import_module(module_class[0]), module_class[1])
+        DataHandler = getattr(importlib.import_module(
+            module_class[0]), module_class[1])
         return DataHandler(handler_id)
     else:
-        raise Exception(f'Data handler for {handler_id} not found, check registry.py')
+        raise Exception(
+            f'Data handler for {handler_id} not found, check registry.py')
 
 
 def get_llm_api(api_id: str, key=None):
-    if api_id in LLM_API_REG.keys():
+    if api_id is None:
+        raise Exception(
+            'An LLM Api must be provided through the "--llm_api" argument')
+    elif api_id in LLM_API_REG.keys():
         module_class = LLM_API_REG[api_id]
-        AnnotAPI = getattr(importlib.import_module(module_class[0]), module_class[1])
+        AnnotAPI = getattr(importlib.import_module(
+            module_class[0]), module_class[1])
         return AnnotAPI(api_id)
     else:
-        print(f'\nCannot find LLM in registry for argument --llm_api = {api_id}; Assuming {api_id} to be an OpenAI model ID\n')
+        print(
+            f'\nCannot find LLM in registry for argument --llm_api = {api_id}; Assuming {api_id} to be an OpenAI model ID\n')
         if key is None:
-            raise Exception('An API key must be provided to use the OpenAI generic API')
+            raise Exception(
+                'An API key must be provided to use the OpenAI generic API')
 
         module_class = LLM_API_REG['openai_generic']
-        AnnotAPI = getattr(importlib.import_module(module_class[0]), module_class[1])
+        AnnotAPI = getattr(importlib.import_module(
+            module_class[0]), module_class[1])
         return AnnotAPI(api_id, key)
 
 
@@ -37,11 +46,11 @@ def get_function_from_id(id: str, registry: dict):
         module_class = registry[id]
         return getattr(importlib.import_module(module_class[0]), module_class[1])
     else:
-        raise Exception(f'Function for {id} not found, check registry.py')
+        raise Exception(f'Function for id="{id}" not found, check registry.py')
 
 
 def get_inst2annot_prompt_func(func_id: str):
-    return get_function_from_id(func_id, I2ANNOT_PROMPT_FUN_REG)
+    return get_function_from_id(func_id, INST2ANNOT_PROMPT_FUN_REG)
 
 
 def get_annot_out_formatter_func(func_id: str):
@@ -56,6 +65,43 @@ def get_utt2act_prompt_func(func_id: str):
     return get_function_from_id(func_id, UTT2ACT_PROMPT_FUN_REG)
 
 
+# TODO: WILL PROBABLY NEED TO UPDATE
+def load_rl_module(weights_path: str):
+    from lang_models.gru import GRUModel
+
+    return GRUModel(weights_path)
+
+
+# TODO: WILL PROBABLY NEED TO UPDATE
+def agent_builder(agent_type: str, args, name: str = 'AI'):
+    llm_api = utils.get_llm_api(args.llm_api, args.llm_api_key)
+
+    if agent_type == 'llm_no_planning':
+        return SingleLevelAgent(model=llm_api, name=name, args=args)
+    elif agent_type == 'llm_self_planning':
+        parser_prompt_func = get_utt2act_prompt_func(args.utt2act_prompt_func)
+        generator_prompt_func = get_act2utt_prompt_func(args.act2utt_prompt_func)
+
+        return DualLevelAgent(pg_model=llm_api,
+                              p_prompt_func=parser_prompt_func,
+                              g_prompt_func=generator_prompt_func,
+                              planning_model=llm_api,
+                              name=name)
+    elif agent_type == 'llm_rl_planning':
+        parser = get_utt2act_prompt_func(args.utt2act_prompt_func)
+        generator = get_act2utt_prompt_func(args.act2utt_prompt_func)
+
+        rl_module = load_rl_module(args.rl_module_weight_path)
+        
+        return DualLevelAgent(pg_model=llm_api,
+                              p_prompt_func=parser_prompt_func,
+                              g_prompt_func=generator_prompt_func,
+                              planning_model=rl_module,
+                              name=name)
+    else:
+        raise ValueError(f'{agent_type} is not a recognized agent agent type!')
+
+
 def set_seed(seed, torch_needed=False, np_needed=False):
     """Sets random seed everywhere."""
     if torch_needed:
@@ -64,31 +110,9 @@ def set_seed(seed, torch_needed=False, np_needed=False):
         torch.manual_seed(seed)
         if torch.cuda.is_available():
             torch.cuda.manual_seed(seed)
-    
+
     if np_needed:
         import numpy as np
         np.random.seed(seed)
 
     random.seed(seed)
-
-
-# TODO: THIS NEEDS UPDATE
-def load_model(file_name):
-    """Reads model from a file."""
-    if 'torch' not in sys.modules.keys():
-        import torch
-
-    if torch.cuda.is_available():
-        checkpoint = torch.load(file_name)
-    else:
-        checkpoint = torch.load(file_name, map_location=torch.device("cpu"))
-
-    model_args = checkpoint["args"]
-
-    device_id = use_cuda(model_args.cuda)
-    corpus = data.WordCorpus(model_args.data, freq_cutoff=model_args.unk_threshold, verbose=False)
-    model = DialogModel(corpus.word_dict, corpus.item_dict, corpus.context_dict,
-        corpus.output_length, model_args, device_id)
-
-    model.load_state_dict(checkpoint['state_dict'])
-    return model
