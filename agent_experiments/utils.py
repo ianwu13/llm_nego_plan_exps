@@ -76,7 +76,7 @@ def load_rl_module(weights_path: str):
     return GRUModel(weights_path)
 
 
-def agent_builder(agent_type: str, args, name: str = 'AI'):
+def agent_builder(agent_type: str, args, name: str='AI'):
     llm_api = utils.get_llm_api(args.llm_api, args.llm_api_key)
 
     if agent_type == 'llm_no_planning':
