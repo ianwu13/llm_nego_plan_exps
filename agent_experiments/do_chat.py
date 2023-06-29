@@ -9,8 +9,8 @@ An util to negotiate with AI.
 
 import argparse
 
-from interactions import InteractionLogger, BotHumanChat
-from interactions.interaction_utils import Dialog
+from interactions import BotHumanChat
+from interactions.interaction_utils import Dialog, InteractionLogger
 import utils
 
 

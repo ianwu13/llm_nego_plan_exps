@@ -12,8 +12,8 @@ import pdb
 import re
 import random
 
-from interactions import InteractionLogger, BotBotSelfPlay
-from interactions.interaction_utils import Dialog
+from interactions import BotBotSelfPlay
+from interactions.interaction_utils import Dialog, InteractionLogger
 import utils
 
 

@@ -1,3 +1,9 @@
+# Copyright 2017-present, Facebook, Inc.
+# All rights reserved.
+#
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+
 import sys
 import logging
 import numpy as np
@@ -16,6 +22,11 @@ class Dialog(object):
         self.selection_length = selection_length
         self.rw_type = rw_type
         self.conf = conf
+
+        if args.max_turns:
+            self.max_utts = args.max_turns
+        else:
+            self.max_utts = 20
 
         # Set up metric tracking
         self.metrics = MetricsContainer()
@@ -226,9 +237,8 @@ class Dialog(object):
         # reset metrics
         self.metrics.reset()
 
-        max_utts = 20
         curr = 0
-        while curr < max_utts:
+        while curr < self.max_utts:
             # produce an utterance
             out = writer.write()
 
@@ -260,7 +270,7 @@ class Dialog(object):
         choices = []
         if not self._is_selection(conv[-1]):
             # the conversation did not finish; assume disagreement.
-            assert curr == max_utts, curr
+            assert curr == self.max_utts, curr
             agree, rewards = False, [0 for _ in range(len(ctxs))]
 
             choices = [
@@ -313,11 +323,12 @@ class Dialog(object):
         logger.dump('-' * 80)
 
         logger.dump_agreement(agree)
-        # perform update, in case if any of the agents is learnable
-        for agent, reward in zip(self.agents, rewards):
-            logger.dump_reward(agent.name, agree, reward)
-            logging.debug("%s : %s : %s" % (str(agent.name), str(agree), str(rewards)))
-            agent.update(agree, reward, scale_rw = self.scale_rw)
+        # COMMENTED BECAUSE THIS REPO DOES NOT SUPPORT RL FOR AGENTS CURRENTLY
+        # # perform update, in case if any of the agents is learnable
+        # for agent, reward in zip(self.agents, rewards):
+        #     logger.dump_reward(agent.name, agree, reward)
+        #     logging.debug("%s : %s : %s" % (str(agent.name), str(agree), str(rewards)))
+        #     agent.update(agree, reward, scale_rw = self.scale_rw)
 
         if agree:
             self.metrics.record('advantage', rewards[0] - rewards[1])
