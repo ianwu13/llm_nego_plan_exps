@@ -8,6 +8,7 @@ DATA_HANDLER_REG = {
 }
 
 LLM_API_REG = {
+    "dummy": ("misc.dummies", "DummyModelHandler"),
     "openai_generic": ("lang_models.llm_apis.open_ai", "OpenAI_Api"),
     # TODO: THESE ARE NOT YET IMPLEMENTED
     "llama_7b": ("lang_models.llm_apis.llama", "Llama7BHandler"),
