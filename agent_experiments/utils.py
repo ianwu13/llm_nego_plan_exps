@@ -81,10 +81,12 @@ def agent_builder(agent_type: str, args, name: str='AI'):
 
     if agent_type == 'llm_no_planning':
         response_prompt_func = get_response_prompt_func(args.llm_response_prompt_func)
+        choice_prompt_func = get_response_prompt_func(args.llm_choice_prompt_func)
 
         return SingleLevelAgent(model=llm_api, 
                                 name=name,
                                 rpf=response_prompt_func,
+                                cpf=choice_prompt_func,
                                 args=args)
     elif agent_type == 'llm_self_planning':
         parser_prompt_func = get_utt2act_prompt_func(args.utt2act_prompt_func)
