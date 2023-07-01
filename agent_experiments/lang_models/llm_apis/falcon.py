@@ -8,6 +8,8 @@ from lang_models.model import BaseModelHandler
 
 class FalconHandler(BaseModelHandler):
     """Handler for Falcon models."""
+    def __init__(self):
+        self.is_llm = True
 
     def setup_model(self):
         """Setup the model based on the specific desirable variant. 

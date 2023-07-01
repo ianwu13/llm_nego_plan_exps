@@ -8,6 +8,8 @@ from lang_models.model import BaseModelHandler
 
 class GPT_4_Api(BaseModelHandler):
     """Handler for the OpenAI model."""
+    def __init__(self):
+        self.is_llm = True
 
     def setup_model(self):
         """Setup the model."""

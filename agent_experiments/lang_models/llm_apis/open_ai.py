@@ -33,6 +33,8 @@ class OpenAI_Api(BaseModelHandler):
         self.max_tokens = max_tokens
         self.temperature = temperature
 
+        self.is_llm = True
+
         # set up the model
         self.setup_model()
 

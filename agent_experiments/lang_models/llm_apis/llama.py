@@ -8,6 +8,8 @@ from lang_models.model import BaseModelHandler
 
 class LlamaHandler(BaseModelHandler):
     """Handler for Llama models."""
+    def __init__(self):
+        self.is_llm = True
 
     def setup_model(self):
         """Setup the model based on the specific desirable variant. 
