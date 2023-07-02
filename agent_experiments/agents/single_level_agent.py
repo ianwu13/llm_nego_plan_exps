@@ -41,7 +41,7 @@ class SingleLevelAgent(Agent):
         inpt_sp = inpt.split()
 
         # first add the special 'YOU:' token if necessary
-        self.dialogue.append('Them:')
+        self.dialogue.append('THEM:')
         # then append the utterance
         self.dialogue.extend(inpt_sp)
 
