@@ -76,7 +76,6 @@ def load_rl_module(weights_path: str):
     return GRUModel(weights_path)
 
 
-# TODO: WILL PROBABLY NEED TO UPDATE
 def agent_builder(agent_type: str, args, name: str='AI'):
     llm_api = utils.get_llm_api(args.llm_api, args.llm_api_key)
     choice_prompt_func = get_response_prompt_func(args.llm_choice_prompt_func)
