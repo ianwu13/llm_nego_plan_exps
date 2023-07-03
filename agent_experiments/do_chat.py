@@ -38,6 +38,8 @@ def main():
         help='Function ID from registry.py which generates a prompt for the llm api (if used) to generate the next response in the dialogue')
     parser.add_argument('--rl_module_weight_path', type=str, default=None,
         help='Path to weights for the RL planning module')
+    parser.add_argument('--corpus_source', type=str, default=None,
+        help='Path to file used to generate the corpus for GRU model (MUST BE THE SAME AS FILE USED FOR TRAINING GRU MODULE)')
 
     parser.add_argument('--context_file', type=str, default='',
         help='context file (scenarios for each dialog)')
