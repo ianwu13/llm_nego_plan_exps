@@ -4,7 +4,7 @@ OpenAI models - GPT and variants.
 
 import requests
 
-from lang_models.model import BaseModelHandler
+from lang_models.llm_apis.model import BaseModelHandler
 
 import openai
 

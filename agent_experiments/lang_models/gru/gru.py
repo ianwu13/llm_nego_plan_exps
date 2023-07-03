@@ -3,11 +3,11 @@ Handlers for the GRU Local Model.
 """
 
 
-from lang_models.model import BaseModelHandler
+class GRUModel:
+    """Handler for GRU models."""
+    def __init__(self):
+        self.is_llm = False
 
-
-class GRUModel(BaseModelHandler):
-    """Handler for Llama models."""
 
     def __init__(self, name, args=None):
         """Initialize the model handler."""
@@ -42,6 +42,20 @@ class GRUModel(BaseModelHandler):
             outputs[item] = gen_out
         
         return outputs
+
+# ADDITIONAL TODO LIST
+"""
+VARIABLES:
+    context_dict
+    word_dict
+
+METHODS:
+    forward_context
+    zero_hid
+    read
+    write
+"""
+
 
 class DialogModel(modules.CudaModule):
     def __init__(self, word_dict, item_dict, context_dict, output_length, args, device_id):
