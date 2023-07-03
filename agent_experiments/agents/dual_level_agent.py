@@ -16,21 +16,19 @@ class DualLevelAgent(Agent):
             assert rpf is not None
             self.rpf = rpf  # "Response prompt function"
         else:
-            # add for all methdos needed for GRU module
-            # TODO
-            assert hasattr(self.planning_model, 'context_dict'), ""
-            assert hasattr(self.planning_model, 'word_dict'), ""
-            assert hasattr(self.planning_model, 'forward_context'), ""
-            assert hasattr(self.planning_model, 'zero_hid'), ""
-            assert hasattr(self.planning_model, 'read'), ""
-            assert hasattr(self.planning_model, 'write'), ""
+            # Check that necessary gen methods exist if GRU is used
+            assert hasattr(self.planning_model, 'context_dict'), 'planning_model must have "context_dict" attribute.'
+            assert hasattr(self.planning_model, 'word_dict'), 'planning_model must have "word_dict" attribute.'
+            assert hasattr(self.planning_model, 'forward_context'), 'planning_model must have "word_dict" method.'
+            assert hasattr(self.planning_model, 'zero_hid'), 'planning_model must have "zero_hid" method.'
+            assert hasattr(self.planning_model, 'read'), 'planning_model must have "read" method.'
+            assert hasattr(self.planning_model, 'write'), 'planning_model must have "wrtie" method.'
 
             self.temperature = temperature
 
         self.name = name
         self.human = False
 
-    # TODO
     def _encode(self, inpt, dictionary):
         """A helper function that encodes the passed in words using the dictionary.
 
@@ -43,7 +41,7 @@ class DualLevelAgent(Agent):
             if self.model.device_id is not None:
                 encoded = encoded.cuda(self.model.device_id)
         return encoded
-    # TODO
+
     def _decode(self, out, dictionary):
         """A helper function that decodes indeces into English words.
 
