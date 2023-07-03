@@ -5,6 +5,9 @@ Common independent utility functions for the llm_nego_plan_exps package.
 import sys
 import importlib
 
+from agents import SingleLevelAgent, DualLevelAgent
+from lang_models.gru import GRUModel
+
 from registry import *
 
 
@@ -71,8 +74,6 @@ def get_response_prompt_func(func_id: str):
 
 # TODO: WILL PROBABLY NEED TO UPDATE
 def load_rl_module(weights_path: str):
-    from lang_models.gru import GRUModel
-
     return GRUModel(weights_path)
 
 
