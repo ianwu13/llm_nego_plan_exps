@@ -79,10 +79,10 @@ def load_rl_module(weights_path: str):
 # TODO: WILL PROBABLY NEED TO UPDATE
 def agent_builder(agent_type: str, args, name: str='AI'):
     llm_api = utils.get_llm_api(args.llm_api, args.llm_api_key)
+    choice_prompt_func = get_response_prompt_func(args.llm_choice_prompt_func)
 
     if agent_type == 'llm_no_planning':
         response_prompt_func = get_response_prompt_func(args.llm_response_prompt_func)
-        choice_prompt_func = get_response_prompt_func(args.llm_choice_prompt_func)
 
         return SingleLevelAgent(model=llm_api, 
                                 name=name,
@@ -99,6 +99,7 @@ def agent_builder(agent_type: str, args, name: str='AI'):
                               p_prompt_func=parser_prompt_func,
                               g_prompt_func=generator_prompt_func,
                               planning_model=llm_api,
+                              cpf=choice_prompt_func,
                               rpf=response_prompt_func,
                               name=name)
     elif agent_type == 'llm_rl_planning':
@@ -111,6 +112,7 @@ def agent_builder(agent_type: str, args, name: str='AI'):
                               p_prompt_func=parser_prompt_func,
                               g_prompt_func=generator_prompt_func,
                               planning_model=rl_module,
+                              cpf=choice_prompt_func,
                               name=name)
     else:
         raise ValueError(f'{agent_type} is not a recognized agent agent type!')
