@@ -76,7 +76,7 @@ def main():
     dialog = Dialog([alice, bob], args)
     logger = InteractionLogger(verbose=args.verbose, log_file=args.log_file)
 
-    selfplay = BotBotSelfPlay(dialog, args.context_file, logger=logger, **args)
+    selfplay = BotBotSelfPlay(dialog, args.context_file, logger=logger, **vars(args))
     selfplay.run()
 
 

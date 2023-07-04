@@ -4,6 +4,7 @@ Common independent utility functions for the llm_nego_plan_exps package.
 
 import sys
 import importlib
+import random
 
 from agents import SingleLevelAgent, DualLevelAgent
 from lang_models.gru import GRUModel
@@ -96,7 +97,7 @@ def load_rl_module(weights_path: str, corpus_data_pth: str):
 
 
 def agent_builder(agent_type: str, args, name: str='AI'):
-    llm_api = utils.get_llm_api(args.llm_api, args.llm_api_key)
+    llm_api = get_llm_api(args.llm_api, args.llm_api_key)
     choice_prompt_func = get_response_prompt_func(args.llm_choice_prompt_func)
 
     if agent_type == 'llm_no_planning':
@@ -141,8 +142,10 @@ def agent_builder(agent_type: str, args, name: str='AI'):
 def set_seed(seed, torch_needed=False, np_needed=False):
     """Sets random seed everywhere."""
     if torch_needed:
-        if 'torch' not in sys.modules.keys():
-            import torch
+        # if 'torch' not in sys.modules.keys():
+        #     import torch
+        import torch
+
         torch.manual_seed(seed)
         if torch.cuda.is_available():
             torch.cuda.manual_seed(seed)

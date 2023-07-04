@@ -4,6 +4,7 @@
 # This source code is licensed under the license found in the
 # LICENSE file in the root directory of this source tree.
 
+import os
 import sys
 import logging
 import numpy as np
@@ -32,7 +33,7 @@ class Dialog(object):
         self.metrics = MetricsContainer()
         self._register_metrics()
 
-    def _read_lines(file_name):
+    def _read_lines(self, file_name):
         """Reads all the lines from the file."""
         assert os.path.exists(file_name), f'file does not exists {file_name}'
         lines = []

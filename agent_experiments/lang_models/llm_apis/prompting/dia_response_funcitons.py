@@ -6,9 +6,9 @@ for raw dataset files
 
 # TODO MAKE THIS WORK WHEN NEEDED
 def example_dia_response_func(inst):
-    return [f"Respond to this: {chat_item['text']}" for chat_item in inst['chat_logs']]
+    return [f"Respond to this: DUMMY TEXT"]
 
 
 # TODO MAKE THIS WORK WHEN NEEDED
 def example_choice_func(inst):
-    return [f"Respond to this witha choice: {chat_item['text']}" for chat_item in inst['chat_logs']]
+    return [f"Respond to this with a choice: DUMMY CHOICE"]

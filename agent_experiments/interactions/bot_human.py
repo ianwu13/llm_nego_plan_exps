@@ -1,5 +1,5 @@
 from interactions.interaction import InteractionManager
-from interacitons.interaction_utils import InteractionLogger
+from interactions.interaction_utils import InteractionLogger
 
 
 class BotHumanChat(InteractionManager):

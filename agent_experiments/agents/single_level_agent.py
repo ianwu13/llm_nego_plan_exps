@@ -3,7 +3,7 @@ from agents.base_agent import Agent
 
 class SingleLevelAgent(Agent):
     """An agent that uses DialogModel as an AI."""
-    def __init__(self, model, rpf, cpf, name='AI'):
+    def __init__(self, model, rpf, cpf, args=None, name='AI'):
         super(SingleLevelAgent, self).__init__()
         self.model = model
         self.rpf = rpf  # "Response prompt function"
@@ -23,7 +23,7 @@ class SingleLevelAgent(Agent):
             'ctx': self.ctx,
             'dialogue': self.dialogue
         })
-        response = self.model.get_model_outputs([response_prompt])[0]
+        response = self.model.get_model_outputs(response_prompt)[0]
         response_sp = response.split()
 
         if response_sp[0] != 'YOU:':
@@ -51,7 +51,7 @@ class SingleLevelAgent(Agent):
             'ctx': self.ctx,
             'dialogue': self.dialogue
         })
-        choice = self.model.get_model_outputs([response_prompt])[0]
+        choice = self.model.get_model_outputs(response_prompt)[0]
 
         try:
             choice = [int(c) for c in choice.split()]

@@ -4,8 +4,9 @@ Base class for all interactions ("InteractionManager")
 
 import sys
 import copy
+import random
 
-from interaction_utils.interaction_logger import InteractionLogger
+from interactions.interaction_utils.interaction_logger import InteractionLogger
 
 
 class InteractionManager(object):
@@ -18,7 +19,7 @@ class InteractionManager(object):
         self.create_ctxs(ctx_file)
 
     # Utils for interaction setting (context)
-    def create_ctxs(ctx_file):
+    def create_ctxs(self, ctx_file):
         self.ctxs = []
         with open(ctx_file, 'r') as f:
             ctx_pair = []
@@ -29,13 +30,12 @@ class InteractionManager(object):
                     self.ctxs.append(ctx_pair)
                     ctx_pair = []
 
-    def iter_ctx():
-        for e in range(nepoch):
-            random.shuffle(self.ctxs)
-            for ctx in self.ctxs:
-                yield ctx
+    def iter_ctx(self):
+        random.shuffle(self.ctxs)
+        for ctx in self.ctxs:
+            yield ctx
 
-    def sample_ctx():
+    def sample_ctx(self):
         return random.choice(self.ctxs)
 
     # Run an interaction
