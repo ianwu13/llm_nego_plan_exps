@@ -1,65 +1,125 @@
 """
-Handlers for the GRU Local Model.
+Handler for the GRU Local Model.
 """
+import sys
+import re
+import pdb
+import time
+import logging
+import numpy as np
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+import torch.nn.init
+from torch.autograd import Variable
+
+from data import STOP_TOKENS
+from domain import get_domain
+from models import modules
 
 
-class GRUModel:
-    """Handler for GRU models."""
-    def __init__(self):
-        self.is_llm = False
+def init_rnn(rnn, init_range, weights=None, biases=None):
+    """Initializes RNN uniformly."""
+    weights = weights or ['weight_ih_l0', 'weight_hh_l0']
+    biases = biases or ['bias_ih_l0', 'bias_hh_l0']
+    # Init weights
+    for w in weights:
+        rnn._parameters[w].data.uniform_(-init_range, init_range)
+    # Init biases
+    for b in biases:
+        rnn._parameters[b].data.fill_(0)
 
 
-    def __init__(self, name, args=None):
-        """Initialize the model handler."""
-        self.name = name
-        self.args = args
-
-        # set up the model
-        self.setup_model()
-
-    def setup_model(self):
-        """Setup the model based on the specific desirable variant. 
-        
-        Since multiple Llama variants come from the same class, we can probably use the same setup_model() function for all of them.
-
-        The desired variant can be extracted from the args object.
-        """
-        
-        self.model = None
-
-    def get_model_outputs(self, inputs):
-        """Get the model outputs.
-        
-        Args:
-            inputs: list of prompts to be passed to the model.
-
-        TODO - we can also shift this method to the parent class if possible.
-        """
-
-        outputs = {}
-        for item in inputs:
-            gen_out = f"This is a dummy output response from the Llama7B model. The first five words of the input are: {' '.join(item.split()[:5])}."
-            outputs[item] = gen_out
-        
-        return outputs
-
-# ADDITIONAL TODO LIST
-"""
-VARIABLES:
-    context_dict
-    word_dict
-
-METHODS:
-    forward_context
-    zero_hid
-    read
-    write
-"""
+def init_cont(cont, init_range):
+    """Initializes a container uniformly."""
+    for m in cont:
+        if hasattr(m, 'weight'):
+            m.weight.data.uniform_(-init_range, init_range)
+        if hasattr(m, 'bias'):
+            m.bias.data.fill_(0)
 
 
-class DialogModel(modules.CudaModule):
+class CudaModule(nn.Module):
+    """A helper to run a module on a particular device using CUDA."""
+    def __init__(self, device_id):
+        super(CudaModule, self).__init__()
+        self.device_id = device_id
+
+    def to_device(self, m):
+        if torch.cuda.is_available():
+            if self.device_id is not None:
+                return m.cuda(self.device_id)
+        return m
+
+
+class RnnContextEncoder(CudaModule):
+    """A module that encodes dialogues context using an RNN."""
+    def __init__(self, n, k, nembed, nhid, init_range, device_id):
+        super(RnnContextEncoder, self).__init__(device_id)
+        self.nhid = nhid
+
+        # use the same embedding for counts and values
+        self.embeder = nn.Embedding(n, nembed)
+        # an RNN to encode a sequence of counts and values
+        self.encoder = nn.GRU(
+            input_size=nembed,
+            hidden_size=nhid,
+            bias=True)
+
+        self.embeder.weight.data.uniform_(-init_range, init_range)
+        init_rnn(self.encoder, init_range)
+
+    def forward(self, ctx):
+        ctx_h = self.to_device(torch.zeros(1, ctx.size(1), self.nhid))
+        # create embedding
+        ctx_emb = self.embeder(ctx)
+        # run it through the RNN to get a hidden representation of the context
+        _, ctx_h = self.encoder(ctx_emb, Variable(ctx_h))
+        return ctx_h
+
+
+class MlpContextEncoder(CudaModule):
+    """A module that encodes dialogues context using an MLP."""
+    def __init__(self, n, k, nembed, nhid, init_range, device_id):
+        super(MlpContextEncoder, self).__init__(device_id)
+
+        # create separate embedding for counts and values
+        self.cnt_enc = nn.Embedding(n, nembed)
+        self.val_enc = nn.Embedding(n, nembed)
+
+        self.encoder = nn.Sequential(
+            nn.Tanh(),
+            nn.Linear(k * nembed, nhid)
+        )
+
+        self.cnt_enc.weight.data.uniform_(-init_range, init_range)
+        self.val_enc.weight.data.uniform_(-init_range, init_range)
+        init_cont(self.encoder, init_range)
+
+    def forward(self, ctx):
+        idx = np.arange(ctx.size(0) // 2)
+        # extract counts and values
+        cnt_idx = Variable(self.to_device(torch.from_numpy(2 * idx + 0)))
+        val_idx = Variable(self.to_device(torch.from_numpy(2 * idx + 1)))
+
+        cnt = ctx.index_select(0, cnt_idx)
+        val = ctx.index_select(0, val_idx)
+
+        # embed counts and values
+        cnt_emb = self.cnt_enc(cnt)
+        val_emb = self.val_enc(val)
+
+        # element wise multiplication to get a hidden state
+        h = torch.mul(cnt_emb, val_emb)
+        # run the hidden state through the MLP
+        h = h.transpose(0, 1).contiguous().view(ctx.size(1), -1)
+        ctx_h = self.encoder(h).unsqueeze(0)
+        return ctx_h
+
+
+class GRUModel(CudaModule):
     def __init__(self, word_dict, item_dict, context_dict, output_length, args, device_id):
-        super(DialogModel, self).__init__(device_id)
+        super(GRUModel, self).__init__(device_id)
 
         domain = get_domain(args.domain)
 
@@ -72,7 +132,7 @@ class DialogModel(modules.CudaModule):
         self.word_encoder = nn.Embedding(len(self.word_dict), args.nembed_word)
 
         # context encoder
-        ctx_encoder_ty = modules.RnnContextEncoder if args.rnn_ctx_encoder \
+        ctx_encoder_ty = RnnContextEncoder if args.rnn_ctx_encoder \
             else modules.MlpContextEncoder
         self.ctx_encoder = ctx_encoder_ty(len(self.context_dict), domain.input_length(),
             args.nembed_ctx, args.nhid_ctx, args.init_range, device_id)
@@ -153,13 +213,13 @@ class DialogModel(modules.CudaModule):
         self.decoder.weight.data.uniform_(-self.args.init_range, self.args.init_range)
         self.decoder.bias.data.fill_(0)
 
-        modules.init_rnn(self.reader, self.args.init_range)
+        init_rnn(self.reader, self.args.init_range)
 
         self.word_encoder.weight.data.uniform_(-self.args.init_range, self.args.init_range)
 
-        modules.init_cont(self.attn, self.args.init_range)
-        modules.init_cont(self.sel_encoder, self.args.init_range)
-        modules.init_cont(self.sel_decoders, self.args.init_range)
+        init_cont(self.attn, self.args.init_range)
+        init_cont(self.sel_encoder, self.args.init_range)
+        init_cont(self.sel_decoders, self.args.init_range)
 
     def read(self, inpt, lang_h, ctx_h, prefix_token="THEM:"):
         """Reads a given utterance."""

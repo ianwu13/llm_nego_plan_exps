@@ -73,6 +73,24 @@ def get_response_prompt_func(func_id: str):
 
 
 def load_rl_module(weights_path: str, corpus_data_pth: str):
+    if 'torch' not in sys.modules.keys():
+        import torch
+
+    if torch.cuda.is_available():
+        checkpoint = torch.load(weights_path)
+    else:
+        checkpoint = torch.load(weights_path, map_location=torch.device("cpu"))
+
+    model_args = checkpoint["args"]
+
+    device_id = use_cuda(model_args.cuda)
+    corpus = data.WordCorpus(model_args.data, freq_cutoff=model_args.unk_threshold, verbose=False)
+    model = GRUModel(corpus.word_dict, corpus.item_dict, corpus.context_dict,
+        corpus.output_length, model_args, device_id)
+
+    model.load_state_dict(checkpoint['state_dict'])  # TODO: This will probably need to be updated
+    return model
+
     # corpus_data_pth is forr training dataset, used to generater context/utterance embeddings
     return GRUModel(weights_path, corpus_data_pth)
 
