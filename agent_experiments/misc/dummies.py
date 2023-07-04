@@ -4,7 +4,7 @@ Dummy classes and code for testing pipelines
 
 import sys
 
-from lang_models.model import BaseModelHandler
+from lang_models.llm_apis.model import BaseModelHandler
 
 
 class DummyModelHandler(BaseModelHandler):

@@ -163,5 +163,7 @@ cython_debug/
 
 storage/**
 
+agent_experiments/data/raw_datasets/**
+
 # TODO list for development, not super important
 TODO.txt

@@ -18,7 +18,6 @@ import logging
 import torch
 import numpy as np
 
-
 # special tokens
 SPECIAL = [
     '<eos>',

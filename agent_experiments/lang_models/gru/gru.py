@@ -13,9 +13,7 @@ import torch.nn.functional as F
 import torch.nn.init
 from torch.autograd import Variable
 
-from data import STOP_TOKENS
-from domain import get_domain
-from models import modules
+from data.word_coprus import STOP_TOKENS
 
 
 def init_rnn(rnn, init_range, weights=None, biases=None):
@@ -121,11 +119,10 @@ class GRUModel(CudaModule):
     def __init__(self, word_dict, item_dict, context_dict, output_length, args, device_id):
         super(GRUModel, self).__init__(device_id)
 
-        domain = get_domain(args.domain)
-
         self.word_dict = word_dict
         self.item_dict = item_dict
         self.context_dict = context_dict
+        self.item_pattern = re.compile('^item([0-9])=([0-9\-])+$')
         self.args = args
 
         # embedding for words
@@ -133,8 +130,8 @@ class GRUModel(CudaModule):
 
         # context encoder
         ctx_encoder_ty = RnnContextEncoder if args.rnn_ctx_encoder \
-            else modules.MlpContextEncoder
-        self.ctx_encoder = ctx_encoder_ty(len(self.context_dict), domain.input_length(),
+            else MlpContextEncoder
+        self.ctx_encoder = ctx_encoder_ty(len(self.context_dict), 3,
             args.nembed_ctx, args.nhid_ctx, args.init_range, device_id)
 
         # a reader RNN, to encode words
@@ -191,7 +188,7 @@ class GRUModel(CudaModule):
         # fill in the mask
         for i in range(len(self.word_dict)):
             w = self.word_dict.get_word(i)
-            special = domain.item_pattern.match(w) or w in ('<unk>', 'YOU:', 'THEM:', '<pad>')
+            special = self.item_pattern.match(w) or w in ('<unk>', 'YOU:', 'THEM:', '<pad>')
             self.special_token_mask[i] = -999 if special else 0.0
 
         self.special_token_mask = self.to_device(self.special_token_mask)
