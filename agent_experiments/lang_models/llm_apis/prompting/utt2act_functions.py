@@ -6,4 +6,4 @@ for raw dataset files
 
 # TODO MAKE THIS WORK WHEN NEEDED
 def example_u2a_func(inst):
-    return [f"annotate this: {chat_item['text']}" for chat_item in inst['chat_logs']]
+    return [f"DUMMY_Dialogue_Act"]

@@ -50,9 +50,9 @@ class DualLevelAgent(Agent):
         """
         return dictionary.i2w(out.data.squeeze(1).cpu())
 
-    def feed_context(self, context):
+    def feed_context(self, ctx):
         # context - NL
-        self.context = context
+        self.ctx = ctx
         # all the pronounced words - NL
         self.dialogue = []
         # all the dialogue acts - NL
@@ -60,9 +60,9 @@ class DualLevelAgent(Agent):
 
         if not self.planning_model.is_llm:
             # encoded context
-            self.ctx = self._encode(context, self.planning_model.context_dict)
+            self.ctx_enc = self._encode(context, self.planning_model.context_dict)
             # hidded state of context
-            self.ctx_h = self.planning_model.forward_context(Variable(self.ctx))
+            self.ctx_h = self.planning_model.forward_context(Variable(self.ctx_enc))
 
             # the hidden state of all the dialogue acts
             self.da_hs = []
@@ -125,7 +125,7 @@ class DualLevelAgent(Agent):
                 'dialogue': self.dialogue,
                 'dia_acts': self.dialogue_acts
             })
-            resp_da = self.pg_model.get_model_outputs([resp_da_prompt])[0]  # Dialogue Act
+            resp_da = self.pg_model.get_model_outputs(resp_da_prompt)[0]  # Dialogue Act
 
             # Generate utterance response
             generator_prompt = self.g_prompt_func({
@@ -153,7 +153,7 @@ class DualLevelAgent(Agent):
             'dialogue': self.dialogue,
             'dia_acts': self.dialogue_acts
         })
-        choice = self.model.get_model_outputs([response_prompt])[0]
+        choice = self.model.get_model_outputs(response_prompt)[0]
 
         try:
             choice = [int(c) for c in choice.split()]
