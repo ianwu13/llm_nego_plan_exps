@@ -73,13 +73,13 @@ class DualLevelAgent(Agent):
     def read(self, inpt):
         # Append to dialogue array
         self.dialogue.append('THEM:')
-        self.dialogue.extend(inpt.split())
+        self.dialogue.extend(inpt)
 
         # Get dialogue act with parser
         parser_prompt = self.p_prompt_func({
             'ctx': self.ctx,
             'dialogue': self.dialogue,
-            'read_inpt': inpt
+            'read_inpt': ' '.join(inpt)
         })
         inpt_da = self.pg_model.get_model_outputs([parser_prompt])[0]  # Dialogue Act
         # And append to da array
@@ -116,7 +116,8 @@ class DualLevelAgent(Agent):
             self.dialogue_acts.extend(resp_da.split())
             # Store utterance response
             self.dialogue.append('YOU:')
-            self.dialogue.extend(write_utt.split())
+            write_utt = write_utt.split()
+            self.dialogue.extend(write_utt)
 
             return write_utt
         else:
@@ -141,11 +142,12 @@ class DualLevelAgent(Agent):
             self.dialogue_acts.extend(resp_da.split())
             # Store utterance response
             self.dialogue_acts.append('YOU:')
-            self.dialogue_acts.extend(write_utt.split())
+            write_utt = write_utt.split()
+            self.dialogue_acts.extend(write_utt)
 
             return write_utt
     
-    # SL Agent
+    # SL Agent - CURRENTLY USING pg_model (LLM) TO MAKE CHOICE SELECTION
     def choose(self):
         # generate a new utterance
         choice_prompt = self.cpf({
@@ -153,7 +155,7 @@ class DualLevelAgent(Agent):
             'dialogue': self.dialogue,
             'dia_acts': self.dialogue_acts
         })
-        choice = self.model.get_model_outputs(response_prompt)[0]
+        choice = self.pg_model.get_model_outputs(choice_prompt)[0]
 
         try:
             choice = [int(c) for c in choice.split()]

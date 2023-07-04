@@ -35,15 +35,16 @@ class SingleLevelAgent(Agent):
         # then append the utterance
         self.dialogue.extend(response_sp)
 
-        return response
+        return [response]
 
     def read(self, inpt):
-        inpt_sp = inpt.split()
+        # inpt_sp = inpt.split()
 
         # first add the special 'YOU:' token if necessary
         self.dialogue.append('THEM:')
         # then append the utterance
-        self.dialogue.extend(inpt_sp)
+        # self.dialogue.extend(inpt_sp)
+        self.dialogue.extend(inpt)
 
     def choose(self):
         # generate a new utterance
@@ -51,7 +52,7 @@ class SingleLevelAgent(Agent):
             'ctx': self.ctx,
             'dialogue': self.dialogue
         })
-        choice = self.model.get_model_outputs(response_prompt)[0]
+        choice = self.model.get_model_outputs(choice_prompt)[0]
 
         try:
             choice = [int(c) for c in choice.split()]

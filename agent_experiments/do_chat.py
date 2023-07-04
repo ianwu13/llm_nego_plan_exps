@@ -9,6 +9,7 @@ An util to negotiate with AI.
 
 import argparse
 
+from agents.human_agent import HumanAgent
 from interactions import BotHumanChat
 from interactions.interaction_utils import Dialog, InteractionLogger
 import utils
@@ -16,19 +17,17 @@ import utils
 
 def main():
     parser = argparse.ArgumentParser(description='chat utility')
-    # Interaction setup parameters
-    parser.add_argument('--model_file', type=str,
-        help='model file')
-    parser.add_argument('--ai_starts', action='store_true', default=False,
-        help='allow AI to start the dialog')
-        
     parser.add_argument('--ai_type', type=str, default='llm_no_planning', 
         choices=['llm_no_planning', 'llm_self_planning', 'llm_rl_planning'],
         help='Agent type for the AI agent.')
+    
+    parser.add_argument('--model_file', type=str, default=None,
+        help='model file')
     parser.add_argument('--llm_api', type=str, default=None,
         help='Level at which the models interact [act|utt]')
     parser.add_argument('--llm_api_key', type=str, default=None,
         help='Key to be used when calling provided API')
+
     # Arguments which may be used depending on ai_type
     parser.add_argument('--utt2act_prompt_func', type=str, default=None,
         help='Function ID from registry.py which converts utterance data into llm prompts for generating acts (Parser)')
@@ -44,6 +43,8 @@ def main():
     parser.add_argument('--corpus_source', type=str, default=None,
         help='Path to file used to generate the corpus for GRU model (MUST BE THE SAME AS FILE USED FOR TRAINING GRU MODULE)')
 
+    parser.add_argument('--ai_starts', action='store_true', default=False,
+        help='allow AI to start the dialog')
     parser.add_argument('--context_file', type=str, default='',
         help='context file (scenarios for each dialog)')
     parser.add_argument('--ref_text', type=str,
@@ -54,6 +55,8 @@ def main():
     # Misc args
     parser.add_argument('--seed', type=int, default=1,
         help='random seed')
+    parser.add_argument('--max_turns', type=int, default=20,
+        help='maximum number of turns in a dialog')
     # args to be used if context file is not provided (context for each dialogue will be entered manually by user)
     parser.add_argument('--num_types', type=int, default=3,
         help='number of object types')

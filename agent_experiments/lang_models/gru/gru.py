@@ -13,7 +13,7 @@ import torch.nn.functional as F
 import torch.nn.init
 from torch.autograd import Variable
 
-from data.word_coprus import STOP_TOKENS
+from data.word_corpus import STOP_TOKENS
 
 
 def init_rnn(rnn, init_range, weights=None, biases=None):

@@ -1,3 +1,6 @@
+import random
+import itertools
+
 from interactions.interaction import InteractionManager
 from interactions.interaction_utils import InteractionLogger
 
@@ -6,20 +9,20 @@ class BotHumanChat(InteractionManager):
     """A helper class that runs dialogues."""
     def __init__(self, dialog, ctx_file=None, logger=None, **kwargs):
         if ctx_file is not None:
-            super(BotBotSelfPlay, self).__init__(dialog, ctx_file, logger, **kwargs)
+            super(BotHumanChat, self).__init__(dialog, ctx_file, logger, **kwargs)
         else:
             self.dialog = dialog
             self.logger = logger if logger else InteractionLogger()
 
             self.auto_create_ctxs(**kwargs)
 
-    def auto_create_ctxs(num_types=3, num_objects=10, max_score=10, **kwargs):
+    def auto_create_ctxs(self, num_types=3, num_objects=10, max_score=10, **kwargs):
         self.num_types = num_types
         self.num_objects = num_objects
         self.max_value = max_value
 
     # Override to allowfor manual entry of context for a dialogue
-    def iter_ctx():
+    def iter_ctx(self):
         if self.ctxs is None:
             raise Exception(
                 'Cannot call InteractionManager.iter_ctx() when a context file has not been provided. \
@@ -32,7 +35,7 @@ class BotHumanChat(InteractionManager):
                 yield ctx
 
     # Override to allowfor manual entry of context for a dialogue
-    def sample_ctx():
+    def sample_ctx(self):
         if self.ctxs is not None:
             return random.choice(self.ctxs)
         
