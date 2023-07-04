@@ -84,7 +84,7 @@ def load_rl_module(weights_path: str, corpus_data_pth: str):
     model_args = checkpoint["args"]
 
     device_id = use_cuda(model_args.cuda)
-    corpus = data.WordCorpus(model_args.data, freq_cutoff=model_args.unk_threshold, verbose=False)
+    corpus = data.WordCorpus(corpus_data_pth, freq_cutoff=model_args.unk_threshold, verbose=False)
     model = GRUModel(corpus.word_dict, corpus.item_dict, corpus.context_dict,
         corpus.output_length, model_args, device_id)
 
