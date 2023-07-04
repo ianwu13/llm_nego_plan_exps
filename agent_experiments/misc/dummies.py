@@ -13,4 +13,5 @@ class DummyModelHandler(BaseModelHandler):
         pass
     
     def get_model_outputs(self, inputs):
-        return inputs
+        # return inputs
+        return ['DUMMY']
