@@ -8,6 +8,7 @@ import random
 
 from agents import SingleLevelAgent, DualLevelAgent
 from lang_models.gru import GRUModel
+from data.word_corpus import WordCorpus
 
 from registry import *
 
@@ -93,7 +94,7 @@ def load_rl_module(weights_path: str, corpus_data_pth: str):
     torch.set_default_tensor_type('torch.cuda.FloatTensor')
     torch.cuda.set_device(device_id)
 
-    corpus = data.WordCorpus(corpus_data_pth, freq_cutoff=model_args.unk_threshold, verbose=False)
+    corpus = WordCorpus(corpus_data_pth, freq_cutoff=model_args.unk_threshold, verbose=False)
     model = GRUModel(corpus.word_dict, corpus.item_dict, corpus.context_dict,
         corpus.output_length, model_args, device_id)
 
