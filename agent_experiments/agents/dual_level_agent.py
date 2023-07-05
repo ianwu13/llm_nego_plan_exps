@@ -38,8 +38,8 @@ class DualLevelAgent(Agent):
         encoded = torch.LongTensor(dictionary.w2i(inpt)).unsqueeze(1)
         
         if torch.cuda.is_available():
-            if self.model.device_id is not None:
-                encoded = encoded.cuda(self.model.device_id)
+            if self.planning_model.device_id is not None:
+                encoded = encoded.cuda(self.planning_model.device_id)
         return encoded
 
     def _decode(self, out, dictionary):
