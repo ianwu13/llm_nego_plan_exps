@@ -60,7 +60,7 @@ class DualLevelAgent(Agent):
 
         if not self.planning_model.is_llm:
             # encoded context
-            self.ctx_enc = self._encode(context, self.planning_model.context_dict)
+            self.ctx_enc = self._encode(ctx, self.planning_model.context_dict)
             # hidded state of context
             self.ctx_h = self.planning_model.forward_context(Variable(self.ctx_enc))
 
