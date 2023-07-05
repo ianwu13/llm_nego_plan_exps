@@ -7,7 +7,7 @@ import json
 
 from lang_models.llm_apis.model import BaseModelHandler
 
-import openai
+# import openai
 
 
 class OpenAI_Api(BaseModelHandler):
