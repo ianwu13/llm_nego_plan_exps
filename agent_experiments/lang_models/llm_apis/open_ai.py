@@ -3,6 +3,7 @@ OpenAI models - GPT and variants.
 """
 
 import requests
+import json
 
 from lang_models.llm_apis.model import BaseModelHandler
 
@@ -53,30 +54,23 @@ class OpenAI_Api(BaseModelHandler):
         outputs = []
         # inputs is a list
         for inp in inputs:
-            formatted_inp = inp
-            print(self.api_key)
-            print(formatted_inp)
-            print(self.model_name)
-            # formatted_inp = self.prompt_formatter(inp)
 
             response = requests.post(
-                self.api_url, 
+                self.api_url,
                 headers={
                     "Content-Type": "application/json", 
                     "Authorization": f"Bearer {self.api_key}"},
-                data={
+                json={
                     "model": self.model_name,
-                    "prompt": formatted_inp,
+                    "prompt": inp,
                     "max_tokens": self.max_tokens,
                     # "messages": [{"role": "user", "content": "Say this is a test!"}],
                     "temperature": 0.7}
                 )
-            print(response)
-            choices = response['choices']
+            choices = json.loads(response.content)['choices']
             assert len(choices == 1), "Assumed number of responses per prompt would be 1. If this error is raised we need to handle this"
             gen_out = choices[0]['text']
 
             outputs.append(gen_out)
-            print(gen_out)
 
-        # return outputs
+        return outputs

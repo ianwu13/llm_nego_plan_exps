@@ -161,7 +161,7 @@ cython_debug/
 
 **/.DS_Store
 
-storage/**
+agent_experiments/storage/**
 
 agent_experiments/data/raw_datasets/**
 logs/**
