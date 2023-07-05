@@ -4,6 +4,8 @@ Functions which convert instances from dataset handlers into a set of annotation
 
 
 def example_inst2p_func(inst):  # Just for casino dataset, returns "annotate this: {utterance}"
+    print(inst)
+    print(type(inst))
     return [f"annotate this: {chat_item['text']}" for chat_item in inst['chat_logs']]
 
 
