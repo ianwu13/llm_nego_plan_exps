@@ -19,10 +19,14 @@ LLM_API_REG = {
 
 INST2ANNOT_PROMPT_FUN_REG = {
     "example": ("data.conversion.inst2p_functions", "example_inst2p_func"),  # TODO: COMMENTS EXPLAINING PATTERN IN HERE
+    "demo_dnd": ("data.conversion.inst2p_functions", "demo_dnd"),
+    "demo_casino": ("data.conversion.inst2p_functions", "demo_casino"),
 }
 
 INST_ANNOT2STR_PROMPT_FUN_REG = {
-    "example": ("data.conversion.annot2str_functions", "example_annot2s_func")  # TODO: COMMENTS EXPLAINING PATTERN IN HERE
+    "example": ("data.conversion.annot2str_functions", "example_annot2s_func"),  # TODO: COMMENTS EXPLAINING PATTERN IN HERE
+    "demo_dnd_outform": ("data.conversion.annot2str_functions", "demo_dnd_outform"),
+    "demo_casino_outform": ("data.conversion.annot2str_functions", "demo_casino_outform"),
 }
 
 ACT2UTT_PROMPT_FUN_REG = {

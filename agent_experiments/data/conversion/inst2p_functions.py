@@ -7,6 +7,14 @@ def example_inst2p_func(inst):  # Just for casino dataset, returns "annotate thi
     return [f"annotate this: {chat_item['text']}" for chat_item in inst['chat_logs']]
 
 
+def demo_dnd(inst, annot):
+    pass
+
+
+def demo_casino(inst, annot):
+    pass
+
+
 # TODO: ZORA UTILS
 # assume read file methods are handle outside, and the input for the function is a string.
 class i2p_functions():

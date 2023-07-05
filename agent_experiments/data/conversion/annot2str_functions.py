@@ -11,3 +11,11 @@ def example_annot2s_func(inst, annot):
     annots_str = ''.join(['<eos>'.join(annot), '\n'])
 
     return ''.join([a1_pref_str, ' ', annots_str, a2_pref_str, ' ', annots_str])
+
+
+def demo_dnd_outform(inst, annot):
+    pass
+
+
+def demo_casino_outform(inst, annot):
+    pass
