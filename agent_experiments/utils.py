@@ -131,8 +131,8 @@ def agent_builder(agent_type: str, args, rl_module_weight_path=None, name: str='
                               rpf=response_prompt_func,
                               name=name)
     elif agent_type == 'llm_rl_planning':
-        parser = get_utt2act_prompt_func(args.utt2act_prompt_func)
-        generator = get_act2utt_prompt_func(args.act2utt_prompt_func)
+        parser_prompt_func = get_utt2act_prompt_func(args.utt2act_prompt_func)
+        generator_prompt_func = get_act2utt_prompt_func(args.act2utt_prompt_func)
 
         assert rl_module_weight_path is not None, 'The --rl_module_weight_path argmuent must be specified when agent type is "llm_rl_planning"'
         assert args.corpus_source is not None, 'The --corpus_source argmuent must be specified when agent type is "llm_rl_planning"'
