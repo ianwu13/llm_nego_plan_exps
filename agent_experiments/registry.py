@@ -3,12 +3,14 @@ A registry to define the supported datasets, models, and tasks.
 """
 
 DATA_HANDLER_REG = {
-    'dnd': 'data.dealornodeal.DNDHandler',
+    'dnd': 'data.dealornodeal',
+    # 'dnd': 'data.dealornodeal.DNDHandler',
     'casino': 'data.casino.CasinoHandler'
 }
 
 LLM_API_REG = {
-    "openai_generic": "models.open_ai.OpenAI_Api",
+    # "openai_generic": "models.open_ai.OpenAI_Api",
+    "openai_generic": "llm_apis.open_ai",
     # TODO: THESE ARE NOT YET IMPLEMENTED
     "llama_7b": "llm_apis.llama.Llama7BHandler",
     "falcon_7b": "models.falcon.Falcon7BHandler",

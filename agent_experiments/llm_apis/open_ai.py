@@ -14,29 +14,29 @@ class OpenAI_Api():
 
     def __init__(
         self, 
-        model_name, 
+        # model_name, 
         api_key=None, 
-        api_url='https://api.openai.com/v1/completions', 
-        prompt_formatter=(lambda x: x), 
-        max_tokens=256, 
-        temperature=0
+        # api_url='https://api.openai.com/v1/completions', 
+        # prompt_formatter=(lambda x: x), 
+        # max_tokens=256, 
+        # temperature=0
     ):
         """Initialize the model handler."""
 
         assert api_key is not None, 'An API Key is required to use the OpenAI API'
-        self.model_name = model_name
+        # self.model_name = model_name
         self.api_key = api_key
-        self.api_url = api_url
+        # self.api_url = api_url
 
-        self.prompt_formatter = prompt_formatter
+        # self.prompt_formatter = prompt_formatter
 
-        self.max_tokens = max_tokens
-        self.temperature = temperature
+        # self.max_tokens = max_tokens
+        # self.temperature = temperature
 
-        # set up the model
-        self.setup_model()
+        # # set up the model
+        # self.setup_model()
 
-        openai.api_key = api_key
+        openai.api_key = self.api_key
     
     def text_completion(prompt):
         model = "text-davinci-003"
@@ -50,7 +50,7 @@ class OpenAI_Api():
         print("----"*10)
         return generated_text
     
-    def chat_bot(context, prompt):
+    def chat_bot(prompt):
         model = "gpt-3.5-turbo"
         system_prompt = "You are a helpful assistant."
         messages = [
