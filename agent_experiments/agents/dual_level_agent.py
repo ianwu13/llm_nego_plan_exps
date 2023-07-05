@@ -1,4 +1,5 @@
 import torch
+from torch.autograd import Variable
 
 from agents.base_agent import Agent
 
