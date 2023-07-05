@@ -22,6 +22,8 @@ class DNDHandler(BaseDatasetHandler):
         """Get the instances from the dataset."""
         if n < 1:
             return self.dataset_reg[split]
+        elif n == 1:
+            return [self.dataset_reg[split][0]]
         else:
             return self.dataset_reg[split][:n]
     
