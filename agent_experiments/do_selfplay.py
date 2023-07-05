@@ -27,16 +27,10 @@ def main():
         choices=['llm_no_planning', 'llm_self_planning', 'llm_rl_planning'],
         help='Agent type for Bob.')
        
-    # Arguments which may be used depending on alice/bob_type
-    parser.add_argument('--alice_model_file', type=str, default=None,
-        help='Alice model file')
-    parser.add_argument('--bob_model_file', type=str, default=None,
-        help='Bob model file')
     parser.add_argument('--llm_api', type=str, default=None,
         help='Level at which the models interact [act|utt]')
     parser.add_argument('--llm_api_key', type=str, default=None,
         help='Key to be used when calling provided API')
-
     parser.add_argument('--utt2act_prompt_func', type=str, default=None,
         help='Function ID from registry.py which converts utterance data into llm prompts for generating acts (Parser)')
     parser.add_argument('--act2utt_prompt_func', type=str, default=None,
@@ -46,6 +40,10 @@ def main():
     parser.add_argument('--llm_choice_prompt_func', type=str, default=None,
         help='Function ID from registry.py which generates a prompt for the llm api (if used) to generate the final choice for a dialogue')
     
+    parser.add_argument('--alice_model_file', type=str, default=None,
+        help='Alice model file')
+    parser.add_argument('--bob_model_file', type=str, default=None,
+        help='Bob model file')
     parser.add_argument('--corpus_source', type=str, default=None,
         help='Path to file used to generate the corpus for GRU model (MUST BE THE SAME AS FILE USED FOR TRAINING GRU MODULE)')
 

@@ -21,14 +21,10 @@ def main():
         choices=['llm_no_planning', 'llm_self_planning', 'llm_rl_planning'],
         help='Agent type for the AI agent.')
     
-    parser.add_argument('--model_file', type=str, default=None,
-        help='model file')
     parser.add_argument('--llm_api', type=str, default=None,
         help='Level at which the models interact [act|utt]')
     parser.add_argument('--llm_api_key', type=str, default=None,
         help='Key to be used when calling provided API')
-
-    # Arguments which may be used depending on ai_type
     parser.add_argument('--utt2act_prompt_func', type=str, default=None,
         help='Function ID from registry.py which converts utterance data into llm prompts for generating acts (Parser)')
     parser.add_argument('--act2utt_prompt_func', type=str, default=None,
@@ -38,8 +34,8 @@ def main():
     parser.add_argument('--llm_choice_prompt_func', type=str, default=None,
         help='Function ID from registry.py which generates a prompt for the llm api (if used) to generate the final choice for a dialogue')
         
-    parser.add_argument('--rl_module_weight_path', type=str, default=None,
-        help='Path to weights for the RL planning module')
+    parser.add_argument('--model_file', type=str, default=None,
+        help='model file')
     parser.add_argument('--corpus_source', type=str, default=None,
         help='Path to file used to generate the corpus for GRU model (MUST BE THE SAME AS FILE USED FOR TRAINING GRU MODULE)')
 
@@ -70,7 +66,7 @@ def main():
     utils.set_seed(args.seed, torch_needed=True, np_needed=True)
 
     human = HumanAgent()
-    ai = utils.agent_builder(args.ai_type, args, name='AI')
+    ai = utils.agent_builder(args.ai_type, args, rl_module_weight_path=args.model_file, name='AI')
 
     agents = [ai, human] if args.ai_starts else [human, ai]
 
