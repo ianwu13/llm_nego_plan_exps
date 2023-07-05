@@ -46,8 +46,6 @@ def main():
     parser.add_argument('--llm_choice_prompt_func', type=str, default=None,
         help='Function ID from registry.py which generates a prompt for the llm api (if used) to generate the final choice for a dialogue')
     
-    parser.add_argument('--rl_module_weight_path', type=str, default=None,
-        help='Path to weights for the RL planning module')
     parser.add_argument('--corpus_source', type=str, default=None,
         help='Path to file used to generate the corpus for GRU model (MUST BE THE SAME AS FILE USED FOR TRAINING GRU MODULE)')
 
@@ -70,8 +68,8 @@ def main():
 
     utils.set_seed(args.seed, torch_needed=True, np_needed=True)
 
-    alice = utils.agent_builder(args.alice_type, args, name='Alice')
-    bob = utils.agent_builder(args.bob_type, args, name='Bob')
+    alice = utils.agent_builder(args.alice_type, args, rl_module_weight_path=args.alice_model_file, name='Alice')
+    bob = utils.agent_builder(args.bob_type, args, rl_module_weight_path=args.bob_model_file, name='Bob')
 
     dialog = Dialog([alice, bob], args)
     logger = InteractionLogger(verbose=args.verbose, log_file=args.log_file)
