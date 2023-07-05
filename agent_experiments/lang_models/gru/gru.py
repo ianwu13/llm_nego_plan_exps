@@ -125,6 +125,8 @@ class GRUModel(CudaModule):
         self.item_pattern = re.compile('^item([0-9])=([0-9\-])+$')
         self.args = args
 
+        self.is_llm = False
+
         # embedding for words
         self.word_encoder = nn.Embedding(len(self.word_dict), args.nembed_word)
 
