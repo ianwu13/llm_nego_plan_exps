@@ -18,7 +18,7 @@ class CasinoHandler(BaseDatasetHandler):
         self.splits = list(casino_dataset.keys())
         self.dataset_reg = {split: casino_dataset[split] for split in self.splits}
 
-    def get_instances(self, split):
+    def get_instances(self, split='train', n=0):
         """Get the instances from the dataset."""
         if n < 1:
             return self.dataset_reg[split]
