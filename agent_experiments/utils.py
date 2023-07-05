@@ -74,8 +74,9 @@ def get_response_prompt_func(func_id: str):
 
 
 def load_rl_module(weights_path: str, corpus_data_pth: str):
-    if 'torch' not in sys.modules.keys():
-        import torch
+    # if 'torch' not in sys.modules.keys():
+    #     import torch
+    import torch
 
     if torch.cuda.is_available():
         checkpoint = torch.load(weights_path)
