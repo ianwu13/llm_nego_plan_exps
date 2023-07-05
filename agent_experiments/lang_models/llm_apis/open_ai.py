@@ -41,8 +41,7 @@ class OpenAI_Api(BaseModelHandler):
 
     def setup_model(self):
         """Setup the model."""
-        print("set up model")
-        self.model = None
+        pass
 
     def get_model_outputs(self, inputs):
         """Get the model outputs.
@@ -68,7 +67,7 @@ class OpenAI_Api(BaseModelHandler):
                     "temperature": 0.7}
                 )
             choices = json.loads(response.content)['choices']
-            assert len(choices == 1), "Assumed number of responses per prompt would be 1. If this error is raised we need to handle this"
+            assert len(choices) == 1, f"Assumed number of responses per prompt would be 1. If this error is raised we need to handle this (len choices={len(choices)})"
             gen_out = choices[0]['text']
 
             outputs.append(gen_out)
