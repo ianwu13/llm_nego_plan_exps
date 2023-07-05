@@ -7,11 +7,11 @@ def example_inst2p_func(inst):  # Just for casino dataset, returns "annotate thi
     return [f"annotate this: {chat_item['text']}" for chat_item in inst['chat_logs']]
 
 
-def demo_dnd(inst, annot):
+def demo_dnd(inst):
     pass
 
 
-def demo_casino(inst, annot):
+def demo_casino(inst):
     pass
 
 
