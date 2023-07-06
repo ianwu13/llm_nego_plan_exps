@@ -10,7 +10,7 @@ python3 annotate.py --dataset casino --inst_to_prompt_funct example --annot_meth
 
 Selfplay, alice/bob as single-level llm models
 ```
-python3 do_selfplay.py --alice_type llm_no_planning --bob_type llm_no_planning --llm_api dummy --utt2act_prompt_func example --act2utt_prompt_func example --llm_response_prompt_func example_dia_resp --llm_choice_prompt_func example_choice --context_file data/raw_datasets/dummies/ctx_example.txt --ref_text data/raw_datasets/dummies/ref_example.txt --log_file storage/logs/sl_sp_dummy.log
+python3 do_selfplay.py --alice_type llm_no_planning --bob_type llm_no_planning --llm_api dummy --llm_response_prompt_func example_dia_resp --llm_choice_prompt_func example_choice --context_file data/raw_datasets/dummies/ctx_example.txt --ref_text data/raw_datasets/dummies/ref_example.txt --log_file storage/logs/sl_sp_dummy.log
 ```
 
 Selfplay, alice/bob as dual-level llm models
@@ -27,7 +27,7 @@ python3 do_selfplay.py --alice_type llm_rl_planning --bob_type llm_rl_planning -
 
 Chat with AI as single-level llm agent
 ```
-python3 do_chat.py --ai_type llm_no_planning --llm_api dummy --utt2act_prompt_func example --act2utt_prompt_func example --llm_response_prompt_func example_dia_resp --llm_choice_prompt_func example_choice --context_file data/raw_datasets/dummies/ctx_example.txt --ref_text data/raw_datasets/dummies/ref_example.txt --log_file storage/logs/sl_chat_dummy.log
+python3 do_chat.py --ai_type llm_no_planning --llm_api dummy --llm_response_prompt_func example_dia_resp --llm_choice_prompt_func example_choice --context_file data/raw_datasets/dummies/ctx_example.txt --ref_text data/raw_datasets/dummies/ref_example.txt --log_file storage/logs/sl_chat_dummy.log
 ```
 
 Chat with AI as dual-level llm model
