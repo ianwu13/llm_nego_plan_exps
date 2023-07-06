@@ -14,7 +14,12 @@ def demo_dnd(inst):
 
 
 def demo_casino(inst):
-    pass
+    prompt_list = []
+    for each in inst['chat_logs']:
+        prompt_intro = "annotate this : "
+        prompt = prompt_intro + f"{each['id']}: {each['text']}"
+        prompt_list.append(prompt)
+    return prompt_list
 
 
 # TODO: ZORA UTILS
