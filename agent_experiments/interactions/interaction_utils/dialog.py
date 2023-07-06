@@ -259,7 +259,7 @@ class Dialog(object):
                 }
             )
             # make the other agent to read it
-            reader.read(out[0])
+            reader.read(out)
             if writer.human:
                 logger.dump_human_sent(writer.name, out)
             else:
