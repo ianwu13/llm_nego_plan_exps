@@ -1,4 +1,5 @@
 import torch
+from torch.autograd import Variable
 
 from agents.base_agent import Agent
 
@@ -38,8 +39,8 @@ class DualLevelAgent(Agent):
         encoded = torch.LongTensor(dictionary.w2i(inpt)).unsqueeze(1)
         
         if torch.cuda.is_available():
-            if self.model.device_id is not None:
-                encoded = encoded.cuda(self.model.device_id)
+            if self.planning_model.device_id is not None:
+                encoded = encoded.cuda(self.planning_model.device_id)
         return encoded
 
     def _decode(self, out, dictionary):
@@ -60,7 +61,7 @@ class DualLevelAgent(Agent):
 
         if not self.planning_model.is_llm:
             # encoded context
-            self.ctx_enc = self._encode(context, self.planning_model.context_dict)
+            self.ctx_enc = self._encode(ctx, self.planning_model.context_dict)
             # hidded state of context
             self.ctx_h = self.planning_model.forward_context(Variable(self.ctx_enc))
 
@@ -71,10 +72,6 @@ class DualLevelAgent(Agent):
             self.da_h = self.planning_model.zero_hid(1)
 
     def read(self, inpt):
-        # Append to dialogue array
-        self.dialogue.append('THEM:')
-        self.dialogue.extend(inpt)
-
         # Get dialogue act with parser
         parser_prompt = self.p_prompt_func({
             'ctx': self.ctx,
@@ -82,6 +79,10 @@ class DualLevelAgent(Agent):
             'read_inpt': ' '.join(inpt)
         })
         inpt_da = self.pg_model.get_model_outputs([parser_prompt])[0]  # Dialogue Act
+        
+        # Append to dialogue array
+        self.dialogue.append('THEM:')
+        self.dialogue.extend(inpt)
         # And append to da array
         self.dialogue_acts.append('THEM:')
         self.dialogue_acts.extend(inpt_da.split())
@@ -113,10 +114,10 @@ class DualLevelAgent(Agent):
             self.da_hs.append(da_hs)
             # Store dialogue act response
             self.dialogue_acts.append('YOU:')
-            self.dialogue_acts.extend(resp_da.split())
+            self.dialogue_acts.extend(resp_da)
             # Store utterance response
-            self.dialogue.append('YOU:')
             write_utt = write_utt.split()
+            self.dialogue.append('YOU:')
             self.dialogue.extend(write_utt)
 
             return write_utt
@@ -141,9 +142,9 @@ class DualLevelAgent(Agent):
             self.dialogue_acts.append('YOU:')
             self.dialogue_acts.extend(resp_da.split())
             # Store utterance response
-            self.dialogue_acts.append('YOU:')
             write_utt = write_utt.split()
-            self.dialogue_acts.extend(write_utt)
+            self.dialogue.append('YOU:')
+            self.dialogue.extend(write_utt)
 
             return write_utt
     
@@ -155,13 +156,19 @@ class DualLevelAgent(Agent):
             'dialogue': self.dialogue,
             'dia_acts': self.dialogue_acts
         })
-        choice = self.pg_model.get_model_outputs(choice_prompt)[0]
+        choice_vals = self.pg_model.get_model_outputs(choice_prompt)[0]
 
         try:
-            choice = [int(c) for c in choice.split()]
+            choice_vals = [int(c) for c in choice_vals.split()]
         except:
             print('Choice values could not be parsed from model response')
             return ['<no_agreement>' for _ in range(3)]
+
+        # Choice format: "['item0=1', 'item1=0', 'item2=3', 'item0=0', 'item1=1', 'item2=0']"
+        choice = ['', '', '', '', '', '']
+        for i in range(3):
+            choice[i] = f'item{i}={choice_vals[i]}'
+            choice[i+3] = f'item{i}={choice_vals[i+3]}'
 
         return choice
 

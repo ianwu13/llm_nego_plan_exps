@@ -43,15 +43,10 @@ def demo_casino(inst):
     return prompt_list
 
 
-# TODO: ZORA UTILS
+# ZORA UTILS
 # assume read file methods are handle outside, and the input for the function is a string.
 class i2p_functions():
-
-    def __init__(
-        self, 
-        input_file,
-        output_file
-    ):
+    def __init__(self, input_file, output_file):
         self.input = input_file
         self.output = output_file
 
@@ -121,24 +116,3 @@ class i2p_functions():
     def get_output_file_name(self, func):
         file_str = func + "_" + self.output
         return file_str
-
-
-
-# def main():
-#     file = open('data.txt', 'r')
-#     lines = file.readlines()
-
-#     temp = i2p_functions()
-
-#     for each_line in lines:
-#         each_line = each_line.strip()
-#         prompt_sep_list = temp.utters_split_seperate(each_line)
-#         temp.write_output(prompt_sep_list,'result_sep.txt')
-
-#         prompt_cum_list = temp.utters_split_cumulative(each_line)
-#         temp.write_output(prompt_cum_list,'result_cum.txt')
-#     print("done")
-        
-
-# if __name__ == "__main__":
-#     main()

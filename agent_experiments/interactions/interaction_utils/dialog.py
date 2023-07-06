@@ -59,7 +59,10 @@ class Dialog(object):
         self.metrics.register_ngram('full_match', text=ref_text)
 
     def _is_selection(self, out):
-        return len(out) == 1 and out[0] == '<selection>'
+        # return len(out) == 1 and out[0] == '<selection>'
+
+        # Changed to looser criteria for selection
+        return '<selection>' in ''.join(out)
 
     def show_metrics(self):
         return ' '.join([f'\n\t{k}={v}' for k, v in self.metrics.dict().items()])
@@ -257,7 +260,9 @@ class Dialog(object):
             )
             # make the other agent to read it
             reader.read(out)
-            if not writer.human:
+            if writer.human:
+                logger.dump_human_sent(writer.name, out)
+            else:
                 logger.dump_sent(writer.name, out)
             # check if the end of the conversation was generated
             if self._is_selection(out):
@@ -283,7 +288,6 @@ class Dialog(object):
 
             for agent, choice, in zip(self.agents, choices):
                 storage["choices"][agent.name] = choice
-
         else:
             # the conversation atleast finished nicely; now we try to get a consistent output.
             # generate choices for each of the agents

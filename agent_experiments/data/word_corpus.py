@@ -130,16 +130,16 @@ class WordCorpus(object):
     It has the train, valid and test datasets and corresponding dictionaries.
     """
 
-    def __init__(self, path, freq_cutoff=2, train='train.txt',
-        valid='val.txt', test='test.txt', verbose=False):
+    def __init__(self, path, freq_cutoff=2, train=None,
+        valid=None, test=None, verbose=False):
         self.verbose = verbose
         # only add words from the train dataset
         self.word_dict, self.item_dict, self.context_dict = Dictionary.from_file(
-            os.path.join(path, train),
+            path,
             freq_cutoff=freq_cutoff)
 
         # construct all 3 datasets
-        self.train = self.tokenize(os.path.join(path, train)) if train else []
+        self.train = self.tokenize(os.path.join(path, train)) if train else self.tokenize(path)
         self.valid = self.tokenize(os.path.join(path, valid)) if valid else []
         self.test = self.tokenize(os.path.join(path, test)) if test else []
 

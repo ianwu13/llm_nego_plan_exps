@@ -19,12 +19,20 @@ class InteractionLogger(object):
             self.logs.append(sys.stderr)
         if log_file:
             flags = 'a' if append else 'w'
-            self.logs.append(open(log_file, flags))
+            self.log_file = open(log_file, flags)
+            self.logs.append(self.log_file)
 
     def _dump(self, s, forced=False):
         for log in self.logs:
             print(s, file=log)
             log.flush()
+        if forced:
+            print(s, file=sys.stdout)
+            sys.stdout.flush()
+
+    def _dump_lf(self, s, forced=False):
+        print(s, file=self.log_file)
+        self.log_file.flush()
         if forced:
             print(s, file=sys.stdout)
             sys.stdout.flush()
@@ -44,6 +52,9 @@ class InteractionLogger(object):
 
     def dump_sent(self, name, sent):
         self._dump_with_name(name, ' '.join(sent))
+
+    def dump_human_sent(self, name, sent):
+        self._dump_lf(f'{name:<5} : {" ".join(sent)}')
 
     def dump_choice(self, name, choice):
         def rep(w):

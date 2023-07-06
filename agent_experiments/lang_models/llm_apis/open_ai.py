@@ -2,12 +2,13 @@
 OpenAI models - GPT and variants.
 """
 
+import re
 import requests
 import json
 
 from lang_models.llm_apis.model import BaseModelHandler
 
-import openai
+# import openai
 
 
 class OpenAI_Api(BaseModelHandler):
@@ -102,8 +103,10 @@ class OpenAI_Api(BaseModelHandler):
                     "temperature": 0.7}
                 )
             choices = json.loads(response.content)['choices']
-            assert len(choices) == 1, f"Assumed number of responses per prompt would be 1. If this error is raised we need to handle this (len choices={len(choices)})"
-            gen_out = choices[0]['text']
+            assert len(choices) == 1, f"Assumed number of responses per prompt would be 1. If this error is raised we need to handle this (len choices={len(choices)}; {choices})"
+            gen_out = choices[0]['text'].strip('\n')
+            # Remove non-alphanumeric characters nad make lowercase
+            gen_out = re.sub(r'[^A-Za-z0-9 ]+', '', gen_out).lower()
 
             outputs.append(gen_out)
 
