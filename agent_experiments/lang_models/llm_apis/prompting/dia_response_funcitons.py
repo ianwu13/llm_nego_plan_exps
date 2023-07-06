@@ -31,7 +31,8 @@ def example_dia_act_response_func(inst):
     if len(inst['dialogue']) == 0:
         return [f"{scenario_str}\nThe best dialogue strategy to start this negotiation is: "]
     else:
-        dialogue_str = f"The negotiation dialogue up to this point is: {' '.join(inst['dialogue'])}"
+        dialogue_str = "" # f"The negotiation dialogue up to this point is: {' '.join(inst['dialogue'])}"
+        # NOTE: Adding nl dialogue here leads model to respond with nl utterance even when instructed to doa  dialogue act
         da_str = f"The series of dialogue strategy acts used so far is: {' '.join(inst['dia_acts'])}"
         return [f'{scenario_str}\n{dialogue_str}\n{da_str}\nIf an agreement has been reached, say <selection>\nFollowing this template: "propose book=YOUR_BOOKS_COUNT hat=YOUR_HATS_COUNT ball=YOUR_BALLS_COUNT", the best dialogue strategy act to respond with: ']
 
