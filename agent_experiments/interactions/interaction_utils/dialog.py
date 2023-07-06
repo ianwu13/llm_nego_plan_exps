@@ -59,7 +59,10 @@ class Dialog(object):
         self.metrics.register_ngram('full_match', text=ref_text)
 
     def _is_selection(self, out):
-        return len(out) == 1 and out[0] == '<selection>'
+        # return len(out) == 1 and out[0] == '<selection>'
+
+        # Changed to looser criteria for selection
+        return '<selection>' in ''.join(out)
 
     def show_metrics(self):
         return ' '.join([f'\n\t{k}={v}' for k, v in self.metrics.dict().items()])
