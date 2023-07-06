@@ -9,6 +9,9 @@ class Annotator():
 
     def annotate_instance(self, inst):
         prompts = self.inst2promp_funct(inst)
+        # print("-???????----")
+        # print(prompts)
+        # print("-???????----")
         annotations = self.llm_api.get_model_outputs(prompts)
         return annotations
 

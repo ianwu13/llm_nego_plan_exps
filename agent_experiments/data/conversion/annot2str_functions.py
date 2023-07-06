@@ -18,4 +18,18 @@ def demo_dnd_outform(inst, annot):
 
 
 def demo_casino_outform(inst, annot):
-    pass
+    result_list = []
+    # inst is a dict
+    utterance_list = []
+    for each in inst['chat_logs']:
+        uttr = f"{each['id']}: {each['text']}"
+        utterance_list.append(uttr)
+
+    for i in range(0, len(inst)):
+        each_str = utterance_list[i] + " " + annot[i]
+        result_list.append(each_str)
+
+    result_str = ''
+    for each in result_list:
+        result_str = result_str + " " + each
+    return result_str
