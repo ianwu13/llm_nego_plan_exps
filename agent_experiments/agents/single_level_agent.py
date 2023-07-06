@@ -52,12 +52,18 @@ class SingleLevelAgent(Agent):
             'ctx': self.ctx,
             'dialogue': self.dialogue
         })
-        choice = self.model.get_model_outputs(choice_prompt)[0]
+        choice_vals = self.model.get_model_outputs(choice_prompt)[0]
 
         try:
-            choice = [int(c) for c in choice.split()]
+            choice_vals = [int(c) for c in choice_vals.split()]
         except:
             print('Choice values could not be parsed from model response')
             return ['<no_agreement>' for _ in range(3)]
+
+        # Choice format: "['item0=1', 'item1=0', 'item2=3', 'item0=0', 'item1=1', 'item2=0']"
+        choice = ['', '', '', '', '', '']
+        for i in range(3):
+            choice[i] = f'item{i}={choice_vals[i]}'
+            choice[i+3] = f'item{i}={choice_vals[i+3]}'
 
         return choice

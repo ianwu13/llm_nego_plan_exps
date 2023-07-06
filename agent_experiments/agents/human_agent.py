@@ -40,6 +40,7 @@ class HumanAgent(Agent):
         while True:
             try:
                 choice = input('%s choice: ' % self.name)
+                # Choice format: "['item0=1', 'item1=0', 'item2=3', 'item0=0', 'item1=1', 'item2=0']"
                 return self.parse_human_choice(self.ctx, choice)
             except KeyboardInterrupt:
                 sys.exit()
