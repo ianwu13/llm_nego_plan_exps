@@ -22,13 +22,17 @@ LLM_API_REG = {
 # Prompt List to Annotate Dialogue Instance
 # dialogue_instance (format dataset dependent) -> list["prompt_for_annot_single_utt"]
 INST2ANNOT_PROMPT_FUN_REG = {
-    "example": ("data.conversion.inst2p_functions", "example_inst2p_func"),
+    "example": ("data.conversion.inst2p_functions", "example_inst2p_func"),  # TODO: COMMENTS EXPLAINING PATTERN IN HERE
+    "demo_dnd": ("data.conversion.inst2p_functions", "demo_dnd"),
+    "demo_casino": ("data.conversion.inst2p_functions", "demo_casino"),
 }
 
 # Dialogue Annotations to Formatted Line Output
 # list["dialogue_act_annotations_for_utterances"] -> "single_line_string_output_for_dialogue"
 INST_ANNOT2STR_PROMPT_FUN_REG = {
-    "example": ("data.conversion.annot2str_functions", "example_annot2s_func")
+    "example": ("data.conversion.annot2str_functions", "example_annot2s_func"),  # TODO: COMMENTS EXPLAINING PATTERN IN HERE
+    "demo_dnd_outform": ("data.conversion.annot2str_functions", "demo_dnd_outform"),
+    "demo_casino_outform": ("data.conversion.annot2str_functions", "demo_casino_outform"),
 }
 
 # Generator Functions (for planning)

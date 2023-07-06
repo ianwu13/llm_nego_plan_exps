@@ -17,5 +17,12 @@ class DummyModelHandler(BaseModelHandler):
         pass
     
     def get_model_outputs(self, inputs):
+        # input is a list
         # return inputs
-        return ['DUMMY']
+        annotated_input = []
+        for each in inputs:
+            # call the api
+            # get annotation from api
+            each_annot = '[DUMMY ANNOTATION]'
+            annotated_input.append(each_annot)
+        return annotated_input
