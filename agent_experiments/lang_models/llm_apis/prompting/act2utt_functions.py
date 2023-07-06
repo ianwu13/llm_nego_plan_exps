@@ -24,5 +24,5 @@ def example_a2u_func(inst):
     else:
         dialogue_str = f"The negotiation dialogue up to this point is: {' '.join(inst['dialogue'])}"
         da_str = f"The dialogue act annotations up to this point are: {' '.join(inst['dia_acts'])}"
-        gen_act_str = f"The annotated dialogue act for your next response is: {' '.join(inst['gen_act'])}\n the corresponding natural language utterance is: "
+        gen_act_str = f"The annotated dialogue act for your next response is: {' '.join(inst['gen_act'])}\nIf an agreement has been reached, say <selection>\n the corresponding natural language utterance is: "
         return [f"{scenario_str}\n{dialogue_str}\n{da_str}\n{gen_act_str}"]
