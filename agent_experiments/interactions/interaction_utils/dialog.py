@@ -283,7 +283,6 @@ class Dialog(object):
 
             for agent, choice, in zip(self.agents, choices):
                 storage["choices"][agent.name] = choice
-
         else:
             # the conversation atleast finished nicely; now we try to get a consistent output.
             # generate choices for each of the agents
