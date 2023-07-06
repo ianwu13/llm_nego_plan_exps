@@ -35,7 +35,7 @@ class SingleLevelAgent(Agent):
         # then append the utterance
         self.dialogue.extend(response_sp)
 
-        return [response]
+        return response
 
     def read(self, inpt):
         # inpt_sp = inpt.split()
@@ -44,7 +44,7 @@ class SingleLevelAgent(Agent):
         self.dialogue.append('THEM:')
         # then append the utterance
         # self.dialogue.extend(inpt_sp)
-        self.dialogue.extend(inpt)
+        self.dialogue.extend(inpt.split())
 
     def choose(self):
         # generate a new utterance
