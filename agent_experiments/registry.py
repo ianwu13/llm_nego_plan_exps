@@ -47,5 +47,6 @@ UTT2ACT_PROMPT_FUN_REG = {
 # dialogue_state_json -> list["prompt_to_gen_response"]
 RESPONSE_PROMPT_FUN_REG = {
     "example_dia_resp": ("lang_models.llm_apis.prompting.dia_response_funcitons", "example_dia_response_func"),
+    "example_dia_act_resp": ("lang_models.llm_apis.prompting.dia_response_funcitons", "example_dia_act_response_func"),
     "example_choice": ("lang_models.llm_apis.prompting.dia_response_funcitons", "example_choice_func")
 }
