@@ -30,7 +30,7 @@ class Llama7bApi(LlamaHandler):
         Args:
             inputs: list of prompts to be passed to the model.
 
-        TODO - we can also shift this method to the parent class if possible.
+        We can also shift this method to the parent class if possible?
         """
 
         outputs = {}
