@@ -142,9 +142,9 @@ class DualLevelAgent(Agent):
             self.dialogue_acts.append('YOU:')
             self.dialogue_acts.extend(resp_da.split())
             # Store utterance response
-            self.dialogue_acts.append('YOU:')
+            self.dialogue.append('YOU:')
             write_utt = write_utt.split()
-            self.dialogue_acts.extend(write_utt)
+            self.dialogue.extend(write_utt)
 
             return write_utt
     
