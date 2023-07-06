@@ -72,10 +72,6 @@ class DualLevelAgent(Agent):
             self.da_h = self.planning_model.zero_hid(1)
 
     def read(self, inpt):
-        # Append to dialogue array
-        self.dialogue.append('THEM:')
-        self.dialogue.extend(inpt)
-
         # Get dialogue act with parser
         parser_prompt = self.p_prompt_func({
             'ctx': self.ctx,
@@ -83,6 +79,10 @@ class DualLevelAgent(Agent):
             'read_inpt': ' '.join(inpt)
         })
         inpt_da = self.pg_model.get_model_outputs([parser_prompt])[0]  # Dialogue Act
+        
+        # Append to dialogue array
+        self.dialogue.append('THEM:')
+        self.dialogue.extend(inpt)
         # And append to da array
         self.dialogue_acts.append('THEM:')
         self.dialogue_acts.extend(inpt_da.split())
