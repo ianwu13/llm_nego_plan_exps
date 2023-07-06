@@ -257,7 +257,9 @@ class Dialog(object):
             )
             # make the other agent to read it
             reader.read(out)
-            if not writer.human:
+            if writer.human:
+                logger.dump_human_sent(writer.name, out)
+            else:
                 logger.dump_sent(writer.name, out)
             # check if the end of the conversation was generated
             if self._is_selection(out):
