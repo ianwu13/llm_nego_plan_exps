@@ -21,8 +21,8 @@ class DummyModelHandler(BaseModelHandler):
         # return inputs
         annotated_input = []
         for each in inputs:
-            #call the api
-            # get annotation
-            each_annot = 'DUMMY'
+            # call the api
+            # get annotation from api
+            each_annot = '[DUMMY ANNOTATION]'
             annotated_input.append(each_annot)
         return annotated_input

@@ -9,9 +9,6 @@ class Annotator():
 
     def annotate_instance(self, inst):
         prompts = self.inst2promp_funct(inst)
-        # print("-???????----")
-        # print(prompts)
-        # print("-???????----")
         annotations = self.llm_api.get_model_outputs(prompts)
         return annotations
 
@@ -19,6 +16,7 @@ class Annotator():
         f = open(outfile, 'w')
         # for inst in self.dataset.instance_generator(split):
         for inst in self.dataset.get_instances(split=split, n=1):  # For testing so not too many api calls
+            print(inst)
             annotations = self.annotate_instance(inst)
             out_line = self.output_formatter(inst, annotations)
             f.write(out_line)
