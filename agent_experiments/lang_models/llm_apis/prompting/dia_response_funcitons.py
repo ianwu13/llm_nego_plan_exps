@@ -33,7 +33,7 @@ def example_dia_act_response_func(inst):
     else:
         dialogue_str = f"The negotiation dialogue up to this point is: {' '.join(inst['dialogue'])}"
         da_str = f"The series of dialogue strategy acts used so far is: {' '.join(inst['dia_acts'])}"
-        return [f"{scenario_str}\n{dialogue_str}\nIf an agreement has been reached, say <selection>\nThe best dialogue strategy act to respond with in this negotiation is: "]
+        return [f'{scenario_str}\n{dialogue_str}\n{da_str}\nIf an agreement has been reached, say <selection>\nFollowing this template: "propose book=YOUR_BOOKS_COUNT hat=YOUR_HATS_COUNT ball=YOUR_BALLS_COUNT", the best dialogue strategy act to respond with: ']
 
 
 # DEMO
