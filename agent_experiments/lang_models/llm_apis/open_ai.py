@@ -2,6 +2,7 @@
 OpenAI models - GPT and variants.
 """
 
+import re
 import requests
 import json
 
@@ -104,6 +105,8 @@ class OpenAI_Api(BaseModelHandler):
             choices = json.loads(response.content)['choices']
             assert len(choices) == 1, f"Assumed number of responses per prompt would be 1. If this error is raised we need to handle this (len choices={len(choices)}; {choices})"
             gen_out = choices[0]['text'].strip('\n')
+            # Remove non-alphanumeric characters nad make lowercase
+            gen_out = re.sub(r'[^A-Za-z0-9 ]+', '', gen_out).lower()
 
             outputs.append(gen_out)
 
