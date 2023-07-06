@@ -350,14 +350,4 @@ class Dialog(object):
         for ctx, choice in zip(ctxs, choices):
             logger.dump('debug: %s %s' % (' '.join(ctx), ' '.join(choice)))
 
-        # TESTING STUFF
-        for a in self.agents:
-            print('8'*100)
-            print(a.name)
-            print(a.ctx)
-            print(a.dialogue)
-            if hasattr(a, 'dialogue_acts'):
-                print(a.dialogue_acts)
-            print('8'*100)
-
         return conv, agree, rewards, storage
