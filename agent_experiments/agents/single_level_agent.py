@@ -35,7 +35,7 @@ class SingleLevelAgent(Agent):
         # then append the utterance
         self.dialogue.extend(response_sp)
 
-        return response
+        return [response]
 
     def read(self, inpt):
         # inpt_sp = inpt.split()
