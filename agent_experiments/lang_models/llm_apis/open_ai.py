@@ -18,7 +18,7 @@ class OpenAI_Api(BaseModelHandler):
         self, 
         model_name, 
         api_key=None, 
-        api_url='https://api.openai.com/v1/completions', 
+        api_url='https://api.openai.com/v1/chat/completions', 
         prompt_formatter=(lambda x: x), 
         max_tokens=256, 
         temperature=0
@@ -28,7 +28,13 @@ class OpenAI_Api(BaseModelHandler):
         assert api_key is not None, 'An API Key is required to use the OpenAI API'
         self.model_name = model_name
         self.api_key = api_key
-        self.api_url = api_url
+
+        if self.model_name.startswith('text-'):
+            self.api_url = 'https://api.openai.com/v1/completions'
+            self.legacy = True
+        else:
+            self.api_url = api_url
+            self.legacy = False
 
         self.prompt_formatter = prompt_formatter
 
@@ -45,6 +51,79 @@ class OpenAI_Api(BaseModelHandler):
         # openai.api_key = self.api_key
         pass
     
+    def get_legacy_completions_out(self, inputs):
+        outputs = []
+        # inputs is a list
+        for inp in inputs:
+
+            response = requests.post(
+                self.api_url,
+                headers={
+                    "Content-Type": "application/json", 
+                    "Authorization": f"Bearer {self.api_key}"},
+                json={
+                    "model": self.model_name,
+                    "prompt": inp,
+                    "max_tokens": self.max_tokens,
+                    # "messages": [{"role": "user", "content": "Say this is a test!"}],
+                    "temperature": 0.7}
+                )
+            choices = json.loads(response.content)['choices']
+            assert len(choices) == 1, f"Assumed number of responses per prompt would be 1. If this error is raised we need to handle this (len choices={len(choices)}; {choices})"
+            gen_out = choices[0]['text'].strip('\n')
+
+            # Remove non-alphanumeric characters nad make lowercase
+            gen_out = re.sub(r'[^A-Za-z0-9 ]+', '', gen_out).lower()
+
+            outputs.append(gen_out)
+
+        return outputs
+
+    def get_chat_completions_out(self, inputs):
+        """
+        import openai
+
+        openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": "Who won the world series in 2020?"},
+                {"role": "assistant", "content": "The Los Angeles Dodgers won the World Series in 2020."},
+                {"role": "user", "content": "Where was it played?"}
+            ]
+        )
+        """
+        outputs = []
+        # inputs is a list
+        for inp in inputs:
+            response = requests.post(
+                self.api_url,
+                headers={
+                    "Content-Type": "application/json", 
+                    "Authorization": f"Bearer {self.api_key}"},
+                json={
+                    "model": self.model_name,
+                    "messages": inp
+                    }
+                )
+            choices = json.loads(response.content)['choices']
+            assert len(choices) == 1, f"Assumed number of responses per prompt would be 1. If this error is raised we need to handle this (len choices={len(choices)}; {choices})"
+            # In Python, the assistant’s reply can be extracted with response['choices'][0]['message']['content']
+            gen_out = choices[0]['message']['content'].strip('\n')
+
+            # Remove non-alphanumeric characters nad make lowercase
+            gen_out = re.sub(r'[^A-Za-z0-9 ]+', '', gen_out).lower()
+
+            outputs.append(gen_out)
+
+        return outputs
+
+    def get_model_outputs(self, inputs):
+        if self.legacy:
+            return self.get_legacy_completions_out(inputs)
+        else:
+            return self.get_chat_completions_out(inputs)
+
     '''
     def text_completion(prompt):
         model = "text-davinci-003"
@@ -78,36 +157,3 @@ class OpenAI_Api(BaseModelHandler):
         print("----"*10)
         return generated_texts
     '''
-
-    def get_model_outputs(self, inputs):
-        """Get the model outputs.
-
-        Args:
-            inputs: list of prompts to be passed to the model.
-        """
-
-        outputs = []
-        # inputs is a list
-        for inp in inputs:
-
-            response = requests.post(
-                self.api_url,
-                headers={
-                    "Content-Type": "application/json", 
-                    "Authorization": f"Bearer {self.api_key}"},
-                json={
-                    "model": self.model_name,
-                    "prompt": inp,
-                    "max_tokens": self.max_tokens,
-                    # "messages": [{"role": "user", "content": "Say this is a test!"}],
-                    "temperature": 0.7}
-                )
-            choices = json.loads(response.content)['choices']
-            assert len(choices) == 1, f"Assumed number of responses per prompt would be 1. If this error is raised we need to handle this (len choices={len(choices)}; {choices})"
-            gen_out = choices[0]['text'].strip('\n')
-            # Remove non-alphanumeric characters nad make lowercase
-            gen_out = re.sub(r'[^A-Za-z0-9 ]+', '', gen_out).lower()
-
-            outputs.append(gen_out)
-
-        return outputs
