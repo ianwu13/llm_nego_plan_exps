@@ -2,6 +2,8 @@
 A registry to define the supported datasets, models, and tasks.
 """
 
+# UTIL CLASSES
+
 # Data Handlers
 DATA_HANDLER_REG = {
     'dnd': ('data', 'DNDHandler'),
@@ -19,6 +21,8 @@ LLM_API_REG = {
     "gpt_4": ("lang_models.llm_apis.gpt_4", "GPT_4_Api"),
 }
 
+# ANNOTATIONS
+
 # Prompt List to Annotate Dialogue Instance
 # dialogue_instance (format dataset dependent) -> list["prompt_for_annot_single_utt"]
 INST2ANNOT_PROMPT_FUN_REG = {
@@ -34,6 +38,8 @@ INST_ANNOT2STR_PROMPT_FUN_REG = {
     "demo_dnd_outform": ("data.conversion.annot2str_functions", "demo_dnd_outform"),
     "demo_casino_outform": ("data.conversion.annot2str_functions", "demo_casino_outform"),
 }
+
+# SELFPLAY AND CHAT
 
 # Generator Functions (for planning)
 # dialogue_state_json -> list["prompt_to_gen_dialogue_utt_from_act"]
@@ -52,5 +58,7 @@ UTT2ACT_PROMPT_FUN_REG = {
 RESPONSE_PROMPT_FUN_REG = {
     "example_dia_resp": ("lang_models.llm_apis.prompting.dia_response_funcitons", "example_dia_response_func"),
     "example_dia_act_resp": ("lang_models.llm_apis.prompting.dia_response_funcitons", "example_dia_act_response_func"),
-    "example_choice": ("lang_models.llm_apis.prompting.dia_response_funcitons", "example_choice_func")
+    "example_choice": ("lang_models.llm_apis.prompting.dia_response_funcitons", "example_choice_func"),
+    "dia_resp_slagent_openai_chatcomp": ("lang_models.llm_apis.prompting.dia_response_funcitons", "dia_resp_slagent_openai_chatcomp"),
+    "choice_slagent_openai_chatcomp": ("lang_models.llm_apis.prompting.dia_response_funcitons", "choice_slagent_openai_chatcomp"),
 }
