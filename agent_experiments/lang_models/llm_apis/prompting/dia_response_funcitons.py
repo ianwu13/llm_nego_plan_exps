@@ -86,7 +86,7 @@ def dia_resp_slagent_openai_chatcomp(inst):
 # CHOICE/SELECTION MAKING PROMPT FUNCTIONS
 
 def choice_slagent_openai_chatcomp(inst):
-    system_str = f'You are negotiating over books, hats, and balls to maximize your own points. When a participant says "<selection>", this indicates a deal has been reached. In response to this, please give the agreed upon values for the deal, in the format\nyour_books your_hats your_balls their_books their_hats their_balls\n (six numbers).'
+    system_str = f'You are negotiating over books, hats, and balls to maximize your own points. There are {inst["ctx"][0]} books, {inst["ctx"][2]} hats, and {inst["ctx"][4]} balls. When a participant says "<selection>", this indicates a deal has been reached. In response to this, please give the agreed upon values for the deal, in the format\nyour_books your_hats your_balls their_books their_hats their_balls\n (six numbers).'
     messages = [{"role": "system", "content": system_str}]
     if len(inst['dialogue']) == 0:
         messages.append({"role": "user", "content": f"Begin the negotiation"})
