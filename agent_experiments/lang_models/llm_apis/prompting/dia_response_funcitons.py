@@ -60,7 +60,7 @@ def dia_resp_slagent_openai_chatcomp(inst):
     messages = [{"role": "system", "content": system_str}]
     if len(inst['dialogue']) == 0:
         messages.append({"role": "user", "content": f"Begin the negotiation"})
-        return messages
+        return [messages]
     else:
         # print(inst['dialogue']) -> ['THEM:', 'DUMMY', 'YOU:', 'DUMMY', 'THEM:', 'DUMMY', 'YOU:', 'DUMMY', 'THEM:', 'DUMMY']
         you_them_dict = {
@@ -80,7 +80,7 @@ def dia_resp_slagent_openai_chatcomp(inst):
             messages.append({"role": role, "content": content})
             i = end
 
-        return messages
+        return [messages]
 
 
 # CHOICE/SELECTION MAKING PROMPT FUNCTIONS
@@ -97,7 +97,7 @@ def choice_slagent_openai_chatcomp(inst):
     messages = [{"role": "system", "content": system_str}]
     if len(inst['dialogue']) == 0:
         messages.append({"role": "user", "content": f"Begin the negotiation"})
-        return messages
+        return [messages]
     else:
         # print(inst['dialogue']) -> ['THEM:', 'DUMMY', 'YOU:', 'DUMMY', 'THEM:', 'DUMMY', 'YOU:', 'DUMMY', 'THEM:', 'DUMMY']
         you_them_dict = {
@@ -117,4 +117,4 @@ def choice_slagent_openai_chatcomp(inst):
             messages.append({"role": role, "content": content})
             i = end
 
-        return messages
+        return [messages]
