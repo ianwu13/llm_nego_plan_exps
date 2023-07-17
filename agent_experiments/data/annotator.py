@@ -15,7 +15,7 @@ class Annotator():
     def annotate_split(self, outfile, split='train'):
         f = open(outfile, 'w')
         # for inst in self.dataset.instance_generator(split):
-        for inst in self.dataset.get_instances(split=split, n=1):  # For testing so not too many api calls
+        for inst in self.dataset.get_instances(split=split, n=1):  # TODO: For testing so not too many api calls
             print(inst)
             annotations = self.annotate_instance(inst)
             out_line = self.output_formatter(inst, annotations)
