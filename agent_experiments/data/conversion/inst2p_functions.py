@@ -31,7 +31,7 @@ def gpt3_5_dnd_annot_prompt_fun(inst):
 
 
 # CaSiNo Prompt examples:
-casino = []
+casino_fs_texts = []
 casino_fs_annots = []
 
 
