@@ -43,7 +43,8 @@ INST_ANNOT2STR_PROMPT_FUN_REG = {
     "example": ("data.conversion.annot2str_functions", "example_annot2s_func"),
     "demo_dnd_outform": ("data.conversion.annot2str_functions", "demo_dnd_outform"),
     "demo_casino_outform": ("data.conversion.annot2str_functions", "demo_casino_outform"),
-    "base": ("data.conversion.annot2str_functions", "base_out_formatter")
+    "base": ("data.conversion.annot2str_functions", "base_out_formatter"),
+    "base_first_line": ("data.conversion.annot2str_functions", "base_out_formatter_first_line")  # Removes content after "\n" character in LLM output
 }
 
 # SELFPLAY AND CHAT

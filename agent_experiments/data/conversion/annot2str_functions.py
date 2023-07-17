@@ -3,7 +3,13 @@ Functions which convert instances from datasethandler and corresponding annotati
 for raw dataset files
 """
 
+
 def base_out_formatter(inst, annot):
+    pass
+
+
+# Removes content after "\n" character in LLM output
+def base_out_formatter_first_line():
     pass
 
 
