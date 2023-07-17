@@ -4,13 +4,75 @@ for raw dataset files
 """
 
 
-def base_out_formatter(inst, annot):
-    pass
+def base_out_formatter_dnd(inst, annot):
+    input_str = ' '.join([f'{c} {v}' for c, v in zip(inst['input']['count'], inst['input']['value'])])
+    prt_inpt_str = ' '.join([f'{c} {v}' for c, v in zip(inst['partner_input']['count'], inst['partner_input']['value'])])
+
+    output = inst['output']
+    tmp = output.split(' ')
+    prt_output = ' '.join([tmp[3], tmp[4], tmp[5], tmp[0], tmp[1], tmp[2]])
+
+    you_start = inst['dialogue'].startswith('YOU: ')
+
+    dia = ''
+    prt_persp_dia = ''
+    for a in annot:
+        if you_start:
+            dia += ' YOU: '
+            prt_persp_dia += ' THEM: '
+        else:
+            dia += ' THEM: '
+            prt_persp_dia += ' YOU: '
+        you_start = not you_start
+        dia += a
+        prt_persp_dia += a
+    # Remove leading space
+    dia = dia.lstrip(' ')
+    prt_persp_dia = prt_persp_dia.lstrip(' ')
+
+    return f'<input> {input_str} </input> <dialogue> {dia} </dialogue> <output> {output} </output> <partner_input> {prt_inpt_str} </partner_input>\n<input> {prt_inpt_str} </input> <dialogue> {prt_persp_dia} </dialogue> <output> {prt_output} </output> <partner_input> {input_str} </partner_input>\n'
+
+
+# TODO
+def base_out_formatter_casino(inst, annot):
+    # prtnr is mturk_agent_2, you are mturk_agent_1
+    # TODO - Casino on HF does not have item counts
+    int['participant_info']
+    input_str = ' '.join([f'{c} {v}' for c, v in zip(inst['input']['count'], inst['input']['value'])])
+    prt_inpt_str = ' '.join([f'{c} {v}' for c, v in zip(inst['partner_input']['count'], inst['partner_input']['value'])])
+
+    output = inst['output']
+    tmp = output.split(' ')
+    prt_output = ' '.join([tmp[3], tmp[4], tmp[5], tmp[0], tmp[1], tmp[2]])
+
+    you_start = inst['chat_logs']['id'] == 'mturk_agent_1'
+
+    dia = ''
+    prt_persp_dia = ''
+    for a in annot:
+        if you_start:
+            dia += ' YOU: '
+            prt_persp_dia += ' THEM: '
+        else:
+            dia += ' THEM: '
+            prt_persp_dia += ' YOU: '
+        you_start = not you_start
+        dia += a
+        prt_persp_dia += a
+    # Remove leading space
+    dia = dia.lstrip(' ')
+    prt_persp_dia = prt_persp_dia.lstrip(' ')
+    # END TODO
+    return f'<input> {input_str} </input> <dialogue> {dia} </dialogue> <output> {output} </output> <partner_input> {prt_inpt_str} </partner_input>\n<input> {prt_inpt_str} </input> <dialogue> {prt_persp_dia} </dialogue> <output> {prt_output} </output> <partner_input> {input_str} </partner_input>\n'
 
 
 # Removes content after "\n" character in LLM output
-def base_out_formatter_first_line():
-    pass
+def base_out_formatter_first_line_dnd(inst, annot):
+    return base_out_formatter_dnd(inst, [a.split('\n')[0] for a in annot])
+
+
+def base_out_formatter_first_line_casino(inst, annot):
+    return base_out_formatter_casino(inst, [a.split('\n')[0] for a in annot])
 
 
 def example_annot2s_func(inst, annot):
@@ -21,6 +83,8 @@ def example_annot2s_func(inst, annot):
 
     return ''.join([a1_pref_str, ' ', annots_str, a2_pref_str, ' ', annots_str])
 
+
+# OLD
 # split utterance seperately for dnd
 def utters_split_seperate(line):
     # without the final selection
