@@ -56,7 +56,7 @@ def dia_resp_slagent_openai_chatcomp(inst):
     )
     """
     # print(inst['ctx']) -> ['1', '0', '1', '1', '3', '3']
-    system_str = f'There are {inst["ctx"][0]} books, {inst["ctx"][2]} hats, and {inst["ctx"][4]} balls. The books are worth {inst["ctx"][1]} points, the hats are worth {inst["ctx"][3]}, and the balls are worth {inst["ctx"][5]}. Your partner has different values for each item and you are an assistant negotiating to maximize your own points. When a deal is agreed upon, say "<selection>" for make a selection'
+    system_str = f'There are {inst["ctx"][0]} books, {inst["ctx"][2]} hats, and {inst["ctx"][4]} balls. The books are worth {inst["ctx"][1]} points, the hats are worth {inst["ctx"][3]}, and the balls are worth {inst["ctx"][5]}. Your partner has different values for each item and you are negotiating over how to divide the items. Your goal is to mazimize your own points in the agreed upon deal. When a deal is agreed upon, say "<selection>" for make a selection'
     messages = [{"role": "system", "content": system_str}]
     if len(inst['dialogue']) == 0:
         messages.append({"role": "user", "content": f"Begin the negotiation"})
@@ -86,7 +86,7 @@ def dia_resp_slagent_openai_chatcomp(inst):
 # CHOICE/SELECTION MAKING PROMPT FUNCTIONS
 
 def choice_slagent_openai_chatcomp(inst):
-    system_str = f'You are an assistant negotiating over books, hats, and balls to maximize your own points. There are {inst["ctx"][0]} books, {inst["ctx"][2]} hats, and {inst["ctx"][4]} balls available. When a participant says "<selection>", this indicates a deal has been reached. In response to this, please give the agreed upon values for the deal, in the order "your_books your_hats your_balls their_books their_hats their_balls" (six numbers), without any additional words. The total number of books, hats, and balls given should equal the number available.'
+    system_str = f'There are {inst["ctx"][0]} books, {inst["ctx"][2]} hats, and {inst["ctx"][4]} balls available. You are an assistant negotiating over books, hats, and balls to divide them. Your goal is to mazimize your own points. When a participant says "<selection>", this indicates a deal has been reached. In response to this, please give the agreed upon values for the deal, in the order "your_books your_hats your_balls their_books their_hats their_balls" (six numbers), without any additional words. The total number of books, hats, and balls given should equal the number available.'
     messages = [{"role": "system", "content": system_str}]
     if len(inst['dialogue']) == 0:
         messages.append({"role": "user", "content": f"Begin the negotiation"})
