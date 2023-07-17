@@ -3,6 +3,9 @@ Functions which convert instances from datasethandler and corresponding annotati
 for raw dataset files
 """
 
+def base_out_formatter(inst, annot):
+    pass
+
 
 def example_annot2s_func(inst, annot):
     # Just for casino dataset, returns generic string with preferences and annotations for each agent perspective

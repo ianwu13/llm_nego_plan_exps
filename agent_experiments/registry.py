@@ -14,12 +14,14 @@ DATA_HANDLER_REG = {
 LLM_API_REG = {
     "dummy": ("misc.dummies", "DummyModelHandler"),
     "openai_generic": ("lang_models.llm_apis.open_ai", "OpenAI_Api"),
-    # TODO: THESE ARE NOT YET IMPLEMENTED
-    "llama_7b": ("lang_models.llm_apis.llama", "Llama7BHandler"),
-    "falcon_7b": ("lang_models.llm_apis.falcon", "Falcon7BHandler"),
-    "falcon_40b": ("lang_models.llm_apis.falcon", "Falcon40BHandler"),
-    "gpt_4": ("lang_models.llm_apis.gpt_4", "GPT_4_Api"),
 }
+# TODO: THESE ARE NOT YET IMPLEMENTED
+'''
+"llama_7b": ("lang_models.llm_apis.llama", "Llama7BHandler"),
+"falcon_7b": ("lang_models.llm_apis.falcon", "Falcon7BHandler"),
+"falcon_40b": ("lang_models.llm_apis.falcon", "Falcon40BHandler"),
+"gpt_4": ("lang_models.llm_apis.gpt_4", "GPT_4_Api"),
+'''
 
 # ANNOTATIONS
 
@@ -29,6 +31,10 @@ INST2ANNOT_PROMPT_FUN_REG = {
     "example": ("data.conversion.inst2p_functions", "example_inst2p_func"),
     "demo_dnd": ("data.conversion.inst2p_functions", "demo_dnd"),
     "demo_casino": ("data.conversion.inst2p_functions", "demo_casino"),
+    "davinci_dnd": ("data.conversion.inst2p_functions", "davinci_dnd_annot_prompt_fun"),
+    "davinci_casino": ("data.conversion.inst2p_functions", "davinci_casino_annot_prompt_fun"),
+    "gpt_3_5_dnd": ("data.conversion.inst2p_functions", "gpt3_5_dnd_annot_prompt_fun"),
+    "gpt_3_5_casino": ("data.conversion.inst2p_functions", "gpt3_5_casino_annot_prompt_fun"),
 }
 
 # Dialogue Annotations to Formatted Line Output
@@ -37,6 +43,7 @@ INST_ANNOT2STR_PROMPT_FUN_REG = {
     "example": ("data.conversion.annot2str_functions", "example_annot2s_func"),
     "demo_dnd_outform": ("data.conversion.annot2str_functions", "demo_dnd_outform"),
     "demo_casino_outform": ("data.conversion.annot2str_functions", "demo_casino_outform"),
+    "base": ("data.conversion.annot2str_functions", "base_out_formatter")
 }
 
 # SELFPLAY AND CHAT

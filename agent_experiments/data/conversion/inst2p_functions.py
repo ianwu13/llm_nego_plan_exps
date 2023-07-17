@@ -8,12 +8,44 @@ def example_inst2p_func(inst):  # Just for casino dataset, returns "annotate thi
     # print(type(inst))
     return [f"annotate this: {chat_item['text']}" for chat_item in inst['chat_logs']]
 
-def format_prompt(str):
+
+def format_prompt(strg):
         prompt_str = "Predict the annotation for the last utterance by following the similar format as provided. "
         # format the utterance
-        str = "utterance: " + str + "<eos> " + "annotation: "
-        str = prompt_str + str
-        return str
+        strg = "utterance: " + strg + "<eos> " + "annotation: "
+        strg = prompt_str + strg
+        return strg
+
+
+# DND Prompt examples:
+dnd_fs_texts = []
+dnd_fs_annots = []
+
+
+def davinci_dnd_annot_prompt_fun(inst):
+    return ''
+
+
+def gpt3_5_dnd_annot_prompt_fun(inst):
+    return ''
+
+
+# CaSiNo Prompt examples:
+casino = []
+casino_fs_annots = []
+
+
+def davinci_casino_annot_prompt_fun(inst):
+    return ''
+
+
+def gpt3_5_casino_annot_prompt_fun(inst):
+    return ''
+
+
+
+
+
 
 # split utterance seperately
 def utters_split_seperate(line):
