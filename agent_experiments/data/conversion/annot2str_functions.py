@@ -10,9 +10,9 @@ def base_out_formatter_dnd(inst, annot):
     input_str = ' '.join([f'{c} {v}' for c, v in zip(inst['input']['count'], inst['input']['value'])])
     prt_inpt_str = ' '.join([f'{c} {v}' for c, v in zip(inst['partner_input']['count'], inst['partner_input']['value'])])
 
-    output = inst['output']  # TODO: fix to have itemname=x format for output
+    output = inst['output']
     tmp = output.split(' ')
-    prt_output = ' '.join([tmp[3], tmp[4], tmp[5], tmp[0], tmp[1], tmp[2]])  # TODO: fix to have itemname=x format for output
+    prt_output = ' '.join([tmp[3], tmp[4], tmp[5], tmp[0], tmp[1], tmp[2]])
 
     you_start = inst['dialogue'].startswith('YOU: ')
 
