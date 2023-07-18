@@ -69,6 +69,6 @@ RESPONSE_PROMPT_FUN_REG = {
     "example_dia_resp": ("lang_models.llm_apis.prompting.dia_response_funcitons", "example_dia_response_func"),
     "example_dia_act_resp": ("lang_models.llm_apis.prompting.dia_response_funcitons", "example_dia_act_response_func"),
     "example_choice": ("lang_models.llm_apis.prompting.dia_response_funcitons", "example_choice_func"),
-    "dia_resp_slagent_openai_chatcomp": ("lang_models.llm_apis.prompting.dia_response_funcitons", "dia_resp_slagent_openai_chatcomp"),
-    "choice_slagent_openai_chatcomp": ("lang_models.llm_apis.prompting.dia_response_funcitons", "choice_slagent_openai_chatcomp"),
+    "dia_resp_slagent_chatcomp": ("lang_models.llm_apis.prompting.dia_response_funcitons", "dia_resp_slagent_chatcomp"),
+    "choice_slagent_chatcomp": ("lang_models.llm_apis.prompting.dia_response_funcitons", "choice_slagent_chatcomp"),
 }

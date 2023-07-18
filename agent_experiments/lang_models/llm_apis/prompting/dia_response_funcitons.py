@@ -43,7 +43,7 @@ def example_choice_func(inst):
 
 # DIALOGUE RESPONSE PROMPT FUNCTIONS
 
-def dia_resp_slagent_openai_chatcomp(inst):
+def dia_resp_slagent_chatcomp(inst):
     """
     openai.ChatCompletion.create(
     model="gpt-3.5-turbo",
@@ -85,7 +85,7 @@ def dia_resp_slagent_openai_chatcomp(inst):
 
 # CHOICE/SELECTION MAKING PROMPT FUNCTIONS
 
-def choice_slagent_openai_chatcomp(inst):
+def choice_slagent_chatcomp(inst):
     system_str = f'There are {inst["ctx"][0]} books, {inst["ctx"][2]} hats, and {inst["ctx"][4]} balls available. You are an assistant negotiating over books, hats, and balls to divide them. Your goal is to mazimize your own points. When a participant says "<selection>", this indicates a deal has been reached. In response to this, please give the agreed upon values for the deal, in the order "your_books your_hats your_balls their_books their_hats their_balls" (six numbers), without any additional words. The total number of books, hats, and balls given should equal the number available.'
     messages = [{"role": "system", "content": system_str}]
     if len(inst['dialogue']) == 0:
