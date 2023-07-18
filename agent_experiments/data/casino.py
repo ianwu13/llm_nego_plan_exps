@@ -5,9 +5,16 @@ from datasets import load_dataset
 
 from data.datahandler import BaseDatasetHandler
 
+POINTS_MAP = {
+    "Low": 3,
+    "Medium": 4,
+    "High": 5
+}
+
 
 class CasinoHandler(BaseDatasetHandler):
     """Handler for the Casino dataset."""
+    MAX_NEGO_PTS = 36
 
     def setup_dataset(self):
         """

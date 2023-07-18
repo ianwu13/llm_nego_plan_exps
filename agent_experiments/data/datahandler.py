@@ -5,6 +5,7 @@ Base class for all datasets.
 
 class BaseDatasetHandler:
     """Base handler for every dataset."""
+    MAX_NEGO_PTS = 10
 
     def __init__(self, name, args=None):
         """Initialize the dataset handler."""
