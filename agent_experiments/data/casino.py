@@ -13,8 +13,8 @@ POINTS_MAP = {
 
 ORDER_MAP = {
     "Food": 0,
-    "Water": 0,
-    "Firewood": 0
+    "Water": 1,
+    "Firewood": 2
 }
 
 
