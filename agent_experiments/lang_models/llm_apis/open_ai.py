@@ -106,7 +106,15 @@ class OpenAI_Api(BaseModelHandler):
                     "messages": inp
                     }
                 )
-            choices = json.loads(response.content)['choices']
+            try:
+                choices = json.loads(response.content)['choices']
+            except:
+                print('='*100)
+                print(response)
+                print('-'*100)
+                print(response.content)
+                print('-'*100)
+                raise Exception("KeyError: 'choices' in API response")
             assert len(choices) == 1, f"Assumed number of responses per prompt would be 1. If this error is raised we need to handle this (len choices={len(choices)}; {choices})"
             # In Python, the assistant’s reply can be extracted with response['choices'][0]['message']['content']
             gen_out = choices[0]['message']['content'].strip('\n')
