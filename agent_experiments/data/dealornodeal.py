@@ -8,6 +8,7 @@ from data.datahandler import BaseDatasetHandler
 
 class DNDHandler(BaseDatasetHandler):
     """Handler for the DND dataset."""
+    MAX_NEGO_PTS = 10
 
     def setup_dataset(self):
         """
