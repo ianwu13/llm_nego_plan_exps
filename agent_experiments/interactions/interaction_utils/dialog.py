@@ -330,8 +330,8 @@ class Dialog(object):
         logger.dump_agreement(agree)
         # COMMENTED BECAUSE THIS REPO DOES NOT SUPPORT RL FOR AGENTS CURRENTLY
         # # perform update, in case if any of the agents is learnable
-        # for agent, reward in zip(self.agents, rewards):
-        #     logger.dump_reward(agent.name, agree, reward)
+        for agent, reward in zip(self.agents, rewards):
+            logger.dump_reward(agent.name, agree, reward)
         #     logging.debug("%s : %s : %s" % (str(agent.name), str(agree), str(rewards)))
         #     agent.update(agree, reward, scale_rw = self.scale_rw)
 
