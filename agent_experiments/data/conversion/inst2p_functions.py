@@ -26,8 +26,8 @@ def completion_dnd_annot_prompt_fun(inst):
 
     fs_examples_str = '\n'.join([f'{t}\nANNOTATION: "{a}"' for t, a in zip(dnd_fs_texts, dnd_fs_annots_no_vc)])
     
-    splt_dia = [u.lstrip('YOU: ').lstrip('THEM: ') for u in i['dialogue'].split(' <eos> ')]
-    item_counts = ints['input']['count']
+    splt_dia = [u.lstrip('YOU: ').lstrip('THEM: ') for u in inst['dialogue'].split(' <eos> ')]
+    item_counts = inst['input']['count']
     ctx_str = f'CONTEXT: "{item_counts[0]} books {item_counts[1]} hats {item_counts[2]} balls"'
     
     return ['\n'.join([start_str, annot_labels_str, fs_examples_str, f'{ctx_str} UTTERANCE: "{u}"']) for u in splt_dia]
@@ -40,8 +40,8 @@ def chat_dnd_annot_prompt_fun(inst):
         }
     user_fs_msg_str = 'Here are some examples of how I want the annotations to look:\n' + '\n'.join([f'{t}\nANNOTATION: "{a}"' for t, a in zip(dnd_fs_texts, dnd_fs_annots_no_vc)])
 
-    splt_dia = [u.lstrip('YOU: ').lstrip('THEM: ') for u in i['dialogue'].split(' <eos> ')]
-    item_counts = ints['input']['count']
+    splt_dia = [u.lstrip('YOU: ').lstrip('THEM: ') for u in inst['dialogue'].split(' <eos> ')]
+    item_counts = inst['input']['count']
     ctx_str = f'CONTEXT: "{item_counts[0]} books {item_counts[1]} hats {item_counts[2]} balls"'
 
     return [[system_msg, {'role': 'user', 'content': '\n'.join([user_fs_msg_str, f'What is the annotation for this utterance? {ctx_str} UTTERANCE: "{u}"'])}] for u in splt_dia]
