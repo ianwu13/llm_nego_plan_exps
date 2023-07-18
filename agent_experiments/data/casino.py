@@ -11,6 +11,12 @@ POINTS_MAP = {
     "High": 5
 }
 
+ORDER_MAP = {
+    "Food": 0,
+    "Water": 0,
+    "Firewood": 0
+}
+
 
 class CasinoHandler(BaseDatasetHandler):
     """Handler for the Casino dataset."""
