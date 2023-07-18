@@ -31,10 +31,10 @@ INST2ANNOT_PROMPT_FUN_REG = {
     "example": ("data.conversion.inst2p_functions", "example_inst2p_func"),
     "demo_dnd": ("data.conversion.inst2p_functions", "demo_dnd"),
     "demo_casino": ("data.conversion.inst2p_functions", "demo_casino"),
-    "davinci_dnd": ("data.conversion.inst2p_functions", "davinci_dnd_annot_prompt_fun"),
-    "davinci_casino": ("data.conversion.inst2p_functions", "davinci_casino_annot_prompt_fun"),
-    "gpt_3_5_dnd": ("data.conversion.inst2p_functions", "gpt3_5_dnd_annot_prompt_fun"),
-    "gpt_3_5_casino": ("data.conversion.inst2p_functions", "gpt3_5_casino_annot_prompt_fun"),
+    "completion_dnd": ("data.conversion.inst2p_functions", "completion_dnd_annot_prompt_fun"),
+    "completion_casino": ("data.conversion.inst2p_functions", "completion_casino_annot_prompt_fun"),
+    "chat_dnd": ("data.conversion.inst2p_functions", "chat_dnd_annot_prompt_fun"),
+    "chat_casino": ("data.conversion.inst2p_functions", "chat_casino_annot_prompt_fun"),
 }
 
 # Dialogue Annotations to Formatted Line Output

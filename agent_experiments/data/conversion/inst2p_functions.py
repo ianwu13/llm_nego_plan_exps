@@ -2,6 +2,8 @@
 Functions which convert instances from dataset handlers into a set of annotation prompts for llms
 """
 
+from data.conversion.fs_examples import *
+
 
 def example_inst2p_func(inst):  # Just for casino dataset, returns "annotate this: {utterance}"
     # print(inst)
@@ -17,34 +19,42 @@ def format_prompt(strg):
         return strg
 
 
-# DND Prompt examples:
-dnd_fs_texts = []
-dnd_fs_annots = []
+# dnd_fs_texts, dnd_fs_texts_w_dh --> dnd_fs_annots
+def completion_dnd_annot_prompt_fun(inst):
+    start_str = 'Choose the best simple annotation for these utterances in a negotiation dialogue, given the context of how many of each item is available:'
+    annot_labels_str = 'Possible annotations are: "greet", "inquire:, "propose", "disagree", "insist", and "agree"'
+
+    fs_examples_str = '\n'.join([f'{t}\nANNOTATION: "{a}"' for t, a in zip(dnd_fs_texts, dnd_fs_annots_no_vc)])
+    
+    splt_dia = [u.lstrip('YOU: ').lstrip('THEM: ') for u in i['dialogue'].split(' <eos> ')]
+    item_counts = ints['input']['count']
+    ctx_str = f'CONTEXT: "{item_counts[0]} books {item_counts[1]} hats {item_counts[2]} balls"'
+    
+    return ['\n'.join([start_str, annot_labels_str, fs_examples_str, f'{ctx_str} UTTERANCE: "{u}"']) for u in splt_dia]
 
 
-def davinci_dnd_annot_prompt_fun(inst):
+def chat_dnd_annot_prompt_fun(inst):
+    system_msg = {
+        'role': 'system',
+        'content': 'You are a professional annotator assisting the user in annotating utterances in a negotiation dialogue, given the context of how many of each item is available. Possible annotations are: "greet", "inquire:, "propose", "disagree", "insist", and "agree"'
+        }
+    user_fs_msg_str = 'Here are some examples of how I want the annotations to look:\n' + '\n'.join([f'{t}\nANNOTATION: "{a}"' for t, a in zip(dnd_fs_texts, dnd_fs_annots_no_vc)])
+
+    splt_dia = [u.lstrip('YOU: ').lstrip('THEM: ') for u in i['dialogue'].split(' <eos> ')]
+    item_counts = ints['input']['count']
+    ctx_str = f'CONTEXT: "{item_counts[0]} books {item_counts[1]} hats {item_counts[2]} balls"'
+
+    return [[system_msg, {'role': 'user', 'content': '\n'.join([user_fs_msg_str, f'What is the annotation for this utterance? {ctx_str} UTTERANCE: "{u}"'])}] for u in splt_dia]
+
+
+# TODO
+def completion_casino_annot_prompt_fun(inst):
     return ''
 
 
-def gpt3_5_dnd_annot_prompt_fun(inst):
+# TODO
+def chat_casino_annot_prompt_fun(inst):
     return ''
-
-
-# CaSiNo Prompt examples:
-casino_fs_texts = []
-casino_fs_annots = []
-
-
-def davinci_casino_annot_prompt_fun(inst):
-    return ''
-
-
-def gpt3_5_casino_annot_prompt_fun(inst):
-    return ''
-
-
-
-
 
 
 # split utterance seperately
@@ -73,78 +83,3 @@ def demo_casino(inst):
         prompt_list.append(prompt)
     # print(prompt_list)
     return prompt_list
-
-
-# ZORA UTILS
-# assume read file methods are handle outside, and the input for the function is a string.
-class i2p_functions():
-    def __init__(self, input_file, output_file):
-        self.input = input_file
-        self.output = output_file
-
-    def extract(self, str, tag):
-        sub1 = "<" + tag + ">"
-        sub2 = "</"+ tag + ">"
-        
-        idx1 = str.index(sub1)
-        idx2 = str.index(sub2)
-
-        output = str[idx1 + len(sub1) + 1: idx2]
-        return output
-
-    # # split utterance seperately
-    # def utters_split_seperate(self, line):
-    #     line = self.extract(line, "dialogue")
-    #     utters_list = []
-    #     for i in range (0, len(line.split("<eos>"))):
-    #         each = line.split("<eos>")[i]
-    #         each = self.format_prompt(each)
-    #         utters_list.append(each)
-    #     return utters_list
-
-    # def utters_split_cumulative(self, line):
-    #     line = self.extract(line, "dialogue")
-    #     utters_list = []
-    #     utters_list.append(self.format_prompt(line.split("<eos>")[0]))
-    #     for i in range (1, len(line.split("<eos>"))):
-    #         temp = line.split("<eos>")[i]
-    #         each = utters_list[i-1] + temp
-    #         each = self.format_prompt(each)
-    #         utters_list.append(each)
-    #     return utters_list
-
-    # def format_prompt(self, str):
-    #     prompt_str = "Predict the annotation for the last utterance by following the similar format as provided. "
-    #     # format the utterance
-    #     str = "utterance: " + str + "<eos> " + "annotation: "
-    #     str = prompt_str + str
-    #     return str
-
-    def write_output(self, prompt_list, output_file_name):
-        f = open(output_file_name, 'a')
-        for each in prompt_list:
-            f.write(each + '\n')
-        f.close()
-
-    def generate_prompt(self, func):
-        file = open(self.input, 'r')
-        lines = file.readlines()
-        output_file_name = self.get_output_file_name(self.output)
-        for each_line in lines:
-            each_line = each_line.strip()
-
-            if func == 'sep':
-                prompt_sep_list = self.utters_split_seperate(each_line)
-                self.write_output(prompt_sep_list, output_file_name)
-
-            # by default the promp generation is based on cummulative utterance.
-            else:
-                prompt_cum_list = self.utters_split_cumulative(each_line)
-                self.write_output(prompt_cum_list, output_file_name)
-
-        print("Generate prompt done")
-        file.close()
-
-    def get_output_file_name(self, func):
-        file_str = func + "_" + self.output
-        return file_str

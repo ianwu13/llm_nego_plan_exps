@@ -50,7 +50,8 @@ dnd_fs_annots_no_vc = [
     'Disagree',
     'Insist',
     'Agree',
-    'Agree',]
+    'Agree',
+]
 
 # CaSiNo Prompt examples:
 casino_fs_texts = [
