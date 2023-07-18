@@ -19,7 +19,6 @@ def format_prompt(strg):
         return strg
 
 
-# dnd_fs_texts, dnd_fs_texts_w_dh --> dnd_fs_annots
 def completion_dnd_annot_prompt_fun(inst):
     start_str = 'Choose the best simple annotation for these utterances in a negotiation dialogue, given the context of how many of each item is available:'
     annot_labels_str = 'Possible annotations are: "greet", "inquire:, "propose", "disagree", "insist", and "agree"'
@@ -30,7 +29,7 @@ def completion_dnd_annot_prompt_fun(inst):
     item_counts = inst['input']['count']
     ctx_str = f'CONTEXT: "{item_counts[0]} books {item_counts[1]} hats {item_counts[2]} balls"'
     
-    return ['\n'.join([start_str, annot_labels_str, fs_examples_str, f'{ctx_str} UTTERANCE: "{u}"']) for u in splt_dia]
+    return ['\n'.join([start_str, annot_labels_str, fs_examples_str, f'{ctx_str} UTTERANCE: "{u}"\nAnnotation: ']) for u in splt_dia]
 
 
 def chat_dnd_annot_prompt_fun(inst):
@@ -47,11 +46,18 @@ def chat_dnd_annot_prompt_fun(inst):
     return [[system_msg, {'role': 'user', 'content': '\n'.join([user_fs_msg_str, f'What is the annotation for this utterance? {ctx_str} UTTERANCE: "{u}"'])}] for u in splt_dia]
 
 
-# TODO
+# Annotates at selected/refined L2 act level
 def completion_casino_annot_prompt_fun(inst):
-    return ''
+    start_str = 'Choose the annotation label for these utterances in a negotiation dialogue.\nPossible annotations are: "Empathy/Coordination", "Undervalue Partner", "Non-strategic", "Small Talk", "No-need", "Vouch Fairness", "Self/Other Need", "Elicit Preferences"'
+
+    fs_examples_str = '\n'.join([f'UTTERANCE: "{t}"\nANNOTATION: "{a}"' for t, a in zip(casino_fs_texts, casino_fs_annots_l2_selref)])
+    
+    splt_dia = [u.lstrip('YOU: ').lstrip('THEM: ') for u in inst['dialogue'].split(' <eos> ')]
+    
+    return ['\n'.join([start_str, fs_examples_str, f'UTTERANCE: "{u}"\nAnnotation: ']) for u in splt_dia]
 
 
+# Annotates at selected/refined L2 act level
 # TODO
 def chat_casino_annot_prompt_fun(inst):
     return ''
