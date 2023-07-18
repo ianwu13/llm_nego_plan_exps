@@ -26,7 +26,13 @@ class DNDHandler(BaseDatasetHandler):
         elif n == 1:
             return [self.dataset_reg[split][0]]
         else:
-            return self.dataset_reg[split][:n]
+            # TODO: THIS IS BAD HF GIVES BAD SLICES OF DATASET
+            i = 0
+            for inst in self.dataset_reg[split]:
+                yield inst
+                i += 1
+                if i >= n:
+                    break
     
     def instance_generator(self, split='train'):
         """Yields instances from the dataset one at a time"""
