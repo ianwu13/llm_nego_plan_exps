@@ -39,11 +39,11 @@ def base_out_formatter_casino(inst, annot):
     # prtnr is mturk_agent_2, you are mturk_agent_1
     tmp = [None, None, None]
     for k, v in inst['participant_info']['mturk_agent_1']['value2issue'].items():
-        tmp[ORDER_MAP[v]] = POINTS_MAP['k']
+        tmp[ORDER_MAP[v]] = POINTS_MAP[k]
     input_str = ' '.join([f'3 {pts_val}' for pts_val in tmp])
     tmp = [None, None, None]
     for k, v in inst['participant_info']['mturk_agent_2']['value2issue'].items():
-        tmp[ORDER_MAP[v]] = POINTS_MAP['k']
+        tmp[ORDER_MAP[v]] = POINTS_MAP[k]
     prt_inpt_str = ' '.join([f'3 {pts_val}' for pts_val in tmp])
 
     if inst['chat_logs'][-2]['text'] == "Submit-Deal":
@@ -66,7 +66,7 @@ def base_out_formatter_casino(inst, annot):
         output = '<no_agreement> <no_agreement> <no_agreement> <no_agreement> <no_agreement> <no_agreement>'
         prt_output = '<no_agreement> <no_agreement> <no_agreement> <no_agreement> <no_agreement> <no_agreement>'
 
-    you_start = inst['chat_logs']['id'] == 'mturk_agent_1'
+    you_start = inst['chat_logs'][0]['id'] == 'mturk_agent_1'
     dia = ''
     prt_persp_dia = ''
     for a in annot:

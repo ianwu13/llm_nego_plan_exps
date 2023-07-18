@@ -52,15 +52,18 @@ def completion_casino_annot_prompt_fun(inst):
 
     fs_examples_str = '\n'.join([f'UTTERANCE: "{t}"\nANNOTATION: "{a}"' for t, a in zip(casino_fs_texts, casino_fs_annots_l2_selref)])
     
-    splt_dia = [u.lstrip('YOU: ').lstrip('THEM: ') for u in inst['dialogue'].split(' <eos> ')]
-    
-    return ['\n'.join([start_str, fs_examples_str, f'UTTERANCE: "{u}"\nAnnotation: ']) for u in splt_dia]
+    return ['\n'.join([start_str, fs_examples_str, f'UTTERANCE: "{u["text"]}"\nAnnotation: ']) for u in inst['chat_logs']]
 
 
 # Annotates at selected/refined L2 act level
-# TODO
 def chat_casino_annot_prompt_fun(inst):
-    return ''
+    system_msg = {
+        'role': 'system',
+        'content': 'You are a professional annotator assisting the user in annotating utterances in a negotiation dialogue.\nPossible annotations are: "Empathy/Coordination", "Undervalue Partner", "Non-strategic", "Small Talk", "No-need", "Vouch Fairness", "Self/Other Need", "Elicit Preferences"'
+        }
+    user_fs_msg_str = 'Here are some examples of how I want the annotations to look:\n' + '\n'.join([f'UTTERANCE: "{t}"\nANNOTATION: "{a}"' for t, a in zip(casino_fs_texts, casino_fs_annots_l2_selref)])
+
+    return [[system_msg, {'role': 'user', 'content': '\n'.join([user_fs_msg_str, f'What is the annotation for this utterance?\nUTTERANCE: "{u["text"]}"'])}] for u in inst['chat_logs']]
 
 
 # split utterance seperately
@@ -72,6 +75,7 @@ def utters_split_seperate(line):
         each = format_prompt(each)
         utters_list.append(each)
     return utters_list
+
 
 def demo_dnd(inst):
     # extract utterances
