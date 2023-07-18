@@ -17,14 +17,17 @@ class BaseDatasetHandler:
     def setup_dataset(self):
         """Setup the dataset."""
         raise NotImplementedError
+
+    def get_instances(self, split='train', n=0):
+        """Get the instances from the dataset."""
+        if n < 1:
+            return self.dataset_reg[split]
+        elif n == 1:
+            return [self.dataset_reg[split][0]]
+        else:
+            return self.dataset_reg[split].select(range(n))
     
-    def get_instances(self):
-        """Get the instances from the dataset.
-        
-        Uses params from self.args such as num_instances: the required number of instances.
-        """
-        raise NotImplementedError
-    
-    def instance_generator(self):
+    def instance_generator(self, split='train'):
         """Yields instances from the dataset one at a time"""
-        raise NotImplementedError
+        for inst in self.dataset_reg[split]:
+            yield inst
