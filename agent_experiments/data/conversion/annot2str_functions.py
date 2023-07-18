@@ -95,6 +95,7 @@ def base_out_formatter_first_line_casino(inst, annot):
     return base_out_formatter_casino(inst, [a.split('\n')[0] for a in annot])
 
 
+# DEMO STUFF
 def example_annot2s_func(inst, annot):
     # Just for casino dataset, returns generic string with preferences and annotations for each agent perspective
     a1_pref_str = ' '.join([f'{p}: {i}' for p, i in inst['participant_info']['mturk_agent_1']['value2issue'].items()])
@@ -104,7 +105,6 @@ def example_annot2s_func(inst, annot):
     return ''.join([a1_pref_str, ' ', annots_str, a2_pref_str, ' ', annots_str])
 
 
-# OLD
 # split utterance seperately for dnd
 def utters_split_seperate(line):
     # without the final selection
@@ -113,6 +113,7 @@ def utters_split_seperate(line):
         each = line.split("<eos>")[i]
         utters_list.append(each)
     return utters_list
+
 
 def pair_utter_annot(utter_list, annot_list):
     result_list = []
