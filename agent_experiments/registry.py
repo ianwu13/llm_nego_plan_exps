@@ -51,6 +51,18 @@ INST_ANNOT2STR_PROMPT_FUN_REG = {
 
 # SELFPLAY AND CHAT
 
+# Response Generation Functions (dialogue or choice responses)
+# dialogue_state_json -> list["prompt_to_gen_response"]
+RESPONSE_PROMPT_FUN_REG = {
+    "example_dia_resp": ("lang_models.llm_apis.prompting.dia_response_funcitons", "example_dia_response_func"),
+    "example_dia_act_resp": ("lang_models.llm_apis.prompting.dia_response_funcitons", "example_dia_act_response_func"),
+    "example_choice": ("lang_models.llm_apis.prompting.dia_response_funcitons", "example_choice_func"),
+    "dia_resp_slagent_completion_dnd": ("lang_models.llm_apis.prompting.dia_response_funcitons", "dia_resp_slagent_completion_dnd"),
+    "dia_resp_slagent_chatcomp_dnd": ("lang_models.llm_apis.prompting.dia_response_funcitons", "dia_resp_slagent_chatcomp_dnd"),
+    "choice_slagent_completion_dnd": ("lang_models.llm_apis.prompting.dia_response_funcitons", "choice_slagent_completion_dnd"),
+    "choice_slagent_chatcomp_dnd": ("lang_models.llm_apis.prompting.dia_response_funcitons", "choice_slagent_chatcomp_dnd"),
+}
+
 # Generator Functions (for planning)
 # dialogue_state_json -> list["prompt_to_gen_dialogue_utt_from_act"]
 ACT2UTT_PROMPT_FUN_REG = {
@@ -61,14 +73,4 @@ ACT2UTT_PROMPT_FUN_REG = {
 # dialogue_state_json -> list["prompt_to_parse_dialogue_act"]
 UTT2ACT_PROMPT_FUN_REG = {
     "example": ("lang_models.llm_apis.prompting.utt2act_functions", "example_u2a_func")
-}
-
-# Response Generation Functions (dialogue or choice responses)
-# dialogue_state_json -> list["prompt_to_gen_response"]
-RESPONSE_PROMPT_FUN_REG = {
-    "example_dia_resp": ("lang_models.llm_apis.prompting.dia_response_funcitons", "example_dia_response_func"),
-    "example_dia_act_resp": ("lang_models.llm_apis.prompting.dia_response_funcitons", "example_dia_act_response_func"),
-    "example_choice": ("lang_models.llm_apis.prompting.dia_response_funcitons", "example_choice_func"),
-    "dia_resp_slagent_chatcomp": ("lang_models.llm_apis.prompting.dia_response_funcitons", "dia_resp_slagent_chatcomp"),
-    "choice_slagent_chatcomp": ("lang_models.llm_apis.prompting.dia_response_funcitons", "choice_slagent_chatcomp"),
 }
