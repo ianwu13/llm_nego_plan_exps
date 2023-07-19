@@ -58,6 +58,16 @@ Contains code (currently just structure) for experiments on incorporating dialog
 
 ***
 
+# Acknowledgements
+
+Facebook code, He et al?, etc...
+
+# Citation
+
+`BibTex Here`
+
+***
+
 # NOT IAN'S
 
 ## Adding a new dataset, model, or task
