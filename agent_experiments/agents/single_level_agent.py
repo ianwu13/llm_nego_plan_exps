@@ -59,8 +59,8 @@ class SingleLevelAgent(Agent):
                 for i in range(3):
                     choice[i] = f'item{i}={choice_vals[i]}'
                     avail = int(self.ctx[i*2])
-                    assert int(choice[i]) <= avail
-                    choice[i+3] = f'item{i}={avail - int(choice[i])}'
+                    assert choice_vals <= avail
+                    choice[i+3] = f'item{i}={avail - choice_vals}'
             elif len(choice_vals) == 6:
                 for i in range(3):
                     choice[i] = f'item{i}={choice_vals[i]}'
@@ -69,7 +69,8 @@ class SingleLevelAgent(Agent):
                 raise Exception('Length of choice output from model must be length 3 or 6')
 
             return choice
-        except:
+        except Exception as e:
             print(f'Choice values could not be parsed from model response: "{choice_vals}", self.ctx: {self.ctx}')
+            print(e)
             return ['<no_agreement>' for _ in range(3)]
 

@@ -166,8 +166,8 @@ class DualLevelAgent(Agent):
                 for i in range(3):
                     choice[i] = f'item{i}={choice_vals[i]}'
                     avail = int(self.ctx[i*2])
-                    assert int(choice[i]) <= avail
-                    choice[i+3] = f'item{i}={avail - int(choice[i])}'
+                    assert choice_vals <= avail
+                    choice[i+3] = f'item{i}={avail - choice_vals}'
             elif len(choice_vals) == 6:
                 for i in range(3):
                     choice[i] = f'item{i}={choice_vals[i]}'
