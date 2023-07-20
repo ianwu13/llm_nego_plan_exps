@@ -108,6 +108,35 @@ def dia_resp_slagent_chatcomp_dnd(inst):
 
         return [messages]
 
+def dia_resp_slagent_chatcomp_thirdperson_dnd(inst):
+    # print(inst['ctx']) -> ['1', '0', '1', '1', '3', '3']
+    system_str = f'You are an assistant helping the user analize negotiation dialogues. Respond to their questions accurately and succinctly.'
+    messages = [{"role": "system", "content": system_str}]
+    if len(inst['dialogue']) == 0:
+        messages.append({"role": "user", "content": f"Begin the negotiation"})
+    else:
+        # print(inst['dialogue']) -> ['THEM:', 'DUMMY', 'YOU:', 'DUMMY', 'THEM:', 'DUMMY', 'YOU:', 'DUMMY', 'THEM:', 'DUMMY']
+        prompt_str = f'There are {inst["ctx"][0]} books, {inst["ctx"][2]} hats, and {inst["ctx"][4]} balls. The books are worth {inst["ctx"][1]} points, the hats are worth {inst["ctx"][3]}, and the balls are worth {inst["ctx"][5]} to Alice. Bob has different values for each item and Alice and Bob are negotiating over how to divide the items. Their goal is to mazimize their own points in the agreed upon deal. If a deal is not reached within 20 turns (utterances), both participants recieve 0 points. To indicate that a deal has been reached, Alice will output the word "<selection>". Here is the current dialogue history:'
+        
+        sub_dict = {
+            'YOU:': 'Alice:',
+            'THEM:': 'Bob:'
+        }
+        dia_arr = inst['dialogue']
+        assert dia_arr[0] in sub_dict, f'UNIDENTIFIED STARTING TOKEN FOUND: {dia_arr[i]}, Should be either "YOU:" or "THEM:"'
+        for w in dia_arr:
+            if w in sub_dict:
+                prompt_str += '\n' + sub_dict[w]
+                last = w
+            else:
+                prompt_str += ' ' + w
+
+        prompt_str += '\nGiven this scenario and dialogue, what is the best next response for Alice to give to achieve her goal?'
+
+        messages.append({"role": 'user', "content": prompt_str})
+    
+    return [messages]
+
 
 # CHOICE/SELECTION MAKING PROMPT FUNCTIONS
 
@@ -169,6 +198,35 @@ def choice_slagent_chatcomp_dnd(inst):
     if messages[-1]['role'] == 'assistant':
         messages.append({"role": "user", "content": '<selection>'})
 
+    return [messages]
+
+def choice_slagent_chatcomp_thirdperson_dnd(inst):
+    # print(inst['ctx']) -> ['1', '0', '1', '1', '3', '3']
+    system_str = f'You are an assistant helping the user analize negotiation dialogues. Respond to their questions accurately and succinctly.'
+    messages = [{"role": "system", "content": system_str}]
+    if len(inst['dialogue']) == 0:
+        messages.append({"role": "user", "content": f"Begin the negotiation"})
+    else:
+        # print(inst['dialogue']) -> ['THEM:', 'DUMMY', 'YOU:', 'DUMMY', 'THEM:', 'DUMMY', 'YOU:', 'DUMMY', 'THEM:', 'DUMMY']
+        prompt_str = f'There are {inst["ctx"][0]} books, {inst["ctx"][2]} hats, and {inst["ctx"][4]} balls. The books are worth {inst["ctx"][1]} points, the hats are worth {inst["ctx"][3]}, and the balls are worth {inst["ctx"][5]} to Alice. Bob has different values for each item and Alice and Bob are negotiating over how to divide the items. Their goal is to mazimize their own points in the agreed upon deal. If a deal is not reached within 20 turns (utterances), both participants recieve 0 points. To indicate that a deal has been reached, Alice will output the word "<selection>". Here is the current dialogue history:'
+        
+        sub_dict = {
+            'YOU:': 'Alice:',
+            'THEM:': 'Bob:'
+        }
+        dia_arr = inst['dialogue']
+        assert dia_arr[0] in sub_dict, f'UNIDENTIFIED STARTING TOKEN FOUND: {dia_arr[i]}, Should be either "YOU:" or "THEM:"'
+        for w in dia_arr:
+            if w in sub_dict:
+                prompt_str += '\n' + sub_dict[w]
+                last = w
+            else:
+                prompt_str += ' ' + w
+
+        prompt_str += '\nGiven this scenario and dialogue, what is the agreed upon deal for Alice, in the format "number_of_books number_of_hats number_of_balls" (three numbers)?'
+
+        messages.append({"role": 'user', "content": prompt_str})
+    
     return [messages]
 
 

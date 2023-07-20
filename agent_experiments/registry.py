@@ -15,11 +15,11 @@ LLM_API_REG = {
     "dummy": ("misc.dummies", "DummyModelHandler"),
     "openai_generic": ("lang_models.llm_apis.open_ai", "OpenAI_Api"),
 }
-# TODO: THESE ARE NOT YET IMPLEMENTED
 '''
-"llama_7b": ("lang_models.llm_apis.llama", "Llama7BHandler"),
-"falcon_7b": ("lang_models.llm_apis.falcon", "Falcon7BHandler"),
-"falcon_40b": ("lang_models.llm_apis.falcon", "Falcon40BHandler"),
+    # TODO: THESE ARE NOT YET IMPLEMENTED
+    "llama_7b": ("lang_models.llm_apis.llama", "Llama7BHandler"),
+    "falcon_7b": ("lang_models.llm_apis.falcon", "Falcon7BHandler"),
+    "falcon_40b": ("lang_models.llm_apis.falcon", "Falcon40BHandler"),
 '''
 
 # ANNOTATIONS
@@ -58,8 +58,10 @@ RESPONSE_PROMPT_FUN_REG = {
     "example_choice": ("lang_models.llm_apis.prompting.dia_response_funcitons", "example_choice_func"),
     "dia_resp_slagent_completion_dnd": ("lang_models.llm_apis.prompting.dia_response_funcitons", "dia_resp_slagent_completion_dnd"),
     "dia_resp_slagent_chatcomp_dnd": ("lang_models.llm_apis.prompting.dia_response_funcitons", "dia_resp_slagent_chatcomp_dnd"),
+    "dia_resp_slagent_chatcomp_thirdperson_dnd": ("lang_models.llm_apis.prompting.dia_response_funcitons", "dia_resp_slagent_chatcomp_thirdperson_dnd"),
     "choice_slagent_completion_dnd": ("lang_models.llm_apis.prompting.dia_response_funcitons", "choice_slagent_completion_dnd"),
     "choice_slagent_chatcomp_dnd": ("lang_models.llm_apis.prompting.dia_response_funcitons", "choice_slagent_chatcomp_dnd"),
+    "choice_slagent_chatcomp_thirdperson_dnd": ("lang_models.llm_apis.prompting.dia_response_funcitons", "choice_slagent_chatcomp_thirdperson_dnd"),
 }
 
 # Generator Functions (for planning)
