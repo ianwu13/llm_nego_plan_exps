@@ -59,8 +59,8 @@ class SingleLevelAgent(Agent):
                 for i in range(3):
                     choice[i] = f'item{i}={choice_vals[i]}'
                     avail = int(self.ctx[i*2])
-                    assert choice_vals <= avail
-                    choice[i+3] = f'item{i}={avail - choice_vals}'
+                    assert choice_vals[i] <= avail
+                    choice[i+3] = f'item{i}={avail - choice_vals[i]}'
             elif len(choice_vals) == 6:
                 for i in range(3):
                     choice[i] = f'item{i}={choice_vals[i]}'
