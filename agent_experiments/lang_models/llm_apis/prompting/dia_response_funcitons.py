@@ -46,7 +46,7 @@ def example_choice_func(inst):
 # TODO: TEST THIS ONCE OPENAI API SPEEDS UP
 def dia_resp_slagent_completion_dnd(inst):
     # You is alice
-    prompt_str = f'Alice and Bob are negotiating over how to divide books, hats, and balls. There are {inst["ctx"][0]} books, {inst["ctx"][2]} hats, and {inst["ctx"][4]} balls. The books are worth {inst["ctx"][1]} points, the hats are worth {inst["ctx"][3]}, and the balls are worth {inst["ctx"][5]} to Alice. Bob has different but unknown values for each item. Both Alice and Bobs goal is to mazimize their own points in the final deal. When a deal is agreed upon, the participants say "<selection>" to make a selection.'
+    prompt_str = f'Alice and Bob are negotiating over how to divide books, hats, and balls. There are {inst["ctx"][0]} books, {inst["ctx"][2]} hats, and {inst["ctx"][4]} balls. The books are worth {inst["ctx"][1]} points, the hats are worth {inst["ctx"][3]}, and the balls are worth {inst["ctx"][5]} to Alice. Bob has different but unknown values for each item. Both Alice and Bobs goal is to mazimize their own points in the final deal. If a deal is not reached within 20 turns (utterances), both participants recieve 0 points. When a deal is agreed upon, the participants say "<selection>" to make a selection.'
     
     if len(inst['dialogue']) == 0:
         return prompt_str + '\nAlice: '
@@ -71,18 +71,18 @@ def dia_resp_slagent_completion_dnd(inst):
 
 def dia_resp_slagent_chatcomp_dnd(inst):
     """
-    openai.ChatCompletion.create(
-    model="gpt-3.5-turbo",
-    messages=[
-            {"role": "system", "content": "You are a helpful assistant."},
-            {"role": "user", "content": "Who won the world series in 2020?"},
-            {"role": "assistant", "content": "The Los Angeles Dodgers won the World Series in 2020."},
-            {"role": "user", "content": "Where was it played?"}
-        ]
-    )
+        openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": "Who won the world series in 2020?"},
+                {"role": "assistant", "content": "The Los Angeles Dodgers won the World Series in 2020."},
+                {"role": "user", "content": "Where was it played?"}
+            ]
+        )
     """
     # print(inst['ctx']) -> ['1', '0', '1', '1', '3', '3']
-    system_str = f'There are {inst["ctx"][0]} books, {inst["ctx"][2]} hats, and {inst["ctx"][4]} balls. The books are worth {inst["ctx"][1]} points, the hats are worth {inst["ctx"][3]}, and the balls are worth {inst["ctx"][5]}. Your partner has different values for each item and you are negotiating over how to divide the items. Your goal is to mazimize your own points in the agreed upon deal. To indicate that a deal has been reached, output the word "<selection>"'  #  When a deal is reached, you will output the word "<selection>" as your next response
+    system_str = f'There are {inst["ctx"][0]} books, {inst["ctx"][2]} hats, and {inst["ctx"][4]} balls. The books are worth {inst["ctx"][1]} points, the hats are worth {inst["ctx"][3]}, and the balls are worth {inst["ctx"][5]}. Your partner has different values for each item and you are negotiating over how to divide the items. Your goal is to mazimize your own points in the agreed upon deal. If a deal is not reached within 20 turns (utterances), both participants recieve 0 points. To indicate that a deal has been reached, output the word "<selection>"'
     messages = [{"role": "system", "content": system_str}]
     if len(inst['dialogue']) == 0:
         messages.append({"role": "user", "content": f"Begin the negotiation"})
