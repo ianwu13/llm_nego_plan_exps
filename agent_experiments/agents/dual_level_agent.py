@@ -160,17 +160,25 @@ class DualLevelAgent(Agent):
 
         try:
             choice_vals = [int(c) for c in choice_vals.split()]
+            # Choice format: "['item0=1', 'item1=0', 'item2=3', 'item0=0', 'item1=1', 'item2=0']"
+            choice = ['', '', '', '', '', '']
+            if len(choice_vals) == 3:
+                for i in range(3):
+                    choice[i] = f'item{i}={choice_vals[i]}'
+                    avail = int(self.ctx[i*2])
+                    assert int(choice[i]) <= avail
+                    choice[i+3] = f'item{i}={avail - int(choice[i])}'
+            elif len(choice_vals) == 6:
+                for i in range(3):
+                    choice[i] = f'item{i}={choice_vals[i]}'
+                    choice[i+3] = f'item{i}={choice_vals[i+3]}'
+            else:
+                raise Exception('Length of choice output from model must be length 3 or 6')
+
+            return choice
         except:
-            print('Choice values could not be parsed from model response')
+            print(f'Choice values could not be parsed from model response: "{choice_vals}", self.ctx: {self.ctx}')
             return ['<no_agreement>' for _ in range(3)]
-
-        # Choice format: "['item0=1', 'item1=0', 'item2=3', 'item0=0', 'item1=1', 'item2=0']"
-        choice = ['', '', '', '', '', '']
-        for i in range(3):
-            choice[i] = f'item{i}={choice_vals[i]}'
-            choice[i+3] = f'item{i}={choice_vals[i+3]}'
-
-        return choice
 
     '''
     # Incomplete code to use GRU to make choice
