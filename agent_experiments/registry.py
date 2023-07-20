@@ -20,7 +20,6 @@ LLM_API_REG = {
 "llama_7b": ("lang_models.llm_apis.llama", "Llama7BHandler"),
 "falcon_7b": ("lang_models.llm_apis.falcon", "Falcon7BHandler"),
 "falcon_40b": ("lang_models.llm_apis.falcon", "Falcon40BHandler"),
-"gpt_4": ("lang_models.llm_apis.gpt_4", "GPT_4_Api"),
 '''
 
 # ANNOTATIONS
