@@ -1,11 +1,12 @@
 class Annotator():
 
-    def __init__(self, dataset, inst2promp_funct, llm_api, output_formatter, out_file):
+    def __init__(self, dataset, inst2promp_funct, llm_api, output_formatter, out_file, failed_calls_file='failed_calls.txt'):
         self.dataset = dataset
         self.inst2promp_funct = inst2promp_funct
         self.llm_api = llm_api
         self.output_formatter = output_formatter
         self.out_file = out_file
+        self.failed_calls_file = failed_calls_file
 
     def est_budget(avg_annot_words, tok_scaling_factor, cost_per_1k_tok):
         num_words = 0
@@ -42,6 +43,15 @@ class Annotator():
             out_line = self.output_formatter(inst, annotations)
             f.write(out_line)
         f.close()
+
+        # Write failed calls to file
+        assert self.failed_calls_file.count('.') == 1
+        fc_file_path = self.failed_calls_file.replace('.', f'_{split}')
+        f = open(fc_file_path, 'w')
+        for call in self.llm_api.failed_calls:
+            f.write(json.dumps(call) + '\n')
+        f.close()
+        self.llm_api.failed_calls = []
         
     def annotate(self, split=None):
         if split is None:

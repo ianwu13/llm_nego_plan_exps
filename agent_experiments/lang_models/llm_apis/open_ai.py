@@ -5,6 +5,7 @@ OpenAI models - GPT and variants.
 import re
 import requests
 import json
+import time
 
 from lang_models.llm_apis.model import BaseModelHandler
 
@@ -42,6 +43,7 @@ class OpenAI_Api(BaseModelHandler):
         self.temperature = temperature
 
         self.is_llm = True
+        self.failed_calls = []
 
         # set up the model
         self.setup_model()
@@ -96,16 +98,40 @@ class OpenAI_Api(BaseModelHandler):
         outputs = []
         # inputs is a list
         for inp in inputs:
+            req_headers = {
+                    "Content-Type": "application/json", 
+                    "Authorization": f"Bearer {self.api_key}"}
+            req_json = {
+                    "model": self.model_name,
+                    "messages": inp}
+
             response = requests.post(
                 self.api_url,
-                headers={
-                    "Content-Type": "application/json", 
-                    "Authorization": f"Bearer {self.api_key}"},
-                json={
-                    "model": self.model_name,
-                    "messages": inp
-                    }
+                headers=req_headers,
+                json=req_json
                 )
+
+            # Handle API hanging
+            if response.status_code != 200:
+                if response.status_code == 503:
+                    for _ in range(3):  # Do 3 retrys
+                        time.sleep(1)  # Let API cool down
+                        response = requests.post(
+                            self.api_url,
+                            headers=req_headers,
+                            json=req_json
+                            )
+                        if response.status_code == 200:
+                            break
+                
+                if response.status_code != 200:
+                    pass
+                else:
+                    self.failed_calls.append(inp)
+                    p_str = str(inp).replace('\n', '')
+                    outputs.append(f"FAILED START {p_str} END FAILED")  # Insert placeholder to handle later
+                    continue
+
             try:
                 choices = json.loads(response.content)['choices']
             except:
@@ -131,6 +157,12 @@ class OpenAI_Api(BaseModelHandler):
             return self.get_legacy_completions_out(inputs)
         else:
             return self.get_chat_completions_out(inputs)
+
+    import requests
+
+    x = requests.get('https://w3schools.com')
+    print(x.status_code)
+
 
     '''
     def text_completion(prompt):

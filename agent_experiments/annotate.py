@@ -25,6 +25,8 @@ def main():
         help='function to convert set of instance annotations to a string (line) for the output file')
     parser.add_argument('--output_file', type=str,
         help='destination for output file')
+    parser.add_argument('--failed_calls_file', type=str,
+        help='destination file for failed LLM API calls')
     args = parser.parse_args()
 
     data_handler = utils.get_datahandler(args.dataset)
@@ -35,7 +37,7 @@ def main():
         raise NotImplementedError("only llm annotation is currently implemented")
     output_formatter = utils.get_annot_out_formatter_func(args.output_formatter)
 
-    annotator = Annotator(data_handler, i2p_funct, annot_api, output_formatter, args.output_file)
+    annotator = Annotator(data_handler, i2p_funct, annot_api, output_formatter, args.output_file, failed_calls_file=args.failed_calls_file)
 
     annotator.annotate()
 
