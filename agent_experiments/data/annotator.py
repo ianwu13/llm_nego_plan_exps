@@ -8,8 +8,9 @@ class Annotator():
         self.out_file = out_file
         self.failed_calls_file = failed_calls_file
 
-    def est_budget(self, avg_annot_words, tok_scaling_factor, cost_per_1k_tok):
-        num_words = 0
+    def est_budget(self, avg_annot_words, tok_scaling_factor, cost_per_1k_inp_tok, cost_per_1k_out_tok):
+        num_in_words = 0
+        num_out_words = 0
 
         for split in self.dataset.splits:
             for dialogue in self.dataset.instance_generator(split):
@@ -17,18 +18,25 @@ class Annotator():
 
                 for p in prompts:
                     if isinstance(p, str):  # Completions Prompt
-                        num_words += len(p)
+                        num_in_words += len(p)
                     elif isinstance(p, list):  # Chat Prompt
                         for msg in p:
-                            num_words += len(msg['content'])
+                            num_in_words += len(msg['content'])
 
                 # Account for returned tokens
-                num_words += len(prompts) * avg_annot_words
+                num_out_words += len(prompts) * avg_annot_words
 
-        num_tok = num_words * tok_scaling_factor
-        cost_est = cost_per_1k_tok * (num_tok / 1000)
+        num_in_tok = num_in_words * tok_scaling_factor
+        in_cost_est = cost_per_1k_inp_tok * (num_in_tok / 1000)
 
-        return cost_est, num_tok, num_words
+        num_out_tok = num_out_words * tok_scaling_factor
+        out_cost_est = cost_per_1k_out_tok * (num_out_tok / 1000)
+
+        cost_est = in_cost_est + out_cost_est
+        num_tok = num_in_tok + num_out_tok
+        num_words = num_in_words + num_out_tok
+
+        return cost_est, num_tok, num_words, num_in_tok, num_out_tok
 
     def annotate_instance(self, inst):
         prompts = self.inst2promp_funct(inst)
