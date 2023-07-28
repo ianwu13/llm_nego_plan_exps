@@ -1,3 +1,6 @@
+from tqdm import tqdm
+
+
 class Annotator():
 
     def __init__(self, dataset, inst2promp_funct, llm_api, output_formatter, out_file, failed_calls_file='failed_calls.txt'):
@@ -45,8 +48,9 @@ class Annotator():
 
     def annotate_split(self, outfile, split='train'):
         f = open(outfile, 'w')
-        # for inst in self.dataset.instance_generator(split):
-        for inst in self.dataset.get_instances(split=split, n=3):  # TODO: For testing so not too many api calls
+        print(f'Annotating {split}')
+        # for inst in tqdm(self.dataset.instance_generator(split)):
+        for inst in tqdm(self.dataset.get_instances(split=split, n=3)):  # TODO: For testing so not too many api calls
             annotations = self.annotate_instance(inst)
             out_line = self.output_formatter(inst, annotations)
             f.write(out_line)
