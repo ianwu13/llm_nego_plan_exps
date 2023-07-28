@@ -32,7 +32,8 @@ def base_out_formatter_dnd(inst, annot):
     dia = dia.lstrip(' ')
     prt_persp_dia = prt_persp_dia.lstrip(' ')
 
-    return f'<input> {input_str} </input> <dialogue> {dia} </dialogue> <output> {output} </output> <partner_input> {prt_inpt_str} </partner_input>\n<input> {prt_inpt_str} </input> <dialogue> {prt_persp_dia} </dialogue> <output> {prt_output} </output> <partner_input> {input_str} </partner_input>\n'
+    return f'<input> {input_str} </input> <dialogue> {dia} </dialogue> <output> {output} </output> <partner_input> {prt_inpt_str} </partner_input>\n'
+    # THIS IS FOR PARTNER BUT THAT IS INCLUDED IN DSET '<input> {prt_inpt_str} </input> <dialogue> {prt_persp_dia} </dialogue> <output> {prt_output} </output> <partner_input> {input_str} </partner_input>\n'
 
 
 def base_out_formatter_casino(inst, annot):

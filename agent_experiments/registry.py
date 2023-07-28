@@ -28,6 +28,7 @@ LLM_API_REG = {
 # dialogue_instance (format dataset dependent) -> list["prompt_for_annot_single_utt"]
 INST2ANNOT_PROMPT_FUN_REG = {
     "example": ("data.conversion.inst2p_functions", "example_inst2p_func"),
+    "example_dnd": ("data.conversion.inst2p_functions", "example_inst2p_func_dnd"),
     "demo_dnd": ("data.conversion.inst2p_functions", "demo_dnd"),
     "demo_casino": ("data.conversion.inst2p_functions", "demo_casino"),
     "completion_dnd": ("data.conversion.inst2p_functions", "completion_dnd_annot_prompt_fun"),

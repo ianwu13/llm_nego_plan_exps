@@ -53,8 +53,9 @@ class Annotator():
         f.close()
 
         # Write failed calls to file
-        assert self.failed_calls_file.count('.') == 1
-        fc_file_path = self.failed_calls_file.replace('.', f'_{split}')
+        sp = self.failed_calls_file.split('.')
+        sp[-2] += f'_{split}'
+        fc_file_path = '.'.join(sp)
         f = open(fc_file_path, 'w')
         for call in self.llm_api.failed_calls:
             f.write(json.dumps(call) + '\n')

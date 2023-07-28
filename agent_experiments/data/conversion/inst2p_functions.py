@@ -8,7 +8,13 @@ from data.conversion.fs_examples import *
 def example_inst2p_func(inst):  # Just for casino dataset, returns "annotate this: {utterance}"
     # print(inst)
     # print(type(inst))
-    return [f"annotate this: {chat_item['text']}" for chat_item in inst['chat_logs']]
+    return [chat_item['text'] for chat_item in inst['chat_logs']]
+
+
+def example_inst2p_func_dnd(inst):  # Just for casino dataset, returns "annotate this: {utterance}"
+    # print(inst)
+    # print(type(inst))
+    return [u.lstrip('YOU: ').lstrip('THEM: ') for u in inst['dialogue'].split(' <eos> ')]
 
 
 def format_prompt(strg):
