@@ -165,6 +165,3 @@ agent_experiments/storage/**
 
 agent_experiments/data/raw_datasets/**
 logs/**
-
-# TODO list for development, not super important
-TODO.txt
