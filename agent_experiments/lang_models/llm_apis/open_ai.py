@@ -67,8 +67,7 @@ class OpenAI_Api(BaseModelHandler):
                     "model": self.model_name,
                     "prompt": inp,
                     "max_tokens": self.max_tokens,
-                    # "messages": [{"role": "user", "content": "Say this is a test!"}],
-                    "temperature": 0.7}
+                    "temperature": 0}
                 )
             choices = json.loads(response.content)['choices']
             assert len(choices) == 1, f"Assumed number of responses per prompt would be 1. If this error is raised we need to handle this (len choices={len(choices)}; {choices})"
@@ -103,7 +102,8 @@ class OpenAI_Api(BaseModelHandler):
                     "Authorization": f"Bearer {self.api_key}"}
             req_json = {
                     "model": self.model_name,
-                    "messages": inp}
+                    "messages": inp,
+                    "temperature": 0}
 
             response = requests.post(
                 self.api_url,
