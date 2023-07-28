@@ -245,53 +245,53 @@ casino_cust_format_multilab_annots = [
 # FINAL E.G. EXAMPLES
 
 dnd_rb_format = OrderedDict({
-    'Greet': '"hello"', 
-    'Inquire': {'Inquire': '"what would you like"', 'Inquire hats': '"do you want the hat?"'},
-    'Propose': {
-        'Propose books=0 hats=4 balls=0': '"i would like 4 hats and you can have the rest"',
-        'Propose books=1 hats=0 balls=3': '"ill take the balls and one book"',
-        'Propose books=2': '"i want all the books"'
+    '"Greet"': '"hello"', 
+    '"Inquire"': {'"Inquire"': '"what would you like"', '"Inquire hats"': '"do you want the hat?"'},
+    '"Propose"': {
+        '"Propose books=0 hats=4 balls=0"': '"i would like 4 hats and you can have the rest"',
+        '"Propose books=1 hats=0 balls=3"': '"ill take the balls and one book"',
+        '"Propose books=2"': '"i want all the books"'
     },
-    'Insist': '"no, i need 2 of the balls"', 
-    'Disagree': '"that will not work for me"',
-    'Agree': '"well that works perfect for me"'
+    '"Insist"': '"no, i need 2 of the balls"', 
+    '"Disagree"': '"that will not work for me"',
+    '"Agree"': '"well that works perfect for me"'
 })
 
 casino_dnd_format = OrderedDict({
-    'Greet': '"Hello. How are you?"', 
-    'Inquire': {'Inquire': '"What are you most interested in?"', 'Inquire foor': '"How much food do you need for camping?"'},
-    'Propose': {
-        'Propose food=1 water=3 firewood=2': '"i will give you that in exchange for 1 food and 3 water with 2 firewood"',
-        'Propose water=2': '"I like to hike and will need additional water. Can I take one package and you can have the other two?"'    
+    '"Greet"': '"Hello. How are you?"', 
+    '"Inquire"': {'"Inquire"': '"What are you most interested in?"', '"Inquire foor"': '"How much food do you need for camping?"'},
+    '"Propose"': {
+        '"Propose food=1 water=3 firewood=2"': '"i will give you that in exchange for 1 food and 3 water with 2 firewood"',
+        '"Propose water=2"': '"I like to hike and will need additional water. Can I take one package and you can have the other two?"'    
     },
-    'Insist': '"No i really need all the water, if its a deal breaker than you can have all the firewood."', 
-    'Disagree': '"I dont think I am okay with that."', 
-    'Agree': '"that sounds like a good deal to me"' 
+    '"Insist"': '"No i really need all the water, if its a deal breaker than you can have all the firewood."', 
+    '"Disagree"': '"I dont think I am okay with that."', 
+    '"Agree"': '"that sounds like a good deal to me"' 
 })
 
 casino_cust_format = OrderedDict({
-    'Small-talk': '"I am good. I am pretty excited for the trip this weekend. what about you?"', 
-    'Empathy/Coordination': '"I am willing to share everything."', 
-    'Elicit Preference': {
-        'Elicit Preference': '"Yes!  Would you mind sharing your highest priority item with me?"', 
-        'Elicit Preference food': '"What about the food? How much food do you need for camping?"', 
+    '"Small-talk"': '"I am good. I am pretty excited for the trip this weekend. what about you?"', 
+    '"Empathy/Coordination"': '"I am willing to share everything."', 
+    '"Elicit Preference"': {
+        '"Elicit Preference"': '"Yes!  Would you mind sharing your highest priority item with me?"', 
+        '"Elicit Preference food"': '"What about the food? How much food do you need for camping?"', 
     },
-    'Express Preference': {
-        'Express Preference food': '"Me as well! we are a group of big eaters, and are looking to take lots of food."', 
-        'Express Preference water firewood': '"Hey, nice getting to interact with you. I would like to have additional packages of firewood and water"', 
+    '"Express Preference"': {
+        '"Express Preference food"': '"Me as well! we are a group of big eaters, and are looking to take lots of food."', 
+        '"Express Preference water firewood"': '"Hey, nice getting to interact with you. I would like to have additional packages of firewood and water"', 
     },
-    'Propose': {
-        'Propose water=2': '"I like to hike and will need additional water."', 
-        'Propose food=0 water=1 firewood=3': '"i will give you that in exchange for 1 food and 3 water with 2 firewood"',
+    '"Propose"': {
+        '"Propose water=2"': '"I like to hike and will need additional water."', 
+        '"Propose food=0 water=1 firewood=3"': '"i will give you that in exchange for 1 food and 3 water with 2 firewood"',
     },
-    'Vouch Fairness': '"Sure that sounds fair to me, we both get what we need."', 
-    'Undervalue': {
-        'Undervalue food': '"Hi. Why do you need so many food packages?"', 
-        'Undervalue firewood': '"Do you have help carrying all that extra firewood? Could be heavy"', 
+    '"Vouch Fairness"': '"Sure that sounds fair to me, we both get what we need."', 
+    '"Undervalue"': {
+        '"Undervalue food"': '"Hi. Why do you need so many food packages?"', 
+        '"Undervalue firewood"': '"Do you have help carrying all that extra firewood? Could be heavy"', 
     },
-    'No-need': {
-        'No-need firewood': '"I am good at making fire and have a starter so I can give up all the wood."'
+    '"No-need"': {
+        '"No-need firewood"': '"I am good at making fire and have a starter so I can give up all the wood."'
     },
-    'Disagree': '"I dont think I am okay with that."', 
-    'Agree': '"that sounds like a good deal to me"' 
+    '"Disagree"': '"I dont think I am okay with that."', 
+    '"Agree"': '"that sounds like a good deal to me"' 
 })
