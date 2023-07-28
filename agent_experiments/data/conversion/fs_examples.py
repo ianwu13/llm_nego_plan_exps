@@ -2,6 +2,8 @@
 Few-shot prompt examples to be used in generating annotations
 """
 
+from collections import OrderedDict
+
 # DND Prompt examples:
 dnd_fs_texts = [
     'CONTEXT: "2 books 2 hats 2 balls" UTTERANCE: "hello"',
@@ -242,7 +244,7 @@ casino_cust_format_multilab_annots = [
 
 # FINAL E.G. EXAMPLES
 
-dnd_rb_format = {
+dnd_rb_format = OrderedDict({
     'Greet': '"hello"', 
     'Inquire': {'Inquire': '"what would you like"', 'Inquire hats': '"do you want the hat?"'},
     'Propose': {
@@ -253,9 +255,9 @@ dnd_rb_format = {
     'Insist': '"no, i need 2 of the balls"', 
     'Disagree': '"that will not work for me"',
     'Agree': '"well that works perfect for me"'
-}
+})
 
-casino_dnd_format = {
+casino_dnd_format = OrderedDict({
     'Greet': '"Hello. How are you?"', 
     'Inquire': {'Inquire': '"What are you most interested in?"', 'Inquire foor': '"How much food do you need for camping?"'},
     'Propose': {
@@ -265,9 +267,9 @@ casino_dnd_format = {
     'Insist': '"No i really need all the water, if its a deal breaker than you can have all the firewood."', 
     'Disagree': '"I dont think I am okay with that."', 
     'Agree': '"that sounds like a good deal to me"' 
-}
+})
 
-casino_cust_format = {
+casino_cust_format = OrderedDict({
     'Small-talk': '"I am good. I am pretty excited for the trip this weekend. what about you?"', 
     'Empathy/Coordination': '"I am willing to share everything."', 
     'Elicit Preference': {
@@ -292,4 +294,4 @@ casino_cust_format = {
     },
     'Disagree': '"I dont think I am okay with that."', 
     'Agree': '"that sounds like a good deal to me"' 
-}
+})
