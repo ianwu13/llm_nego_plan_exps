@@ -15,7 +15,7 @@ def main():
         help='Dataset handler ID')
     parser.add_argument('--inst_to_prompt_funct', type=str, default='example',
         help='function to convert instance (set of utterances) to (set of) prompts, based on the dataset')
-    parser.add_argument('--avg_annot_words', type=float, default=1.5,
+    parser.add_argument('--avg_annot_words', type=float, default=2,
         help='Average number of words in annotations (estimate)')
     parser.add_argument('--cost_per_1k_tok', type=float, default=0.03,
         help='Cost of 1k tokens for the specified API')
