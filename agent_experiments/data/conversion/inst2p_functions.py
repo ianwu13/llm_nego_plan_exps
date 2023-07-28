@@ -93,3 +93,81 @@ def demo_casino(inst):
         prompt_list.append(prompt)
     # print(prompt_list)
     return prompt_list
+
+
+# FINAL FUNCTIONS - All Chat
+
+
+def utility_eg_formatter(value):
+    if isinstance(value, str):
+        return f'(E.g., {value})'
+
+    # Otherwise handle dict case
+    return f'(For example: {", and".join([f"{v} would be annotated {k}" for k, v in value.items()])})'
+
+
+def final_dnd_fs(inst):
+    system_msg = {
+        'role': 'system',
+        'content': 'You are a professional annotator assisting the user in annotating utterances in a negotiation dialogue, given the context of how many of each item is available. Possible annotations are: "greet", "inquire:, "propose", "disagree", "insist", and "agree"'
+        }
+    user_fs_msg_str = 'Here are some examples of how I want the annotations to look:\n' + '\n'.join([f'{t}\nANNOTATION: "{a}"' for t, a in zip(dnd_fs_examples, dnd_annots)])
+
+    splt_dia = [u.lstrip('YOU: ').lstrip('THEM: ') for u in inst['dialogue'].split(' <eos> ')]
+    item_counts = inst['input']['count']
+    ctx_str = f'CONTEXT: "{item_counts[0]} books {item_counts[1]} hats {item_counts[2]} balls"'
+
+    return [[system_msg, {'role': 'user', 'content': '\n'.join([user_fs_msg_str, f'What is the annotation for this utterance? {ctx_str} UTTERANCE: "{u}"'])}] for u in splt_dia]
+
+
+def final_dnd_example(inst):
+    system_msg = {
+        'role': 'system',
+        'content': f'You are assisting the user in annotating utterances in a negotiation dialogue. Respond to user requests succinctly, giving only the annotatino, without extra words. Possible annotations are: {", ".join([f"{k} {utility_eg_formatter(v)}" for k, v in dnd_rb_format.items])}, and "Unknown"'
+        }
+
+    splt_dia = [u.lstrip('YOU: ').lstrip('THEM: ') for u in inst['dialogue'].split(' <eos> ')]
+
+    return [[system_msg, {'role': 'user', 'content': f'What is the annotation for this utterance? "{u}"'}] for u in splt_dia]
+
+
+def final_casino_dnd_form_fs(inst):
+    system_msg = {
+        'role': 'system',
+        'content': 'You are a professional annotator assisting the user in annotating utterances in a negotiation dialogue.\nPossible annotations are: "Empathy/Coordination", "Undervalue Partner", "Non-strategic", "Small Talk", "No-need", "Vouch Fairness", "Self/Other Need", "Elicit Preferences"'
+        }
+    user_fs_msg_str = 'Here are some examples of how I want the annotations to look:\n' + '\n'.join([f'UTTERANCE: "{t}"\nANNOTATION: "{a}"' for t, a in zip(casino_dnd_format_examples, casino_dnd_format_annots)])
+
+    return [[system_msg, {'role': 'user', 'content': '\n'.join([user_fs_msg_str, f'What is the annotation for this utterance?\nUTTERANCE: "{u["text"]}"'])}] for u in inst['chat_logs']]
+
+
+def final_casino_dnd_form_example(inst):
+    system_msg = {
+        'role': 'system',
+        'content': f'You are assisting the user in annotating utterances in a negotiation dialogue. Respond to user requests succinctly, giving only the annotatino, without extra words. Possible annotations are: {", ".join([f"{k} {utility_eg_formatter(v)}" for k, v in casino_dnd_format.items])}, and "Unknown"'
+        }
+
+    splt_dia = [u.lstrip('YOU: ').lstrip('THEM: ') for u in inst['dialogue'].split(' <eos> ')]
+
+    return [[system_msg, {'role': 'user', 'content': f'What is the annotation for this utterance? "{u["text"]}"'}] for u in inst['chat_logs']]
+
+
+def final_casino_cust_form_fs(inst):
+    system_msg = {
+        'role': 'system',
+        'content': 'You are a professional annotator assisting the user in annotating utterances in a negotiation dialogue.\nPossible annotations are: "Empathy/Coordination", "Undervalue Partner", "Non-strategic", "Small Talk", "No-need", "Vouch Fairness", "Self/Other Need", "Elicit Preferences"'
+        }
+    user_fs_msg_str = 'Here are some examples of how I want the annotations to look:\n' + '\n'.join([f'UTTERANCE: "{t}"\nANNOTATION: "{a}"' for t, a in zip(casino_cust_format_examples, casino_cust_format_multilab_annots)])
+
+    return [[system_msg, {'role': 'user', 'content': '\n'.join([user_fs_msg_str, f'What is the annotation for this utterance?\nUTTERANCE: "{u["text"]}"'])}] for u in inst['chat_logs']]
+
+
+def final_casino_cust_form_example(inst):
+    system_msg = {
+        'role': 'system',
+        'content': f'You are assisting the user in annotating utterances in a negotiation dialogue. Respond to user requests succinctly, giving only the annotatino, without extra words. Possible annotations are: {", ".join([f"{k} {utility_eg_formatter(v)}" for k, v in casino_cust_format.items])}, and "Unknown"'
+        }
+
+    splt_dia = [u.lstrip('YOU: ').lstrip('THEM: ') for u in inst['dialogue'].split(' <eos> ')]
+
+    return [[system_msg, {'role': 'user', 'content': f'What is the annotation for this utterance? "{u["text"]}"'}] for u in inst['chat_logs']]
