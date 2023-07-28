@@ -34,7 +34,7 @@ def main():
 
     print(f'\n{args.dataset.upper()} ANNOTATION:\n')
     print(f'Estimated total cost: ${cost_est:0,.2f}')
-    print(f'\t${args.cost_per_1k_out_tok:0,.2f}/{args.cost_per_1k_inp_tok:0,.2f} per 1K input/outputtokens')
+    print(f'\t${args.cost_per_1k_out_tok:0,.2f}/{args.cost_per_1k_inp_tok:0,.2f} per 1K input/output tokens')
     print(f'\t@ {num_tok} Tokens ({in_tok}/{out_tok} in/out), {num_words} Words')
     print()
 
