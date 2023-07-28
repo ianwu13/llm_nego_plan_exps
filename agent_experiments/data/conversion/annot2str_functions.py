@@ -4,6 +4,7 @@ for raw dataset files
 """
 
 from data.casino import POINTS_MAP, ORDER_MAP
+from simple_utils import remove_prefix
 
 
 def base_out_formatter_dnd(inst, annot):
@@ -94,6 +95,37 @@ def base_out_formatter_first_line_dnd(inst, annot):
 
 def base_out_formatter_first_line_casino(inst, annot):
     return base_out_formatter_casino(inst, [a.split('\n')[0] for a in annot])
+
+
+def dnd_lstrip_annotation(inst, annot):
+    annot = [remove_prefix(a.split('\n')[0], 'annotation').lstrip(' ') for a in annot]
+    
+    input_str = ' '.join([f'{c} {v}' for c, v in zip(inst['input']['count'], inst['input']['value'])])
+    prt_inpt_str = ' '.join([f'{c} {v}' for c, v in zip(inst['partner_input']['count'], inst['partner_input']['value'])])
+
+    output = inst['output']
+    tmp = output.split(' ')
+    prt_output = ' '.join([tmp[3], tmp[4], tmp[5], tmp[0], tmp[1], tmp[2]])
+
+    you_start = inst['dialogue'].startswith('YOU: ')
+
+    dia = ''
+    prt_persp_dia = ''
+    for a in annot:
+        if you_start:
+            dia += ' YOU: '
+            prt_persp_dia += ' THEM: '
+        else:
+            dia += ' THEM: '
+            prt_persp_dia += ' YOU: '
+        you_start = not you_start
+        dia += a
+        prt_persp_dia += a
+    # Remove leading space
+    dia = dia.lstrip(' ')
+    prt_persp_dia = prt_persp_dia.lstrip(' ')
+
+    return f'<input> {input_str} </input> <dialogue> {dia} </dialogue> <output> {output} </output> <partner_input> {prt_inpt_str} </partner_input>\n'
 
 
 # DEMO STUFF

@@ -1,5 +1,7 @@
 from agents.base_agent import Agent
 
+from simple_utils import remove_prefix
+
 
 class SingleLevelAgent(Agent):
     """An agent that uses DialogModel as an AI."""
@@ -31,7 +33,7 @@ class SingleLevelAgent(Agent):
             self.dialogue.append('YOU:')
         else:
             # Remove you token from response string if necessary
-            response = response.lstrip('YOU:').lstrip()
+            response = remove_prefix(response, 'YOU:').lstrip()
         # then append the utterance
         self.dialogue.extend(response_sp)
 

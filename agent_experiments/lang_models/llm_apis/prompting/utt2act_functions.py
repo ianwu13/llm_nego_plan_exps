@@ -48,7 +48,7 @@ def dnd_parser_chatcomp(inst):
 
     ctx_str = f'CONTEXT: "{inst["ctx"][0]} books {inst["ctx"][1]} hats {inst["ctx"][2]} balls"'
 
-    splt_dia = [u.lstrip('YOU: ').lstrip('THEM: ') for u in inst['dialogue'].split(' <eos> ')]
+    splt_dia = [remove_prefix(remove_prefix(u, 'YOU: '), 'THEM: ') for u in inst['dialogue'].split(' <eos> ')]
 
     print(f'What is the annotation for this utterance? {ctx_str} UTTERANCE: "{inst["read_inpt"]}"')
     
