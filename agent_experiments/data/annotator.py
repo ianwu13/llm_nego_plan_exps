@@ -8,7 +8,7 @@ class Annotator():
         self.out_file = out_file
         self.failed_calls_file = failed_calls_file
 
-    def est_budget(avg_annot_words, tok_scaling_factor, cost_per_1k_tok):
+    def est_budget(self, avg_annot_words, tok_scaling_factor, cost_per_1k_tok):
         num_words = 0
 
         for split in self.dataset.splits:
