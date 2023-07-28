@@ -53,7 +53,8 @@ INST_ANNOT2STR_PROMPT_FUN_REG = {
     "base_dnd": ("data.conversion.annot2str_functions", "base_out_formatter_dnd"),
     "base_casino": ("data.conversion.annot2str_functions", "base_out_formatter_casino"),
     "base_first_line_dnd": ("data.conversion.annot2str_functions", "base_out_formatter_first_line_dnd"),  # Removes content after "\n" character in LLM output
-    "base_first_line_casino": ("data.conversion.annot2str_functions", "base_out_formatter_first_line_casino")
+    "base_first_line_casino": ("data.conversion.annot2str_functions", "base_out_formatter_first_line_casino"),
+    "dnd_lstrip_annotation": ("data.conversion.annot2str_functions", "dnd_lstrip_annotation")
 }
 
 # SELFPLAY AND CHAT
