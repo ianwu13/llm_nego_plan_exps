@@ -158,12 +158,6 @@ class OpenAI_Api(BaseModelHandler):
         else:
             return self.get_chat_completions_out(inputs)
 
-    import requests
-
-    x = requests.get('https://w3schools.com')
-    print(x.status_code)
-
-
     '''
     def text_completion(prompt):
         model = "text-davinci-003"
