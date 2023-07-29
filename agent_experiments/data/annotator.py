@@ -49,8 +49,8 @@ class Annotator():
     def annotate_split(self, outfile, split='train'):
         f = open(outfile, 'w')
         print(f'Annotating {split}')
-        # for inst in tqdm(self.dataset.instance_generator(split)):
-        for inst in tqdm(self.dataset.get_instances(split=split, n=3)):  # TODO: For testing so not too many api calls
+        # for inst in tqdm(self.dataset.get_instances(split=split, n=3)):  # For testing so not too many api calls
+        for inst in tqdm(self.dataset.instance_generator(split)):
             annotations = self.annotate_instance(inst)
             out_line = self.output_formatter(inst, annotations)
             f.write(out_line)
