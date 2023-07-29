@@ -107,7 +107,8 @@ dnd_fs_examples = [
     'CONTEXT: "2 books 3 hats 1 balls" UTTERANCE: "i want all the books"',
     'CONTEXT: "1 books 2 hats 2 balls" UTTERANCE: "that will not work for me"',
     'CONTEXT: "1 books 1 hats 4 balls" UTTERANCE: "no, i need 2 of the balls"',
-    'CONTEXT: "1 books 3 hats 2 balls" UTTERANCE: "well that works perfect for me"'
+    'CONTEXT: "1 books 3 hats 2 balls" UTTERANCE: "well that works perfect for me"',
+    'CONTEXT: "1 books 3 hats 2 balls" UTTERANCE: "<selection>"'
     ]
 
 dnd_fs_examples_dh = [
@@ -119,7 +120,8 @@ dnd_fs_examples_dh = [
     'CONTEXT: "2 books 3 hats 1 balls" DIALOGUE_HISTORY: "" UTTERANCE: "i want all the books"',
     'CONTEXT: "1 books 2 hats 2 balls" DIALOGUE_HISTORY: "THEM: i only need the book . <eos> YOU: i only need the book? THEM: i need the book. you can have the hats and the balls." UTTERANCE: "that will not work for me"',
     'CONTEXT: "1 books 1 hats 4 balls" DIALOGUE_HISTORY: "THEM: i need the book and the hat you can have the balls YOU: i need the hat and 2 of the balls. you can have the book and 2 of the balls. THEM: i need the book and 3 balls" UTTERANCE: "no, i need 2 of the balls"',
-    'CONTEXT: "1 books 3 hats 2 balls" DIALOGUE_HISTORY: "THEM: i need the hats and the book" UTTERANCE: "well that works perfect for me"'
+    'CONTEXT: "1 books 3 hats 2 balls" DIALOGUE_HISTORY: "THEM: i need the hats and the book" UTTERANCE: "well that works perfect for me"',
+    'CONTEXT: "1 books 3 hats 2 balls" DIALOGUE_HISTORY: "" UTTERANCE: "<selection>"'
     ]
 
 dnd_annots = [
@@ -131,6 +133,7 @@ dnd_annots = [
     'Propose books=2',
     'Disagree',
     'Insist',
+    'Agree',
     'Agree'
     ]
 
@@ -266,7 +269,7 @@ casino_dnd_format = OrderedDict({
     },
     '"Insist"': '"No i really need all the water, if its a deal breaker than you can have all the firewood."', 
     '"Disagree"': '"I dont think I am okay with that."', 
-    '"Agree"': '"that sounds like a good deal to me"' 
+    '"Agree"': '"that sounds like a good deal to me" or "Submit-Deal"' 
 })
 
 casino_cust_format = OrderedDict({
@@ -293,5 +296,5 @@ casino_cust_format = OrderedDict({
         '"No-need firewood"': '"I am good at making fire and have a starter so I can give up all the wood."'
     },
     '"Disagree"': '"I dont think I am okay with that."', 
-    '"Agree"': '"that sounds like a good deal to me"' 
+    '"Agree"': '"that sounds like a good deal to me" or "Submit-Deal"' 
 })
