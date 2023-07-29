@@ -18,3 +18,17 @@ class DNDHandler(BaseDatasetHandler):
         dnd_dataset = load_dataset("deal_or_no_dialog")
         self.splits = list(dnd_dataset.keys())
         self.dataset_reg = {split: dnd_dataset[split] for split in self.splits}
+
+        self.name = 'dnd'
+    
+    def instance_generator(self, split='train'):
+        """Yields instances from the dataset one at a time"""
+        max_utt = 8000 if split == 'train' else 1000
+        utt_count = 0
+        
+        for inst in self.dataset_reg[split]:
+            yield inst
+
+            utt_count += len(inst['dialogue'].split('<eos>'))
+            if utt_count > max_utt:
+                break
