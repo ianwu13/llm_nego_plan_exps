@@ -30,3 +30,5 @@ class CasinoHandler(BaseDatasetHandler):
         casino_dataset = load_dataset("casino")
         self.splits = list(casino_dataset.keys())
         self.dataset_reg = {split: casino_dataset[split] for split in self.splits}
+
+        self.name = 'casino'
