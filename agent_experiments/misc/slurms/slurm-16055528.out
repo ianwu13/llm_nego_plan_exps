@@ -1,0 +1,41 @@
+==========================================
+SLURM_JOB_ID = 16055528
+SLURM_JOB_NODELIST = d11-13
+TMPDIR = /tmp/SLURM_16055528
+==========================================
+Using custom data configuration default
+Reusing dataset casino (/home1/ianwu/.cache/huggingface/datasets/casino/default/1.1.0/302c3b1ac78c48091deabe83a11f4003c7b472a4e11a8eb92799653785bd5da1)
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 246.52it/s]
+
+Cannot find LLM in registry for argument --llm_api = gpt-3.5-turbo-0613; Assuming gpt-3.5-turbo-0613 to be an OpenAI model ID
+
+Annotating train
+0it [00:00, ?it/s]1it [00:06,  6.25s/it]2it [00:10,  4.91s/it]3it [00:13,  4.23s/it]4it [00:16,  3.79s/it]5it [00:19,  3.53s/it]6it [00:24,  3.78s/it]7it [00:27,  3.60s/it]8it [00:30,  3.54s/it]9it [00:34,  3.61s/it]10it [00:37,  3.52s/it]11it [00:40,  3.41s/it]12it [00:44,  3.35s/it]13it [00:47,  3.42s/it]14it [00:52,  3.71s/it]15it [00:55,  3.52s/it]16it [00:58,  3.48s/it]17it [01:02,  3.57s/it]18it [01:05,  3.53s/it]19it [04:20, 61.07s/it]20it [04:24, 43.80s/it]21it [04:28, 31.82s/it]22it [04:31, 23.23s/it]23it [04:34, 17.28s/it]24it [04:38, 13.03s/it]25it [04:41, 10.11s/it]25it [04:42, 11.30s/it]
+====================================================================================================
+<Response [429]>
+----------------------------------------------------------------------------------------------------
+b'{\n    "error": {\n        "message": "Rate limit reached for default-gpt-3.5-turbo in organization org-x2wYP7NrimgUxItmcMxpunkC on tokens per min. Limit: 90000 / min. Current: 89654 / min. Contact us through our help center at help.openai.com if you continue to have issues.",\n        "type": "tokens",\n        "param": null,\n        "code": "rate_limit_exceeded"\n    }\n}\n'
+----------------------------------------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home1/ianwu/llm_nego_plan_exps/agent_experiments/lang_models/llm_apis/open_ai.py", line 136, in get_chat_completions_out
+    choices = json.loads(response.content)['choices']
+KeyError: 'choices'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "annotate.py", line 48, in <module>
+    main()
+  File "annotate.py", line 42, in main
+    annotator.annotate()
+  File "/home1/ianwu/llm_nego_plan_exps/agent_experiments/data/annotator.py", line 73, in annotate
+    self.annotate_split(sp_file, sp)
+  File "/home1/ianwu/llm_nego_plan_exps/agent_experiments/data/annotator.py", line 54, in annotate_split
+    annotations = self.annotate_instance(inst)
+  File "/home1/ianwu/llm_nego_plan_exps/agent_experiments/data/annotator.py", line 46, in annotate_instance
+    annotations = self.llm_api.get_model_outputs(prompts)
+  File "/home1/ianwu/llm_nego_plan_exps/agent_experiments/lang_models/llm_apis/open_ai.py", line 159, in get_model_outputs
+    return self.get_chat_completions_out(inputs)
+  File "/home1/ianwu/llm_nego_plan_exps/agent_experiments/lang_models/llm_apis/open_ai.py", line 143, in get_chat_completions_out
+    raise Exception("KeyError: 'choices' in API response")
+Exception: KeyError: 'choices' in API response
