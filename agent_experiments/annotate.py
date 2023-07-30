@@ -13,6 +13,8 @@ def main():
     parser = argparse.ArgumentParser(description='script to annotate data')
     parser.add_argument('--dataset', type=str, choices=['dnd','casino'],
         help='Dataset handler ID')
+    parser.add_argument('--start_index', type=int, default=0,
+        help='Sample index of dataset to start annotating at')
     parser.add_argument('--inst_to_prompt_funct', type=str, default='example',
         help='function to convert instance (set of utterances) to (set of) prompts, based on the dataset')
     parser.add_argument('--annot_method', type=str, default='llm',
@@ -37,7 +39,7 @@ def main():
         raise NotImplementedError("only llm annotation is currently implemented")
     output_formatter = utils.get_annot_out_formatter_func(args.output_formatter)
 
-    annotator = Annotator(data_handler, i2p_funct, annot_api, output_formatter, args.output_file, failed_calls_file=args.failed_calls_file)
+    annotator = Annotator(data_handler, i2p_funct, annot_api, output_formatter, args.output_file, args)
 
     annotator.annotate()
 

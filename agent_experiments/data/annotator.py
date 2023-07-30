@@ -3,13 +3,15 @@ from tqdm import tqdm
 
 class Annotator():
 
-    def __init__(self, dataset, inst2promp_funct, llm_api, output_formatter, out_file, failed_calls_file='failed_calls.txt'):
+    def __init__(self, dataset, inst2promp_funct, llm_api, output_formatter, out_file, args):
         self.dataset = dataset
         self.inst2promp_funct = inst2promp_funct
         self.llm_api = llm_api
         self.output_formatter = output_formatter
         self.out_file = out_file
-        self.failed_calls_file = failed_calls_file
+
+        self.start_index = args.start_index
+        self.failed_calls_file = args.failed_calls_file
 
     def est_budget(self, avg_annot_words, tok_scaling_factor, cost_per_1k_inp_tok, cost_per_1k_out_tok):
         num_in_words = 0
@@ -50,7 +52,12 @@ class Annotator():
         f = open(outfile, 'w')
         print(f'Annotating {split}')
         # for inst in tqdm(self.dataset.get_instances(split=split, n=3)):  # For testing so not too many api calls
+        cur_ind = 0
         for inst in tqdm(self.dataset.instance_generator(split)):
+            if not cur_ind >= self.start_index:
+                cur_ind += 1
+                continue
+
             annotations = self.annotate_instance(inst)
             out_line = self.output_formatter(inst, annotations)
             f.write(out_line)

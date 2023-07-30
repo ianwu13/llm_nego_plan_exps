@@ -125,8 +125,6 @@ class OpenAI_Api(BaseModelHandler):
                             break
                 
                 if response.status_code != 200:
-                    pass
-                else:
                     self.failed_calls.append(inp)
                     p_str = str(inp).replace('\n', '')
                     outputs.append(f"FAILED START {p_str} END FAILED")  # Insert placeholder to handle later
