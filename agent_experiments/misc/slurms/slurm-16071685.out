@@ -1,76 +1,0 @@
-==========================================
-SLURM_JOB_ID = 16071685
-SLURM_JOB_NODELIST = d05-34
-TMPDIR = /tmp/SLURM_16071685
-==========================================
-Using custom data configuration default
-Reusing dataset casino (/home1/ianwu/.cache/huggingface/datasets/casino/default/1.1.0/302c3b1ac78c48091deabe83a11f4003c7b472a4e11a8eb92799653785bd5da1)
-  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 41.74it/s]
-
-Cannot find LLM in registry for argument --llm_api = gpt-3.5-turbo-0613; Assuming gpt-3.5-turbo-0613 to be an OpenAI model ID
-
-Annotating train
-0it [00:00, ?it/s]25it [00:00, 25.74it/s]28it [00:03,  5.76it/s]30it [00:05,  3.57it/s]31it [00:07,  2.75it/s]32it [00:08,  2.41it/s]33it [00:09,  2.11it/s]34it [00:10,  1.79it/s]35it [00:11,  1.50it/s]36it [00:12,  1.34it/s]37it [00:13,  1.24it/s]38it [00:14,  1.20it/s]39it [00:15,  1.13it/s]40it [00:16,  1.13it/s]41it [00:17,  1.09it/s]41it [04:32,  6.65s/it]
-Traceback (most recent call last):
-  File "/home1/ianwu/.conda/envs/llm_exps/lib/python3.8/site-packages/urllib3/connection.py", line 174, in _new_conn
-    conn = connection.create_connection(
-  File "/home1/ianwu/.conda/envs/llm_exps/lib/python3.8/site-packages/urllib3/util/connection.py", line 95, in create_connection
-    raise err
-  File "/home1/ianwu/.conda/envs/llm_exps/lib/python3.8/site-packages/urllib3/util/connection.py", line 85, in create_connection
-    sock.connect(sa)
-TimeoutError: [Errno 110] Connection timed out
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home1/ianwu/.conda/envs/llm_exps/lib/python3.8/site-packages/urllib3/connectionpool.py", line 714, in urlopen
-    httplib_response = self._make_request(
-  File "/home1/ianwu/.conda/envs/llm_exps/lib/python3.8/site-packages/urllib3/connectionpool.py", line 403, in _make_request
-    self._validate_conn(conn)
-  File "/home1/ianwu/.conda/envs/llm_exps/lib/python3.8/site-packages/urllib3/connectionpool.py", line 1053, in _validate_conn
-    conn.connect()
-  File "/home1/ianwu/.conda/envs/llm_exps/lib/python3.8/site-packages/urllib3/connection.py", line 363, in connect
-    self.sock = conn = self._new_conn()
-  File "/home1/ianwu/.conda/envs/llm_exps/lib/python3.8/site-packages/urllib3/connection.py", line 186, in _new_conn
-    raise NewConnectionError(
-urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPSConnection object at 0x7f66a09d1a30>: Failed to establish a new connection: [Errno 110] Connection timed out
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home1/ianwu/.conda/envs/llm_exps/lib/python3.8/site-packages/requests/adapters.py", line 440, in send
-    resp = conn.urlopen(
-  File "/home1/ianwu/.conda/envs/llm_exps/lib/python3.8/site-packages/urllib3/connectionpool.py", line 798, in urlopen
-    retries = retries.increment(
-  File "/home1/ianwu/.conda/envs/llm_exps/lib/python3.8/site-packages/urllib3/util/retry.py", line 592, in increment
-    raise MaxRetryError(_pool, url, error or ResponseError(cause))
-urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.openai.com', port=443): Max retries exceeded with url: /v1/chat/completions (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f66a09d1a30>: Failed to establish a new connection: [Errno 110] Connection timed out'))
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "annotate.py", line 50, in <module>
-    main()
-  File "annotate.py", line 44, in main
-    annotator.annotate()
-  File "/home1/ianwu/llm_nego_plan_exps/agent_experiments/data/annotator.py", line 80, in annotate
-    self.annotate_split(sp_file, sp)
-  File "/home1/ianwu/llm_nego_plan_exps/agent_experiments/data/annotator.py", line 61, in annotate_split
-    annotations = self.annotate_instance(inst)
-  File "/home1/ianwu/llm_nego_plan_exps/agent_experiments/data/annotator.py", line 48, in annotate_instance
-    annotations = self.llm_api.get_model_outputs(prompts)
-  File "/home1/ianwu/llm_nego_plan_exps/agent_experiments/lang_models/llm_apis/open_ai.py", line 157, in get_model_outputs
-    return self.get_chat_completions_out(inputs)
-  File "/home1/ianwu/llm_nego_plan_exps/agent_experiments/lang_models/llm_apis/open_ai.py", line 108, in get_chat_completions_out
-    response = requests.post(
-  File "/home1/ianwu/.conda/envs/llm_exps/lib/python3.8/site-packages/requests/api.py", line 117, in post
-    return request('post', url, data=data, json=json, **kwargs)
-  File "/home1/ianwu/.conda/envs/llm_exps/lib/python3.8/site-packages/requests/api.py", line 61, in request
-    return session.request(method=method, url=url, **kwargs)
-  File "/home1/ianwu/.conda/envs/llm_exps/lib/python3.8/site-packages/requests/sessions.py", line 529, in request
-    resp = self.send(prep, **send_kwargs)
-  File "/home1/ianwu/.conda/envs/llm_exps/lib/python3.8/site-packages/requests/sessions.py", line 645, in send
-    r = adapter.send(request, **kwargs)
-  File "/home1/ianwu/.conda/envs/llm_exps/lib/python3.8/site-packages/requests/adapters.py", line 519, in send
-    raise ConnectionError(e, request=request)
-requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.openai.com', port=443): Max retries exceeded with url: /v1/chat/completions (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f66a09d1a30>: Failed to establish a new connection: [Errno 110] Connection timed out'))
