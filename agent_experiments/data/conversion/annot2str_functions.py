@@ -49,8 +49,15 @@ def base_out_formatter_casino(inst, annot):
     prt_inpt_str = ' '.join([f'3 {pts_val}' for pts_val in tmp])
 
     if inst['chat_logs'][-2]['text'] == "Submit-Deal":
-        output_a = ' '.join(f'{k}={int(v)}' for k, v in inst['chat_logs'][-2]['task_data']['issue2youget'].items())
-        output_b = ' '.join(f'{k}={int(v)}' for k, v in inst['chat_logs'][-2]['task_data']['issue2theyget'].items())
+        # These give wrong order output
+        # output_a = ' '.join(f'{k}={int(v)}' for k, v in inst['chat_logs'][-2]['task_data']['issue2youget'].items())
+        # output_b = ' '.join(f'{k}={int(v)}' for k, v in inst['chat_logs'][-2]['task_data']['issue2theyget'].items())
+
+        yg = inst['chat_logs'][-2]['task_data']['issue2youget']
+        tg = inst['chat_logs'][-2]['task_data']['issue2theyget']
+
+        output_a = f"item0={yg['Food']} item1={yg['Water']} item2={yg['Firewood']}"
+        output_b = f"item0={tg['Food']} item1={tg['Water']} item2={tg['Firewood']}"
 
         if inst['chat_logs'][-2]['id'] == 'mturk_agent_1':
             output = output_a + ' ' + output_b
