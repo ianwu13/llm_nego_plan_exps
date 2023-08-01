@@ -19,7 +19,7 @@ def main(fpath):
                 last_utt_start = i+1
                 break
 
-        new_line_sp = new_line_sp[:last_utt_start] + ['<select>'] + new_line_sp[dia_end:]
+        new_line_sp = new_line_sp[:last_utt_start] + ['<selection>'] + new_line_sp[dia_end:]
 
         new_line = ' '.join(new_line_sp)
 
