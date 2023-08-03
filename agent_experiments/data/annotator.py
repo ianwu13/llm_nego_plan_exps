@@ -14,6 +14,53 @@ class Annotator():
         self.start_index = args.start_index
         self.failed_calls_file = args.failed_calls_file
 
+        if hasattr(args, 'validation_file'):
+            self.validation_file = args.validation_file
+
+
+    def evaluate(self):
+        assert self.validation_file, 'Must provide a validation file to compare against'
+
+        val_set = json.load(open(self.validation_file, 'r'))
+        n_val = len(val_set)
+
+        total_count = 0
+        ema_sum = 0  # Exact match
+        partial_math_sum = 0  # Some union
+        subset_match_sum = 0  # number where pred is subset of true labels
+        inverse_subset_match_sum = 0  # number where true is subset of pred labels
+        no_match_sum = 0  # No matching between pred and true
+
+        for inst, val_inst in zip(self.dataset.get_instances(split='train', n=n_val), val_set):
+            tru_labels = [set([u[1]] if isinstance(u[1], str) else u[1]) for u in val_inst]
+            pred_labels = [set(ann.split(', ')) for ann in self.annotate_instance(inst)]
+
+            # Write annotations to file if needed
+            if self.output_formatter:
+                f = open(self.out_file, 'a')
+                out_line = self.output_formatter(inst, [', '.join(p) for p in pred_labels])
+                f.write(out_line)
+                f.close()
+
+            for t, p in zip(tru_labels, pred_labels):
+                total_count += 1
+                ema_sum += 1 if t == p else 0  # Exact match
+                for a in p:
+                    if a in t:
+                        partial_math_sum += 1  # Some union
+                        break
+                subset_match_sum += 1 if p.issubset(t) else 0  # number where pred is subset of true labels
+                inverse_subset_match_sum += 1 if t.issubset(p) else 0  # number where true is subset of pred labels
+                no_match_sum += 1 if not(p & t) else 0  # No matching between pred and true
+            
+        print(f'Total Utterances: {total_count}')
+        print(f'Exact match Ratio: {ema_sum / total_count}')
+        print(f'Some union Ratio: {partial_math_sum / total_count}')
+        print(f'Number where pred is subset of true labels Ratio: {subset_match_sum / total_count}')
+        print(f'Number where true is subset of pred labels Ratio: {inverse_subset_match_sum / total_count}')
+        print(f'No matching between pred and true Ratio: {no_match_sum / total_count}')
+
+
     def est_budget(self, avg_annot_words, tok_scaling_factor, cost_per_1k_inp_tok, cost_per_1k_out_tok):
         num_in_words = 0
         num_out_words = 0
