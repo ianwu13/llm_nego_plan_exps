@@ -108,7 +108,7 @@ def demo_casino(inst):
 
 def utility_eg_formatter(value):
     if isinstance(value, str):
-        return f'(E.g., {value})'
+        return f'(For example, {value})'
 
     # Otherwise handle dict case
     return f'(For example: {", and".join([f"{v} would be annotated {k}" for k, v in value.items()])})'
