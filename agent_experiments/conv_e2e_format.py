@@ -7,6 +7,7 @@ import pdb
 from tqdm import tqdm
 import json
 import utils
+from simple_utils import remove_prefix
 
 
 class Converter():
@@ -24,6 +25,20 @@ class Converter():
         for a_set, inst in zip(self.annots, self.dataset.get_instances(split='train', n=self.n)):
             annotations = [a[1] if isinstance(a[1], str) else ' '.join(a[1]) for a in a_set]
             annotations = [(a+' <eos>' if '<selection>' not in a else a) for a in annotations]
+            
+            out_line = self.output_formatter(inst, annotations)
+            f.write(out_line)
+        f.close()
+        
+    def utt_2_e2e(self):
+        f = open(self.out_file, 'w')
+        print(f'Converting')
+        for inst in self.dataset.get_instances(split='train', n=self.n):
+            if 'chat_logs' in inst.keys():
+                annotations = [u['text'].strip() + ' <eos>' if u['text'] != 'Accept-Deal' else '<selection>' for u in inst['chat_logs']]
+            else:
+                annotations = [remove_prefix(remove_prefix(u, 'YOU:'), 'THEM').strip() for u in inst['dialogue'].split(' <eos> ')]
+            
             out_line = self.output_formatter(inst, annotations)
             f.write(out_line)
         f.close()
@@ -47,13 +62,19 @@ def main():
     converter = Converter(data_handler, args.annot_file, out_formatter, args.output_file)
 
     converter.convert()
+    # ANNOTATIONS
+    # python3 conv_e2e_format.py --dataset dnd --annot_file data/annot_val_sets/dnd_valset.json --output_formatter dnd_lstrip_annotation --output_file data/annot_val_sets/e2e_dnd_valset.txt
+    # python3 conv_e2e_format.py --dataset casino --annot_file data/annot_val_sets/casino_dndform_valset.json --output_formatter base_casino --output_file data/annot_val_sets/e2e_casino_dndform_valset.txt
+    # python3 conv_e2e_format.py --dataset casino --annot_file data/annot_val_sets/casino_customform_valset.json --output_formatter base_casino --output_file data/annot_val_sets/e2e_casino_customform_valset.txt
+    
+    # converter.utt_2_e2e()
+    # UTTERANCES
+    # python3 conv_e2e_format.py --dataset dnd --annot_file data/annot_val_sets/dnd_valset.json --output_formatter dnd_lstrip_annotation --output_file data/annot_val_sets/e2e_dnd_uttset.txt
+    # python3 conv_e2e_format.py --dataset casino --annot_file data/annot_val_sets/casino_dndform_valset.json --output_formatter base_casino --output_file data/annot_val_sets/e2e_casino_dndform_uttset.txt
+    # python3 conv_e2e_format.py --dataset casino --annot_file data/annot_val_sets/casino_customform_valset.json --output_formatter base_casino --output_file data/annot_val_sets/e2e_casino_customform_uttset.txt
 
     print("Conversion all done.")
 
 
 if __name__ == '__main__':
     main()
-
-# python3 conv_e2e_format.py --dataset dnd --annot_file data/annot_val_sets/dnd_valset.json --output_formatter dnd_lstrip_annotation --output_file data/annot_val_sets/e2e_dnd_valset.txt
-# python3 conv_e2e_format.py --dataset casino --annot_file data/annot_val_sets/casino_dndform_valset.json --output_formatter base_casino --output_file data/annot_val_sets/e2e_casino_dndform_valset.txt
-# python3 conv_e2e_format.py --dataset casino --annot_file data/annot_val_sets/casino_customform_valset.json --output_formatter base_casino --output_file data/annot_val_sets/e2e_casino_customform_valset.txt
