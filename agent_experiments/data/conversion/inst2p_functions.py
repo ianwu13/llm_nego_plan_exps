@@ -114,6 +114,14 @@ def utility_eg_formatter(value):
     return f'(For example: {", and ".join([f"{v} would be annotated {k}" for k, v in value.items()])})'
 
 
+def utility_eg_formatter_beta(key, value):
+    if isinstance(value, str):
+        return f'{key}: {value}\n'
+
+    # Otherwise handle dict case
+    return ''.join([f'{key}: {value}\n' for k, v in value.items()])
+
+
 def final_dnd_fs(inst):
     system_msg = {
         'role': 'system',
@@ -285,7 +293,7 @@ This is a list of possible annotation labels with descriptions:
 "unknown" - the utterance does not not fit into any of the provided labels'''
         }
 
-    return [[system_msg, {'role': 'user', 'content': f'Here are some examples of how annotations should look:\n{", ".join([f"{k} {utility_eg_formatter(v)}" for k, v in casino_dnd_format.items()])}\nWhat is the annotation for this utterance? "{u["text"]}"'}] for u in inst['chat_logs']]
+    return [[system_msg, {'role': 'user', 'content': f'Here are some examples of how annotations should look:\n{", ".join([utility_eg_formatter_beta(k, v) for k, v in casino_dnd_format.items()])}\nWhat is the annotation for this utterance? "{u["text"]}"'}] for u in inst['chat_logs']]
 
 
 def final_casino_cust_form_desc_fs(inst):
@@ -308,5 +316,5 @@ This is a list of possible annotation labels with descriptions:
 "unknown" - the utterance does not not fit into any of the provided labels'''
         }
 
-    return [[system_msg, {'role': 'user', 'content': f'Here are some examples of how annotations should look:\n{", ".join([f"{k} {utility_eg_formatter(v)}" for k, v in casino_cust_format.items()])}\nWhat is the annotation for this utterance? "{u["text"]}"'}] for u in inst['chat_logs']]
+    return [[system_msg, {'role': 'user', 'content': f'Here are some examples of how annotations should look:\n{", ".join([utility_eg_formatter_beta(k, v) for k, v in casino_cust_format.items()])}\nWhat is the annotation for this utterance? "{u["text"]}"'}] for u in inst['chat_logs']]
 
