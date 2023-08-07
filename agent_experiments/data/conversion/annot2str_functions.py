@@ -117,7 +117,7 @@ def base_out_formatter_first_line_casino(inst, annot):
 
 
 def dnd_lstrip_annotation(inst, annot):
-    annot = [remove_prefix(a.split('\n')[0], 'annotation').lstrip(' ') for a in annot]
+    annot = [remove_prefix(remove_prefix(a.split('\n')[0], 'annotation'), 'the annotation for this utterance is ').lstrip(' ') for a in annot]
     
     input_str = ' '.join([f'{c} {v}' for c, v in zip(inst['input']['count'], inst['input']['value'])])
     prt_inpt_str = ' '.join([f'{c} {v}' for c, v in zip(inst['partner_input']['count'], inst['partner_input']['value'])])
