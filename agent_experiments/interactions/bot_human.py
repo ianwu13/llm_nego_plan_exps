@@ -7,9 +7,9 @@ from interactions.interaction_utils import InteractionLogger
 
 class BotHumanChat(InteractionManager):
     """A helper class that runs dialogues."""
-    def __init__(self, dialog, ctx_file=None, logger=None, **kwargs):
+    def __init__(self, dialog, dataset, ctx_file=None, logger=None, **kwargs):
         if ctx_file is not None:
-            super(BotHumanChat, self).__init__(dialog, ctx_file, logger, **kwargs)
+            super(BotHumanChat, self).__init__(dialog, dataset, ctx_file, logger, **kwargs)
         else:
             self.dialog = dialog
             self.logger = logger if logger else InteractionLogger()
@@ -44,6 +44,8 @@ class BotHumanChat(InteractionManager):
             try:
                 ctx1 = input('Input context: ')
                 ctx1 = ctx1.strip().split()
+                print("what is it")
+                print(ctx1)
                 if len(ctx1) != 2 * self.num_types:
                     raise
                 if np.sum([int(x) for x in ctx1[0::2]]) != self.num_objects:

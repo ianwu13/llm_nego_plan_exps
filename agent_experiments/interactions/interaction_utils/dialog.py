@@ -101,7 +101,7 @@ class Dialog(object):
         
         # at this point - both outputs are numbers only- if they match we give positive reward. if they don't, we ignore.            
 
-        cnts = [int(x) for x in ctxs[0][0::2]]
+        cnts = [int(x) for x in ctxs[0][0:6:2]]
         agree, scores = True, [0 for _ in range(len(ctxs))]
         for i, n in enumerate(cnts):
             for agent_id, (choice, ctx) in enumerate(zip(choices, ctxs)):

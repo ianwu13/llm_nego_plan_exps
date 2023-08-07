@@ -17,14 +17,19 @@ import utils
 
 def main():
     parser = argparse.ArgumentParser(description='chat utility')
+    parser.add_argument('--dataset', type=str, default='dnd', 
+        choices=['dnd', 'casino'],
+        help='Which Dataset is using')  
     parser.add_argument('--ai_type', type=str, default='llm_no_planning', 
         choices=['llm_no_planning', 'llm_self_planning', 'llm_rl_planning'],
-        help='Agent type for the AI agent.')
-    
+        help='Agent type for the AI agent.')  
     parser.add_argument('--llm_api', type=str, default=None,
-        help='Level at which the models interact [act|utt]')
+        help='Level at which the models interact [act|utt]/For llm its either GPT3.5/4')
     parser.add_argument('--llm_api_key', type=str, default=None,
         help='Key to be used when calling provided API')
+    parser.add_argument('--agent_strategy', type=str, default='generic',
+        choices=['generic', 'selfish', 'fair'],
+        help='agent_strategy/personality')
     parser.add_argument('--utt2act_prompt_func', type=str, default=None,
         help='Function ID from registry.py which converts utterance data into llm prompts for generating acts (Parser)')
     parser.add_argument('--act2utt_prompt_func', type=str, default=None,
@@ -32,8 +37,7 @@ def main():
     parser.add_argument('--llm_response_prompt_func', type=str, default=None,
         help='Function ID from registry.py which generates a prompt for the llm api (if used) to generate the next response in the dialogue')
     parser.add_argument('--llm_choice_prompt_func', type=str, default=None,
-        help='Function ID from registry.py which generates a prompt for the llm api (if used) to generate the final choice for a dialogue')
-        
+        help='Function ID from registry.py which generates a prompt for the llm api (if used) to generate the final choice for a dialogue')      
     parser.add_argument('--model_file', type=str, default=None,
         help='model file')
     parser.add_argument('--corpus_source', type=str, default=None,
@@ -66,14 +70,14 @@ def main():
     utils.set_seed(args.seed, torch_needed=True, np_needed=True)
 
     human = HumanAgent()
-    ai = utils.agent_builder(args.ai_type, args, rl_module_weight_path=args.model_file, name='AI')
+    ai = utils.agent_builder(args.ai_type, args.agent_strategy, args, rl_module_weight_path=args.model_file, name='AI')
 
     agents = [ai, human] if args.ai_starts else [human, ai]
 
     dialog = Dialog(agents, args)
-    logger = InteractionLogger(verbose=True, log_file=args.log_file)
+    logger = InteractionLogger(args.dataset, verbose=True, log_file=args.log_file)
 
-    chat = BotHumanChat(dialog, args.context_file, logger=logger)
+    chat = BotHumanChat(dialog, args.dataset, args.context_file, logger=logger)
     chat.run()
 
 

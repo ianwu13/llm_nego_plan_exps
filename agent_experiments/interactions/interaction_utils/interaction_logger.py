@@ -12,9 +12,15 @@ class InteractionLogger(object):
         ('item1', 'hat'),
         ('item2', 'ball'),
     ]
+    CODE2ITEM_CASINO = [
+        ('item0', 'firewood'),
+        ('item1', 'water'),
+        ('item2', 'food'),
+    ]
 
-    def __init__(self, verbose=False, log_file=None, append=False):
+    def __init__(self, dataset, verbose=False, log_file=None, append=False):
         self.logs = []  # List of locations to log to
+        self.dataset = dataset
         if verbose:
             self.logs.append(sys.stderr)
         if log_file:
@@ -45,10 +51,22 @@ class InteractionLogger(object):
         self._dump(f'{name:<5} : {s}')
 
     def dump_ctx(self, name, ctx):
-        assert len(ctx) == 6, 'Expecting 3 objects'
-        s = ' '.join(['%s=(count:%s value:%s)' % (self.CODE2ITEM[i][1], ctx[2 * i], ctx[2 * i + 1]) \
-            for i in range(3)])
-        self._dump_with_name(name, s)
+        if self.dataset == "casino":
+            index = ctx.index("=")
+            value = ctx[0:index]
+            reason = ctx[index + 1:]
+            assert len(value) == 6, 'Expecting 3 objects'
+            s = ' '.join(['%s=(count:%s value:%s)' % (self.CODE2ITEM_CASINO[i][1], value[2 * i], value[2 * i + 1]) \
+                for i in range(3)])
+            s = s + ' Preference: ' + ' '.join(reason) + '\n'
+            self._dump_with_name(name, s)
+      
+        else:# dnd
+            print(ctx)
+            assert len(ctx) == 6, 'Expecting 3 objects'
+            s = ' '.join(['%s=(count:%s value:%s)' % (self.CODE2ITEM[i][1], ctx[2 * i], ctx[2 * i + 1]) \
+                for i in range(3)])
+            self._dump_with_name(name, s)
 
     def dump_sent(self, name, sent):
         self._dump_with_name(name, ' '.join(sent))
@@ -57,10 +75,14 @@ class InteractionLogger(object):
         self._dump_lf(f'{name:<5} : {" ".join(sent)}')
 
     def dump_choice(self, name, choice):
+        item_list = self.CODE2ITEM
+        if self.dataset == 'casino':
+            item_list = self.CODE2ITEM_CASINO
+        
         def rep(w):
             p = w.split('=')
             if len(p) == 2:
-                for k, v in self.CODE2ITEM:
+                for k, v in item_list:
                     if p[0] == k:
                         return '%s=%s' % (v, p[1])
             return w

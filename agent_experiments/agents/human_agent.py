@@ -26,7 +26,7 @@ class HumanAgent(Agent):
                 print('Your sentence is invalid! Try again.')
 
     def parse_human_choice(self, inpt, output):
-        cnts = [int(n) for n in inpt[0::2]]
+        cnts = [int(n) for n in inpt[0:6:2]]
         choice = [int(x) for x in output.strip().split()]
 
         if len(choice) != len(cnts):

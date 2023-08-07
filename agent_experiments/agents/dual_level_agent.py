@@ -5,15 +5,17 @@ from agents.base_agent import Agent
 
 
 class DualLevelAgent(Agent):
-    def __init__(self, pg_model, p_prompt_func, g_prompt_func, planning_model, cpf, rpf=None, name='AI', temperature=1.0):
+    def __init__(self, pg_model, p_prompt_func, g_prompt_func, planning_model, cpf, rpf=None, strategy='generic', name='AI', temperature=1.0):
         super(DualLevelAgent, self).__init__()
         self.pg_model = pg_model  # parser/generator model
         self.p_prompt_func = p_prompt_func  # parser_prompt_func
         self.g_prompt_func = g_prompt_func  # generator_prompt_func
         self.planning_model = planning_model
         self.cpf = cpf  # "Choice prompt function"
+        self.strategy = strategy
 
         if self.planning_model.is_llm:
+            print("~~~~CHECK WHETHER MODEL IS LLM for DUAL Agent~~~")
             assert rpf is not None
             self.rpf = rpf  # "Response prompt function"
         else:
@@ -72,14 +74,22 @@ class DualLevelAgent(Agent):
             self.da_h = self.planning_model.zero_hid(1)
 
     def read(self, inpt):
+        # print("CTX:")
+        # print(self.ctx)
+        # print("Dialogue:")
+        # print(self.dialogue)
+        # print("Read_input")
+        # print(input)
         # Get dialogue act with parser
+        # print('parser function')
+        # print(self.p_prompt_func)
         parser_prompt = self.p_prompt_func({
             'ctx': self.ctx,
             'dialogue': self.dialogue,
             'read_inpt': ' '.join(inpt)
         })
         inpt_da = self.pg_model.get_model_outputs([parser_prompt])[0]  # Dialogue Act
-        
+        # print(inpt_da)
         # Append to dialogue array
         self.dialogue.append('THEM:')
         self.dialogue.extend(inpt)
@@ -108,8 +118,7 @@ class DualLevelAgent(Agent):
                 'dia_acts': self.dialogue_acts,
                 'gen_act': resp_da
             })
-            write_utt = self.pg_model.get_model_outputs([generator_prompt])[0]  # Dialogue Act
-            
+            write_utt = self.pg_model.get_model_outputs([generator_prompt])[0] # Dialogue Act
             # append new hidded states to the current list of the hidden states
             self.da_hs.append(da_hs)
             # Store dialogue act response
@@ -122,22 +131,28 @@ class DualLevelAgent(Agent):
 
             return write_utt
         else:
+            # LLM goes here
             resp_da_prompt = self.rpf({
                 'ctx': self.ctx,
                 'dialogue': self.dialogue,
                 'dia_acts': self.dialogue_acts
             })
-            resp_da = self.pg_model.get_model_outputs(resp_da_prompt)[0]  # Dialogue Act
-
+            resp_da = self.pg_model.get_model_outputs([resp_da_prompt])[0]  # Dialogue Act
+            # print(resp_da)
             # Generate utterance response
             generator_prompt = self.g_prompt_func({
                 'ctx': self.ctx,
+                'strategy': self.strategy,
                 'dialogue': self.dialogue,
                 'dia_acts': self.dialogue_acts,
-                'gen_act': resp_da
+                'gen_act': "annotation " + resp_da
             })
+            
             write_utt = self.pg_model.get_model_outputs([generator_prompt])[0]  # Dialogue Act
             
+            if write_utt.find('<eos>') == -1:
+                write_utt += ' <eos> '
+
             # Store dialogue act response
             self.dialogue_acts.append('YOU:')
             self.dialogue_acts.extend(resp_da.split())

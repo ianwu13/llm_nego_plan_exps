@@ -20,12 +20,21 @@ import utils
 def main():
     parser = argparse.ArgumentParser(description='selfplaying script')
     # Interaction setup parameters
+    parser.add_argument('--dataset', type=str, default='dnd', 
+        choices=['dnd', 'casino'],
+        help='Which Dataset is using')  
     parser.add_argument('--alice_type', type=str, default='llm_no_planning', 
         choices=['llm_no_planning', 'llm_self_planning', 'llm_rl_planning'],
         help='Agent type for Alice.')
+    parser.add_argument('--alice_strategy', type=str, default='generic',
+        choices=['generic', 'selfish', 'fair'],
+        help='agent_strategy/personality')
     parser.add_argument('--bob_type', type=str, default='llm_no_planning', 
         choices=['llm_no_planning', 'llm_self_planning', 'llm_rl_planning'],
         help='Agent type for Bob.')
+    parser.add_argument('--bob_strategy', type=str, default='generic',
+        choices=['generic', 'selfish', 'fair'],
+        help='agent_strategy/personality')
        
     parser.add_argument('--llm_api', type=str, default=None,
         help='Level at which the models interact [act|utt]')
@@ -66,13 +75,14 @@ def main():
 
     utils.set_seed(args.seed, torch_needed=True, np_needed=True)
 
-    alice = utils.agent_builder(args.alice_type, args, rl_module_weight_path=args.alice_model_file, name='Alice')
-    bob = utils.agent_builder(args.bob_type, args, rl_module_weight_path=args.bob_model_file, name='Bob')
+    alice = utils.agent_builder(args.alice_type, args.alice_strategy, args, rl_module_weight_path=args.alice_model_file, name='Alice')
+    bob = utils.agent_builder(args.bob_type, args.bob_strategy, args, rl_module_weight_path=args.bob_model_file, name='Bob')
 
     dialog = Dialog([alice, bob], args)
-    logger = InteractionLogger(verbose=args.verbose, log_file=args.log_file)
+    logger = InteractionLogger(args.dataset, verbose=args.verbose, log_file=args.log_file)
 
-    selfplay = BotBotSelfPlay(dialog, args.context_file, logger=logger, **vars(args))
+    # selfplay = BotBotSelfPlay(dialog, args.dataset, args.context_file, logger=logger, **vars(args))
+    selfplay = BotBotSelfPlay(dialog, args.dataset, args.context_file, logger=logger)
     selfplay.run()
 
 
