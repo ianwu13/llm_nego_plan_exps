@@ -42,7 +42,7 @@ class Annotator():
             # Write annotations to file if needed
             if self.output_formatter:
                 f = open(self.out_file, 'a')
-                out_line = self.output_formatter(inst, [', '.join(p) for p in pred_labels])
+                out_line = self.output_formatter(inst, [' '.join(p) for p in pred_labels])
                 f.write(out_line)
                 f.close()
 
