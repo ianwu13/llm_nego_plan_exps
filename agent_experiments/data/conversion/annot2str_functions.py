@@ -6,6 +6,8 @@ for raw dataset files
 from data.casino import POINTS_MAP, ORDER_MAP
 from simple_utils import remove_prefix
 
+# FINAL ANNOT FUNCTIONS USED: base_casino, dnd_lstrip_annotation
+
 
 def base_out_formatter_dnd(inst, annot):
     input_str = ' '.join([f'{c} {v}' for c, v in zip(inst['input']['count'], inst['input']['value'])])
@@ -19,7 +21,12 @@ def base_out_formatter_dnd(inst, annot):
 
     dia = ''
     prt_persp_dia = ''
-    for a in annot:
+    for u, a in zip(inst['dialogue'].split(' <eos> '), annot):
+        if '<selection>' in u:
+            a = '<selection>'
+        else:
+            a = a.replace(', ', ' ').replace(',', ' ') + ' <eos>'
+
         if you_start:
             dia += ' YOU: '
             prt_persp_dia += ' THEM: '
@@ -78,7 +85,12 @@ def base_out_formatter_casino(inst, annot):
     you_start = inst['chat_logs'][0]['id'] == 'mturk_agent_1'
     dia = ''
     prt_persp_dia = ''
-    for a in annot:
+    for i, a in zip(inst['chat_logs'], annot):
+        if i['text'] == 'Accept-Deal':
+            a = '<selection>'
+        else:
+            a = a.replace(', ', ' ').replace(',', ' ') + ' <eos>'
+
         if you_start:
             dia += ' YOU: '
             prt_persp_dia += ' THEM: '
@@ -118,7 +130,12 @@ def dnd_lstrip_annotation(inst, annot):
 
     dia = ''
     prt_persp_dia = ''
-    for a in annot:
+    for u, a in zip(inst['dialogue'].split(' <eos> '), annot):
+        if '<selection>' in u:
+            a = '<selection>'
+        else:
+            a = a.replace(', ', ' ').replace(',', ' ') + ' <eos>'
+
         if you_start:
             dia += ' YOU: '
             prt_persp_dia += ' THEM: '
