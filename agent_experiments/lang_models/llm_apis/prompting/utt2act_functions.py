@@ -21,7 +21,7 @@ def utility_eg_formatter(value):
 def dnd_fs(inst):
     system_msg = {
         'role': 'system',
-        'content': 'You are a professional annotator assisting the user in annotating utterances in a negotiation dialogue. Possible annotations are: "greet", "inquire:, "propose", "disagree", "insist", and "agree"'
+        'content': 'You are a professional annotator assisting the user in annotating utterances in a negotiation dialogue. Respond to user requests succinctly, giving only the annotation, without extra words. Possible annotations are: "greet", "inquire:, "propose", "disagree", "insist", and "agree"'
         }
     user_fs_msg_str = 'Here are some examples of how I want the annotations to look:\n' + '\n'.join([f'{t}\n ANNOTATION: "{a}"' for t, a in zip(dnd_fs_examples, dnd_annots)])
     item_counts = inst['ctx']

@@ -62,7 +62,6 @@ class InteractionLogger(object):
             self._dump_with_name(name, s)
       
         else:# dnd
-            print(ctx)
             assert len(ctx) == 6, 'Expecting 3 objects'
             s = ' '.join(['%s=(count:%s value:%s)' % (self.CODE2ITEM[i][1], ctx[2 * i], ctx[2 * i + 1]) \
                 for i in range(3)])

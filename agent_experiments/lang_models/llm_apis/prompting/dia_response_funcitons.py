@@ -443,9 +443,10 @@ def choice_slagent_chatcomp_thirdperson_casino(inst):
 #         return [messages]
     
 def act_next_act_dnd(inst):
+    print(inst)
     system_msg = {
         'role': 'system',
-        'content': 'You are a professional annotator assisting the user in annotating utterances in a negotiation dialogue. Possible annotations are: "greet", "inquire:, "propose", "disagree", "insist", and "agree"'
+        'content': 'You are a professional annotator assisting the user in annotating utterances in a negotiation dialogue. Respond to user requests succinctly, giving only the annotation, without extra words. Possible annotations are: "greet", "inquire:, "propose", "disagree", "insist", and "agree"'
         }
     user_fs_msg_str = 'Here are some examples of how I want the annotations to look:\n' + '\n'.join([f'UTTERANCE: "{t}\n ANNOTATION: "{a}"' for t, a in zip(dnd_fs_examples, dnd_annots)])
     dialogue_hist = 'Dialogue History:'  + ' '.join(inst['dialogue'])
