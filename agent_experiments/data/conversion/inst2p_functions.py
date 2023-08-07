@@ -116,10 +116,10 @@ def utility_eg_formatter(value):
 
 def utility_eg_formatter_beta(key, value):
     if isinstance(value, str):
-        return f'{key}: {value}\n'
+        return f'{value}: {key}\n'
 
     # Otherwise handle dict case
-    return ''.join([f'{key}: {value}\n' for k, v in value.items()])
+    return ''.join([f'{v}: {k}\n' for k, v in value.items()])
 
 
 def final_dnd_fs(inst):
