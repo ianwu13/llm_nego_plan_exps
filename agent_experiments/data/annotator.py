@@ -1,6 +1,8 @@
 from tqdm import tqdm
 import json
 
+from simple_utils import remove_prefix
+
 
 class Annotator():
 
@@ -35,7 +37,7 @@ class Annotator():
 
         for inst, val_inst in zip(self.dataset.get_instances(split='train', n=n_val), val_set):
             tru_labels = [set([u[1]] if isinstance(u[1], str) else u[1]) for u in val_inst]
-            pred_labels = [set(ann.split(', ')) for ann in self.annotate_instance(inst)]
+            pred_labels = [set([remove_prefix(remove_prefix(a, 'the annotation for this utterance is'), 'annotation ') for a in ann.split(', ')]) for ann in self.annotate_instance(inst)]
 
             # Write annotations to file if needed
             if self.output_formatter:
@@ -45,6 +47,9 @@ class Annotator():
                 f.close()
 
             for t, p in zip(tru_labels, pred_labels):
+                if t == '<selection>':
+                    continue
+                
                 total_count += 1
                 ema_sum += 1 if t == p else 0  # Exact match
                 for a in p:
