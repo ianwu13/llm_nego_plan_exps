@@ -6,6 +6,8 @@ from data.conversion.fs_examples import *
 
 from simple_utils import remove_prefix
 
+# FINAL PROMPT FUNCTIONS USED: final_dnd_fs final_casino_dnd_form_example final_casino_cust_form_example
+
 
 def example_inst2p_func(inst):  # Just for casino dataset, returns "annotate this: {utterance}"
     # print(inst)
@@ -29,7 +31,7 @@ def format_prompt(strg):
 
 def completion_dnd_annot_prompt_fun(inst):
     start_str = 'Choose the best simple annotation for these utterances in a negotiation dialogue, given the context of how many of each item is available:'
-    annot_labels_str = 'Possible annotations are: "greet", "inquire:, "propose", "disagree", "insist", and "agree"'
+    annot_labels_str = 'Possible annotations are: "greet", "inquire", "propose", "disagree", "insist", and "agree"'
 
     fs_examples_str = '\n'.join([f'{t}\nANNOTATION: "{a}"' for t, a in zip(dnd_fs_texts, dnd_fs_annots_no_vc)])
     
@@ -43,7 +45,7 @@ def completion_dnd_annot_prompt_fun(inst):
 def chat_dnd_annot_prompt_fun(inst):
     system_msg = {
         'role': 'system',
-        'content': 'You are a professional annotator assisting the user in annotating utterances in a negotiation dialogue, given the context of how many of each item is available. Possible annotations are: "greet", "inquire:, "propose", "disagree", "insist", and "agree"'
+        'content': 'You are a professional annotator assisting the user in annotating utterances in a negotiation dialogue, given the context of how many of each item is available. Possible annotations are: "greet", "inquire", "propose", "disagree", "insist", and "agree"'
         }
     user_fs_msg_str = 'Here are some examples of how I want the annotations to look:\n' + '\n'.join([f'{t}\nANNOTATION: "{a}"' for t, a in zip(dnd_fs_texts, dnd_fs_annots_no_vc)])
 
@@ -111,13 +113,13 @@ def utility_eg_formatter(value):
         return f'(For example, {value})'
 
     # Otherwise handle dict case
-    return f'(For example: {", and".join([f"{v} would be annotated {k}" for k, v in value.items()])})'
+    return f'(For example: {", and ".join([f"{v} would be annotated {k}" for k, v in value.items()])})'
 
 
-def final_dnd_fs(inst):
+def final_dnd_fs(inst): #
     system_msg = {
         'role': 'system',
-        'content': 'You are a professional annotator assisting the user in annotating utterances in a negotiation dialogue. Possible annotations are: "greet", "inquire:, "propose", "disagree", "insist", and "agree"'
+        'content': 'You are a professional annotator assisting the user in annotating utterances in a negotiation dialogue. Possible annotations are: "greet", "inquire", "propose", "disagree", "insist", "agree", and "unknown"'
         }
     user_fs_msg_str = 'Here are some examples of how I want the annotations to look:\n' + '\n'.join([f'{t}\nANNOTATION: "{a}"' for t, a in zip(dnd_fs_examples, dnd_annots)])
 
@@ -149,7 +151,7 @@ def final_casino_dnd_form_fs(inst):
     return [[system_msg, {'role': 'user', 'content': '\n'.join([user_fs_msg_str, f'What is the annotation for this utterance?\nUTTERANCE: "{u["text"]}"'])}] for u in inst['chat_logs']]
 
 
-def final_casino_dnd_form_example(inst):
+def final_casino_dnd_form_example(inst): #
     system_msg = {
         'role': 'system',
         'content': f'You are assisting the user in annotating utterances in a negotiation dialogue for dividing 3 units each of food, water, and firewood. Respond to user requests succinctly, giving only the annotation, without extra words. Possible annotations are: {", ".join([f"{k} {utility_eg_formatter(v)}" for k, v in casino_dnd_format.items()])}, and "Unknown"'
@@ -168,10 +170,22 @@ def final_casino_cust_form_fs(inst):
     return [[system_msg, {'role': 'user', 'content': '\n'.join([user_fs_msg_str, f'What is the annotation for this utterance?\nUTTERANCE: "{u["text"]}"'])}] for u in inst['chat_logs']]
 
 
-def final_casino_cust_form_example(inst):
+def final_casino_cust_form_example(inst): #
     system_msg = {
         'role': 'system',
         'content': f'You are assisting the user in annotating utterances in a negotiation for dividing 3 units each of food, water, and firewood. Respond to user requests succinctly, giving only the annotation, without extra words. Possible annotations are: {", ".join([f"{k} {utility_eg_formatter(v)}" for k, v in casino_cust_format.items()])}, and "Unknown". A single input (utterance) may have multiple correct annotations.'
         }
 
     return [[system_msg, {'role': 'user', 'content': f'What is the annotation for this utterance? "{u["text"]}"'}] for u in inst['chat_logs']]
+
+
+def final_dnd_no_fs(inst):
+    return []
+
+
+def final_casino_dnd_form_no_fs(inst):
+    return []
+
+
+def final_casino_cust_form_no_fs(inst):
+    return []
