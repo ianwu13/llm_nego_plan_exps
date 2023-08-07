@@ -68,9 +68,9 @@ RESPONSE_PROMPT_FUN_REG = {
     "dia_resp_slagent_completion_dnd": ("lang_models.llm_apis.prompting.dia_response_funcitons", "dia_resp_slagent_completion_dnd"),
     "dia_resp_slagent_chatcomp_dnd": ("lang_models.llm_apis.prompting.dia_response_funcitons", "dia_resp_slagent_chatcomp_dnd"),
     "dia_resp_slagent_chatcomp_thirdperson_dnd": ("lang_models.llm_apis.prompting.dia_response_funcitons", "dia_resp_slagent_chatcomp_thirdperson_dnd"),
-    "choice_slagent_completion_dnd": ("lang_models.llm_apis.prompting.dia_response_funcitons", "choice_slagent_completion_dnd"),
-    "choice_slagent_chatcomp_dnd": ("lang_models.llm_apis.prompting.dia_response_funcitons", "choice_slagent_chatcomp_dnd"),
-    "choice_slagent_chatcomp_thirdperson_dnd": ("lang_models.llm_apis.prompting.dia_response_funcitons", "choice_slagent_chatcomp_thirdperson_dnd"),
+    # TODO: "choice_slagent_completion_casino": ("lang_models.llm_apis.prompting.dia_response_funcitons", "choice_slagent_completion_casino"),
+    # TODO: "choice_slagent_chatcomp_casino": ("lang_models.llm_apis.prompting.dia_response_funcitons", "choice_slagent_chatcomp_casino"),
+    # TODO: "choice_slagent_chatcomp_thirdperson_casino": ("lang_models.llm_apis.prompting.dia_response_funcitons", "choice_slagent_chatcomp_thirdperson_casino"),
 }
 
 # Generator Functions (for planning)
