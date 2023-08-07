@@ -25,6 +25,8 @@ class Annotator():
         n_val = len(val_set)
 
         total_count = 0
+        propose_count = 0
+        propost_correct = 0
         ema_sum = 0  # Exact match
         partial_math_sum = 0  # Some union
         subset_match_sum = 0  # number where pred is subset of true labels
@@ -49,6 +51,11 @@ class Annotator():
                     if a in t:
                         partial_math_sum += 1  # Some union
                         break
+                for i in t:
+                    if 'propose' in i:
+                        propose_count += 1
+                        if i in a:
+                            propost_correct += 1
                 subset_match_sum += 1 if p.issubset(t) else 0  # number where pred is subset of true labels
                 inverse_subset_match_sum += 1 if t.issubset(p) else 0  # number where true is subset of pred labels
                 no_match_sum += 1 if not(p & t) else 0  # No matching between pred and true
@@ -59,6 +66,7 @@ class Annotator():
         print(f'Number where pred is subset of true labels Ratio: {subset_match_sum / total_count}')
         print(f'Number where true is subset of pred labels Ratio: {inverse_subset_match_sum / total_count}')
         print(f'No matching between pred and true Ratio: {no_match_sum / total_count}')
+        print(f'Propose correct ratio: {propost_correct/propose_count}')
 
 
     def est_budget(self, avg_annot_words, tok_scaling_factor, cost_per_1k_inp_tok, cost_per_1k_out_tok):
