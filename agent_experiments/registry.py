@@ -42,6 +42,11 @@ INST2ANNOT_PROMPT_FUN_REG = {
     "final_casino_dnd_form_example": ("data.conversion.inst2p_functions", "final_casino_dnd_form_example"),
     "final_casino_cust_form_fs": ("data.conversion.inst2p_functions", "final_casino_cust_form_fs"),
     "final_casino_cust_form_example": ("data.conversion.inst2p_functions", "final_casino_cust_form_example"),
+
+    # No FS Versions
+    "final_dnd_no_fs": ("data.conversion.inst2p_functions", "final_dnd_no_fs"),
+    "final_casino_dnd_form_no_fs": ("data.conversion.inst2p_functions", "final_casino_dnd_form_no_fs"),
+    "final_casino_cust_form_no_fs": ("data.conversion.inst2p_functions", "final_casino_cust_form_no_fs"),
 }
 
 # Dialogue Annotations to Formatted Line Output
