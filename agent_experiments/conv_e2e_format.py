@@ -62,13 +62,13 @@ def main():
     converter = Converter(data_handler, args.annot_file, out_formatter, args.output_file)
 
     converter.convert()
-    # ANNOTATIONS
+    # ANNOTATIONS IN E2E FORMAT
     # python3 conv_e2e_format.py --dataset dnd --annot_file data/annot_val_sets/dnd_valset.json --output_formatter dnd_lstrip_annotation --output_file data/annot_val_sets/e2e_dnd_valset.txt
     # python3 conv_e2e_format.py --dataset casino --annot_file data/annot_val_sets/casino_dndform_valset.json --output_formatter base_casino --output_file data/annot_val_sets/e2e_casino_dndform_valset.txt
     # python3 conv_e2e_format.py --dataset casino --annot_file data/annot_val_sets/casino_customform_valset.json --output_formatter base_casino --output_file data/annot_val_sets/e2e_casino_customform_valset.txt
     
     # converter.utt_2_e2e()
-    # UTTERANCES
+    # UTTERANCES IN E2E FORMAT
     # python3 conv_e2e_format.py --dataset dnd --annot_file data/annot_val_sets/dnd_valset.json --output_formatter dnd_lstrip_annotation --output_file data/annot_val_sets/e2e_dnd_uttset.txt
     # python3 conv_e2e_format.py --dataset casino --annot_file data/annot_val_sets/casino_dndform_valset.json --output_formatter base_casino --output_file data/annot_val_sets/e2e_casino_dndform_uttset.txt
     # python3 conv_e2e_format.py --dataset casino --annot_file data/annot_val_sets/casino_customform_valset.json --output_formatter base_casino --output_file data/annot_val_sets/e2e_casino_customform_uttset.txt
