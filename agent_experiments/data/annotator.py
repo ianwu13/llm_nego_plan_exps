@@ -4,6 +4,33 @@ import json
 from simple_utils import remove_prefix
 
 
+DND_ITEMS = ['books', 'hats', 'balls']
+DND_LABELS = [
+    'greet',
+    'inquire',
+    'propose',
+    'disagree',
+    'insist',
+    'agree',
+    'unknown',
+]
+
+CASINO_ITEMS = ['food', 'water', 'firewood']
+CUST_LABELS = [
+    'smalltalk',
+    'empathy coordination',
+    'no need',
+    'elicit preference',
+    'undervalue',
+    'vouch fairness',
+    'express preference',
+    'propose',
+    'disagree',
+    'agree',
+    'unknown',
+]
+
+
 class Annotator():
 
     def __init__(self, dataset, inst2promp_funct, llm_api, output_formatter, out_file, args):
@@ -25,6 +52,21 @@ class Annotator():
 
         val_set = json.load(open(self.validation_file, 'r'))
         n_val = len(val_set)
+
+        # Get proper label set; VERY BAD, DEPENDENT ON SPECIFIC VAL SETS TO WORK 100%
+        label_set = DND_LABELS
+        breaker = False
+        for d in val_set:
+            for u in d:
+                if 'smalltalk' in u[1]:
+                    label_set = CUST_LABELS
+                    breaker = True
+                    break
+            if breaker:
+                break
+
+        # dict{ label: match_count }
+        label_match_counts = {label: 0 for label in label_set}
 
         total_count = 0
         propose_count = 0
@@ -64,13 +106,32 @@ class Annotator():
                 subset_match_sum += 1 if p.issubset(t) else 0  # number where pred is subset of true labels
                 inverse_subset_match_sum += 1 if t.issubset(p) else 0  # number where true is subset of pred labels
                 no_match_sum += 1 if not(p & t) else 0  # No matching between pred and true
+
+                # Label match count handling
+                for l in label_set:
+                    present = 0
+                    for tl in t:
+                        if l in tl:
+                            present = 1
+                            break
+                    predicted = 0
+                    for pl in p:
+                        if l in pl:
+                            predicted = 1
+                            break
+                    if predicted == present:
+                        label_match_counts[l] += 1
             
+        for l in label_match_counts:
+            label_match_counts[l] /= total_count
+
         print(f'Total Utterances: {total_count}')
         print(f'Exact match Ratio: {ema_sum / total_count}')
         print(f'Some union Ratio: {partial_math_sum / total_count}')
         print(f'Number where pred is subset of true labels Ratio: {subset_match_sum / total_count}')
         print(f'Number where true is subset of pred labels Ratio: {inverse_subset_match_sum / total_count}')
         print(f'No matching between pred and true Ratio: {no_match_sum / total_count}')
+        print(f'Individual Label Accuracies: {json.dumps(label_match_counts, indent=4)}')
         print(f'Propose correct ratio: {propost_correct/propose_count}')
 
 
