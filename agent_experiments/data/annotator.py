@@ -67,6 +67,7 @@ class Annotator():
 
         # dict{ label: match_count }
         label_match_counts = {label: 0 for label in label_set}
+        label_recalls = {label: (0, 0) for label in label_set}
 
         total_count = 0
         propose_count = 0
@@ -121,9 +122,23 @@ class Annotator():
                             break
                     if predicted == present:
                         label_match_counts[l] += 1
+                    if present:
+                        tmp = label_recalls[l]
+                        beta = tmp[1] + 1
+                        if predicted:
+                            alpha = tmp[0] + 1
+                        else:
+                            alpha = 0
+                        label_recalls[l] = (alpha, beta)
             
         for l in label_match_counts:
             label_match_counts[l] /= total_count
+        for l in label_recalls:
+            tmp = label_recalls[l]
+            if tmp[1] > 0:
+                label_recalls[l] = tmp[0] / tmp[1]
+            else:
+                label_recalls[l] = 'NOT PRESENT'
 
         print(f'Total Utterances: {total_count}')
         print(f'Exact match Ratio: {ema_sum / total_count}')
@@ -132,6 +147,7 @@ class Annotator():
         print(f'Number where true is subset of pred labels Ratio: {inverse_subset_match_sum / total_count}')
         print(f'No matching between pred and true Ratio: {no_match_sum / total_count}')
         print(f'Individual Label Accuracies: {json.dumps(label_match_counts, indent=4)}')
+        print(f'Individual Label Recall Scores: {json.dumps(label_recalls, indent=4)}')
         print(f'Propose correct ratio: {propost_correct/propose_count}')
 
 
