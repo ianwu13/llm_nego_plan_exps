@@ -101,7 +101,7 @@ casino_fs_annots_l2_selref = [
 dnd_fs_examples = [
     'CONTEXT: "2 books 2 hats 2 balls" UTTERANCE: "hello"',
     'CONTEXT: "2 books 2 hats 1 balls" UTTERANCE: "what would you like?"',
-    'CONTEXT: “1 books 1 hats 3 balls” UTTERANCE: “do you want the hat?”',
+    'CONTEXT: "1 books 1 hats 3 balls" UTTERANCE: "do you want the hat?"',
     'CONTEXT: "1 books 4 hats 1 balls" UTTERANCE: "i would like 4 hats and you can have the rest"',
     'CONTEXT: "1 books 2 hats 3 balls" UTTERANCE: "ill take the balls and one book"',
     'CONTEXT: "2 books 3 hats 1 balls" UTTERANCE: "i want all the books"',
@@ -113,7 +113,7 @@ dnd_fs_examples = [
 dnd_fs_examples_dh = [
     'CONTEXT: "2 books 2 hats 2 balls" DIALOGUE_HISTORY: "" UTTERANCE: "hello"',
     'CONTEXT: "2 books 2 hats 1 balls" DIALOGUE_HISTORY: "" UTTERANCE: "what would you like?"',
-    'CONTEXT: “1 books 1 hats 3 balls” DIALOGUE_HISTORY: "YOU: i would like all 3 balls THEM: deal . i need 1 book" UTTERANCE: “do you want the hat?”',
+    'CONTEXT: "1 books 1 hats 3 balls" DIALOGUE_HISTORY: "YOU: i would like all 3 balls THEM: deal . i need 1 book" UTTERANCE: "do you want the hat?"',
     'CONTEXT: "1 books 4 hats 1 balls" DIALOGUE_HISTORY: "" UTTERANCE: "i would like 4 hats and you can have the rest"',
     'CONTEXT: "1 books 2 hats 3 balls" DIALOGUE_HISTORY: "" UTTERANCE: "ill take the balls and one book"',
     'CONTEXT: "2 books 3 hats 1 balls" DIALOGUE_HISTORY: "" UTTERANCE: "i want all the books"',
@@ -138,7 +138,7 @@ dnd_annots = [
 # CaSiNo DND Format
 casino_dnd_format_examples = [
     'CONTEXT: "high priority food, low priority water, medium priority firewood" UTTERANCE: "Hello. How are you?"',
-    "CONTEXT: “medium food low water high firewood” UTTERANCE: “Hello! Let's work together on a deal for these packages, shall we? What are you most interested in?”", 'CONTEXT: "medium food low water high firewood" UTTERANCE: "Hello! Let\'s work together on a deal for these packages, shall we? What are you most interested in?"',
+    'CONTEXT: "medium food low water high firewood" UTTERANCE: "Hello! Let\'s work together on a deal for these packages, shall we? What are you most interested in?"', 'CONTEXT: "medium food low water high firewood" UTTERANCE: "Hello! Let\'s work together on a deal for these packages, shall we? What are you most interested in?"',
     'CONTEXT: "low priority food, high priority water, medium priority firewood" UTTERANCE: "What about the food? How much food do you need for camping?"',
     'CONTEXT: "high priority food, medium priority water, low priority firewood" UTTERANCE: "i will give you that in exchange for 1 food and 3 water with 2 firewood"',
     'CONTEXT: "medium priority food, high priority water, low priority firewood" UTTERANCE: "I like to hike and will need additional water. Can I take one package and you can have the other two?"',
@@ -149,7 +149,7 @@ casino_dnd_format_examples = [
 
 casino_dnd_format_examples_dh = [
     'CONTEXT: "high priority food, low priority water, medium priority firewood" DIALOGUE_HISTORY: "" UTTERANCE: "Hello. How are you?"',
-    "CONTEXT: “medium food low water high firewood” DIALOGUE_HISTORY: “” UTTERANCE: “Hello! Let's work together on a deal for these packages, shall we? What are you most interested in?”", 'CONTEXT: "medium food low water high firewood" DIALOGUE_HISTORY: "" UTTERANCE: "Hello! Let\'s work together on a deal for these packages, shall we? What are you most interested in?"',
+    'CONTEXT: "medium food low water high firewood" DIALOGUE_HISTORY: "" UTTERANCE: "Hello! Let\'s work together on a deal for these packages, shall we? What are you most interested in?"', 'CONTEXT: "medium food low water high firewood" DIALOGUE_HISTORY: "" UTTERANCE: "Hello! Let\'s work together on a deal for these packages, shall we? What are you most interested in?"',
     'CONTEXT: "low priority food, high priority water, medium priority firewood" DIALOGUE_HISTORY: "THEM: I really need 3 firewood because I am always cold. YOU: If I gave you 3 firewood, would you give me 3 water? I can do without the wood, but the water is really important to stay hydrated. THEM: I can give you 2 water, but I have to have 1 to help me when I am cooking." UTTERANCE: "What about the food? How much food do you need for camping?"',
     'CONTEXT: "high priority food, medium priority water, low priority firewood" DIALOGUE_HISTORY: "THEM: In this extra package I need two food YOU: wow that is a much THEM: because of my big size I want two extra food package" UTTERANCE: "i will give you that in exchange for 1 food and 3 water with 2 firewood"',
     'CONTEXT: "medium priority food, high priority water, low priority firewood" DIALOGUE_HISTORY: "YOU: medium priority food, high priority water, low priority firewood THEM: Hello!  I\'ve been super thirsty and as a result I was wondering if I could get all 3 packages of water?" UTTERANCE: "I like to hike and will need additional water. Can I take one package and you can have the other two?"',
