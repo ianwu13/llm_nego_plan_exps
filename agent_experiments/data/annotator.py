@@ -135,6 +135,7 @@ class Annotator():
                             alpha = 0
                         label_recalls[l] = (alpha, beta)
             
+        label_counts = {l:v[1] for l, v in label_recalls.items()}
         for l in label_match_counts:
             label_match_counts[l] /= total_count
         for l in label_recalls:
@@ -150,6 +151,7 @@ class Annotator():
         print(f'Number where pred is subset of true labels Ratio: {subset_match_sum / total_count}')
         print(f'Number where true is subset of pred labels Ratio: {inverse_subset_match_sum / total_count}')
         print(f'No matching between pred and true Ratio: {no_match_sum / total_count}')
+        print(f'Individual Label Counts: {json.dumps(label_counts, indent=4)}')
         print(f'Individual Label Accuracies: {json.dumps(label_match_counts, indent=4)}')
         print(f'Individual Label Recall Scores: {json.dumps(label_recalls, indent=4)}')
         print(f'Propose correct ratio: {propost_correct/propose_count}')
