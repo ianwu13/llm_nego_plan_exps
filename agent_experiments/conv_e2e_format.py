@@ -24,7 +24,7 @@ class Converter():
         print(f'Converting')
         for a_set, inst in zip(self.annots, self.dataset.get_instances(split='train', n=self.n)):
             annotations = [a[1] if isinstance(a[1], str) else ' '.join(a[1]) for a in a_set]
-            annotations = [(a+' <eos>' if '<selection>' not in a else a) for a in annotations]
+            annotations = [(a if '<selection>' not in a else a) for a in annotations]
             
             out_line = self.output_formatter(inst, annotations)
             f.write(out_line)
