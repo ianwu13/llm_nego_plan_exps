@@ -197,7 +197,7 @@ This is a list of possible annotation labels with descriptions:
 "inquire" - the utterance is inquiring about items. This can be a general inquiry such as "what items do you want most?" or about a specific item such as "How many balls do you want?". In the second case, the label would be "inquire balls".
 "propose" - the utterance proposes a deal. For example, "How about I get 2 balls and you get all the hats" would be labeled "propose hats=0 balls=2". Note that the values in the label are for how much of each item the speaker gets, not their partner.
 "disagree" - the utterance is disagreeing with the last utterance or a proposed deal.
-"insist" - for then the user insists on a deal. This label has similar slots to "propose". For example, "No I really need 2 hats" would be annotated "insist hats=2".
+"insist" - the user insists on a deal. This label has similar slots to "propose". For example, "No I really need 2 hats" would be annotated "insist hats=2".
 "agree" - the utterance is agreeing.
 "unknown" - the utterance does not not fit into any of the provided labels'''
         }
@@ -220,7 +220,7 @@ This is a list of possible annotation labels with descriptions:
 "greet" - the utterance is a greeting or smalltalk.
 "inquire" - the utterance is inquiring about items. This can be a general inquiry such as "what items do you want most?" or about a specific item such as "How much firewood do you want?". In the second case, the label would be "inquire firewood".
 "propose" - the utterance proposes a deal. For example, "How about I get 2 food and you get all the water" would be labeled "propose food=2 water=0". Note that the values in the label are for how much of each item the speaker gets, not their partner.
-"insist" - for then the user insists on a deal. This label has similar slots to "propose". For example, "No I really need 2 water" would be annotated "insist water=2".
+"insist" - the user insists on a deal. This label has similar slots to "propose". For example, "No I really need 2 water" would be annotated "insist water=2".
 "disagree" - the utterance is disagreeing with the last utterance or a proposed deal.
 "agree" - the utterance is agreeing.
 "unknown" - the utterance does not not fit into any of the provided labels'''
@@ -256,7 +256,8 @@ This is a list of possible annotation labels with descriptions:
 def final_dnd_desc_fs(inst):
     system_msg = {
         'role': 'system',
-        'content': '''You are a professional annotator assisting the user in annotating utterances in a negotiation dialogue.
+        'content': 
+'''You are a professional annotator assisting the user in annotating utterances in a negotiation dialogue.
 User requests will contain the context which gives the number of each item available, and the utterance to be annotated.
 Respond to user requests succinctly, giving only the annotation, without extra words. 
 This is a list of possible annotation labels with descriptions:
@@ -264,7 +265,7 @@ This is a list of possible annotation labels with descriptions:
 "inquire" - the utterance is inquiring about items. This can be a general inquiry such as "what items do you want most?" or about a specific item such as "How many balls do you want?". In the second case, the label would be "inquire balls".
 "propose" - the utterance proposes a deal. For example, "How about I get 2 balls and you get all the hats" would be labeled "propose hats=0 balls=2". Note that the values in the label are for how much of each item the speaker gets, not their partner.
 "disagree" - the utterance is disagreeing with the last utterance or a proposed deal.
-"insist" - for then the user insists on a deal. This label has similar slots to "propose". For example, "No I really need 2 hats" would be annotated "insist hats=2".
+"insist" - the user insists on a deal. This label has similar slots to "propose". For example, "No I really need 2 hats" would be annotated "insist hats=2".
 "agree" - the utterance is agreeing.
 "unknown" - the utterance does not not fit into any of the provided labels'''
         }
@@ -287,7 +288,7 @@ This is a list of possible annotation labels with descriptions:
 "greet" - the utterance is a greeting or smalltalk.
 "inquire" - the utterance is inquiring about items. This can be a general inquiry such as "what items do you want most?" or about a specific item such as "How much firewood do you want?". In the second case, the label would be "inquire firewood".
 "propose" - the utterance proposes a deal. For example, "How about I get 2 food and you get all the water" would be labeled "propose food=2 water=0". Note that the values in the label are for how much of each item the speaker gets, not their partner.
-"insist" - for then the user insists on a deal. This label has similar slots to "propose". For example, "No I really need 2 water" would be annotated "insist water=2".
+"insist" - the user insists on a deal. This label has similar slots to "propose". For example, "No I really need 2 water" would be annotated "insist water=2".
 "disagree" - the utterance is disagreeing with the last utterance or a proposed deal.
 "agree" - the utterance is agreeing.
 "unknown" - the utterance does not not fit into any of the provided labels'''
@@ -318,3 +319,57 @@ This is a list of possible annotation labels with descriptions:
 
     return [[system_msg, {'role': 'user', 'content': f'Here are some examples of how annotations should look:\n{"".join([utility_eg_formatter_beta(k, v) for k, v in casino_cust_format.items()])}\nWhat is the annotation for this utterance? "{u["text"]}"'}] for u in inst['chat_logs']]
 
+# TESTING
+
+def dnd_testing(inst):
+    system_msg = {
+        'role': 'system',
+        'content': 
+'''You are a professional annotator assisting the user in annotating utterances in a negotiation dialogue.
+User requests will contain the context which gives the number of each item available, and the utterance to be annotated.
+Respond to user requests succinctly, giving only the annotation, without extra words. 
+This is a list of possible annotation labels with descriptions:
+"greet" - the utterance is a greeting or smalltalk.
+"inquire" - the utterance is inquiring about items. This can be a general inquiry such as "what items do you want most?" or about a specific item such as "How many balls do you want?". In the second case, the label would be "inquire balls".
+"propose" - the utterance proposes a deal. For example, "How about I get 2 balls and you get all the hats" would be labeled "propose hats=0 balls=2". Note that the values in the label are for how much of each item the speaker gets, not their partner.
+"disagree" - the utterance is disagreeing with the last utterance or a proposed deal.
+"insist" - the user insists on a deal. This label has similar slots to "propose". For example, "No I really need 2 hats" would be annotated "insist hats=2".
+"agree" - the utterance is agreeing.
+"unknown" - the utterance does not not fit into any of the provided labels'''
+    }
+
+def casino_dnd_format_testing(inst):
+    system_msg = {
+        'role': 'system',
+        'content': '''You are assisting the user in annotating utterances in a negotiation for dividing 3 units each of food, water, and firewood. 
+Respond to user requests succinctly, giving only the annotation, without extra words. 
+A single input (utterance) may have multiple correct annotations.'
+This is a list of possible annotation labels with descriptions:
+"greet" - the utterance is a greeting or smalltalk.
+"inquire" - the utterance is inquiring about items. This can be a general inquiry such as "what items do you want most?" or about a specific item such as "How much firewood do you want?". In the second case, the label would be "inquire firewood".
+"propose" - the utterance proposes a deal. For example, "How about I get 2 food and you get all the water" would be labeled "propose food=2 water=0". Note that the values in the label are for how much of each item the speaker gets, not their partner.
+"insist" - the user insists on a deal. This label has similar slots to "propose". For example, "No I really need 2 water" would be annotated "insist water=2".
+"disagree" - the utterance is disagreeing with the last utterance or a proposed deal.
+"agree" - the utterance is agreeing.
+"unknown" - the utterance does not not fit into any of the provided labels'''
+    }
+
+def casino_cust_format_testing(inst):
+    system_msg = {
+        'role': 'system',
+        'content': '''You are assisting the user in annotating utterances in a negotiation for dividing 3 units each of food, water, and firewood. 
+Respond to user requests succinctly, giving only the annotation, without extra words. 
+A single input (utterance) may have multiple correct annotations.'
+This is a list of possible annotation labels with descriptions:
+"smalltalk" - the utterance is a greeting or smalltalk.
+"empathy coordination" - the utterance promotes coordination/friendliness between the speaker and their partner. 
+"elicit preference" - the utterance attempts to gain information about partner preferences. This can be a general inquiry such as "what items do you want most?" or about a specific item such as "How much firewood do you want?". In the second case, the label would be "elicit preference firewood".
+"no need" - the utterance indicates that there the speaker does not need a specific item. For example, "we already have plenty of water" would be annotated "no need water".
+"undervalue" - the utterance attempts to influence the partners preference for an item. For example, "Do you have help carrying all that extra firewood? Could be heavy" would be annotated "undervalue firewood".
+"vouch fairness" - the utterance vouches for the fairness of a deal or proposal.
+"express preference" - the utterance expresses the speakers preference for an item. For example, "I really need food" would be annotated "express preference food".
+"propose" - the utterance proposes a deal. For example, "How about I get 2 food and you get all the water" would be labeled "propose food=2 water=0". Note that the values in the label are for how much of each item the speaker gets, not their partner.
+"disagree" - the utterance is disagreeing with the last utterance or a proposed deal.
+"agree" - the utterance is agreeing.
+"unknown" - the utterance does not not fit into any of the provided labels'''
+    }
