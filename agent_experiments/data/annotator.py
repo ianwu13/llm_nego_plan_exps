@@ -49,6 +49,10 @@ class Annotator():
 
     def evaluate(self):
         assert self.validation_file, 'Must provide a validation file to compare against'
+        # Clear output file if necessary
+        if self.out_file and self.output_formatter:
+            f = open(self.out_file, 'w')
+            f.close()
 
         val_set = json.load(open(self.validation_file, 'r'))
         n_val = len(val_set)
