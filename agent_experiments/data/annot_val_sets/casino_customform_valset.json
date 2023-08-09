@@ -142,14 +142,16 @@
             [
                 "disagree",
                 "no need water",
-                "propose firewood=2"
+                "propose firewood=2",
+                "vouch fairness"
             ]
         ],
         [
             "No, if you get 2 food, it's only fair that I get 2 firewood. ",
             [
                 "disagree",
-                "propose food=1 firewood=2"
+                "propose food=1 firewood=2",
+                "vouch fairness"
             ]
         ],
         [
@@ -366,7 +368,8 @@
         [
             "Yes I think that sounds fair.",
             [
-                "agree"
+                "agree",
+                "vouch fairness"
             ]
         ],
         [
@@ -385,7 +388,8 @@
         [
             "I think that sounds fair, since you compromised on food. Sounds like a deal!",
             [
-                "agree"
+                "agree",
+                "vouch fairness"
             ]
         ],
         [
@@ -614,6 +618,7 @@
         [
             "That is fair as there is no showers or sinks at my campsite so I am looking to take water :) ",
             [
+                "vouch fairness",
                 "express preference water"
             ]
         ],
@@ -626,6 +631,7 @@
         [
             "That is fair, I also will need a good bit of firewood to keep warm as the campsite is in a colder area.",
             [
+                "vouch fairness",
                 "express preference firewood"
             ]
         ],
@@ -1031,7 +1037,7 @@
         [
             "That's what I'm offering to you, but I think it's a fair deal, so I'd accept it myself, too.",
             [
-                "unknown"
+                "vouch fairness"
             ]
         ],
         [
@@ -1227,14 +1233,16 @@
             "That sounds like a fair compromise. I can get food by hunting animals, old school style. That would give you 4 total items. In that case it's only fair if I take all 3 of the firewood. 4 for me and 4 for you sounds like a good deal to me. \ud83d\ude42",
             [
                 "agree",
-                "propose firewood=3"
+                "propose firewood=3",
+                "vouch fairness"
             ]
         ],
         [
             "That sounds fair to me! I don't know the first thing about hunting so that would be a relief on me. We took a bunch of blankets so we'll be good on firewood.  \ud83d\ude42",
             [
                 "agree",
-                "smalltalk"
+                "smalltalk",
+                "vouch fairness"
             ]
         ],
         [
@@ -1597,13 +1605,15 @@
             "In that case, I can take 2 packages of firewood. So , it would be a fair deal. I can share with you in case you have the need.",
             [
                 "propose firewood=2",
-                "empathy coordination"
+                "empathy coordination",
+                "vouch fairness"
             ]
         ],
         [
             "Okay, that is a fair deal then. It is settled.",
             [
-                "agree"
+                "agree",
+                "vouch fairness"
             ]
         ],
         [
