@@ -72,6 +72,7 @@ class Annotator():
         # dict{ label: match_count }
         label_match_counts = {label: 0 for label in label_set}
         label_recalls = {label: (0, 0) for label in label_set}
+        label_precisions = {label: (0, 0) for label in label_set}
 
         total_count = 0
         propose_count = 0
@@ -132,8 +133,17 @@ class Annotator():
                         if predicted:
                             alpha = tmp[0] + 1
                         else:
-                            alpha = 0
+                            alpha = tmp[0]
                         label_recalls[l] = (alpha, beta)
+                    if predicted:
+                        tmp = label_precisions[l]
+                        beta = tmp[1] + 1
+                        if present:
+                            alpha = tmp[0] + 1
+                        else:
+                            alpha = tmp[0]
+                        label_recalls[l] = (alpha, beta)
+                    
             
         label_counts = {l:v[1] for l, v in label_recalls.items()}
         for l in label_match_counts:
@@ -144,6 +154,12 @@ class Annotator():
                 label_recalls[l] = tmp[0] / tmp[1]
             else:
                 label_recalls[l] = 'NOT PRESENT'
+        for l in label_precisions:
+            tmp = label_precisions[l]
+            if tmp[1] > 0:
+                label_precisions[l] = tmp[0] / tmp[1]
+            else:
+                label_precisions[l] = 'NOT PREDICTED'
 
         print(f'Total Utterances: {total_count}')
         print(f'Exact match Ratio: {ema_sum / total_count}')
@@ -154,6 +170,7 @@ class Annotator():
         print(f'Individual Label Counts: {json.dumps(label_counts, indent=4)}')
         print(f'Individual Label Accuracies: {json.dumps(label_match_counts, indent=4)}')
         print(f'Individual Label Recall Scores: {json.dumps(label_recalls, indent=4)}')
+        print(f'Individual Label Precision Scores: {json.dumps(label_precisions, indent=4)}')
         print(f'Propose correct ratio: {propost_correct/propose_count}')
 
 
