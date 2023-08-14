@@ -248,7 +248,7 @@
         ],
         [
             "YOU: no . i want the hat and the balls",
-            "propose books=0 hats=1 balls=2"
+            "propose hats=1 balls=2"
         ],
         [
             "THEM: both balls ?",
@@ -256,7 +256,7 @@
         ],
         [
             "YOU: yeah or 1 ball and 1 book",
-            "propose books=1 hats=1 balls=1"
+            "propose books=1 balls=1"
         ],
         [
             "THEM: ok i want the hat and you can have the rest",
