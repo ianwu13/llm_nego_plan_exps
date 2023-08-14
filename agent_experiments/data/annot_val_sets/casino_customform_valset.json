@@ -1324,7 +1324,7 @@
             "I'm so sorry, we're getting very close to the end and will need to make a decision very soon!  We can go without any firewood so How about you get all 2 firewood, 2 water and 1 food.  I will really need at least 2 packages of food for all of us.",
             [
                 "disagree",
-                "propose food=1 water=2 firewood=3",
+                "propose food=1 water=1 firewood=3",
                 "express preference food"
             ]
         ],
