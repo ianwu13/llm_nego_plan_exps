@@ -184,11 +184,11 @@
         ],
         [
             "THEM: alright no deal",
-            "agree"
+            "disagree"
         ],
         [
             "YOU: okay its no deal",
-            "agree"
+            "disagree"
         ],
         [
             "THEM: <selection>",
@@ -230,11 +230,11 @@
         ],
         [
             "YOU: alright no deal",
-            "agree"
+            "disagree"
         ],
         [
             "THEM: okay its no deal",
-            "agree"
+            "disagree"
         ],
         [
             "YOU: <selection>",
@@ -332,7 +332,8 @@
         ],
         [
             "THEM: ok i will take both books and you can have the rest",
-            "agree"
+            "agree",
+            "propose books=2 hats=0 balls=0"
         ],
         [
             "YOU: deal",
@@ -366,7 +367,8 @@
         ],
         [
             "YOU: ok i will take both books and you can have the rest",
-            "agree"
+            "agree",
+            "propose books=2 hats=0 balls=0"
         ],
         [
             "THEM: deal",
