@@ -83,6 +83,10 @@ class Annotator():
         inverse_subset_match_sum = 0  # number where true is subset of pred labels
         no_match_sum = 0  # No matching between pred and true
 
+        n_prop_slots = 0
+        prop_slots_correct = 0
+        n_extra_pred_proposal_slots = 0
+
         for inst, val_inst in zip(self.dataset.get_instances(split='train', n=n_val), val_set):
             tru_labels = [set([u[1]] if isinstance(u[1], str) else u[1]) for u in val_inst]
             pred_labels = [set([remove_prefix(remove_prefix(a, 'the annotation for this utterance is'), 'annotation ') for a in ann.split(', ')]) for ann in self.annotate_instance(inst)]
@@ -104,11 +108,30 @@ class Annotator():
                     if a in t:
                         partial_math_sum += 1  # Some union
                         break
+
                 for i in t:
                     if 'propose' in i:
                         propose_count += 1
-                        if i in a:
+                        if i in p:
                             propost_correct += 1
+                        
+                        for j in p:
+                            if 'propose' in j:
+                                t_proposal_slots = i.split(' ')[1:]
+                                p_proposal_slots = j.split(' ')[1:]
+
+                                n_prop_slots += len(t_proposal_slots)
+
+                                if len(p_proposal_slots) - n_prop_slots > 0:
+                                    n_extra_pred_proposal_slots += len(p_proposal_slots) - n_prop_slots
+
+                                for slot in p_proposal_slots:
+                                    if slot in t_proposal_slots:
+                                        prop_slots_correct += 1
+
+                                break
+                        break
+
                 subset_match_sum += 1 if p.issubset(t) else 0  # number where pred is subset of true labels
                 inverse_subset_match_sum += 1 if t.issubset(p) else 0  # number where true is subset of pred labels
                 no_match_sum += 1 if not(p & t) else 0  # No matching between pred and true
@@ -171,7 +194,10 @@ class Annotator():
         print(f'Individual Label Accuracies: {json.dumps(label_match_counts, indent=4)}')
         print(f'Individual Label Recall Scores: {json.dumps(label_recalls, indent=4)}')
         print(f'Individual Label Precision Scores: {json.dumps(label_precisions, indent=4)}')
-        print(f'Propose correct ratio: {propost_correct/propose_count}')
+        print(f'Propose correct ratio (n_correct_proposal_preds/n_true_proposals): {propost_correct/propose_count}')
+        print(f'Total (true) proposal slots: {n_prop_slots}')
+        print(f'\tRatio predicted correctly: {prop_slots_correct / n_prop_slots}')
+        print(f'\tNum extra (unmentioned) slots predicted: {n_extra_pred_proposal_slots}')
 
 
     def est_budget(self, avg_annot_words, tok_scaling_factor, cost_per_1k_inp_tok, cost_per_1k_out_tok):
