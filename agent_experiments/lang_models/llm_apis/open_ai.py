@@ -141,7 +141,7 @@ class OpenAI_Api(BaseModelHandler):
                 raise Exception("KeyError: 'choices' in API response")
             assert len(choices) == 1, f"Assumed number of responses per prompt would be 1. If this error is raised we need to handle this (len choices={len(choices)}; {choices})"
             # In Python, the assistant’s reply can be extracted with response['choices'][0]['message']['content']
-            gen_out = choices[0]['message']['content'].strip('\n')
+            gen_out = choices[0]['message']['content'].strip('\n').replace('\n', ' ')
 
             # Remove non-alphanumeric characters nad make lowercase
             gen_out = re.sub(r'[^A-Za-z0-9<>=/, ]+', '', gen_out).lower()
