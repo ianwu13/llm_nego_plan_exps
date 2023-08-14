@@ -215,7 +215,8 @@
             "Yes, I would be willing to let you have all the firewood for 2 of the cases of water.  How much food were you needing?",
             [
                 "empathy coordination",
-                "elicit preference food"
+                "elicit preference food",
+                "propose water=1 firewood=3"
             ]
         ],
         [
@@ -243,6 +244,7 @@
             "Okay, I can let you have 2 of the food then.  I do appreciate your generosity on the extra water.  ",
             [
                 "empathy coordination",
+                "propose food=2",
                 "agree"
             ]
         ],
