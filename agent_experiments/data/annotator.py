@@ -246,6 +246,10 @@ class Annotator():
                 continue
 
             annotations = self.annotate_instance(inst)
+
+            # Preprocessing
+            annotations = [' '.join([remove_prefix(remove_prefix(a, 'the annotation for this utterance is'), 'annotation ') for a in ann.split(', ')]) for ann in annotations]
+            
             out_line = self.output_formatter(inst, annotations)
             f.write(out_line)
         f.close()
