@@ -264,7 +264,8 @@
         ],
         [
             "YOU: okay deal ill take the books and the balls you can have only the hat",
-            "agree"
+            "agree",
+            "propose books=3 hats=0 balls=2"
         ],
         [
             "THEM: ok",
