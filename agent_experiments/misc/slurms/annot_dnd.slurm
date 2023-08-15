@@ -13,4 +13,4 @@ eval "$(conda shell.bash hook)"
 conda activate llm_exps
 
 # Run script
-python3 annotate.py --dataset dnd --annot_method llm --llm_api gpt-3.5-turbo-0613 --llm_api_key FILL_LOCALLY --inst_to_prompt_funct final_dnd_fs --output_formatter dnd_lstrip_annotation --output_file storage/annot_tests/EVAL_dnd_example_gpt35.txt --failed_calls_file storage/annot_tests/FC_dnd_example_gpt35.txt
+python3 annotate.py --dataset dnd --annot_method llm --llm_api gpt-3.5-turbo-0613 --llm_api_key FILL_LOCALLY --inst_to_prompt_funct finalized_dnd --output_formatter dnd_lstrip_annotation --output_file storage/annot_tests/FINAL_ANNOT_dnd_example_gpt35.txt --failed_calls_file storage/annot_tests/FC_dnd_example_gpt35.txt

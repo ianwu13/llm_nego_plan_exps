@@ -13,4 +13,4 @@ eval "$(conda shell.bash hook)"
 conda activate llm_exps
 
 # Run script
-python3 annotate.py --dataset casino --annot_method llm --llm_api gpt-3.5-turbo-0613 --llm_api_key FILL_LOCALLY --inst_to_prompt_funct final_casino_cust_form_example --output_formatter base_casino --output_file storage/annot_tests/EVAL_casino_custform_example_gpt35.txt --failed_calls_file storage/annot_tests/FC_casino_custform_example_gpt35.txt
+python3 annotate.py --dataset casino --annot_method llm --llm_api gpt-3.5-turbo-0613 --llm_api_key FILL_LOCALLY --inst_to_prompt_funct finalized_casino_cust_format --output_formatter base_casino --output_file storage/annot_tests/FINAL_ANNOT_casino_custform_example_gpt35.txt --failed_calls_file storage/annot_tests/FC_casino_custform_example_gpt35.txt
