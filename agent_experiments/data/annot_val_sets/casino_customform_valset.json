@@ -1251,7 +1251,8 @@
             "Yep and I need all 3 firewood because I'm hunting. Meat absolutely needs to be cooked. The same cannot be said about pepperoni pizza and chips for example.",
             [
                 "agree",
-                "express preference firewood"
+                "express preference firewood",
+                "propose firewood=3"
             ]
         ],
         [
