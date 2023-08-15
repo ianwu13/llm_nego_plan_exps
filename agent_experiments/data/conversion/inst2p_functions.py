@@ -340,9 +340,9 @@ This is a list of possible annotation labels with descriptions. Note that "<slot
 
     return [[system_msg, {'role': 'user', 'content': f'What is the annotation for this utterance? "{u["text"]}"'}] for u in inst['chat_logs']]
 
-# TESTING
+# FINAL
 
-def dnd_testing(inst):
+def finalized_dnd(inst):
     system_msg = {
         'role': 'system',
         'content': 
@@ -365,7 +365,7 @@ This is a list of possible annotation labels with descriptions. Note that "<slot
 
     return [[system_msg, {'role': 'user', 'content': f'Given this context: \n{ctx_str}\n What is the annotation for this utterance?\nUTTERANCE: "{u}"'}] for u in splt_dia]
 
-def casino_cust_format_testing(inst):
+def finalized_casino_cust_format(inst):
     system_msg = {
         'role': 'system',
         'content': 
