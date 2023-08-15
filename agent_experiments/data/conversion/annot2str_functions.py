@@ -55,7 +55,7 @@ def base_out_formatter_casino(inst, annot):
         tmp[ORDER_MAP[v]] = POINTS_MAP[k]
     prt_inpt_str = ' '.join([f'3 {pts_val}' for pts_val in tmp])
 
-    if inst['chat_logs'][-2]['text'] == "Submit-Deal":
+    if inst['chat_logs'][-2]['text'] == "Submit-Deal" and inst['chat_logs'][-1]['text'] == "Accept-Deal":
         # These give wrong order output
         # output_a = ' '.join(f'{k}={int(v)}' for k, v in inst['chat_logs'][-2]['task_data']['issue2youget'].items())
         # output_b = ' '.join(f'{k}={int(v)}' for k, v in inst['chat_logs'][-2]['task_data']['issue2theyget'].items())
@@ -78,6 +78,9 @@ def base_out_formatter_casino(inst, annot):
                 output = output_b + ' ' + output_a
             else:
                 output = '<no_agreement> <no_agreement> <no_agreement> <no_agreement> <no_agreement> <no_agreement>'
+        
+        inst['chat_logs'] = inst['chat_logs'][:-1]
+        inst['chat_logs'][-1]['text'] = "Accept-Deal"
     else:
         output = '<no_agreement> <no_agreement> <no_agreement> <no_agreement> <no_agreement> <no_agreement>'
         prt_output = '<no_agreement> <no_agreement> <no_agreement> <no_agreement> <no_agreement> <no_agreement>'
@@ -88,6 +91,12 @@ def base_out_formatter_casino(inst, annot):
     for i, a in zip(inst['chat_logs'], annot):
         if i['text'] == 'Accept-Deal':
             a = '<selection>'
+        elif i['text'] == 'Submit-Deal':
+            a = 'agree'
+        elif i['text'] == 'Reject-Deal':
+            a = 'disagree'
+        elif i['text'] == 'Walk-Away':
+            a = 'disagree'
         else:
             a = a.replace(', ', ' ').replace(',', ' ') + ' <eos>'
 
@@ -103,6 +112,13 @@ def base_out_formatter_casino(inst, annot):
     # Remove leading space
     dia = dia.lstrip(' ')
     prt_persp_dia = prt_persp_dia.lstrip(' ')
+
+    if not dia.endswith(' <selection>'):
+        dia += ' <selection>'
+    if not prt_persp_dia.endswith(' <selection>'):
+        prt_persp_dia += ' <selection>'
+
+    # Handle eos at end if necessary
     
     return f'<input> {input_str} </input> <dialogue> {dia} </dialogue> <output> {output} </output> <partner_input> {prt_inpt_str} </partner_input>\n<input> {prt_inpt_str} </input> <dialogue> {prt_persp_dia} </dialogue> <output> {prt_output} </output> <partner_input> {input_str} </partner_input>\n'
 
