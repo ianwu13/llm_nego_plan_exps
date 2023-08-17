@@ -184,11 +184,11 @@
         ],
         [
             "THEM: alright no deal",
-            "agree"
+            "disagree"
         ],
         [
             "YOU: okay its no deal",
-            "agree"
+            "disagree"
         ],
         [
             "THEM: <selection>",
@@ -230,11 +230,11 @@
         ],
         [
             "YOU: alright no deal",
-            "agree"
+            "disagree"
         ],
         [
             "THEM: okay its no deal",
-            "agree"
+            "disagree"
         ],
         [
             "YOU: <selection>",
@@ -248,7 +248,7 @@
         ],
         [
             "YOU: no . i want the hat and the balls",
-            "propose books=0 hats=1 balls=2"
+            "propose hats=1 balls=2"
         ],
         [
             "THEM: both balls ?",
@@ -256,7 +256,7 @@
         ],
         [
             "YOU: yeah or 1 ball and 1 book",
-            "propose books=1 hats=1 balls=1"
+            "propose books=1 balls=1"
         ],
         [
             "THEM: ok i want the hat and you can have the rest",
@@ -264,7 +264,8 @@
         ],
         [
             "YOU: okay deal ill take the books and the balls you can have only the hat",
-            "agree"
+            "agree",
+            "propose books=3 hats=0 balls=2"
         ],
         [
             "THEM: ok",
@@ -332,7 +333,8 @@
         ],
         [
             "THEM: ok i will take both books and you can have the rest",
-            "agree"
+            "agree",
+            "propose books=2 hats=0 balls=0"
         ],
         [
             "YOU: deal",
@@ -366,7 +368,8 @@
         ],
         [
             "YOU: ok i will take both books and you can have the rest",
-            "agree"
+            "agree",
+            "propose books=2 hats=0 balls=0"
         ],
         [
             "THEM: deal",

@@ -6,6 +6,8 @@ for raw dataset files
 from data.casino import POINTS_MAP, ORDER_MAP
 from simple_utils import remove_prefix
 
+# FINAL ANNOT FUNCTIONS USED: base_casino, dnd_lstrip_annotation
+
 
 def base_out_formatter_dnd(inst, annot):
     input_str = ' '.join([f'{c} {v}' for c, v in zip(inst['input']['count'], inst['input']['value'])])
@@ -19,7 +21,12 @@ def base_out_formatter_dnd(inst, annot):
 
     dia = ''
     prt_persp_dia = ''
-    for a in annot:
+    for u, a in zip(inst['dialogue'].split(' <eos> '), annot):
+        if '<selection>' in u:
+            a = '<selection>'
+        else:
+            a = a.replace(', ', ' ').replace(',', ' ') + ' <eos>'
+
         if you_start:
             dia += ' YOU: '
             prt_persp_dia += ' THEM: '
@@ -48,7 +55,7 @@ def base_out_formatter_casino(inst, annot):
         tmp[ORDER_MAP[v]] = POINTS_MAP[k]
     prt_inpt_str = ' '.join([f'3 {pts_val}' for pts_val in tmp])
 
-    if inst['chat_logs'][-2]['text'] == "Submit-Deal":
+    if inst['chat_logs'][-2]['text'] == "Submit-Deal" and inst['chat_logs'][-1]['text'] == "Accept-Deal":
         # These give wrong order output
         # output_a = ' '.join(f'{k}={int(v)}' for k, v in inst['chat_logs'][-2]['task_data']['issue2youget'].items())
         # output_b = ' '.join(f'{k}={int(v)}' for k, v in inst['chat_logs'][-2]['task_data']['issue2theyget'].items())
@@ -71,6 +78,9 @@ def base_out_formatter_casino(inst, annot):
                 output = output_b + ' ' + output_a
             else:
                 output = '<no_agreement> <no_agreement> <no_agreement> <no_agreement> <no_agreement> <no_agreement>'
+        
+        inst['chat_logs'] = inst['chat_logs'][:-1]
+        inst['chat_logs'][-1]['text'] = "Accept-Deal"
     else:
         output = '<no_agreement> <no_agreement> <no_agreement> <no_agreement> <no_agreement> <no_agreement>'
         prt_output = '<no_agreement> <no_agreement> <no_agreement> <no_agreement> <no_agreement> <no_agreement>'
@@ -78,7 +88,18 @@ def base_out_formatter_casino(inst, annot):
     you_start = inst['chat_logs'][0]['id'] == 'mturk_agent_1'
     dia = ''
     prt_persp_dia = ''
-    for a in annot:
+    for i, a in zip(inst['chat_logs'], annot):
+        if i['text'] == 'Accept-Deal':
+            a = '<selection>'
+        elif i['text'] == 'Submit-Deal':
+            a = 'agree'
+        elif i['text'] == 'Reject-Deal':
+            a = 'disagree'
+        elif i['text'] == 'Walk-Away':
+            a = 'disagree'
+        else:
+            a = a.replace(', ', ' ').replace(',', ' ') + ' <eos>'
+
         if you_start:
             dia += ' YOU: '
             prt_persp_dia += ' THEM: '
@@ -91,6 +112,13 @@ def base_out_formatter_casino(inst, annot):
     # Remove leading space
     dia = dia.lstrip(' ')
     prt_persp_dia = prt_persp_dia.lstrip(' ')
+
+    if not dia.endswith(' <selection>'):
+        dia += ' <selection>'
+    if not prt_persp_dia.endswith(' <selection>'):
+        prt_persp_dia += ' <selection>'
+
+    # Handle eos at end if necessary
     
     return f'<input> {input_str} </input> <dialogue> {dia} </dialogue> <output> {output} </output> <partner_input> {prt_inpt_str} </partner_input>\n<input> {prt_inpt_str} </input> <dialogue> {prt_persp_dia} </dialogue> <output> {prt_output} </output> <partner_input> {input_str} </partner_input>\n'
 
@@ -105,7 +133,7 @@ def base_out_formatter_first_line_casino(inst, annot):
 
 
 def dnd_lstrip_annotation(inst, annot):
-    annot = [remove_prefix(a.split('\n')[0], 'annotation').lstrip(' ') for a in annot]
+    annot = [remove_prefix(remove_prefix(a.split('\n')[0], 'annotation'), 'the annotation for this utterance is ').lstrip(' ') for a in annot]
     
     input_str = ' '.join([f'{c} {v}' for c, v in zip(inst['input']['count'], inst['input']['value'])])
     prt_inpt_str = ' '.join([f'{c} {v}' for c, v in zip(inst['partner_input']['count'], inst['partner_input']['value'])])
@@ -118,7 +146,12 @@ def dnd_lstrip_annotation(inst, annot):
 
     dia = ''
     prt_persp_dia = ''
-    for a in annot:
+    for u, a in zip(inst['dialogue'].split(' <eos> '), annot):
+        if '<selection>' in u:
+            a = '<selection>'
+        else:
+            a = a.replace(', ', ' ').replace(',', ' ') + ' <eos>'
+
         if you_start:
             dia += ' YOU: '
             prt_persp_dia += ' THEM: '

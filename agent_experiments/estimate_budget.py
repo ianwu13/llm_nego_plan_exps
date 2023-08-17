@@ -24,11 +24,15 @@ def main():
     parser.add_argument('--tok_scaling_factor', type=float, default=1.33,
         help='Average number of tokens per word')
     args = parser.parse_args()
+    
+    # Handle unused arg for annotator init
+    args.start_index = 0  
+    args.failed_calls_file = None
 
     data_handler = utils.get_datahandler(args.dataset)
     i2p_funct = utils.get_inst2annot_prompt_func(args.inst_to_prompt_funct)
 
-    annotator = Annotator(data_handler, i2p_funct, None, None, None)
+    annotator = Annotator(data_handler, i2p_funct, None, None, None, args)
 
     cost_est, num_tok, num_words, in_tok, out_tok = annotator.est_budget(args.avg_annot_words, args.tok_scaling_factor, args.cost_per_1k_inp_tok, args.cost_per_1k_out_tok)
 

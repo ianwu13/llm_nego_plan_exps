@@ -84,6 +84,7 @@ if __name__ == '__main__':
 
 '''
 DND FORMAT: 
+greet, inquire, propose, disagree, insist, agree, unknown
 
 Greet
 Inquire [w slots]
@@ -105,6 +106,7 @@ Unknown/NA
 
 '''
 CUSTOM CASINO FORMAT: 
+smalltalk, empathy coordination, no need, elicit preference, undervalue, vouch fairness, express preference, propose, disagree, agree, unknown
 
 Small-talk --> smalltalk
 Empathy/Coordination --> empathy coordination
@@ -127,11 +129,4 @@ Propose [w slots] --> propose
 Disagree
 Agree
 Unknown/NA --> unknown
-
-
-No, if you get 2 food, it's only fair that I get 2 firewood.  --> should be insist
-
-ANNOTATE THIS:
-Accept-Deal
-agree
 '''
