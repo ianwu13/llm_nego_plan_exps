@@ -74,15 +74,6 @@ class DualLevelAgent(Agent):
             self.da_h = self.planning_model.zero_hid(1)
 
     def read(self, inpt):
-        # print("CTX:")
-        # print(self.ctx)
-        # print("Dialogue:")
-        # print(self.dialogue)
-        # print("Read_input")
-        # print(input)
-        # Get dialogue act with parser
-        # print('parser function')
-        # print(self.p_prompt_func)
         parser_prompt = self.p_prompt_func({
             'ctx': self.ctx,
             'dialogue': self.dialogue,

@@ -76,6 +76,9 @@ def main():
     utils.set_seed(args.seed, torch_needed=True, np_needed=True)
 
     alice = utils.agent_builder(args.alice_type, args.alice_strategy, args, rl_module_weight_path=args.alice_model_file, name='Alice')
+    
+    
+    
     bob = utils.agent_builder(args.bob_type, args.bob_strategy, args, rl_module_weight_path=args.bob_model_file, name='Bob')
 
     dialog = Dialog([alice, bob], args)
