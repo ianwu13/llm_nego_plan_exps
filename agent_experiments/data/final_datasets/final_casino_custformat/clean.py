@@ -144,7 +144,7 @@ def main(in_file: str, out_file: str, dataset: str = 'casino'):
 
                             labels_list.extend(sorted_slots)
                 else:
-                    labels_list = ['<selection>']
+                    labels_list = [role, '<selection>']
 
                 fixed_annots = ' '.join(labels_list)
 
