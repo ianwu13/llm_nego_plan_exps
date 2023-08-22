@@ -110,11 +110,11 @@ def agent_builder(agent_type: str, agent_strategy: str, args, rl_module_weight_p
 
     llm_choice_prompt_func = args.llm_choice_prompt_func
 
-    if name != "Bob":
-        llm_response_prompt_func = args.llm_response_prompt_func
+    if name == "Bob" and agent_type != args.alice_type:
+        llm_response_prompt_func = args.llm_response_prompt_func_bob
     else:
         # if alice is different than bob function, bob be the no_planning one 
-        llm_response_prompt_func = args.llm_response_prompt_func_bob
+        llm_response_prompt_func = args.llm_response_prompt_func
     
     utt2act_prompt_func = args.utt2act_prompt_func
     act2utt_prompt_func = args.act2utt_prompt_func
