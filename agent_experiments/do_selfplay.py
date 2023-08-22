@@ -46,6 +46,8 @@ def main():
         help='Function ID from registry.py which converts act data into llm prompts for generating utterances (Generator)')
     parser.add_argument('--llm_response_prompt_func', type=str, default=None,
         help='Function ID from registry.py which generates a prompt for the llm api (if used) to generate the next response in the dialogue')
+    parser.add_argument('--llm_response_prompt_func_bob', type=str, default=None,
+        help='Function ID from registry.py which generates a prompt for the llm api (if used) to generate the next response in the dialogue')
     parser.add_argument('--llm_choice_prompt_func', type=str, default=None,
         help='Function ID from registry.py which generates a prompt for the llm api (if used) to generate the final choice for a dialogue')
     
@@ -77,14 +79,10 @@ def main():
 
     alice = utils.agent_builder(args.alice_type, args.alice_strategy, args, rl_module_weight_path=args.alice_model_file, name='Alice')
     
-    
-    
     bob = utils.agent_builder(args.bob_type, args.bob_strategy, args, rl_module_weight_path=args.bob_model_file, name='Bob')
-
     dialog = Dialog([alice, bob], args)
     logger = InteractionLogger(args.dataset, verbose=args.verbose, log_file=args.log_file)
 
-    # selfplay = BotBotSelfPlay(dialog, args.dataset, args.context_file, logger=logger, **vars(args))
     selfplay = BotBotSelfPlay(dialog, args.dataset, args.context_file, logger=logger)
     selfplay.run()
 

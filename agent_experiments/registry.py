@@ -110,7 +110,7 @@ RESPONSE_PROMPT_FUN_REG = {
     # New added modified agent for dnd
     # 
     "act_act_chatcomp_dnd": ("lang_models.llm_apis.prompting.dia_response_funcitons","act_next_act_dnd"),
-    "act_act_chatcomp_casino_dnd_form": ("lang_models.llm_apis.prompting.dia_response_funcitons","act_act_chatcomp_casino_dnd_form"),
+    # "act_act_chatcomp_casino_dnd_form": ("lang_models.llm_apis.prompting.dia_response_funcitons","act_act_chatcomp_casino_dnd_form"),
     "act_act_chatcomp_casino_cust_form": ("lang_models.llm_apis.prompting.dia_response_funcitons","act_act_chatcomp_casino_cust_form")
 }
 
@@ -125,6 +125,6 @@ ACT2UTT_PROMPT_FUN_REG = {
 # dialogue_state_json -> list["prompt_to_parse_dialogue_act"]
 UTT2ACT_PROMPT_FUN_REG = {
     "dnd_fs": ("lang_models.llm_apis.prompting.utt2act_functions", "dnd_fs"),
-    "casino_dnd_form_fs": ("lang_models.llm_apis.prompting.utt2act_functions", "casino_dnd_form_fs"),
-    "casino_cust_form_fs": ("lang_models.llm_apis.prompting.utt2act_functions", "casino_cust_form_fs_new"),
+    "casino_cust_form_fs": ("lang_models.llm_apis.prompting.utt2act_functions", "casino_cust_form_fs"),
+    # "casino_dnd_form_fs": ("lang_models.llm_apis.prompting.utt2act_functions", "casino_dnd_form_fs"), # archive version based on final annotation prompt provided by Ian
 }
