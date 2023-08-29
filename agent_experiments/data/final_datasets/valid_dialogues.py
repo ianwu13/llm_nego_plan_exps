@@ -1,20 +1,33 @@
 from fire import Fire
 
 
-def line_valid(line: str):
+DND_ITEMS = ['books', 'hats', 'balls']
+CASINO_ITEMS = ['food', 'water', 'firewood']
+
+
+def line_valid(line: str, items):
     tmp = line.split(' <dialogue> ')[1].split(' </dialogue> ')
     dialogue = tmp[0]
     utterances = [u.split() for u in dialogue.split(' <eos> ')]
     if tmp[1].split(' </output> ')[0] == '<output> <no_agreement> <no_agreement> <no_agreement> <no_agreement> <no_agreement> <no_agreement>':
         return True
-    final_deal = [int(i.split('=')[1])
+    elif tmp[1].split(' </output> ')[0] == '<output> <disagree> <disagree> <disagree> <disagree> <disagree> <disagree>':
+        return True
+    elif tmp[1].split(' </output> ')[0] == '<output> <disconnect> <disconnect> <disconnect> <disconnect> <disconnect> <disconnect>':
+        return True
+    try:
+        final_deal = [int(i.split('=')[1])
                   for i in tmp[1].split(' </output> ')[0].split()[1:]]
+    except:
+        print(tmp[1].split(' </output> ')[0].split()[1:])
+        print(line)
+        exit()
 
     proposals = {
         'YOU:': [],
         'THEM:': []
     }
-    for i, item in enumerate(['food', 'water', 'firewood']):
+    for i, item in enumerate(items):
         for u in reversed(utterances):
             found = False
             for j, tok in enumerate(u[1:]):
@@ -24,7 +37,7 @@ def line_valid(line: str):
                     slots_len = 0
                     for s in slots:
                         val_slot = False
-                        for pref in ['food', 'water', 'firewood']:
+                        for pref in items:
                             if s.startswith(pref):
                                 val_slot = True
                                 slots_len += 1
@@ -63,7 +76,7 @@ def line_valid(line: str):
     return prop_deal == final_deal
 
 
-def fix_line(line: str):
+def fix_line(line: str, items):
     tmp = line.split(' <dialogue> ')
     prefix = tmp[0] + ' <dialogue> '
     tmp = tmp[1].split(' </dialogue> ')
@@ -77,7 +90,7 @@ def fix_line(line: str):
         'YOU:': [],
         'THEM:': []
     }
-    for i, item in enumerate(['food', 'water', 'firewood']):
+    for i, item in enumerate(items):
         for k, u in enumerate(reversed(utterances)):
             u_ind = -(k+1)
             found = False
@@ -88,7 +101,7 @@ def fix_line(line: str):
                     slots_len = 0
                     for s in slots:
                         val_slot = False
-                        for pref in ['food', 'water', 'firewood']:
+                        for pref in items:
                             if s.startswith(pref):
                                 val_slot = True
                                 slots_len += 1
@@ -136,7 +149,7 @@ def fix_line(line: str):
     return True, fixed_line
 
 
-def fix_invalid(in_file: str, valid_out_file: str, invalid_out_file: str):
+def fix_invalid(in_file: str, valid_out_file: str, invalid_out_file: str, items):
     valid_file = open(valid_out_file, 'w')
     invalid_file = open(invalid_out_file, 'w')
 
@@ -146,11 +159,11 @@ def fix_invalid(in_file: str, valid_out_file: str, invalid_out_file: str):
     with open(in_file, 'r') as f:
         line = f.readline()
         while line:
-            if line_valid(line):
+            if line_valid(line, items):
                 valid_file.write(line)
                 valid_count += 1
             else:
-                fixable, fixed_line = fix_line(line)
+                fixable, fixed_line = fix_line(line, items)
                 if fixable:
                     valid_file.write(fixed_line)
                     valid_count += 1
@@ -165,7 +178,7 @@ def fix_invalid(in_file: str, valid_out_file: str, invalid_out_file: str):
     print(f'Ratio: {valid_count / (valid_count + invalid_count)}')
 
 
-def sep_valid_invalid(in_file: str, valid_out_file: str, invalid_out_file: str):
+def sep_valid_invalid(in_file: str, valid_out_file: str, invalid_out_file: str, items):
     valid_file = open(valid_out_file, 'w')
     invalid_file = open(invalid_out_file, 'w')
 
@@ -175,7 +188,7 @@ def sep_valid_invalid(in_file: str, valid_out_file: str, invalid_out_file: str):
     with open(in_file, 'r') as f:
         line = f.readline()
         while line:
-            if line_valid(line):
+            if line_valid(line, items):
                 valid_file.write(line)
                 valid_count += 1
             else:
@@ -189,12 +202,24 @@ def sep_valid_invalid(in_file: str, valid_out_file: str, invalid_out_file: str):
     print(f'Valid Line Ratio: {valid_count / (valid_count + invalid_count)}')
 
 
-def main(fix: bool, in_file: str, valid_out_file: str, invalid_out_file: str):
-    if fix:
-        fix_invalid(in_file, valid_out_file, invalid_out_file)
+def main(fix: bool, in_file: str, valid_out_file: str, invalid_out_file: str, dataset: str='casino'):
+    # Get proper labels
+    if dataset == 'dnd':
+        items = DND_ITEMS
+    elif dataset == 'casino':
+        items = CASINO_ITEMS
     else:
-        sep_valid_invalid(in_file, valid_out_file, invalid_out_file)
+        raise Exception('dataset must be "dnd" or "casino"')
+
+    if fix:
+        fix_invalid(in_file, valid_out_file, invalid_out_file, items)
+    else:
+        sep_valid_invalid(in_file, valid_out_file, invalid_out_file, items)
 
 
 if __name__ == '__main__':
     Fire(main)
+
+#python3 valid_dialogues.py --fix True --dataset dnd --in_file final_dnd/val.txt --valid_out_file dnd_valid/val_fixed.txt --invalid_out_file dnd_valid/val_unfixable.txt
+#python3 valid_dialogues.py --fix True --dataset dnd --in_file final_dnd/train.txt --valid_out_file dnd_valid/train_fixed.txt --invalid_out_file dnd_valid/train_unfixable.txt
+#python3 valid_dialogues.py --fix True --dataset dnd --in_file final_dnd/test.txt --valid_out_file dnd_valid/test_fixed.txt --invalid_out_file dnd_valid/test_unfixable.txt
