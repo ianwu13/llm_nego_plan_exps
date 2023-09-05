@@ -46,7 +46,7 @@ def dnd_parser_chatcomp(inst):
         }
     user_fs_msg_str = 'Here are some examples of how I want the annotations to look:\n' + '\n'.join([f'{t}\nANNOTATION: "{a}"' for t, a in zip(dnd_fs_texts, dnd_fs_annots_no_vc)])
 
-    ctx_str = f'CONTEXT: "{inst["ctx"][0]} books {inst["ctx"][1]} hats {inst["ctx"][2]} balls"'
+    ctx_str = f'CONTEXT: "{inst["ctx"][0]} books {inst["ctx"][2]} hats {inst["ctx"][4]} balls"'
 
     splt_dia = [remove_prefix(remove_prefix(u, 'YOU: '), 'THEM: ') for u in inst['dialogue'].split(' <eos> ')]
 
@@ -74,9 +74,6 @@ This is a list of possible annotation labels with descriptions. Note that "<slot
 "unknown" - the utterance does not fit any of the above labels.'''
     }
     
-    # TODO - check that we are getting counts here and not values
-    print(inst["ctx"])
-    exit()
     ctx_str = f'CONTEXT: "{inst["ctx"][0]} books {inst["ctx"][2]} hats and {inst["ctx"][4]} balls are available"'
 
     return [[system_msg, {'role': 'user', 'content': f'Given this context: \n{ctx_str}\n What is the annotation for this utterance?\nUTTERANCE: "{inst["read_inpt"]}"'}]]
