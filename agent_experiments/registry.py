@@ -96,5 +96,7 @@ ACT2UTT_PROMPT_FUN_REG = {
 # Parser Functions (for planning)
 # dialogue_state_json -> list["prompt_to_parse_dialogue_act"]
 UTT2ACT_PROMPT_FUN_REG = {
-    "example": ("lang_models.llm_apis.prompting.utt2act_functions", "example_u2a_func")
+    "example": ("lang_models.llm_apis.prompting.utt2act_functions", "example_u2a_func"),
+    "final_utt2act_dnd": ("lang_models.llm_apis.prompting.utt2act_functions", "final_utt2act_dnd"),
+    "final_utt2act_casino_cust": ("lang_models.llm_apis.prompting.utt2act_functions", "final_utt2act_casino_cust")
 }
