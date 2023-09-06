@@ -43,7 +43,7 @@ def slot_getter(annot_iterator, labels_list, items_list):
     while cur:
         valid = False
         for i in items_list:
-            if cur.startswith(i):
+            if cur.startswith(i) and not (cur.endswith('<slot>')) and ('>' not in cur) and ('<' not in cur):
                 slots_list.append(cur)
                 valid = True
                 break

@@ -1,0 +1,2 @@
+<input> 1 4 4 0 2 3 </input> <dialogue> THEM: inquire hats <eos> YOU: agree <eos> THEM: <selection> </dialogue> <output> item0=1 item1=0 item2=2 item0=0 item1=4 item2=0 </output> <partner_input> 1 0 4 2 2 1 </partner_input>
+<input> 1 0 3 0 1 10 </input> <dialogue> YOU: inquire balls <eos> THEM: agree <eos> YOU: greet <eos> THEM: <selection> </dialogue> <output> item0=0 item1=0 item2=1 item0=1 item1=3 item2=0 </output> <partner_input> 1 2 3 1 1 5 </partner_input>
