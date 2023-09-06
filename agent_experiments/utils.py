@@ -117,7 +117,7 @@ def agent_builder(agent_type: str, agent_strategy: str, llm_response_prompt_func
     choice_prompt_func = get_response_prompt_func(llm_choice_prompt_func)
 
     if agent_type == 'llm_no_planning':
-        response_prompt_func = get_response_prompt_func(llm_response_prompt_func)
+        response_prompt_func = get_response_prompt_func(llm_response_prompt_func_arg)
 
         return SingleLevelAgent(model=llm_api, 
                                 name=name,
@@ -129,7 +129,7 @@ def agent_builder(agent_type: str, agent_strategy: str, llm_response_prompt_func
         parser_prompt_func = get_utt2act_prompt_func(utt2act_prompt_func)
         generator_prompt_func = get_act2utt_prompt_func(act2utt_prompt_func)
 
-        response_prompt_func = get_response_prompt_func(llm_response_prompt_func)
+        response_prompt_func = get_response_prompt_func(llm_response_prompt_func_arg)
 
         return DualLevelAgent(pg_model=llm_api,
                               p_prompt_func=parser_prompt_func,
