@@ -5,7 +5,7 @@ from agents.base_agent import Agent
 
 
 class DualLevelAgent(Agent):
-    def __init__(self, pg_model, p_prompt_func, g_prompt_func, planning_model, cpf, rpf=None, strategy='generic', name='AI', temperature=1.0):
+    def __init__(self, pg_model, p_prompt_func, g_prompt_func, planning_model, cpf, rpf=None, strategy='generic', name='AI', temperature=0):
         super(DualLevelAgent, self).__init__()
         self.pg_model = pg_model  # parser/generator model
         self.p_prompt_func = p_prompt_func  # parser_prompt_func

@@ -70,7 +70,7 @@ def main():
     utils.set_seed(args.seed, torch_needed=True, np_needed=True)
 
     human = HumanAgent()
-    ai = utils.agent_builder(args.ai_type, args.agent_strategy, args, rl_module_weight_path=args.model_file, name='AI')
+    ai = utils.agent_builder(args.ai_type, args.agent_strategy, args.llm_response_prompt_func, args, rl_module_weight_path=args.model_file, name='AI')
 
     agents = [ai, human] if args.ai_starts else [human, ai]
 

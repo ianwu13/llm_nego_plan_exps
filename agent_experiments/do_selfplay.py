@@ -44,7 +44,7 @@ def main():
         help='Function ID from registry.py which converts utterance data into llm prompts for generating acts (Parser)')
     parser.add_argument('--act2utt_prompt_func', type=str, default=None,
         help='Function ID from registry.py which converts act data into llm prompts for generating utterances (Generator)')
-    parser.add_argument('--llm_response_prompt_func', type=str, default=None,
+    parser.add_argument('--llm_response_prompt_func_alice', type=str, default=None,
         help='Function ID from registry.py which generates a prompt for the llm api (if used) to generate the next response in the dialogue')
     parser.add_argument('--llm_response_prompt_func_bob', type=str, default=None,
         help='Function ID from registry.py which generates a prompt for the llm api (if used) to generate the next response in the dialogue')
@@ -77,9 +77,9 @@ def main():
 
     utils.set_seed(args.seed, torch_needed=True, np_needed=True)
 
-    alice = utils.agent_builder(args.alice_type, args.alice_strategy, args, rl_module_weight_path=args.alice_model_file, name='Alice')
+    alice = utils.agent_builder(args.alice_type, args.alice_strategy, args.llm_response_prompt_func_alice, args, rl_module_weight_path=args.alice_model_file, name='Alice')
     
-    bob = utils.agent_builder(args.bob_type, args.bob_strategy, args, rl_module_weight_path=args.bob_model_file, name='Bob')
+    bob = utils.agent_builder(args.bob_type, args.bob_strategy, args.llm_response_prompt_func_bob, args, rl_module_weight_path=args.bob_model_file, name='Bob')
     dialog = Dialog([alice, bob], args)
     logger = InteractionLogger(args.dataset, verbose=args.verbose, log_file=args.log_file)
 

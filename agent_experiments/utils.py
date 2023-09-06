@@ -105,16 +105,10 @@ def load_rl_module(weights_path: str, corpus_data_pth: str):
     return GRUModel(weights_path, corpus_data_pth)
 
 
-def agent_builder(agent_type: str, agent_strategy: str, args, rl_module_weight_path=None, name: str='AI'):
+def agent_builder(agent_type: str, agent_strategy: str, llm_response_prompt_func_arg: str, args, rl_module_weight_path=None, name: str='AI'):
     llm_api = get_llm_api(args.llm_api, args.llm_api_key)
 
     llm_choice_prompt_func = args.llm_choice_prompt_func
-
-    if name == "Bob" and agent_type != args.alice_type:
-        llm_response_prompt_func = args.llm_response_prompt_func_bob
-    else:
-        # if alice is different than bob function, bob be the no_planning one 
-        llm_response_prompt_func = args.llm_response_prompt_func
     
     utt2act_prompt_func = args.utt2act_prompt_func
     act2utt_prompt_func = args.act2utt_prompt_func
@@ -143,7 +137,7 @@ def agent_builder(agent_type: str, agent_strategy: str, args, rl_module_weight_p
                               planning_model=llm_api,
                               cpf=choice_prompt_func,
                               rpf=response_prompt_func,
-                              strategy = agent_strategy,
+                              strategy=agent_strategy,
                               name=name)
     elif agent_type == 'llm_rl_planning':
         parser_prompt_func = get_utt2act_prompt_func(utt2act_prompt_func)
@@ -160,7 +154,7 @@ def agent_builder(agent_type: str, agent_strategy: str, args, rl_module_weight_p
                               cpf=choice_prompt_func,
                               name=name)
     else:
-        raise ValueError(f'{agent_type} is not a recognized agent agent type!')
+        raise ValueError(f'{agent_type} is not a recognized agent type!')
 
 
 def set_seed(seed, torch_needed=False, np_needed=False):
