@@ -105,23 +105,31 @@ def load_rl_module(weights_path: str, corpus_data_pth: str):
     return GRUModel(weights_path, corpus_data_pth)
 
 
-def agent_builder(agent_type: str, args, rl_module_weight_path=None, name: str='AI'):
+def agent_builder(agent_type: str, agent_strategy: str, llm_response_prompt_func_arg: str, args, rl_module_weight_path=None, name: str='AI'):
     llm_api = get_llm_api(args.llm_api, args.llm_api_key)
-    choice_prompt_func = get_response_prompt_func(args.llm_choice_prompt_func)
+
+    llm_choice_prompt_func = args.llm_choice_prompt_func
+    
+    utt2act_prompt_func = args.utt2act_prompt_func
+    act2utt_prompt_func = args.act2utt_prompt_func
+
+
+    choice_prompt_func = get_response_prompt_func(llm_choice_prompt_func)
 
     if agent_type == 'llm_no_planning':
-        response_prompt_func = get_response_prompt_func(args.llm_response_prompt_func)
+        response_prompt_func = get_response_prompt_func(llm_response_prompt_func)
 
         return SingleLevelAgent(model=llm_api, 
                                 name=name,
                                 rpf=response_prompt_func,
                                 cpf=choice_prompt_func,
+                                strategy = agent_strategy,
                                 args=args)
     elif agent_type == 'llm_self_planning':
-        parser_prompt_func = get_utt2act_prompt_func(args.utt2act_prompt_func)
-        generator_prompt_func = get_act2utt_prompt_func(args.act2utt_prompt_func)
+        parser_prompt_func = get_utt2act_prompt_func(utt2act_prompt_func)
+        generator_prompt_func = get_act2utt_prompt_func(act2utt_prompt_func)
 
-        response_prompt_func = get_response_prompt_func(args.llm_response_prompt_func)
+        response_prompt_func = get_response_prompt_func(llm_response_prompt_func)
 
         return DualLevelAgent(pg_model=llm_api,
                               p_prompt_func=parser_prompt_func,
@@ -129,10 +137,11 @@ def agent_builder(agent_type: str, args, rl_module_weight_path=None, name: str='
                               planning_model=llm_api,
                               cpf=choice_prompt_func,
                               rpf=response_prompt_func,
+                              strategy=agent_strategy,
                               name=name)
     elif agent_type == 'llm_rl_planning':
-        parser_prompt_func = get_utt2act_prompt_func(args.utt2act_prompt_func)
-        generator_prompt_func = get_act2utt_prompt_func(args.act2utt_prompt_func)
+        parser_prompt_func = get_utt2act_prompt_func(utt2act_prompt_func)
+        generator_prompt_func = get_act2utt_prompt_func(act2utt_prompt_func)
 
         assert rl_module_weight_path is not None, 'The --rl_module_weight_path argmuent must be specified when agent type is "llm_rl_planning"'
         assert args.corpus_source is not None, 'The --corpus_source argmuent must be specified when agent type is "llm_rl_planning"'
@@ -145,7 +154,7 @@ def agent_builder(agent_type: str, args, rl_module_weight_path=None, name: str='
                               cpf=choice_prompt_func,
                               name=name)
     else:
-        raise ValueError(f'{agent_type} is not a recognized agent agent type!')
+        raise ValueError(f'{agent_type} is not a recognized agent type!')
 
 
 def set_seed(seed, torch_needed=False, np_needed=False):

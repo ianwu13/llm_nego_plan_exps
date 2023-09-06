@@ -5,11 +5,12 @@ from simple_utils import remove_prefix
 
 class SingleLevelAgent(Agent):
     """An agent that uses DialogModel as an AI."""
-    def __init__(self, model, rpf, cpf, args=None, name='AI'):
+    def __init__(self, model, rpf, cpf, strategy, args=None, name='AI'):
         super(SingleLevelAgent, self).__init__()
         self.model = model
         self.rpf = rpf  # "Response prompt function"
         self.cpf = cpf  # "Choice prompt function"
+        self.strategy = strategy
         self.name = name
         self.human = False
 
@@ -23,10 +24,15 @@ class SingleLevelAgent(Agent):
         # generate a new utterance
         response_prompt = self.rpf({
             'ctx': self.ctx,
+            'strategy': self.strategy,
             'dialogue': self.dialogue
         })
-        response = self.model.get_model_outputs(response_prompt)[0]
+        response = self.model.get_model_outputs(response_prompt)[0]     
+        if response.find('<eos>') == -1:
+                response += ' <eos> '
+
         response_sp = response.split()
+
 
         if response_sp[0] != 'YOU:':
             # first add the special 'YOU:' token if necessary

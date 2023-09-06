@@ -3,9 +3,15 @@ from interactions.interaction import InteractionManager, InteractionLogger
 
 class BotBotSelfPlay(InteractionManager):
     """Selfplay runner."""
-    def __init__(self, dialog, ctx_file, logger=None, **kwargs):
-        super(BotBotSelfPlay, self).__init__(dialog, ctx_file, logger, **kwargs)
-        
+    def __init__(self, dialog, dataset, ctx_file=None, logger=None, **kwargs):
+        # super(BotBotSelfPlay, self).__init__(dialog, dataset, ctx_file, logger, **kwargs)
+        if ctx_file is not None:
+            super(BotBotSelfPlay, self).__init__(dialog, dataset, ctx_file, logger, **kwargs)
+        else:
+            self.dialog = dialog
+            self.logger = logger if logger else InteractionLogger()
+
+            self.auto_create_ctxs(**kwargs)
         # MAY BE NECESSARY TO PASS COMMAND LINE ARGS LATER
         # self.args = args
 

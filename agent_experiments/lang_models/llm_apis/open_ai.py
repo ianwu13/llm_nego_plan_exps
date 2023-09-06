@@ -104,7 +104,9 @@ class OpenAI_Api(BaseModelHandler):
                     "model": self.model_name,
                     "messages": inp,
                     "temperature": 0}
-
+            print("******** EACH REQUEST *******")
+            print(inp)
+        
             response = requests.post(
                 self.api_url,
                 headers=req_headers,
@@ -127,6 +129,7 @@ class OpenAI_Api(BaseModelHandler):
                 if response.status_code != 200:
                     self.failed_calls.append(inp)
                     p_str = str(inp).replace('\n', '')
+                    print("OPENAI ISSUE")
                     outputs.append(f"FAILED START {p_str} END FAILED")  # Insert placeholder to handle later
                     continue
 
@@ -147,6 +150,8 @@ class OpenAI_Api(BaseModelHandler):
             gen_out = re.sub(r'[^A-Za-z0-9<>=/, ]+', '', gen_out).lower()
 
             outputs.append(gen_out)
+            print("OUTPUT:")
+            print(gen_out)
 
         return outputs
 
