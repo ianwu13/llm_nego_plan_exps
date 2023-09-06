@@ -127,4 +127,8 @@ UTT2ACT_PROMPT_FUN_REG = {
     "dnd_fs": ("lang_models.llm_apis.prompting.utt2act_functions", "dnd_fs"),
     "casino_cust_form_fs": ("lang_models.llm_apis.prompting.utt2act_functions", "casino_cust_form_fs"),
     # "casino_dnd_form_fs": ("lang_models.llm_apis.prompting.utt2act_functions", "casino_dnd_form_fs"), # archive version based on final annotation prompt provided by Ian
+    
+    # Finalized versions (FROM ANNOTATION PIPELINE)
+    "final_utt2act_dnd": ("lang_models.llm_apis.prompting.utt2act_functions", "final_utt2act_dnd"),
+    "final_utt2act_casino_cust": ("lang_models.llm_apis.prompting.utt2act_functions", "final_utt2act_casino_cust")
 }
