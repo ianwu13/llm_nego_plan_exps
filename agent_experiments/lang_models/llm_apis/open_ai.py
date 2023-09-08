@@ -104,8 +104,6 @@ class OpenAI_Api(BaseModelHandler):
                     "model": self.model_name,
                     "messages": inp,
                     "temperature": 0}
-            print("******** EACH REQUEST *******")
-            print(inp)
         
             response = requests.post(
                 self.api_url,
