@@ -105,6 +105,7 @@ class DualLevelAgent(Agent):
             # Generate utterance response
             generator_prompt = self.g_prompt_func({
                 'ctx': self.ctx,
+                'strategy': self.strategy,
                 'dialogue': self.dialogue,
                 'dia_acts': self.dialogue_acts,
                 'gen_act': resp_da
