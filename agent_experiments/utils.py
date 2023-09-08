@@ -98,7 +98,7 @@ def load_rl_module(weights_path: str, corpus_data_pth: str):
     model = GRUModel(corpus.word_dict, corpus.item_dict, corpus.context_dict,
         corpus.output_length, model_args, device_id)
 
-    model.load_state_dict(checkpoint['state_dict'])  # TODO: This will probably need to be updated
+    model.load_state_dict(checkpoint['state_dict'])
     return model
 
     # corpus_data_pth is forr training dataset, used to generater context/utterance embeddings
