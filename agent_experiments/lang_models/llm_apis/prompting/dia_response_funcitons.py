@@ -517,7 +517,7 @@ def act_act_chatcomp_casino_cust_form(inst):
     user_fs_msg_str = 'Here are some examples of how I want the annotations to look:\n' + '\n'.join([f'UTTERANCE: "{t}"\nANNOTATION: "{a}"' for t, a in zip(casino_dnd_format_examples, casino_dnd_format_annots)])
     dialogue_hist = 'Dialogue History:'  + ' '.join(inst['dialogue'])
     item_counts = inst['ctx']
-    reason = " ".join(inst["ctx"][inst["ctx"].index("=")+1:])
+    reason = " ".join(inst["ctx"])  # reason = " ".join(inst["ctx"][inst["ctx"].index("=")+1:])
     ctx_str = f'CONTEXT: "{item_counts[0]} firewood {item_counts[2]} water {item_counts[4]} food"' + reason
     curr_act = ' '.join(inst['dia_acts'])
     act_prompt = [system_msg, {'role': 'user', 'content': user_fs_msg_str + f'Here is the context {ctx_str}' + f' What is the most likely annotated dialogue act followed by the provided dialogue act? {dialogue_hist} ANNOTATION: "{curr_act}"'}]
