@@ -112,6 +112,7 @@ class Dictionary(object):
             # add missing tokens for <output>
             dictionary.add_word('<no_agreement>')
             dictionary.add_word('<disconnect>')
+            dictionary.add_word('<unk>')
 
         return dictionary
 
