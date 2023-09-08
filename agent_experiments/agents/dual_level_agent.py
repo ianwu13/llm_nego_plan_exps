@@ -27,7 +27,7 @@ class DualLevelAgent(Agent):
             assert hasattr(self.planning_model, 'read'), 'planning_model must have "read" method.'
             assert hasattr(self.planning_model, 'write'), 'planning_model must have "wrtie" method.'
 
-            self.temperature = temperature
+            self.gru_temperature = 1.0
 
         self.name = name
         self.human = False
@@ -98,7 +98,7 @@ class DualLevelAgent(Agent):
     def write(self):
         if not self.planning_model.is_llm:
             # generate a new utterance; 100 max words (third arg)
-            _, outs, self.da_h, da_hs = self.planning_model.write(self.da_h, self.ctx_h, 100, self.temperature)
+            _, outs, self.da_h, da_hs = self.planning_model.write(self.da_h, self.ctx_h, 100, self.gru_temperature)
             # decode into English words
             resp_da = self._decode(outs, self.planning_model.word_dict)
 
