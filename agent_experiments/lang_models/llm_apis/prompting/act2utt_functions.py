@@ -3,9 +3,6 @@ Functions which convert instances from datasethandler and corresponding annotati
 for raw dataset files
 """
 
-
-# DEMO
-
 def dnd_a2u_prompt(inst):
 
     """
@@ -49,7 +46,7 @@ def casino_a2u_prompt(inst):
     if inst['strategy'] == "selfish":
         strategy_sen = f'You should try to get items with high priority to you as much as possible without caring your partner need and feelings. '
 
-    reason = " ".join(inst["ctx"][inst["ctx"].index("=")+1:])
+    reason = " ".join(inst["ctx"])  #reason = " ".join(inst["ctx"][inst["ctx"].index("=")+1:])
     # content_info = f'There are {inst["ctx"][0]} firewoods, {inst["ctx"][2]} water, and {inst["ctx"][4]} food. The firewood are worth {inst["ctx"][1]} points, the water are worth {inst["ctx"][3]}, and the food are worth {inst["ctx"][5]}.'
     content_info = f'There are 3 firewoods, water and food with different priority for you. ' + reason
     agent_instruct = f'Your partner has different preference for each item and you are negotiating over how to divide the items based on provided reasons. ' + strategy_sen + f' If a deal is not reached within 20 utterances, both participants recieve 0 points and fail. To indicate that a deal has been reached, output the word "<selection>"'

@@ -56,7 +56,14 @@ class InteractionLogger(object):
             s = ' '.join(['%s=(count:%s value:%s)' % (self.CODE2ITEM_CASINO[i][1], ctx[2 * i], ctx[2 * i + 1]) \
                 for i in range(3)])
             self._dump_with_name(name, s)
-            '''
+        else:  # dnd
+            assert len(ctx) == 6, 'Expecting 3 objects'
+            s = ' '.join(['%s=(count:%s value:%s)' % (self.CODE2ITEM[i][1], ctx[2 * i], ctx[2 * i + 1]) \
+                for i in range(3)])
+            self._dump_with_name(name, s)
+
+        '''
+        if self.dataset == "casino":
             index = ctx.index("=")
             value = ctx[0:index]
             reason = ctx[index + 1:]
@@ -65,12 +72,12 @@ class InteractionLogger(object):
                 for i in range(3)])
             s = s + ' Preference: ' + ' '.join(reason) + '\n'
             self._dump_with_name(name, s)
-            '''
         else:  # dnd
             assert len(ctx) == 6, 'Expecting 3 objects'
             s = ' '.join(['%s=(count:%s value:%s)' % (self.CODE2ITEM[i][1], ctx[2 * i], ctx[2 * i + 1]) \
                 for i in range(3)])
             self._dump_with_name(name, s)
+        '''
 
     def dump_sent(self, name, sent):
         self._dump_with_name(name, ' '.join(sent))
