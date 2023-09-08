@@ -31,8 +31,6 @@ def dnd_a2u_prompt(inst):
     system_str = content_info + " " + agent_instruct
 
     messages = [{"role": "system", "content": system_str}]
-    print("DIALOGUE ACT")
-    print(inst['gen_act'])
 
     if len(inst['dialogue']) == 0:
         gen_act_str = f"The annotated dialogue act for your first response is: {inst['gen_act']}\n the corresponding natural language utterance is: "
@@ -59,8 +57,6 @@ def casino_a2u_prompt(inst):
     system_str = content_info + " " + agent_instruct
 
     messages = [{"role": "system", "content": system_str}]
-    print("DIALOGUE ACT")
-    print(inst['gen_act'])
 
     if len(inst['dialogue']) == 0:
         gen_act_str = f"The annotated dialogue act for your first response is: {inst['gen_act']}\n the corresponding natural language utterance is: "

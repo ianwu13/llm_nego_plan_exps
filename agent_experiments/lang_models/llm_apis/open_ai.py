@@ -113,21 +113,21 @@ class OpenAI_Api(BaseModelHandler):
 
             # Handle API hanging
             if response.status_code != 200:
-                if response.status_code == 503:
-                    for _ in range(3):  # Do 3 retrys
-                        time.sleep(1)  # Let API cool down
-                        response = requests.post(
-                            self.api_url,
-                            headers=req_headers,
-                            json=req_json
-                            )
-                        if response.status_code == 200:
-                            break
+                # if response.status_code == 503:
+                for _ in range(3):  # Do 3 retrys
+                    time.sleep(1)  # Let API cool down
+                    response = requests.post(
+                        self.api_url,
+                        headers=req_headers,
+                        json=req_json
+                        )
+                    if response.status_code == 200:
+                        break
                 
                 if response.status_code != 200:
                     self.failed_calls.append(inp)
                     p_str = str(inp).replace('\n', '')
-                    print("OPENAI ISSUE")
+                    # print("OPENAI ISSUE")
                     outputs.append(f"FAILED START {p_str} END FAILED")  # Insert placeholder to handle later
                     continue
 
@@ -148,8 +148,6 @@ class OpenAI_Api(BaseModelHandler):
             gen_out = re.sub(r'[^A-Za-z0-9<>=/, ]+', '', gen_out).lower()
 
             outputs.append(gen_out)
-            print("OUTPUT:")
-            print(gen_out)
 
         return outputs
 
