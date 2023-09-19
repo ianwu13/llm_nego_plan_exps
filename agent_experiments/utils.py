@@ -79,20 +79,12 @@ def load_rl_module(weights_path: str, corpus_data_pth: str):
     #     import torch
     import torch
 
-    if torch.cuda.is_available():
-        checkpoint = torch.load(weights_path)
-    else:
-        checkpoint = torch.load(weights_path, map_location=torch.device("cpu"))
+    checkpoint = torch.load(weights_path, map_location=torch.device("cpu"))
 
     model_args = checkpoint["args"]
 
-    # Verifies if CUDA is available and sets default device to be device_id.
-    device_id=0
-    if not model_args.cuda:
-        device_id = None
-    assert torch.cuda.is_available(), 'CUDA is not available'
-    torch.set_default_tensor_type('torch.cuda.FloatTensor')
-    torch.cuda.set_device(device_id)
+    device_id = None  # Don't use CUDA
+    # torch.cuda.set_device(device_id)
 
     corpus = WordCorpus(corpus_data_pth, freq_cutoff=model_args.unk_threshold, verbose=False)
     model = GRUModel(corpus.word_dict, corpus.item_dict, corpus.context_dict,
