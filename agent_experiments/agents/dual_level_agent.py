@@ -79,7 +79,7 @@ class DualLevelAgent(Agent):
             'dialogue': self.dialogue,
             'read_inpt': ' '.join(inpt)
         })
-        inpt_da = self.pg_model.get_model_outputs([parser_prompt])[0]  # Dialogue Act
+        inpt_da = self.pg_model.get_model_outputs(parser_prompt)[0]  # Dialogue Act
         # print(inpt_da)
         # Append to dialogue array
         self.dialogue.append('THEM:')
