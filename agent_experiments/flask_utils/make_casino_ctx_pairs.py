@@ -23,4 +23,4 @@ for ctx in desired_ctxs:
 
 OUT_FILE = 'GEN_mod_ctx_pairs_casino_cust.json'
 with open(OUT_FILE, 'w') as f:
-    f.write(jsom.dumps({"mod_cxt_pairs": mod_ctx_pairs}))
+    f.write(json.dumps({"mod_cxt_pairs": mod_ctx_pairs}))
