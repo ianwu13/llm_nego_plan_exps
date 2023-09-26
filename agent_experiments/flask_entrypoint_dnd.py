@@ -18,7 +18,7 @@ SERVER_STATUS = "Not Ready"
 DIALOGUE_COUNT_CAP = 8
 
 # DATASET SPECIFIC #############################################
-CTX_PAIRS_FILE = "mod_cxt_pairs_dnd.json"
+CTX_PAIRS_FILE = "flask_utils/mod_cxt_pairs_dnd.json"
 
 llm_api_key = ''  # TODO FILL LOCALLY
 LLM_API = utils.get_llm_api('gpt-3.5-turbo-0613', llm_api_key)
@@ -41,6 +41,9 @@ GRU_FILES = [
 ]
 GRU_MODELS = []
 # DATASET SPECIFIC ##################################################
+
+# MODEL_NAMES
+# ['np_generic', 'np_selfish', 'np_fair', 'sp_generic', 'sp_selfish', 'sp_fair', 'rl_supervised', 'rl_selfish', 'rl_fair']
 
 MODEL_CONFIGS = {
     'np_generic': {
