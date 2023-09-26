@@ -165,3 +165,12 @@ def set_seed(seed, torch_needed=False, np_needed=False):
         np.random.seed(seed)
 
     random.seed(seed)
+
+def make_safe(utt):
+    """
+    < -> $
+    > -> #
+    """
+    utt = utt.replace("<", "$")
+    utt = utt.replace(">", "#")
+    return utt

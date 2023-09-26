@@ -128,7 +128,11 @@ class OpenAI_Api(BaseModelHandler):
                     self.failed_calls.append(inp)
                     p_str = str(inp).replace('\n', '')
                     # print("OPENAI ISSUE")
-                    outputs.append(f"FAILED START {p_str} END FAILED")  # Insert placeholder to handle later
+                    print(f'Response Error Code: {response.status_code}')
+                    print()
+                    print(response.content)
+                    print()
+                    raise Exception('OpenAI API Failed Call')
                     continue
 
             try:
