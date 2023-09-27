@@ -7,6 +7,9 @@ from flask import json
 import torch
 import utils
 
+from agents.single_level_agent import SingleLevelAgent
+from agents.dual_level_agent import DualLevelAgent
+
 app = Flask(__name__)
 
 # globals: to be initialized in initial_setup - a common storage variable for everything, including initiated models and current states of each of the users.
