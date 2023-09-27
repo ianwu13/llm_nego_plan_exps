@@ -23,14 +23,14 @@ CTX_PAIRS_FILE = "flask_utils/mod_cxt_pairs_dnd.json"
 llm_api_key = ''  # TODO FILL LOCALLY
 LLM_API = utils.get_llm_api('gpt-3.5-turbo-0613', llm_api_key)
 
-LLM_NO_PLANNING_RESPONSE_FUNCT = get_response_prompt_func('dia_resp_slagent_chatcomp_dnd')
+LLM_NO_PLANNING_RESPONSE_FUNCT = utils.get_response_prompt_func('dia_resp_slagent_chatcomp_dnd')
 
-PARSER_FUNC = get_utt2act_prompt_func('final_utt2act_dnd')
-GENERATOR_FUNCT = get_act2utt_prompt_func('dnd_a2u_prompt')
+PARSER_FUNC = utils.get_utt2act_prompt_func('final_utt2act_dnd')
+GENERATOR_FUNCT = utils.get_act2utt_prompt_func('dnd_a2u_prompt')
 
-LLM_W_PLANNING_RESPONSE_FUNCT = get_response_prompt_func('act_act_chatcomp_dnd')
+LLM_W_PLANNING_RESPONSE_FUNCT = utils.get_response_prompt_func('act_act_chatcomp_dnd')
 
-MODEL_CHOICE_FUNCT = get_response_prompt_func('choice_slagent_chatcomp_dnd')
+MODEL_CHOICE_FUNCT = utils.get_response_prompt_func('choice_slagent_chatcomp_dnd')
 
 GRU_TRAINING_FILE = "data/final_datasets/dnd_valid/train_fixed.txt"
 
