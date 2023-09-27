@@ -131,10 +131,11 @@ def load_rl_models():
     """
     global GRU_FILES
     global GRU_MODELS
+    global GRU_TRAINING_FILE
 
     for mod_name in GRU_FILES:
         mod_path = os.path.join("models", mod_name)
-        mod = utils.load_rl_module(mod_path)
+        mod = utils.load_rl_module(mod_path, GRU_TRAINING_FILE)
         GRU_MODELS.append(mod)
 
 
