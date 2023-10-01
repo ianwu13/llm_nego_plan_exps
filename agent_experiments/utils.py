@@ -174,3 +174,10 @@ def make_safe(utt):
     utt = utt.replace("<", "$")
     utt = utt.replace(">", "#")
     return utt
+
+def encode(message, key):
+    # Create a dictionary that maps each character to its corresponding substitution
+    mapping = dict(zip(ALPHABET, key))
+    # Use the mapping to substitute each character in the message
+    ciphertext = ''.join([mapping.get(c, c) for c in message])
+    return ciphertext

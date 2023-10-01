@@ -150,10 +150,11 @@ def get_model(name):
     config = MODEL_CONFIGS[name]
 
     agent_type = config['agent_type']
-    llm_api = config['model']
     choice_prompt_func = config['cpf']
 
     if agent_type == 'llm_no_planning':
+        llm_api = config['pg_model']
+
         agent_strategy = config['strategy']
         response_prompt_func = config['rpf']
 
@@ -164,6 +165,9 @@ def get_model(name):
                                 name=name,
                                 args=None)
     elif agent_type == 'llm_self_planning':
+        llm_api = config['pg_model']
+        llm_api_planning = config['planning_model']
+
         agent_strategy = config['strategy']
         response_prompt_func = config['rpf']
 
@@ -179,6 +183,8 @@ def get_model(name):
                               strategy=agent_strategy,
                               name=name)
     elif agent_type == 'llm_rl_planning':
+        llm_api = config['pg_model']
+
         global GRU_MODELS
         planning_model = GRU_MODELS[config['planning_model']]
 
@@ -284,10 +290,8 @@ def setup_new_user():
     data["status"] = "Success"
     data["randomId"] = randomId
     data["hct"] = " ".join(chosen_mod_cxt[1].split()[:6])
-    # utils.encode(" ".join(chosen_mod_cxt[1].split()[6:]), key="")  # TODO - IDK WHAT THIS IS
-    data["agct"] = ''
-    # utils.encode(chosen_mod_cxt[0], key="")  # TODO - IDK WHAT THIS IS
-    data["agm"] = ''
+    data["agct"] = utils.encode(" ".join(chosen_mod_cxt[1].split()[6:]), key="")
+    data["agm"] = utils.encode(chosen_mod_cxt[0], key="")
     return json.dumps(data)
 
 
