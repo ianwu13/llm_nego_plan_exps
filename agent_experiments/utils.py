@@ -5,12 +5,15 @@ Common independent utility functions for the llm_nego_plan_exps package.
 import sys
 import importlib
 import random
+import string
 
 from agents import SingleLevelAgent, DualLevelAgent
 from lang_models.gru import GRUModel
 from data.word_corpus import WordCorpus
 
 from registry import *
+
+ALPHABET = string.ascii_letters + string.digits + "_ ."
 
 
 def get_datahandler(handler_id: str):
