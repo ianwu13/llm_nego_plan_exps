@@ -15,7 +15,7 @@ class DualLevelAgent(Agent):
         self.strategy = strategy
 
         if self.planning_model.is_llm:
-            print("~~~~CHECK WHETHER MODEL IS LLM for DUAL Agent~~~")
+            # print("~~~~CHECK WHETHER MODEL IS LLM for DUAL Agent~~~")
             assert rpf is not None
             self.rpf = rpf  # "Response prompt function"
         else:
