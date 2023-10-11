@@ -39,6 +39,8 @@ sudo apt install python3-waitress
     * Run `sudo cat /home/bitnami/bitnami_credentials` to print the default password and other info
 
 1. Move lioness project to `htdocs` directory
+    * Set permissions on the credentials.php file to 777
+    * Set permissions of lioness project directory to 755
 
 2. Navigate to `http://[your server name]/[your experiment name]/controlpanel.php` in your browser
 
