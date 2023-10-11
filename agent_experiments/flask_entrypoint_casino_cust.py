@@ -137,7 +137,7 @@ def load_rl_models():
 
     for mod_name in GRU_FILES:
         mod_path = os.path.join("models", mod_name)
-        mod = utils.load_rl_module(mod_path)
+        mod = utils.load_rl_module(mod_path, GRU_TRAINING_FILE)
         GRU_MODELS.append(mod)
 
 
@@ -194,7 +194,7 @@ def get_model(name):
         return DualLevelAgent(pg_model=llm_api,
                               p_prompt_func=parser_prompt_func,
                               g_prompt_func=generator_prompt_func,
-                              planning_model=rl_module,
+                              planning_model=planning_model,
                               cpf=choice_prompt_func,
                               name=name)
     else:

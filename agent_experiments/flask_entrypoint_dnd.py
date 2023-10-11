@@ -195,7 +195,7 @@ def get_model(name):
         return DualLevelAgent(pg_model=llm_api,
                               p_prompt_func=parser_prompt_func,
                               g_prompt_func=generator_prompt_func,
-                              planning_model=rl_module,
+                              planning_model=planning_model,
                               cpf=choice_prompt_func,
                               name=name)
     else:
