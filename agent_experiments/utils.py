@@ -97,8 +97,8 @@ def load_rl_module(weights_path: str, corpus_data_pth: str):
     return model
 
     # corpus_data_pth is forr training dataset, used to generater context/utterance embeddings
-    return GRUModel(weights_path, corpus_data_pth)
-
+    # return GRUModel(weights_path, corpus_data_pth)
+    
 
 def agent_builder(agent_type: str, agent_strategy: str, llm_response_prompt_func_arg: str, args, rl_module_weight_path=None, name: str='AI'):
     llm_api = get_llm_api(args.llm_api, args.llm_api_key)
