@@ -153,7 +153,7 @@ def get_model(name):
     choice_prompt_func = config['cpf']
 
     if agent_type == 'llm_no_planning':
-        llm_api = config['pg_model']
+        llm_api = config['model']
 
         agent_strategy = config['strategy']
         response_prompt_func = config['rpf']
