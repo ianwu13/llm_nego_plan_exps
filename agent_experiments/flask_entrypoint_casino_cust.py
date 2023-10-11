@@ -277,7 +277,7 @@ def setup_new_user():
     # update the storage appropriately
     STORAGE["users"]["mod_cxt_used"].add(chosen_mod_cxt)
     usr_model = get_model(chosen_mod_cxt[0])
-    usr_model.feed_context(chosen_mod_cxt[1])
+    usr_model.feed_context(chosen_mod_cxt[1].split()[6:])
 
     STORAGE["users"]["user_data"][randomId] = {
         "model": usr_model,
