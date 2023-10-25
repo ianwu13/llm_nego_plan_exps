@@ -21,10 +21,12 @@ SERVER_STATUS = "Not Ready"
 
 DIALOGUE_COUNT_CAP = 8
 
+ENCODING_KEY = ''  # TODO FILL LOCALLY
+llm_api_key = ''  # TODO FILL LOCALLY
+
 # DATASET SPECIFIC #############################################
 CTX_PAIRS_FILE = "flask_utils/mod_cxt_pairs_casino_cust.json"
 
-llm_api_key = ''  # TODO FILL LOCALLY
 LLM_API = utils.get_llm_api('gpt-3.5-turbo-0613', llm_api_key)
 
 LLM_NO_PLANNING_RESPONSE_FUNCT = utils.get_response_prompt_func('dia_resp_slagent_chatcomp_casino') 
@@ -244,6 +246,7 @@ def setup_new_user():
     """
     global STORAGE
     global DIALOGUE_COUNT_CAP
+    global ENCODING_KEY
 
     if SERVER_STATUS != "Ready":
         # server is not yet ready with the initial setup.
@@ -291,8 +294,8 @@ def setup_new_user():
     data["randomId"] = randomId
     data["hct"] = " ".join(chosen_mod_cxt[1].split()[:6])
     data["user_cxt"] = " ".join(chosen_mod_cxt[1].split()[:6])
-    data["agct"] = utils.encode(" ".join(chosen_mod_cxt[1].split()[6:]), key="")
-    data["agm"] = utils.encode(chosen_mod_cxt[0], key="")
+    data["agct"] = utils.encode(" ".join(chosen_mod_cxt[1].split()[6:]), key=ENCODING_KEY)
+    data["agm"] = utils.encode(chosen_mod_cxt[0], key=ENCODING_KEY)
     return json.dumps(data)
 
 
