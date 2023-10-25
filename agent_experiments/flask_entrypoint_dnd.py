@@ -335,7 +335,7 @@ def model_resp():
         model_obj.read(payload["human_utt"].split())
 
     # see if the human has already outputted a selection token
-    if '<selection>' in payload["human_utt"]:
+    if ('<selection>' in payload["human_utt"]) or ('$selection#' in payload["human_utt"]):
         # agent response is just the selection token
         resp = ["<selection>"]
     else:
