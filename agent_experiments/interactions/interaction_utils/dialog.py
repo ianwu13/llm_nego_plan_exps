@@ -62,7 +62,8 @@ class Dialog(object):
         # return len(out) == 1 and out[0] == '<selection>'
 
         # Changed to looser criteria for selection
-        return '<selection>' in ''.join(out)
+        utt = ''.join(out)
+        return ('<selection>' in utt) or ('$selection#' in utt)
 
     def show_metrics(self):
         return ' '.join([f'\n\t{k}={v}' for k, v in self.metrics.dict().items()])
