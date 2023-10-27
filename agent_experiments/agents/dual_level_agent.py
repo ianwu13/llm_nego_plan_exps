@@ -137,7 +137,7 @@ class DualLevelAgent(Agent):
                 'strategy': self.strategy,
                 'dialogue': self.dialogue,
                 'dia_acts': self.dialogue_acts,
-                'gen_act': "annotation " + resp_da
+                'gen_act': resp_da
             })
             
             write_utt = self.pg_model.get_model_outputs([generator_prompt])[0]  # Dialogue Act
