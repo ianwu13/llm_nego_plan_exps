@@ -87,6 +87,7 @@ class Annotator():
         prop_slots_correct = 0
         n_extra_pred_proposal_slots = 0
 
+        annot_storage = []
         for inst, val_inst in zip(self.dataset.get_instances(split='train', n=n_val), val_set):
             tru_labels = [set([u[1]] if isinstance(u[1], str) else u[1]) for u in val_inst]
             pred_labels = [set([remove_prefix(remove_prefix(a, 'the annotation for this utterance is'), 'annotation ') for a in ann.split(', ')]) for ann in self.annotate_instance(inst)]
@@ -97,6 +98,11 @@ class Annotator():
                 out_line = self.output_formatter(inst, [' '.join(p) for p in pred_labels])
                 f.write(out_line)
                 f.close()
+            elif self.out_file:
+                val_dialogues = [v[0] for v in val_inst]
+                pred_lab_lists = [list(ls) for ls in pred_labels]
+                annot_dialogue = [[d, ls] for d, ls in zip(val_dialogues, pred_lab_lists)]
+                annot_storage.append(annot_dialogue)
 
             for t, p in zip(tru_labels, pred_labels):
                 if t == '<selection>':
@@ -166,7 +172,11 @@ class Annotator():
                         else:
                             alpha = tmp[0]
                         label_precisions[l] = (alpha, beta)
-                    
+
+        if self.out_file and not self.output_formatter:
+            f = open(self.out_file, 'w')
+            f.write(json.dumps(annot_storage, indent=4))
+            f.close()
             
         label_counts = {l:v[1] for l, v in label_recalls.items()}
         for l in label_match_counts:
@@ -258,10 +268,8 @@ class Annotator():
         sp = self.failed_calls_file.split('.')
         sp[-2] += f'_{split}'
         fc_file_path = '.'.join(sp)
-        f = open(fc_file_path, 'w')
-        for call in self.llm_api.failed_calls:
-            f.write(json.dumps(call) + '\n')
-        f.close()
+        with open(fc_file_path, 'w') as f:
+            f.write(json.dumps(self.llm_api.failed_calls) + '\n')
         self.llm_api.failed_calls = []
         
     def annotate(self, split=None):

@@ -25,7 +25,7 @@ ENCODING_KEY = ''  # TODO FILL LOCALLY
 llm_api_key = ''  # TODO FILL LOCALLY
 
 # DATASET SPECIFIC #############################################
-CTX_PAIRS_FILE = "flask_utils/mod_cxt_pairs_casino_cust.json"
+CTX_PAIRS_FILE = "misc/flask_utils/mod_cxt_pairs_casino_cust.json"
 
 LLM_API = utils.get_llm_api('gpt-3.5-turbo-0613', llm_api_key)
 
@@ -49,7 +49,7 @@ GRU_MODELS = []
 # DATASET SPECIFIC ##################################################
 
 # MODEL_NAMES
-# ['np_generic', 'np_selfish', 'np_fair', 'sp_generic', 'sp_selfish', 'sp_fair', 'rl_supervised', 'rl_selfish', 'rl_fair']
+# ['np_generic', 'np_selfish', 'np_fair', 'sp_generic', 'sp_selfish', 'sp_fair', 'rl_supervised', 'rl_selfish', 'rl_fair', 'np_fair_tmplt, sp_generic_tmplt, sp_selfish_tmplt, sp_fair_tmplt, rl_supervised_tmplt, rl_selfish_tmplt, rl_fair_tmplt']
 
 MODEL_CONFIGS = {
     'np_generic': {
@@ -127,6 +127,66 @@ MODEL_CONFIGS = {
         'g_prompt_func': GENERATOR_FUNCT,
         'cpf': MODEL_CHOICE_FUNCT,
     },
+    'sp_generic_tmplt': {
+        'agent_type': 'llm_self_planning',
+        'strategy': 'generic',
+        'pg_model': LLM_API,
+        'planning_model': LLM_API,
+        'p_prompt_func': PARSER_FUNC,
+        'g_prompt_func': GENERATOR_FUNCT,
+        'rpf': LLM_W_PLANNING_RESPONSE_FUNCT,
+        'cpf': MODEL_CHOICE_FUNCT,
+        'template_gen': True,
+    },
+    'sp_selfish_tmplt': {
+        'agent_type': 'llm_self_planning',
+        'strategy': 'selfish',
+        'pg_model': LLM_API,
+        'planning_model': LLM_API,
+        'p_prompt_func': PARSER_FUNC,
+        'g_prompt_func': GENERATOR_FUNCT,
+        'rpf': LLM_W_PLANNING_RESPONSE_FUNCT,
+        'cpf': MODEL_CHOICE_FUNCT,
+        'template_gen': True,
+    },
+    'sp_fair_tmplt': {
+        'agent_type': 'llm_self_planning',
+        'strategy': 'fair',
+        'pg_model': LLM_API,
+        'planning_model': LLM_API,
+        'p_prompt_func': PARSER_FUNC,
+        'g_prompt_func': GENERATOR_FUNCT,
+        'rpf': LLM_W_PLANNING_RESPONSE_FUNCT,
+        'cpf': MODEL_CHOICE_FUNCT,
+        'template_gen': True,
+    },
+    'rl_supervised_tmplt': {
+        'agent_type': 'llm_rl_planning',
+        'pg_model': LLM_API,
+        'planning_model': 0,
+        'p_prompt_func': PARSER_FUNC,
+        'g_prompt_func': GENERATOR_FUNCT,
+        'cpf': MODEL_CHOICE_FUNCT,
+        'template_gen': True,
+    },
+    'rl_selfish_tmplt': {
+        'agent_type': 'llm_rl_planning',
+        'pg_model': LLM_API,
+        'planning_model': 1,
+        'p_prompt_func': PARSER_FUNC,
+        'g_prompt_func': GENERATOR_FUNCT,
+        'cpf': MODEL_CHOICE_FUNCT,
+        'template_gen': True,
+    },
+    'rl_fair_tmplt': {
+        'agent_type': 'llm_rl_planning',
+        'pg_model': LLM_API,
+        'planning_model': 2,
+        'p_prompt_func': PARSER_FUNC,
+        'g_prompt_func': GENERATOR_FUNCT,
+        'cpf': MODEL_CHOICE_FUNCT,
+        'template_gen': True,
+    },
 }
 
 
@@ -175,6 +235,12 @@ def get_model(name):
 
         parser_prompt_func = config['p_prompt_func']
         generator_prompt_func = config['g_prompt_func']
+        
+        template_gen = config.get('template_gen')
+        if template_gen:
+            template_funct = get_template_funct('casino')
+        else:
+            template_funct = None
 
         return DualLevelAgent(pg_model=llm_api,
                               p_prompt_func=parser_prompt_func,
@@ -182,6 +248,8 @@ def get_model(name):
                               planning_model=llm_api,
                               cpf=choice_prompt_func,
                               rpf=response_prompt_func,
+                              template_response=template_gen,
+                              tmplt_resp_prompt_fun=template_funct,
                               strategy=agent_strategy,
                               name=name)
     elif agent_type == 'llm_rl_planning':
@@ -192,12 +260,20 @@ def get_model(name):
 
         parser_prompt_func = config['p_prompt_func']
         generator_prompt_func = config['g_prompt_func']
+        
+        template_gen = config.get('template_gen')
+        if template_gen:
+            template_funct = get_template_funct('casino')
+        else:
+            template_funct = None
 
         return DualLevelAgent(pg_model=llm_api,
                               p_prompt_func=parser_prompt_func,
                               g_prompt_func=generator_prompt_func,
                               planning_model=planning_model,
                               cpf=choice_prompt_func,
+                              template_response=template_gen,
+                              tmplt_resp_prompt_fun=template_funct,
                               name=name)
     else:
         raise ValueError(f'{agent_type} is not a recognized agent type!')

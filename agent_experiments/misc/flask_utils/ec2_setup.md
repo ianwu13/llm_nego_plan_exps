@@ -54,7 +54,7 @@ sudo apt install python3-waitress
 
 ## Running the experiment
 
-1. On the machine used to host the Flask server, navigate to `llm_nego_plan_exps/agent_experiments/flask_utils`
+1. On the machine used to host the Flask server, navigate to `llm_nego_plan_exps/agent_experiments/misc/flask_utils`
 
 2. Run the command:
 ```
