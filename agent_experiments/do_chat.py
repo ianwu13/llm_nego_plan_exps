@@ -23,6 +23,8 @@ def main():
     parser.add_argument('--ai_type', type=str, default='llm_no_planning', 
         choices=['llm_no_planning', 'llm_self_planning', 'llm_rl_planning'],
         help='Agent type for the AI agent.')  
+    parser.add_argument('--template_gen', action='store_true', default=False,
+        help='Use templates to generate responses')
     parser.add_argument('--llm_api', type=str, default=None,
         help='Level at which the models interact [act|utt]/For llm its either GPT3.5/4')
     parser.add_argument('--llm_api_key', type=str, default=None,
@@ -70,7 +72,7 @@ def main():
     utils.set_seed(args.seed, torch_needed=True, np_needed=True)
 
     human = HumanAgent()
-    ai = utils.agent_builder(args.ai_type, args.agent_strategy, args.llm_response_prompt_func, args, rl_module_weight_path=args.model_file, name='AI')
+    ai = utils.agent_builder(args.ai_type, args.agent_strategy, args.llm_response_prompt_func, args.template_gen, args, rl_module_weight_path=args.model_file, name='AI')
 
     agents = [ai, human] if args.ai_starts else [human, ai]
 
