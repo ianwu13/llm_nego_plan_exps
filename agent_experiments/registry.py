@@ -56,6 +56,9 @@ INST2ANNOT_PROMPT_FUN_REG = {
     # FINAL
     "finalized_dnd": ("data.conversion.inst2p_functions", "finalized_dnd"),
     "finalized_casino_cust_format": ("data.conversion.inst2p_functions", "finalized_casino_cust_format"),
+
+    # Reduced tests
+    "reduced_casino_cust_format": ("data.conversion.inst2p_functions", "reduced_casino_cust_format"),
 }
 
 # Dialogue Annotations to Formatted Line Output

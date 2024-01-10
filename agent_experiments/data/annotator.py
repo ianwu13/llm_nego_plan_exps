@@ -18,11 +18,11 @@ DND_LABELS = [
 CASINO_ITEMS = ['food', 'water', 'firewood']
 CUST_LABELS = [
     'smalltalk',
-    'empathy coordination',
+    # 'empathy coordination',
     'no need',
     'elicit preference',
-    'undervalue',
-    'vouch fairness',
+    # 'undervalue',
+    # 'vouch fairness',
     'express preference',
     'propose',
     'disagree',
