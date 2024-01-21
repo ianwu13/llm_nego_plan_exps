@@ -1,0 +1,936 @@
+[
+    [
+        [
+            "THEM: i would like 4 hats and you can have the rest .",
+            [
+                "propose books=0 hats=4 balls=0"
+            ]
+        ],
+        [
+            "YOU: deal",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "THEM: <selection>",
+            [
+                "unknown"
+            ]
+        ]
+    ],
+    [
+        [
+            "YOU: i would like 4 hats and you can have the rest .",
+            [
+                "propose books=0 hats=4 balls=0"
+            ]
+        ],
+        [
+            "THEM: deal",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "YOU: <selection>",
+            [
+                "unknown"
+            ]
+        ]
+    ],
+    [
+        [
+            "THEM: hi i would like the book and ball and you can have the hats",
+            [
+                "propose books=1 hats=0 balls=1"
+            ]
+        ],
+        [
+            "YOU: i can give you either the book or the ball",
+            [
+                "propose books=1 balls=1"
+            ]
+        ],
+        [
+            "THEM: ill take the book",
+            [
+                "propose books=1"
+            ]
+        ],
+        [
+            "YOU: ok i will take the hats and ball",
+            [
+                "propose books=0 hats=3 balls=1"
+            ]
+        ],
+        [
+            "THEM: deal",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "YOU: <selection>",
+            [
+                "unknown"
+            ]
+        ]
+    ],
+    [
+        [
+            "YOU: hi i would like the book and ball and you can have the hats",
+            [
+                "propose books=1 hats=0 balls=1"
+            ]
+        ],
+        [
+            "THEM: i can give you either the book or the ball",
+            [
+                "propose books=1 balls=1"
+            ]
+        ],
+        [
+            "YOU: ill take the book",
+            [
+                "propose books=1"
+            ]
+        ],
+        [
+            "THEM: ok i will take the hats and ball",
+            [
+                "propose books=0 hats=3 balls=1"
+            ]
+        ],
+        [
+            "YOU: deal",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "THEM: <selection>",
+            [
+                "unknown"
+            ]
+        ]
+    ],
+    [
+        [
+            "YOU: i would like the hat and 3 books",
+            [
+                "propose books=3 hats=1 balls=0"
+            ]
+        ],
+        [
+            "THEM: can i have the hat and the balls ?",
+            [
+                "propose books=0 hats=1 balls=2"
+            ]
+        ],
+        [
+            "YOU: i need to have the hat",
+            [
+                "propose hats=1"
+            ]
+        ],
+        [
+            "THEM: take the books and give me the hat , its a win win , right ?",
+            [
+                "propose books=0 hats=1 balls=2"
+            ]
+        ],
+        [
+            "YOU: no it's not",
+            [
+                "disagree"
+            ]
+        ],
+        [
+            "THEM: <selection>",
+            [
+                "unknown"
+            ]
+        ]
+    ],
+    [
+        [
+            "THEM: lemme get that book and ball !",
+            [
+                "propose books=1 balls=1 hats=0"
+            ]
+        ],
+        [
+            "YOU: i need 2 balls and a hat",
+            [
+                "propose books=0 hats=1 balls=2"
+            ]
+        ],
+        [
+            "THEM: i'll take the book and two hats then ?",
+            [
+                "propose books=1 hats=2 balls=0"
+            ]
+        ],
+        [
+            "YOU: ok",
+            [
+                "unknown"
+            ]
+        ],
+        [
+            "THEM: <selection>",
+            [
+                "unknown"
+            ]
+        ]
+    ],
+    [
+        [
+            "YOU: lemme get that book and ball !",
+            [
+                "propose books=1 balls=1 hats=0"
+            ]
+        ],
+        [
+            "THEM: i need 2 balls and a hat",
+            [
+                "propose books=0 hats=1 balls=2"
+            ]
+        ],
+        [
+            "YOU: i'll take the book and two hats then ?",
+            [
+                "propose books=1 hats=2 balls=0"
+            ]
+        ],
+        [
+            "THEM: ok",
+            [
+                "unknown"
+            ]
+        ],
+        [
+            "YOU: <selection>",
+            [
+                "unknown"
+            ]
+        ]
+    ],
+    [
+        [
+            "THEM: hello . i would like the book and one ball .",
+            [
+                "propose books=1 balls=1 hats=0"
+            ]
+        ],
+        [
+            "YOU: you can have one ball 1 hat",
+            [
+                "propose books=1 hats=1 balls=3"
+            ]
+        ],
+        [
+            "THEM: i need the book or it's no deal .",
+            [
+                "insist books=1"
+            ]
+        ],
+        [
+            "YOU: no deal i am keeping the book",
+            [
+                "insist books=1"
+            ]
+        ],
+        [
+            "THEM: ok no deal",
+            [
+                "disagree"
+            ]
+        ],
+        [
+            "YOU: okay sounds good",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "THEM: alright",
+            [
+                "unknown"
+            ]
+        ],
+        [
+            "YOU: okay",
+            [
+                "unknown"
+            ]
+        ],
+        [
+            "THEM: alright no deal",
+            [
+                "disagree"
+            ]
+        ],
+        [
+            "YOU: okay its no deal",
+            [
+                "disagree"
+            ]
+        ],
+        [
+            "THEM: <selection>",
+            [
+                "unknown"
+            ]
+        ]
+    ],
+    [
+        [
+            "YOU: hello . i would like the book and one ball .",
+            [
+                "propose books=1 balls=1 hats=0"
+            ]
+        ],
+        [
+            "THEM: you can have one ball 1 hat",
+            [
+                "propose books=0 hats=1 balls=3"
+            ]
+        ],
+        [
+            "YOU: i need the book or it's no deal .",
+            [
+                "insist books=1"
+            ]
+        ],
+        [
+            "THEM: no deal i am keeping the book",
+            [
+                "insist books=1"
+            ]
+        ],
+        [
+            "YOU: ok no deal",
+            [
+                "disagree"
+            ]
+        ],
+        [
+            "THEM: okay sounds good",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "YOU: alright",
+            [
+                "unknown"
+            ]
+        ],
+        [
+            "THEM: okay",
+            [
+                "unknown"
+            ]
+        ],
+        [
+            "YOU: alright no deal",
+            [
+                "disagree"
+            ]
+        ],
+        [
+            "THEM: okay its no deal",
+            [
+                "disagree"
+            ]
+        ],
+        [
+            "YOU: <selection>",
+            [
+                "unknown"
+            ]
+        ]
+    ],
+    [
+        [
+            "THEM: i love basketball and reading",
+            [
+                "unknown"
+            ]
+        ],
+        [
+            "YOU: no . i want the hat and the balls",
+            [
+                "insist hats=1 balls=2"
+            ]
+        ],
+        [
+            "THEM: both balls ?",
+            [
+                "inquire balls"
+            ]
+        ],
+        [
+            "YOU: yeah or 1 ball and 1 book",
+            [
+                "propose books=1 hats=0 balls=1"
+            ]
+        ],
+        [
+            "THEM: ok i want the hat and you can have the rest",
+            [
+                "propose books=3 hats=0 balls=2"
+            ]
+        ],
+        [
+            "YOU: okay deal ill take the books and the balls you can have only the hat",
+            [
+                "propose books=3 hats=0 balls=2"
+            ]
+        ],
+        [
+            "THEM: ok",
+            [
+                "unknown"
+            ]
+        ],
+        [
+            "YOU: <selection>",
+            [
+                "unknown"
+            ]
+        ]
+    ],
+    [
+        [
+            "YOU: i love basketball and reading",
+            [
+                "unknown"
+            ]
+        ],
+        [
+            "THEM: no . i want the hat and the balls",
+            [
+                "insist hats=1 balls=2"
+            ]
+        ],
+        [
+            "YOU: both balls ?",
+            [
+                "inquire balls"
+            ]
+        ],
+        [
+            "THEM: yeah or 1 ball and 1 book",
+            [
+                "propose books=1 hats=0 balls=1"
+            ]
+        ],
+        [
+            "YOU: ok i want the hat and you can have the rest",
+            [
+                "propose books=3 hats=0 balls=2"
+            ]
+        ],
+        [
+            "THEM: okay deal ill take the books and the balls you can have only the hat",
+            [
+                "propose books=3 hats=0 balls=2"
+            ]
+        ],
+        [
+            "YOU: ok",
+            [
+                "unknown"
+            ]
+        ],
+        [
+            "THEM: <selection>",
+            [
+                "unknown"
+            ]
+        ]
+    ],
+    [
+        [
+            "YOU: well now . i see two of everything . how about we split it down the middle ?",
+            [
+                "propose books=1 hats=1 balls=1"
+            ]
+        ],
+        [
+            "THEM: i really just need the 2 books and 1 hat",
+            [
+                "propose books=2 hats=1 balls=0"
+            ]
+        ],
+        [
+            "YOU: hmm . i could give you the two books , but i'd need both hats and both books in exchange .",
+            [
+                "propose books=2 hats=2 balls=0"
+            ]
+        ],
+        [
+            "THEM: you mean both balls ?",
+            [
+                "inquire balls"
+            ]
+        ],
+        [
+            "YOU: gah , yeah . sorry .",
+            [
+                "unknown"
+            ]
+        ],
+        [
+            "THEM: ok i will take both books and you can have the rest",
+            [
+                "propose books=2 hats=0 balls=0"
+            ]
+        ],
+        [
+            "YOU: deal",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "THEM: <selection>",
+            [
+                "unknown"
+            ]
+        ]
+    ],
+    [
+        [
+            "THEM: well now . i see two of everything . how about we split it down the middle ?",
+            [
+                "propose books=1 hats=1 balls=1"
+            ]
+        ],
+        [
+            "YOU: i really just need the 2 books and 1 hat",
+            [
+                "propose books=2 hats=1 balls=0"
+            ]
+        ],
+        [
+            "THEM: hmm . i could give you the two books , but i'd need both hats and both books in exchange .",
+            [
+                "propose books=2 hats=2 balls=0"
+            ]
+        ],
+        [
+            "YOU: you mean both balls ?",
+            [
+                "inquire balls"
+            ]
+        ],
+        [
+            "THEM: gah , yeah . sorry .",
+            [
+                "unknown"
+            ]
+        ],
+        [
+            "YOU: ok i will take both books and you can have the rest",
+            [
+                "propose books=2 hats=0 balls=0"
+            ]
+        ],
+        [
+            "THEM: deal",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "YOU: <selection>",
+            [
+                "unknown"
+            ]
+        ]
+    ],
+    [
+        [
+            "YOU: i would like the ball and two books",
+            [
+                "propose books=2 hats=0 balls=1"
+            ]
+        ],
+        [
+            "THEM: gimme books and hat",
+            [
+                "propose books=1 hats=1 balls=0"
+            ]
+        ],
+        [
+            "YOU: can i have one book",
+            [
+                "propose books=1"
+            ]
+        ],
+        [
+            "THEM: yes",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "YOU: <selection>",
+            [
+                "unknown"
+            ]
+        ]
+    ],
+    [
+        [
+            "THEM: i would like the ball and two books",
+            [
+                "propose books=2 hats=0 balls=1"
+            ]
+        ],
+        [
+            "YOU: gimme books and hat",
+            [
+                "propose books=3 hats=1 balls=0"
+            ]
+        ],
+        [
+            "THEM: can i have one book",
+            [
+                "propose books=1"
+            ]
+        ],
+        [
+            "YOU: yes",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "THEM: <selection>",
+            [
+                "unknown"
+            ]
+        ]
+    ],
+    [
+        [
+            "THEM: hi , i'd like 1 hat and 2 books",
+            [
+                "propose hats=1 books=2 balls=0"
+            ]
+        ],
+        [
+            "YOU: 2 ball 1 book",
+            [
+                "propose books=1 balls=2"
+            ]
+        ],
+        [
+            "THEM: <selection>",
+            [
+                "unknown"
+            ]
+        ]
+    ],
+    [
+        [
+            "THEM: i'll take the hat , you can have the rest .",
+            [
+                "propose books=4 hats=0 balls=2"
+            ]
+        ],
+        [
+            "YOU: i would like the balls , hat and 2 books",
+            [
+                "propose books=2 hats=1 balls=2"
+            ]
+        ],
+        [
+            "THEM: i can give you the hat and the balls if i keep the books .",
+            [
+                "propose books=4 hats=0 balls=0"
+            ]
+        ],
+        [
+            "YOU: sorry that wont work .",
+            [
+                "disagree"
+            ]
+        ],
+        [
+            "THEM: can you either give me the hat or 3 of the books ?",
+            [
+                "propose books=3 hats=1 balls=0"
+            ]
+        ],
+        [
+            "YOU: sorry looks like we wont be making a deal",
+            [
+                "disagree"
+            ]
+        ],
+        [
+            "THEM: yeah i have no idea how to do that .",
+            [
+                "unknown"
+            ]
+        ],
+        [
+            "YOU: we keep saying no deal until the no deal button appears",
+            [
+                "unknown"
+            ]
+        ],
+        [
+            "THEM: oh , how about i get 2 books ?",
+            [
+                "propose books=2"
+            ]
+        ],
+        [
+            "YOU: you get 2 books and i get the rest ?",
+            [
+                "propose books=2 hats=1 balls=2"
+            ]
+        ],
+        [
+            "THEM: yes .",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "YOU: deal",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "THEM: <selection>",
+            [
+                "unknown"
+            ]
+        ]
+    ],
+    [
+        [
+            "YOU: i'll take the hat , you can have the rest .",
+            [
+                "propose books=4 hats=0 balls=2"
+            ]
+        ],
+        [
+            "THEM: i would like the balls , hat and 2 books",
+            [
+                "propose books=2 hats=1 balls=2"
+            ]
+        ],
+        [
+            "YOU: i can give you the hat and the balls if i keep the books .",
+            [
+                "propose books=4 hats=0 balls=0"
+            ]
+        ],
+        [
+            "THEM: sorry that wont work .",
+            [
+                "disagree"
+            ]
+        ],
+        [
+            "YOU: can you either give me the hat or 3 of the books ?",
+            [
+                "propose books=3 hats=1 balls=0"
+            ]
+        ],
+        [
+            "THEM: sorry looks like we wont be making a deal",
+            [
+                "disagree"
+            ]
+        ],
+        [
+            "YOU: yeah i have no idea how to do that .",
+            [
+                "unknown"
+            ]
+        ],
+        [
+            "THEM: we keep saying no deal until the no deal button appears",
+            [
+                "unknown"
+            ]
+        ],
+        [
+            "YOU: oh , how about i get 2 books ?",
+            [
+                "propose books=2"
+            ]
+        ],
+        [
+            "THEM: you get 2 books and i get the rest ?",
+            [
+                "propose books=2 hats=1 balls=2"
+            ]
+        ],
+        [
+            "YOU: yes .",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "THEM: deal",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "YOU: <selection>",
+            [
+                "unknown"
+            ]
+        ]
+    ],
+    [
+        [
+            "YOU: if i can have the hats and the books you can have the ball",
+            [
+                "propose books=3 hats=2 balls=0"
+            ]
+        ],
+        [
+            "THEM: so you want me to only have the ball ? no deal make me a better offer",
+            [
+                "disagree"
+            ]
+        ],
+        [
+            "YOU: i will take the hats and two books and you can have the rest",
+            [
+                "propose books=2 hats=2 balls=0"
+            ]
+        ],
+        [
+            "THEM: no deal ill take the books and the ball you can have the rest",
+            [
+                "propose books=3 hats=0 balls=1"
+            ]
+        ],
+        [
+            "YOU: i can take the hats and one book and you can have the res",
+            [
+                "propose books=1 hats=2 balls=0"
+            ]
+        ],
+        [
+            "THEM: no ill take the books the hats and the balls then",
+            [
+                "propose books=3 hats=2 balls=1"
+            ]
+        ],
+        [
+            "YOU: clearly that isn't an option",
+            [
+                "disagree"
+            ]
+        ],
+        [
+            "THEM: it is an option .",
+            [
+                "unknown"
+            ]
+        ],
+        [
+            "YOU: well it isn't going to happen . you can either try to make a deal or not . i am suggesting that i take the hats and a book or the ball . you are not being reasonable by wanting everything",
+            [
+                "propose hats=2 books=1 balls=0"
+            ]
+        ],
+        [
+            "THEM: you did not suggest hat and ball . you suggested i take the ball , that makes you unreasonable so dont be a hypocrite . you can have only the hats at this point",
+            [
+                "propose hats=2 books=0 balls=0"
+            ]
+        ],
+        [
+            "YOU: <selection>",
+            [
+                "unknown"
+            ]
+        ]
+    ],
+    [
+        [
+            "THEM: if i can have the hats and the books you can have the ball",
+            [
+                "propose books=3 hats=2 balls=0"
+            ]
+        ],
+        [
+            "YOU: so you want me to only have the ball ? no deal make me a better offer",
+            [
+                "disagree"
+            ]
+        ],
+        [
+            "THEM: i will take the hats and two books and you can have the rest",
+            [
+                "propose books=2 hats=2 balls=0"
+            ]
+        ],
+        [
+            "YOU: no deal ill take the books and the ball you can have the rest",
+            [
+                "propose books=3 hats=0 balls=1"
+            ]
+        ],
+        [
+            "THEM: i can take the hats and one book and you can have the res",
+            [
+                "propose books=1 hats=2 balls=0"
+            ]
+        ],
+        [
+            "YOU: no ill take the books the hats and the balls then",
+            [
+                "propose books=3 hats=2 balls=1"
+            ]
+        ],
+        [
+            "THEM: clearly that isn't an option",
+            [
+                "disagree"
+            ]
+        ],
+        [
+            "YOU: it is an option .",
+            [
+                "unknown"
+            ]
+        ],
+        [
+            "THEM: well it isn't going to happen . you can either try to make a deal or not . i am suggesting that i take the hats and a book or the ball . you are not being reasonable by wanting everything",
+            [
+                "propose books=1 hats=2 balls=0"
+            ]
+        ],
+        [
+            "YOU: you did not suggest hat and ball . you suggested i take the ball , that makes you unreasonable so dont be a hypocrite . you can have only the hats at this point",
+            [
+                "propose hats=2 books=0 balls=0"
+            ]
+        ],
+        [
+            "THEM: <selection>",
+            [
+                "unknown"
+            ]
+        ]
+    ]
+]
