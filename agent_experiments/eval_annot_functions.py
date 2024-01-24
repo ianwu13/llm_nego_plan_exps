@@ -19,6 +19,8 @@ def main():
         help='llm api to be used in annotation')
     parser.add_argument('--llm_api_key', type=str, default=None,
         help='Key to be used when calling provided API')
+    parser.add_argument('--postprocess', action='store_true', default=False,
+        help='Apply postprocessing to annotations')
     parser.add_argument('--validation_file', type=str, default=None,
         help='destination for validation file')
 

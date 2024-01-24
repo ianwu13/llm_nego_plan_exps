@@ -13,6 +13,8 @@ def main():
     parser = argparse.ArgumentParser(description='script to annotate data')
     parser.add_argument('--dataset', type=str, choices=['dnd','casino'],
         help='Dataset handler ID')
+    parser.add_argument('--postprocess', action='store_true', default=False,
+        help='Apply postprocessing to annotations')
     parser.add_argument('--inst_to_prompt_funct', type=str, default='example',
         help='function to convert instance (set of utterances) to (set of) prompts, based on the dataset')
     parser.add_argument('--avg_annot_words', type=float, default=2,
