@@ -68,16 +68,10 @@ Facebook code, He et al?, etc...
 
 ***
 
-# NOT IAN'S
-
 ## Adding a new dataset, model, or task
 
 1. Update the registry variables.
 2. Follow existing templates in the codebase to add a new class for the dataset, model, or task.
-
-## Running a task
-
-```python main.py --storage_dir ../../storage/ --dataset_name dnd --model_name open_ai  --task_name total_item_count```
 
 ## Formatting Guidelines
 
