@@ -17,7 +17,7 @@ def main():
         help='Apply postprocessing to annotations')
     parser.add_argument('--inst_to_prompt_funct', type=str, default='example',
         help='function to convert instance (set of utterances) to (set of) prompts, based on the dataset')
-    parser.add_argument('--avg_annot_words', type=float, default=2,
+    parser.add_argument('--avg_annot_words', type=float, default=8,
         help='Average number of words in annotations (estimate)')
     parser.add_argument('--cost_per_1k_inp_tok', type=float, default=0.03,
         help='Cost of 1k input tokens for the specified API')  # 0.0015 for GPT 3.5
@@ -26,7 +26,9 @@ def main():
     parser.add_argument('--tok_scaling_factor', type=float, default=1.33,
         help='Average number of tokens per word')
     args = parser.parse_args()
-    
+    # python3 estimate_budget.py --dataset casino --postprocess --inst_to_prompt_funct reduced_casino_cust_format --avg_annot_words 8
+    # python3 estimate_budget.py --dataset casino --postprocess --inst_to_prompt_funct diahist_and_reduced_casino_cust_format --avg_annot_words 8 --cost_per_1k_inp_tok 0.01 --cost_per_1k_out_tok 0.03
+
     # Handle unused arg for annotator init
     args.start_index = 0  
     args.failed_calls_file = None
@@ -40,7 +42,7 @@ def main():
 
     print(f'\n{args.dataset.upper()} ANNOTATION:\n')
     print(f'Estimated total cost: ${cost_est:0,.2f}')
-    print(f'\t${args.cost_per_1k_out_tok:0,.2f}/{args.cost_per_1k_inp_tok:0,.2f} per 1K input/output tokens')
+    print(f'\t${args.cost_per_1k_inp_tok:0,.2f}/{args.cost_per_1k_out_tok:0,.2f} per 1K input/output tokens')
     print(f'\t@ {num_tok} Tokens ({in_tok}/{out_tok} in/out), {num_words} Words')
     print()
 

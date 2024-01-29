@@ -350,10 +350,10 @@ class Annotator():
 
                 for p in prompts:
                     if isinstance(p, str):  # Completions Prompt
-                        num_in_words += len(p)
+                        num_in_words += p.count(' ')
                     elif isinstance(p, list):  # Chat Prompt
                         for msg in p:
-                            num_in_words += len(msg['content'])
+                            num_in_words += msg['content'].count(' ')
 
                 # Account for returned tokens
                 num_out_words += len(prompts) * avg_annot_words
@@ -369,6 +369,7 @@ class Annotator():
         num_words = num_in_words + num_out_tok
 
         return cost_est, num_tok, num_words, num_in_tok, num_out_tok
+
 
     def annotate_instance(self, inst):
         prompts = self.inst2promp_funct(inst)
