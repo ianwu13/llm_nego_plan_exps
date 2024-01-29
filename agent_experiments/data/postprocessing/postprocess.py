@@ -1,10 +1,33 @@
 import json
 import sys
-dnd_items = ['books', 'hats', 'balls']
-casino_items = ['firewood', 'water', 'food']
-dnd_label = ["smalltalk", 'propose', 'inquire', 'insist', "agree", "disagree", "unknown"]
-casino_label = ["noneed", "undervalue", "expresspreference", "elicitpreference", "vouchfairness",
-             "empathycoordination","smalltalk", 'propose', 'inquire', 'insist', "agree", "disagree", "unknown"]
+
+DND_ITEMS = ['books', 'hats', 'balls']
+DND_LABELS = [
+    'greet',
+    'inquire',
+    'propose',
+    'disagree',
+    'insist',
+    'agree',
+    'unknown',
+]
+
+CASINO_ITEMS = ['food', 'water', 'firewood']
+CUST_LABELS = [
+    'smalltalk',
+    # 'empathy coordination',
+    'noneed',  # NEED SLOTS
+    'elicitpreference',
+    # 'undervalue',  # NEED SLOTS
+    # 'vouch fairness',
+    'expresspreference',  # NEED SLOTS
+    'propose',  # NEED SLOTS
+    'disagree',
+    'agree',
+    'unknown',
+]
+
+
 def remove_space(annot_list):
     for i in range(0, len(annot_list)):
         each = annot_list[i]
@@ -152,21 +175,21 @@ def format(conv):
         else:
             chop_result += format_annot
 
-    result = '<dialogue> ' + result + ' \<dialogue>'
-    chop_result = '<dialogue> ' + chop_result + ' \<dialogue>'
+    result = '<dialogue> ' + result + ' </dialogue>'
+    chop_result = '<dialogue> ' + chop_result + ' </dialogue>'
     return result, chop_result
 
 # python3 postprocess.py input_file_name output_file_name datasetname(dnd or casino, default = dnd)
 def main(argv):
     file_name = argv[0]
     out_file_name = argv[1]
-    out_file_name_chop = 'chop_' + out_file_name
+    out_file_name_chop = '_chop.'.join(out_file_name.rsplit('.', 1))
     # dataset = 'dnd'
-    item_list = dnd_items
-    label_list = dnd_label
+    item_list = DND_ITEMS
+    label_list = DND_LABELS
     if argv[2] == 'casino':
-        item_list = casino_items
-        label_list = casino_label
+        item_list = CASINO_ITEMS
+        label_list = CUST_LABELS
 
     input_file = open(file_name, 'r')
     output_file = open(out_file_name, 'w')
@@ -174,7 +197,7 @@ def main(argv):
     data = json.load(input_file)
     for index, each_conver in enumerate(data):
         print("CONVERSATION:" + str(index))
-        conv1, conv2 = process_conver(each_conver, item_list, label_list)
+        conv1, conv2 = process_conver(each_conver['Raw_Pred'], item_list, label_list)
         output_file.write(str(conv1) + '\n')
         output_file_chop.write(str(conv2) + '\n')
         # print(each_conversation)
@@ -182,5 +205,10 @@ def main(argv):
     output_file.close()
     output_file_chop.close()
  
+
 if __name__ == "__main__":
     main(sys.argv[1:])
+
+# python3 postprocess.py input_file_name.json output_file_name.txt datasetname(dnd or casino, default = dnd)
+
+# python3 postprocess.py ../../storage/annot_tests/in_prog/context_and_reduced_casino_cust_format.json ../../storage/annot_tests/in_prog/formatted_outs/postprocessed_preds.txt casino
