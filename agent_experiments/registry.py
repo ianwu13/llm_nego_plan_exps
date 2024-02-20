@@ -136,5 +136,8 @@ UTT2ACT_PROMPT_FUN_REG = {
     # Finalized versions (FROM ANNOTATION PIPELINE)
     # "example": ("lang_models.llm_apis.prompting.utt2act_functions", "example_u2a_func"),
     "final_utt2act_dnd": ("lang_models.llm_apis.prompting.utt2act_functions", "final_utt2act_dnd"),
-    "final_utt2act_casino_cust": ("lang_models.llm_apis.prompting.utt2act_functions", "final_utt2act_casino_cust")
+    "final_utt2act_casino_cust": ("lang_models.llm_apis.prompting.utt2act_functions", "final_utt2act_casino_cust"),
+
+    # CURRENT
+    "reduced_casino_cust_format": ("lang_models.llm_apis.prompting.utt2act_functions", "reduced_casino_cust_format"),
 }

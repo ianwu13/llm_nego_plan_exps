@@ -134,3 +134,24 @@ This is a list of possible annotation labels with descriptions. Note that "<slot
 
     return [[system_msg, {'role': 'user', 'content': f'What is the annotation for this utterance? "{inst["read_inpt"]}"'}]]
 
+
+def reduced_casino_cust_format(inst):
+    system_msg = {
+        'role': 'system',
+        'content': 
+'''You are assisting the user in annotating utterances in a negotiation for dividing 3 units each of food, water, and firewood. 
+Respond to user requests succinctly, giving only the annotation, without extra words. 
+An utterance may have multiple correct annotations.'
+This is a list of possible annotation labels with descriptions. Note that "<slot>" indicates optional values that are filled based on the utterance.:
+"smalltalk" - greeting the partner or small talk.
+"elicit preference <slot>" - asks about partner preferences. For example, "what items do you want most?" would be annotated "elicit preference", while "How much firewood do you want?" would be labeled "elicit preference firewood".
+"no need <slot>" - a specific item is not important to the speaker. For example, "we already have plenty of water" would be annotated "no need water".
+"express preference <slot>" - implies the speaker's preference for an item. For example, "I really need food" would be annotated "express preference food".
+"propose <slot>" - proposes an offer. Slots are filled based on what the speaker of the utterance gets. For example, "How about I get 2 water and you get all the food" would be labeled "propose food=0 water=2". "you can have all three water if i get all the food and firewood" would be annotated "propose food=3 water=0 firewood=3". "yes, I get 2 food 3 water and 1 firewood and you get 1 food and 2 firewood" would be annotated "propose food=2 water=3 firewood=1" because the speaker recieves 2 food, 3 water, and  1 firewood. "OK, you get 1 Food, 1 firewood and 3 waters" would be annotated "propose food=2 water=0 firewood=2" because after the partner gets their items there would be 2 food, 0 water, and 2 firewood for the speaker to recieve.
+"disagree" - implies disagreement or dissatisfaction with a deal.
+"agree" - showing agreement to a deal or proposal. For example, the utterances "deal" or "Submit-Deal" would both be annotated "agree".
+"unknown" - the utterance does not fit any of the above labels.'''
+    }
+
+    return [[system_msg, {'role': 'user', 'content': f'What is the annotation for this utterance? "{inst["read_inpt"]}"'}]]
+
