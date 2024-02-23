@@ -67,7 +67,9 @@ This is a list of possible annotation labels with descriptions. Note that "<slot
     }
     
     item_counts = inst['ctx']
-    reason = " ".join(inst["ctx"][inst["ctx"].index("=")+1:])
+    print()
+    # reason = " ".join(inst["ctx"][inst["ctx"].index("=")+1:])
+    reason = ""
     ctx_str = f'CONTEXT: "{item_counts[0]} firewoods {item_counts[2]} water {item_counts[4]} food"' + reason
     curr_utt = inst['read_inpt']
 
