@@ -19,12 +19,14 @@ def main():
         help='llm api to be used in annotation')
     parser.add_argument('--llm_api_key', type=str, default=None,
         help='Key to be used when calling provided API')
+    parser.add_argument('--postprocess', action='store_true', default=False,
+        help='Apply postprocessing to annotations')
     parser.add_argument('--validation_file', type=str, default=None,
         help='destination for validation file')
 
     parser.add_argument('--output_formatter', type=str, default=None,
         help='function to convert set of instance annotations to a string (line) for the output file')
-    parser.add_argument('--output_file', type=str,
+    parser.add_argument('--output_file', type=str, default=None,
         help='destination for output file')
     args = parser.parse_args()
     
@@ -49,3 +51,7 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+# python3 eval_annot_functions.py --dataset casino --inst_to_prompt_funct finalized_casino_cust_format --llm_api gpt-3.5-turbo-0613 --llm_api_key FILL --validation_file data/annot_val_sets/casino_customform_valset.json
+# python3 eval_annot_functions.py --dataset dnd --inst_to_prompt_funct finalized_dnd --llm_api gpt-3.5-turbo-0613 --llm_api_key FILL --validation_file data/annot_val_sets/dnd_valset.json

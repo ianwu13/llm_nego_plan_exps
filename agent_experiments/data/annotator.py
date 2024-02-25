@@ -1,3 +1,4 @@
+from collections import defaultdict
 from tqdm import tqdm
 import json
 
@@ -18,17 +19,130 @@ DND_LABELS = [
 CASINO_ITEMS = ['food', 'water', 'firewood']
 CUST_LABELS = [
     'smalltalk',
-    'empathy coordination',
-    'no need',
-    'elicit preference',
-    'undervalue',
-    'vouch fairness',
-    'express preference',
-    'propose',
+    # 'empathy coordination',
+    'noneed',  # NEED SLOTS
+    'elicitpreference',
+    # 'undervalue',  # NEED SLOTS
+    # 'vouch fairness',
+    'expresspreference',  # NEED SLOTS
+    'propose',  # NEED SLOTS
     'disagree',
     'agree',
     'unknown',
 ]
+
+
+class PostProcessor():
+    def __init__(self, dataset='casino'):
+        # Get proper labels
+        if dataset == 'dnd':
+            self.items = DND_ITEMS
+            self.labels = DND_LABELS
+            raise NotImplementedError(
+                'This script is currently intended only for CaSiNo custom format cleaning. I have included dataset as an arg here to make room for future expansion if needed')
+        elif dataset == 'casino':
+            self.items = CASINO_ITEMS
+            self.labels = CUST_LABELS
+        else:
+            raise Exception(f'dataset must be "dnd" or "casino". (Given: "{dataset}")')
+
+    def hack_iter(self, listy):
+        for i in listy:
+            yield i
+        yield None
+
+    def slot_getter(self, annot_iterator, labels_list, items_list):
+        slots_list = []
+        
+        cur = next(annot_iterator)
+        while cur:
+            valid = False
+            # If cur is not a label, should always keep going
+            if cur not in labels_list:
+                valid = True
+            # Check if cur is a valid slot
+            if not (cur.endswith('<slot>')) and ('>' not in cur) and ('<' not in cur):
+                for i in items_list:
+                    if cur.startswith(i):
+                        slots_list.append(cur)
+                        valid = True
+                        break
+            if not valid:
+                break
+
+            cur = next(annot_iterator)
+        
+        # make set to remove duplicates
+        slots_list = set(slots_list)
+        
+        # Sort slots order
+        sorted_slots = []
+        for i in items_list:
+            for s in slots_list:
+                if s.startswith(i):
+                    sorted_slots.append(s)
+
+        return cur, sorted_slots
+
+    def clean_annot(self, ann):
+        ann = ann.\
+                replace('no need', 'noneed').\
+                replace('elicit preference', 'elicitpreference').\
+                replace('express preference', 'expresspreference')
+        u_splt = ann.replace(', ', ' ').split()
+
+        # Get labels
+        slots_dict = defaultdict(lambda: [False])
+        annot_iter = self.hack_iter(u_splt)
+
+        cur = next(annot_iter)
+        while cur:
+            if cur in self.labels:
+                slots_dict[cur][0] = True
+
+                tmp_cur = cur
+                cur, slots = self.slot_getter(annot_iter, self.labels, self.items)
+                slots_dict[tmp_cur].extend(slots)
+            elif cur == '<selection>':
+                slots_dict = False
+                break
+            else:
+                print(f'Invalid annot token found: {cur}. Full utterance annots: "{ann}"')
+                cur = next(annot_iter)
+
+        if slots_dict:
+            # If label has been found but does not have necessary slots, remove
+            for slot_needing_label in ['noneed', 'undervalue', 'expresspreference', 'propose']:
+                if len(slots_dict[slot_needing_label]) < 2:
+                    slots_dict[slot_needing_label][0] = False
+            # Make sure there are still some labels or set to unknown
+            has_slots = False
+            for l in slots_dict:
+                if l[0]:
+                    has_slots = True
+                    break
+            if not has_slots:
+                slots_dict['unknown'][0] = True
+
+            labels_list = []
+            for l in self.labels:
+                if slots_dict[l][0]:
+                    cur_label_str = l
+
+                    sorted_slots = slots_dict[l][1:]
+                    if sorted_slots:
+                        cur_label_str += ' ' + ' '.join(sorted_slots)
+
+                    labels_list.append(cur_label_str)
+        else:
+            labels_list = ['<selection>']
+
+        fixed_annots = ', '.join(labels_list)
+        return fixed_annots
+
+    def postprocess_dia(self, dia):
+        # TODO: ZORA POSTPROCESSING HERE
+        return dia
 
 
 class Annotator():
@@ -37,6 +151,15 @@ class Annotator():
         self.dataset = dataset
         self.inst2promp_funct = inst2promp_funct
         self.llm_api = llm_api
+        if hasattr(args, 'postprocess') and args.postprocess:
+            self.postprocessor = PostProcessor(args.dataset)
+        else:
+            print('Postprocessing is set to False but is usually necessary. Are you sure?')
+            sure = input('enter any text to restart')
+            if sure:
+                exit()
+            self.postprocessor = None
+
         self.output_formatter = output_formatter
         self.out_file = out_file
 
@@ -87,16 +210,29 @@ class Annotator():
         prop_slots_correct = 0
         n_extra_pred_proposal_slots = 0
 
+        annot_storage = []
         for inst, val_inst in zip(self.dataset.get_instances(split='train', n=n_val), val_set):
             tru_labels = [set([u[1]] if isinstance(u[1], str) else u[1]) for u in val_inst]
-            pred_labels = [set([remove_prefix(remove_prefix(a, 'the annotation for this utterance is'), 'annotation ') for a in ann.split(', ')]) for ann in self.annotate_instance(inst)]
+            
+            # pred_labels = [set([remove_prefix(remove_prefix(a, 'the annotation for this utterance is'), 'annotation ') for a in ann.split(', ')]) for ann in self.annotate_instance(inst)]
+            if self.postprocessor:
+                # Clean predictions
+                pred_labels = [set(remove_prefix(remove_prefix(self.postprocessor.clean_annot(ann), 'the annotation for this utterance is'), 'annotation ').split(', ')) for ann in self.annotate_instance(inst)]
+            else:
+                pred_labels = [set(remove_prefix(remove_prefix(ann, 'the annotation for this utterance is'), 'annotation ').split(', ')) for ann in self.annotate_instance(inst)]
 
             # Write annotations to file if needed
-            if self.output_formatter:
-                f = open(self.out_file, 'a')
-                out_line = self.output_formatter(inst, [' '.join(p) for p in pred_labels])
-                f.write(out_line)
-                f.close()
+            if self.out_file:
+                val_dialogues = [v[0] for v in val_inst]
+                pred_lab_lists = [list(ls) for ls in pred_labels]
+                raw_annot_dialogue = [[d, ls] for d, ls in zip(val_dialogues, pred_lab_lists)]
+
+                if self.output_formatter:
+                    pred_out_line = self.output_formatter(inst, [' '.join(p) for p in pred_labels])
+                    true_out_line = self.output_formatter(inst, [' '.join(t) for t in tru_labels])
+                    annot_storage.append({'Formatted_True': true_out_line, 'Formatted_Pred': pred_out_line, 'Raw_Pred': raw_annot_dialogue})
+                else:
+                    annot_storage.append(raw_annot_dialogue)
 
             for t, p in zip(tru_labels, pred_labels):
                 if t == '<selection>':
@@ -166,7 +302,11 @@ class Annotator():
                         else:
                             alpha = tmp[0]
                         label_precisions[l] = (alpha, beta)
-                    
+
+        if self.out_file:
+            f = open(self.out_file, 'w')
+            f.write(json.dumps(annot_storage, indent=4))
+            f.close()
             
         label_counts = {l:v[1] for l, v in label_recalls.items()}
         for l in label_match_counts:
@@ -210,10 +350,10 @@ class Annotator():
 
                 for p in prompts:
                     if isinstance(p, str):  # Completions Prompt
-                        num_in_words += len(p)
+                        num_in_words += p.count(' ')
                     elif isinstance(p, list):  # Chat Prompt
                         for msg in p:
-                            num_in_words += len(msg['content'])
+                            num_in_words += msg['content'].count(' ')
 
                 # Account for returned tokens
                 num_out_words += len(prompts) * avg_annot_words
@@ -229,6 +369,7 @@ class Annotator():
         num_words = num_in_words + num_out_tok
 
         return cost_est, num_tok, num_words, num_in_tok, num_out_tok
+
 
     def annotate_instance(self, inst):
         prompts = self.inst2promp_funct(inst)
@@ -248,9 +389,15 @@ class Annotator():
             annotations = self.annotate_instance(inst)
 
             # Preprocessing
-            annotations = [' '.join([remove_prefix(remove_prefix(a, 'the annotation for this utterance is'), 'annotation ') for a in ann.split(', ')]) for ann in annotations]
-            
+            # annotations = [' '.join([remove_prefix(remove_prefix(a, 'the annotation for this utterance is'), 'annotation ') for a in ann.split(', ')]) for ann in annotations]
+            if self.postprocessor:
+                # Clean predictions
+                annotations = [' '.join(remove_prefix(remove_prefix(self.postprocessor.clean_annot(ann), 'the annotation for this utterance is'), 'annotation ').split(', ')) for ann in annotations]
+            else:
+                annotations = [' '.join(remove_prefix(remove_prefix(ann, 'the annotation for this utterance is'), 'annotation ').split(', ')) for ann in annotations]
+
             out_line = self.output_formatter(inst, annotations)
+            # TODO: apply zora postprocessing here? (might need to go elsewhere)
             f.write(out_line)
         f.close()
 
@@ -258,10 +405,8 @@ class Annotator():
         sp = self.failed_calls_file.split('.')
         sp[-2] += f'_{split}'
         fc_file_path = '.'.join(sp)
-        f = open(fc_file_path, 'w')
-        for call in self.llm_api.failed_calls:
-            f.write(json.dumps(call) + '\n')
-        f.close()
+        with open(fc_file_path, 'w') as f:
+            f.write(json.dumps(self.llm_api.failed_calls) + '\n')
         self.llm_api.failed_calls = []
         
     def annotate(self, split=None):

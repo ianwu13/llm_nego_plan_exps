@@ -1,0 +1,969 @@
+================================================================================
+Alice : book=(count:3 value:5) hat=(count:3 value:3) ball=(count:3 value:4)
+Bob   : book=(count:3 value:5) hat=(count:3 value:3) ball=(count:3 value:4)
+--------------------------------------------------------------------------------
+Alice : smalltalk <eos>
+Bob   : elicitpreference <eos>
+Alice : elicitpreference expresspreference food <eos>
+Bob   : expresspreference food <eos>
+Alice : noneed water expresspreference food firewood <eos>
+Bob   : expresspreference food <eos>
+Alice : propose food=2 water=2 <eos>
+Bob   : expresspreference food <eos>
+Alice : propose food=2 water=1 <eos>
+Bob   : agree <eos>
+Alice : propose food=2 water=0 firewood=3 <eos>
+Bob   : agree <eos>
+Alice : <selection>
+Alice : book=2 hat=0 ball=3
+Bob   : book=1 hat=3 ball=0
+--------------------------------------------------------------------------------
+Agreement!
+Alice : 22 points
+Bob   : 14 points
+--------------------------------------------------------------------------------
+dialog_len=13.00 sent_len=3.15 agree=100.00% advantage=8.00 time=0.132s comb_rew=36.00 alice_rew=22.00 alice_sel=100.00% alice_unique=7 bob_rew=14.00 bob_sel=0.00% bob_unique=3 full_match=1.00
+--------------------------------------------------------------------------------
+debug: 3 5 3 3 3 4 item0=2 item1=0 item2=3 item0=1 item1=3 item2=0
+debug: 3 5 3 3 3 4 item0=1 item1=3 item2=0 item0=2 item1=0 item2=3
+================================================================================
+
+================================================================================
+Alice : book=(count:3 value:3) hat=(count:3 value:4) ball=(count:3 value:5)
+Bob   : book=(count:3 value:5) hat=(count:3 value:4) ball=(count:3 value:3)
+--------------------------------------------------------------------------------
+Bob   : smalltalk <eos>
+Alice : smalltalk <eos>
+Bob   : expresspreference food <eos>
+Alice : expresspreference firewood <eos>
+Bob   : expresspreference firewood <eos>
+Alice : propose food=1 water=2 firewood=1 <eos>
+Bob   : agree <eos>
+Alice : agree <eos>
+Bob   : agree <eos>
+Alice : <selection>
+Alice : book=1 hat=2 ball=1
+Bob   : book=2 hat=1 ball=2
+--------------------------------------------------------------------------------
+Agreement!
+Alice : 16 points
+Bob   : 20 points
+--------------------------------------------------------------------------------
+dialog_len=11.50 sent_len=2.87 agree=100.00% advantage=2.00 time=0.083s comb_rew=36.00 alice_rew=19.00 alice_sel=100.00% alice_unique=10 bob_rew=17.00 bob_sel=0.00% bob_unique=5 full_match=1.00
+--------------------------------------------------------------------------------
+debug: 3 3 3 4 3 5 item0=1 item1=2 item2=1 item0=2 item1=1 item2=2
+debug: 3 5 3 4 3 3 item0=2 item1=1 item2=2 item0=1 item1=2 item2=1
+================================================================================
+
+================================================================================
+Alice : book=(count:3 value:3) hat=(count:3 value:5) ball=(count:3 value:4)
+Bob   : book=(count:3 value:4) hat=(count:3 value:5) ball=(count:3 value:3)
+--------------------------------------------------------------------------------
+Alice : smalltalk <eos>
+Bob   : smalltalk <eos>
+Alice : smalltalk <eos>
+Bob   : elicitpreference <eos>
+Alice : expresspreference water <eos>
+Bob   : elicitpreference <eos>
+Alice : propose food=0 water=3 firewood=2 <eos>
+Bob   : expresspreference firewood <eos>
+Alice : propose firewood=2 <eos>
+Bob   : agree <eos>
+Alice : smalltalk <eos>
+Bob   : agree <eos>
+Alice : <selection>
+Alice : book=0 hat=3 ball=2
+Bob   : book=3 hat=0 ball=1
+--------------------------------------------------------------------------------
+Agreement!
+Alice : 23 points
+Bob   : 15 points
+--------------------------------------------------------------------------------
+dialog_len=12.00 sent_len=2.69 agree=100.00% advantage=4.00 time=0.069s comb_rew=36.67 alice_rew=20.33 alice_sel=100.00% alice_unique=13 bob_rew=16.33 bob_sel=0.00% bob_unique=5 full_match=1.00
+--------------------------------------------------------------------------------
+debug: 3 3 3 5 3 4 item0=0 item1=3 item2=2 item0=3 item1=0 item2=1
+debug: 3 4 3 5 3 3 item0=3 item1=0 item2=1 item0=0 item1=3 item2=2
+================================================================================
+
+================================================================================
+Alice : book=(count:3 value:4) hat=(count:3 value:5) ball=(count:3 value:3)
+Bob   : book=(count:3 value:5) hat=(count:3 value:4) ball=(count:3 value:3)
+--------------------------------------------------------------------------------
+Alice : smalltalk <eos>
+Bob   : smalltalk <eos>
+Alice : smalltalk <eos>
+Bob   : expresspreference food <eos>
+Alice : expresspreference water <eos>
+Bob   : elicitpreference firewood <eos>
+Alice : expresspreference water <eos>
+Bob   : propose food=3 water=1 firewood=0 <eos>
+Alice : agree <eos>
+Bob   : agree <eos>
+Alice : <selection>
+Alice : book=0 hat=2 ball=3
+Bob   : book=3 hat=1 ball=0
+--------------------------------------------------------------------------------
+Agreement!
+Alice : 19 points
+Bob   : 19 points
+--------------------------------------------------------------------------------
+dialog_len=11.75 sent_len=2.66 agree=100.00% advantage=3.00 time=0.060s comb_rew=37.00 alice_rew=20.00 alice_sel=100.00% alice_unique=13 bob_rew=17.00 bob_sel=0.00% bob_unique=7 full_match=1.00
+--------------------------------------------------------------------------------
+debug: 3 4 3 5 3 3 item0=0 item1=2 item2=3 item0=3 item1=1 item2=0
+debug: 3 5 3 4 3 3 item0=3 item1=1 item2=0 item0=0 item1=2 item2=3
+================================================================================
+
+================================================================================
+Alice : book=(count:3 value:5) hat=(count:3 value:4) ball=(count:3 value:3)
+Bob   : book=(count:3 value:5) hat=(count:3 value:4) ball=(count:3 value:3)
+--------------------------------------------------------------------------------
+Alice : smalltalk <eos>
+Bob   : smalltalk <eos>
+Alice : smalltalk <eos>
+Bob   : elicitpreference <eos>
+Alice : expresspreference food water <eos>
+Bob   : expresspreference food propose food=2 water=1 firewood=1 <eos>
+Alice : propose food=2 water=2 firewood=1 <eos>
+Bob   : agree <eos>
+Alice : agree <eos>
+Bob   : agree <eos>
+Alice : <selection>
+Alice : book=2 hat=2 ball=1
+Bob   : book=1 hat=1 ball=2
+--------------------------------------------------------------------------------
+Agreement!
+Alice : 21 points
+Bob   : 15 points
+--------------------------------------------------------------------------------
+dialog_len=11.60 sent_len=2.69 agree=100.00% advantage=3.60 time=0.056s comb_rew=36.80 alice_rew=20.20 alice_sel=100.00% alice_unique=15 bob_rew=16.60 bob_sel=0.00% bob_unique=8 full_match=1.00
+--------------------------------------------------------------------------------
+debug: 3 5 3 4 3 3 item0=2 item1=2 item2=1 item0=1 item1=1 item2=2
+debug: 3 5 3 4 3 3 item0=1 item1=1 item2=2 item0=2 item1=2 item2=1
+================================================================================
+
+================================================================================
+Alice : book=(count:3 value:4) hat=(count:3 value:5) ball=(count:3 value:3)
+Bob   : book=(count:3 value:5) hat=(count:3 value:3) ball=(count:3 value:4)
+--------------------------------------------------------------------------------
+Alice : smalltalk <eos>
+Bob   : smalltalk <eos>
+Alice : smalltalk <eos>
+Bob   : elicitpreference <eos>
+Alice : elicitpreference expresspreference firewood water <eos>
+Bob   : expresspreference firewood <eos>
+Alice : elicitpreference food firewood propose food=3 firewood=0 <eos>
+Bob   : agree <eos>
+Alice : propose food=3 water=3 firewood=0 <eos>
+Bob   : agree <eos>
+Alice : smalltalk <eos>
+Bob   : agree <eos>
+Alice : <selection>
+Alice : book=3 hat=3 ball=0
+Bob   : book=0 hat=0 ball=3
+--------------------------------------------------------------------------------
+Agreement!
+Alice : 27 points
+Bob   : 12 points
+--------------------------------------------------------------------------------
+dialog_len=11.83 sent_len=2.72 agree=100.00% advantage=5.50 time=0.054s comb_rew=37.17 alice_rew=21.33 alice_sel=100.00% alice_unique=18 bob_rew=15.83 bob_sel=0.00% bob_unique=8 full_match=0.99
+--------------------------------------------------------------------------------
+debug: 3 4 3 5 3 3 item0=3 item1=3 item2=0 item0=0 item1=0 item2=3
+debug: 3 5 3 3 3 4 item0=0 item1=0 item2=3 item0=3 item1=3 item2=0
+================================================================================
+
+================================================================================
+Alice : book=(count:3 value:5) hat=(count:3 value:4) ball=(count:3 value:3)
+Bob   : book=(count:3 value:3) hat=(count:3 value:4) ball=(count:3 value:5)
+--------------------------------------------------------------------------------
+Alice : smalltalk <eos>
+Bob   : elicitpreference <eos>
+Alice : expresspreference food <eos>
+Bob   : elicitpreference <eos>
+Alice : expresspreference food <eos>
+Bob   : elicitpreference food expresspreference firewood <eos>
+Alice : expresspreference food <eos>
+Bob   : expresspreference firewood <eos>
+Alice : propose food=2 water=2 firewood=1 <eos>
+Bob   : agree <eos>
+Alice : agree <eos>
+Bob   : agree <eos>
+Alice : <selection>
+Alice : book=2 hat=2 ball=1
+Bob   : book=1 hat=1 ball=2
+--------------------------------------------------------------------------------
+Agreement!
+Alice : 21 points
+Bob   : 17 points
+--------------------------------------------------------------------------------
+dialog_len=12.00 sent_len=2.71 agree=100.00% advantage=5.29 time=0.053s comb_rew=37.29 alice_rew=21.29 alice_sel=100.00% alice_unique=19 bob_rew=16.00 bob_sel=0.00% bob_unique=9 full_match=0.99
+--------------------------------------------------------------------------------
+debug: 3 5 3 4 3 3 item0=2 item1=2 item2=1 item0=1 item1=1 item2=2
+debug: 3 3 3 4 3 5 item0=1 item1=1 item2=2 item0=2 item1=2 item2=1
+================================================================================
+
+================================================================================
+Alice : book=(count:3 value:4) hat=(count:3 value:5) ball=(count:3 value:3)
+Bob   : book=(count:3 value:4) hat=(count:3 value:5) ball=(count:3 value:3)
+--------------------------------------------------------------------------------
+Alice : smalltalk <eos>
+Bob   : smalltalk <eos>
+Alice : smalltalk <eos>
+Bob   : elicitpreference <eos>
+Alice : expresspreference water <eos>
+Bob   : expresspreference water <eos>
+Alice : expresspreference water <eos>
+Bob   : propose food=3 water=1 firewood=1 <eos>
+Alice : propose food=0 water=3 firewood=2 <eos>
+Bob   : agree <eos>
+Alice : <selection>
+Alice : book=0 hat=3 ball=2
+Bob   : book=3 hat=0 ball=1
+--------------------------------------------------------------------------------
+Agreement!
+Alice : 21 points
+Bob   : 15 points
+--------------------------------------------------------------------------------
+dialog_len=11.88 sent_len=2.72 agree=100.00% advantage=5.38 time=0.051s comb_rew=37.12 alice_rew=21.25 alice_sel=100.00% alice_unique=19 bob_rew=15.88 bob_sel=0.00% bob_unique=11 full_match=0.99
+--------------------------------------------------------------------------------
+debug: 3 4 3 5 3 3 item0=0 item1=3 item2=2 item0=3 item1=0 item2=1
+debug: 3 4 3 5 3 3 item0=3 item1=0 item2=1 item0=0 item1=3 item2=2
+================================================================================
+
+================================================================================
+Alice : book=(count:3 value:4) hat=(count:3 value:5) ball=(count:3 value:3)
+Bob   : book=(count:3 value:3) hat=(count:3 value:4) ball=(count:3 value:5)
+--------------------------------------------------------------------------------
+Alice : smalltalk <eos>
+Bob   : elicitpreference <eos>
+Alice : expresspreference water <eos>
+Bob   : expresspreference water <eos>
+Alice : expresspreference water <eos>
+Bob   : elicitpreference <eos>
+Alice : expresspreference water <eos>
+Bob   : expresspreference firewood <eos>
+Alice : propose firewood=2 <eos>
+Bob   : agree <eos>
+Alice : agree <eos>
+Bob   : agree <eos>
+Alice : <selection>
+Alice : book=3 hat=0 ball=2
+Bob   : book=0 hat=3 ball=2
+================================================================================
+
+================================================================================
+Alice : book=(count:3 value:4) hat=(count:3 value:5) ball=(count:3 value:3)
+Bob   : book=(count:3 value:3) hat=(count:3 value:5) ball=(count:3 value:4)
+--------------------------------------------------------------------------------
+Bob   : smalltalk <eos>
+Alice : smalltalk <eos>
+Bob   : elicitpreference <eos>
+Alice : elicitpreference expresspreference water <eos>
+Bob   : expresspreference water <eos>
+Alice : noneed firewood elicitpreference expresspreference water <eos>
+Bob   : expresspreference firewood <eos>
+Alice : elicitpreference firewood <eos>
+Bob   : expresspreference firewood <eos>
+Alice : elicitpreference firewood <eos>
+Bob   : expresspreference firewood <eos>
+Alice : elicitpreference firewood <eos>
+Bob   : expresspreference firewood <eos>
+Alice : elicitpreference firewood <eos>
+Bob   : expresspreference firewood <eos>
+Alice : propose food=1 water=2 firewood=1 <eos>
+Bob   : agree <eos>
+Alice : <selection>
+Alice : book=1 hat=2 ball=1
+Bob   : book=2 hat=1 ball=2
+--------------------------------------------------------------------------------
+Agreement!
+Alice : 17 points
+Bob   : 19 points
+--------------------------------------------------------------------------------
+dialog_len=12.56 sent_len=2.72 agree=100.00% advantage=4.56 time=0.052s comb_rew=37.00 alice_rew=20.78 alice_sel=100.00% alice_unique=22 bob_rew=16.22 bob_sel=0.00% bob_unique=11 full_match=0.99
+--------------------------------------------------------------------------------
+debug: 3 4 3 5 3 3 item0=1 item1=2 item2=1 item0=2 item1=1 item2=2
+debug: 3 3 3 5 3 4 item0=2 item1=1 item2=2 item0=1 item1=2 item2=1
+================================================================================
+
+================================================================================
+Alice : book=(count:3 value:3) hat=(count:3 value:5) ball=(count:3 value:4)
+Bob   : book=(count:3 value:5) hat=(count:3 value:3) ball=(count:3 value:4)
+--------------------------------------------------------------------------------
+Alice : smalltalk <eos>
+Bob   : smalltalk <eos>
+Alice : smalltalk <eos>
+Bob   : elicitpreference <eos>
+Alice : expresspreference water <eos>
+Bob   : noneed water firewood expresspreference food <eos>
+Alice : noneed food expresspreference firewood propose food=1 water=2 firewood=1 <eos>
+Bob   : agree <eos>
+Alice : smalltalk <eos>
+Bob   : agree <eos>
+Alice : <selection>
+Alice : book=1 hat=2 ball=1
+Bob   : book=2 hat=1 ball=2
+--------------------------------------------------------------------------------
+Agreement!
+Alice : 17 points
+Bob   : 21 points
+--------------------------------------------------------------------------------
+dialog_len=12.40 sent_len=2.74 agree=100.00% advantage=3.70 time=0.051s comb_rew=37.10 alice_rew=20.40 alice_sel=100.00% alice_unique=23 bob_rew=16.70 bob_sel=0.00% bob_unique=12 full_match=0.99
+--------------------------------------------------------------------------------
+debug: 3 3 3 5 3 4 item0=1 item1=2 item2=1 item0=2 item1=1 item2=2
+debug: 3 5 3 3 3 4 item0=2 item1=1 item2=2 item0=1 item1=2 item2=1
+================================================================================
+
+================================================================================
+Alice : book=(count:3 value:3) hat=(count:3 value:4) ball=(count:3 value:5)
+Bob   : book=(count:3 value:3) hat=(count:3 value:5) ball=(count:3 value:4)
+--------------------------------------------------------------------------------
+Bob   : smalltalk <eos>
+Alice : smalltalk <eos>
+Bob   : smalltalk <eos>
+Alice : smalltalk <eos>
+Bob   : expresspreference water <eos>
+Alice : noneed food <eos>
+Bob   : elicitpreference <eos>
+Alice : noneed food expresspreference firewood <eos>
+Bob   : expresspreference firewood <eos>
+Alice : propose food=2 water=2 firewood=1 <eos>
+Bob   : agree <eos>
+Alice : agree <eos>
+Bob   : agree <eos>
+Alice : <selection>
+Alice : book=2 hat=2 ball=1
+Bob   : book=1 hat=2 ball=2
+================================================================================
+
+================================================================================
+Alice : book=(count:3 value:4) hat=(count:3 value:5) ball=(count:3 value:3)
+Bob   : book=(count:3 value:4) hat=(count:3 value:3) ball=(count:3 value:5)
+--------------------------------------------------------------------------------
+Alice : smalltalk <eos>
+Bob   : smalltalk <eos>
+Alice : smalltalk <eos>
+Bob   : expresspreference firewood <eos>
+Alice : expresspreference food water <eos>
+Bob   : expresspreference water=2 <eos>
+Alice : propose food=3 water=0 firewood=3 <eos>
+Bob   : agree <eos>
+Alice : expresspreference firewood <eos>
+Bob   : agree <eos>
+Alice : <selection>
+Alice : book=3 hat=0 ball=0
+Bob   : book=0 hat=3 ball=0
+================================================================================
+
+================================================================================
+Alice : book=(count:3 value:5) hat=(count:3 value:4) ball=(count:3 value:3)
+Bob   : book=(count:3 value:4) hat=(count:3 value:5) ball=(count:3 value:3)
+--------------------------------------------------------------------------------
+Bob   : smalltalk <eos>
+Alice : smalltalk <eos>
+Bob   : smalltalk <eos>
+Alice : unknown <eos>
+Bob   : elicitpreference <eos>
+Alice : elicitpreference expresspreference food <eos>
+Bob   : expresspreference water <eos>
+Alice : noneed firewood expresspreference food <eos>
+Bob   : expresspreference food <eos>
+Alice : noneed firewood expresspreference food propose food=3 firewood=0 <eos>
+Bob   : agree <eos>
+Alice : <selection>
+Alice : book=3 hat=2 ball=0
+Bob   : book=3 hat=1 ball=0
+================================================================================
+
+================================================================================
+Alice : book=(count:3 value:3) hat=(count:3 value:5) ball=(count:3 value:4)
+Bob   : book=(count:3 value:3) hat=(count:3 value:4) ball=(count:3 value:5)
+--------------------------------------------------------------------------------
+Alice : smalltalk <eos>
+Bob   : smalltalk <eos>
+Alice : smalltalk <eos>
+Bob   : elicitpreference <eos>
+Alice : expresspreference water <eos>
+Bob   : expresspreference firewood <eos>
+Alice : propose food=3 water=3 firewood=0 <eos>
+Bob   : agree <eos>
+Alice : agree <eos>
+Bob   : agree <eos>
+Alice : <selection>
+Alice : book=3 hat=3 ball=0
+Bob   : book=2 hat=0 ball=3
+================================================================================
+
+================================================================================
+Alice : book=(count:3 value:4) hat=(count:3 value:3) ball=(count:3 value:5)
+Bob   : book=(count:3 value:5) hat=(count:3 value:4) ball=(count:3 value:3)
+--------------------------------------------------------------------------------
+Bob   : smalltalk <eos>
+Alice : smalltalk <eos>
+Bob   : smalltalk <eos>
+Alice : smalltalk <eos>
+Bob   : expresspreference food <eos>
+Alice : unknown <eos>
+Bob   : elicitpreference firewood <eos>
+Alice : expresspreference firewood <eos>
+Bob   : expresspreference food propose food=2 water=2 firewood=0 <eos>
+Alice : propose food=1 water=1 firewood=2 <eos>
+Bob   : agree <eos>
+Alice : <selection>
+Alice : book=1 hat=1 ball=2
+Bob   : book=2 hat=2 ball=1
+--------------------------------------------------------------------------------
+Agreement!
+Alice : 17 points
+Bob   : 21 points
+--------------------------------------------------------------------------------
+dialog_len=12.36 sent_len=2.73 agree=100.00% advantage=3.00 time=0.050s comb_rew=37.18 alice_rew=20.09 alice_sel=100.00% alice_unique=30 bob_rew=17.09 bob_sel=0.00% bob_unique=14 full_match=0.99
+--------------------------------------------------------------------------------
+debug: 3 4 3 3 3 5 item0=1 item1=1 item2=2 item0=2 item1=2 item2=1
+debug: 3 5 3 4 3 3 item0=2 item1=2 item2=1 item0=1 item1=1 item2=2
+================================================================================
+
+================================================================================
+Alice : book=(count:3 value:3) hat=(count:3 value:5) ball=(count:3 value:4)
+Bob   : book=(count:3 value:3) hat=(count:3 value:5) ball=(count:3 value:4)
+--------------------------------------------------------------------------------
+Alice : smalltalk <eos>
+Bob   : smalltalk <eos>
+Alice : smalltalk <eos>
+Bob   : expresspreference water <eos>
+Alice : expresspreference water <eos>
+Bob   : smalltalk <eos>
+Alice : unknown <eos>
+Bob   : agree <eos>
+Alice : smalltalk <eos>
+Bob   : agree <eos>
+Alice : <selection>
+Alice : book=0 hat=3 ball=2
+Bob   : book=0 hat=2 ball=2
+================================================================================
+
+================================================================================
+Alice : book=(count:3 value:3) hat=(count:3 value:4) ball=(count:3 value:5)
+Bob   : book=(count:3 value:4) hat=(count:3 value:5) ball=(count:3 value:3)
+--------------------------------------------------------------------------------
+Bob   : smalltalk <eos>
+Alice : smalltalk <eos>
+Bob   : elicitpreference <eos>
+Alice : unknown <eos>
+Bob   : elicitpreference <eos>
+Alice : expresspreference firewood <eos>
+Bob   : expresspreference water <eos>
+Alice : propose food=1 water=1 firewood=2 <eos>
+Bob   : agree <eos>
+Alice : smalltalk <eos>
+Bob   : <selection>
+Alice : book=1 hat=1 ball=2
+Bob   : book=2 hat=2 ball=1
+--------------------------------------------------------------------------------
+Agreement!
+Alice : 17 points
+Bob   : 21 points
+--------------------------------------------------------------------------------
+dialog_len=12.25 sent_len=2.68 agree=100.00% advantage=2.42 time=0.049s comb_rew=37.25 alice_rew=19.83 alice_sel=94.44% alice_unique=30 bob_rew=17.42 bob_sel=5.56% bob_unique=15 full_match=1.00
+--------------------------------------------------------------------------------
+debug: 3 3 3 4 3 5 item0=1 item1=1 item2=2 item0=2 item1=2 item2=1
+debug: 3 4 3 5 3 3 item0=2 item1=2 item2=1 item0=1 item1=1 item2=2
+================================================================================
+
+================================================================================
+Alice : book=(count:3 value:5) hat=(count:3 value:3) ball=(count:3 value:4)
+Bob   : book=(count:3 value:5) hat=(count:3 value:4) ball=(count:3 value:3)
+--------------------------------------------------------------------------------
+Alice : smalltalk <eos>
+Bob   : elicitpreference expresspreference food <eos>
+Alice : expresspreference food firewood <eos>
+Bob   : expresspreference food <eos>
+Alice : expresspreference food <eos>
+Bob   : propose food=2 water=1 firewood=1 <eos>
+Alice : propose food=2 water=2 firewood=1 <eos>
+Bob   : agree <eos>
+Alice : unknown <eos>
+Bob   : agree <eos>
+Alice : <selection>
+Alice : book=2 hat=2 ball=1
+Bob   : book=1 hat=1 ball=2
+--------------------------------------------------------------------------------
+Agreement!
+Alice : 20 points
+Bob   : 15 points
+--------------------------------------------------------------------------------
+dialog_len=12.15 sent_len=2.69 agree=100.00% advantage=2.62 time=0.048s comb_rew=37.08 alice_rew=19.85 alice_sel=94.74% alice_unique=31 bob_rew=17.23 bob_sel=5.26% bob_unique=17 full_match=1.00
+--------------------------------------------------------------------------------
+debug: 3 5 3 3 3 4 item0=2 item1=2 item2=1 item0=1 item1=1 item2=2
+debug: 3 5 3 4 3 3 item0=1 item1=1 item2=2 item0=2 item1=2 item2=1
+================================================================================
+
+================================================================================
+Alice : book=(count:3 value:5) hat=(count:3 value:3) ball=(count:3 value:4)
+Bob   : book=(count:3 value:3) hat=(count:3 value:5) ball=(count:3 value:4)
+--------------------------------------------------------------------------------
+Alice : smalltalk <eos>
+Bob   : smalltalk <eos>
+Alice : smalltalk <eos>
+Bob   : elicitpreference <eos>
+Alice : expresspreference food <eos>
+Bob   : expresspreference water <eos>
+Alice : propose food=2 water=1 firewood=2 <eos>
+Bob   : agree <eos>
+Alice : agree <eos>
+Bob   : agree <eos>
+Alice : unknown <eos>
+Bob   : agree <eos>
+Alice : <selection>
+Alice : book=2 hat=1 ball=2
+Bob   : book=1 hat=2 ball=1
+--------------------------------------------------------------------------------
+Agreement!
+Alice : 21 points
+Bob   : 17 points
+--------------------------------------------------------------------------------
+dialog_len=12.21 sent_len=2.67 agree=100.00% advantage=2.71 time=0.048s comb_rew=37.14 alice_rew=19.93 alice_sel=95.00% alice_unique=32 bob_rew=17.21 bob_sel=5.00% bob_unique=17 full_match=1.00
+--------------------------------------------------------------------------------
+debug: 3 5 3 3 3 4 item0=2 item1=1 item2=2 item0=1 item1=2 item2=1
+debug: 3 3 3 5 3 4 item0=1 item1=2 item2=1 item0=2 item1=1 item2=2
+================================================================================
+
+================================================================================
+Alice : book=(count:3 value:3) hat=(count:3 value:4) ball=(count:3 value:5)
+Bob   : book=(count:3 value:4) hat=(count:3 value:3) ball=(count:3 value:5)
+--------------------------------------------------------------------------------
+Bob   : smalltalk <eos>
+Alice : smalltalk <eos>
+Bob   : elicitpreference <eos>
+Alice : expresspreference firewood <eos>
+Bob   : expresspreference firewood <eos>
+Alice : propose food=2 water=0 firewood=2 <eos>
+Bob   : elicitpreference <eos>
+Alice : expresspreference firewood <eos>
+Bob   : expresspreference firewood <eos>
+Alice : propose food=1 water=2 firewood=2 <eos>
+Bob   : agree <eos>
+Alice : agree <eos>
+Bob   : agree <eos>
+Alice : <selection>
+Alice : book=1 hat=2 ball=2
+Bob   : book=2 hat=1 ball=1
+--------------------------------------------------------------------------------
+Agreement!
+Alice : 21 points
+Bob   : 16 points
+--------------------------------------------------------------------------------
+dialog_len=12.33 sent_len=2.67 agree=100.00% advantage=2.87 time=0.047s comb_rew=37.13 alice_rew=20.00 alice_sel=95.24% alice_unique=34 bob_rew=17.13 bob_sel=4.76% bob_unique=17 full_match=1.00
+--------------------------------------------------------------------------------
+debug: 3 3 3 4 3 5 item0=1 item1=2 item2=2 item0=2 item1=1 item2=1
+debug: 3 4 3 3 3 5 item0=2 item1=1 item2=1 item0=1 item1=2 item2=2
+================================================================================
+
+================================================================================
+Alice : book=(count:3 value:5) hat=(count:3 value:3) ball=(count:3 value:4)
+Bob   : book=(count:3 value:4) hat=(count:3 value:3) ball=(count:3 value:5)
+--------------------------------------------------------------------------------
+Bob   : smalltalk <eos>
+Alice : smalltalk <eos>
+Bob   : elicitpreference <eos>
+Alice : elicitpreference expresspreference food <eos>
+Bob   : expresspreference firewood <eos>
+Alice : noneed water expresspreference food propose food=3 water=1 <eos>
+Bob   : elicitpreference water <eos>
+Alice : noneed water <eos>
+Bob   : agree <eos>
+Alice : smalltalk <eos>
+Bob   : agree <eos>
+Alice : <selection>
+Alice : book=3 hat=1 ball=0
+Bob   : book=0 hat=2 ball=3
+--------------------------------------------------------------------------------
+Agreement!
+Alice : 18 points
+Bob   : 21 points
+--------------------------------------------------------------------------------
+dialog_len=12.31 sent_len=2.68 agree=100.00% advantage=2.50 time=0.047s comb_rew=37.25 alice_rew=19.88 alice_sel=95.45% alice_unique=36 bob_rew=17.38 bob_sel=4.55% bob_unique=18 full_match=0.99
+--------------------------------------------------------------------------------
+debug: 3 5 3 3 3 4 item0=3 item1=1 item2=0 item0=0 item1=2 item2=3
+debug: 3 4 3 3 3 5 item0=0 item1=2 item2=3 item0=3 item1=1 item2=0
+================================================================================
+
+================================================================================
+Alice : book=(count:3 value:5) hat=(count:3 value:4) ball=(count:3 value:3)
+Bob   : book=(count:3 value:5) hat=(count:3 value:3) ball=(count:3 value:4)
+--------------------------------------------------------------------------------
+Alice : smalltalk <eos>
+Bob   : elicitpreference <eos>
+Alice : expresspreference food <eos>
+Bob   : expresspreference firewood <eos>
+Alice : propose food=2 water=1 firewood=1 <eos>
+Bob   : agree <eos>
+Alice : smalltalk <eos>
+Bob   : agree <eos>
+Alice : smalltalk <eos>
+Bob   : agree <eos>
+Alice : <selection>
+Alice : book=2 hat=1 ball=1
+Bob   : book=1 hat=2 ball=2
+--------------------------------------------------------------------------------
+Agreement!
+Alice : 17 points
+Bob   : 19 points
+--------------------------------------------------------------------------------
+dialog_len=12.24 sent_len=2.66 agree=100.00% advantage=2.24 time=0.046s comb_rew=37.18 alice_rew=19.71 alice_sel=95.65% alice_unique=37 bob_rew=17.47 bob_sel=4.35% bob_unique=18 full_match=0.99
+--------------------------------------------------------------------------------
+debug: 3 5 3 4 3 3 item0=2 item1=1 item2=1 item0=1 item1=2 item2=2
+debug: 3 5 3 3 3 4 item0=1 item1=2 item2=2 item0=2 item1=1 item2=1
+================================================================================
+
+================================================================================
+Alice : book=(count:3 value:3) hat=(count:3 value:4) ball=(count:3 value:5)
+Bob   : book=(count:3 value:5) hat=(count:3 value:3) ball=(count:3 value:4)
+--------------------------------------------------------------------------------
+Bob   : smalltalk <eos>
+Alice : smalltalk <eos>
+Bob   : elicitpreference <eos>
+Alice : expresspreference firewood <eos>
+Bob   : expresspreference firewood propose firewood=1 <eos>
+Alice : expresspreference firewood <eos>
+Bob   : elicitpreference <eos>
+Alice : propose food=1 water=1 firewood=2 <eos>
+Bob   : agree <eos>
+Alice : agree <eos>
+Bob   : agree <eos>
+Alice : <selection>
+Alice : book=1 hat=1 ball=2
+Bob   : book=2 hat=2 ball=1
+--------------------------------------------------------------------------------
+Agreement!
+Alice : 17 points
+Bob   : 20 points
+--------------------------------------------------------------------------------
+dialog_len=12.22 sent_len=2.66 agree=100.00% advantage=1.94 time=0.046s comb_rew=37.17 alice_rew=19.56 alice_sel=95.83% alice_unique=37 bob_rew=17.61 bob_sel=4.17% bob_unique=19 full_match=0.99
+--------------------------------------------------------------------------------
+debug: 3 3 3 4 3 5 item0=1 item1=1 item2=2 item0=2 item1=2 item2=1
+debug: 3 5 3 3 3 4 item0=2 item1=2 item2=1 item0=1 item1=1 item2=2
+================================================================================
+
+================================================================================
+Alice : book=(count:3 value:4) hat=(count:3 value:3) ball=(count:3 value:5)
+Bob   : book=(count:3 value:5) hat=(count:3 value:3) ball=(count:3 value:4)
+--------------------------------------------------------------------------------
+Bob   : smalltalk <eos>
+Alice : smalltalk <eos>
+Bob   : elicitpreference <eos>
+Alice : elicitpreference expresspreference firewood <eos>
+Bob   : expresspreference food <eos>
+Alice : noneed water expresspreference firewood <eos>
+Bob   : expresspreference food <eos>
+Alice : propose food=1 water=1 firewood=3 <eos>
+Bob   : expresspreference firewood <eos>
+Alice : propose food=1 water=2 firewood=2 <eos>
+Bob   : agree <eos>
+Alice : <selection>
+Alice : book=1 hat=2 ball=2
+Bob   : book=2 hat=1 ball=1
+--------------------------------------------------------------------------------
+Agreement!
+Alice : 20 points
+Bob   : 17 points
+--------------------------------------------------------------------------------
+dialog_len=12.21 sent_len=2.68 agree=100.00% advantage=2.00 time=0.046s comb_rew=37.16 alice_rew=19.58 alice_sel=96.00% alice_unique=40 bob_rew=17.58 bob_sel=4.00% bob_unique=19 full_match=0.99
+--------------------------------------------------------------------------------
+debug: 3 4 3 3 3 5 item0=1 item1=2 item2=2 item0=2 item1=1 item2=1
+debug: 3 5 3 3 3 4 item0=2 item1=1 item2=1 item0=1 item1=2 item2=2
+================================================================================
+
+================================================================================
+Alice : book=(count:3 value:5) hat=(count:3 value:4) ball=(count:3 value:3)
+Bob   : book=(count:3 value:3) hat=(count:3 value:5) ball=(count:3 value:4)
+--------------------------------------------------------------------------------
+Bob   : smalltalk <eos>
+Alice : smalltalk <eos>
+Bob   : elicitpreference <eos>
+Alice : expresspreference food <eos>
+Bob   : expresspreference firewood <eos>
+Alice : elicitpreference <eos>
+Bob   : expresspreference firewood <eos>
+Alice : expresspreference food propose food=2 water=1 firewood=1 <eos>
+Bob   : agree <eos>
+Alice : smalltalk <eos>
+Bob   : agree <eos>
+Alice : <selection>
+Alice : book=2 hat=1 ball=1
+Bob   : book=1 hat=2 ball=2
+--------------------------------------------------------------------------------
+Agreement!
+Alice : 17 points
+Bob   : 21 points
+--------------------------------------------------------------------------------
+dialog_len=12.20 sent_len=2.67 agree=100.00% advantage=1.70 time=0.045s comb_rew=37.20 alice_rew=19.45 alice_sel=96.15% alice_unique=42 bob_rew=17.75 bob_sel=3.85% bob_unique=19 full_match=0.99
+--------------------------------------------------------------------------------
+debug: 3 5 3 4 3 3 item0=2 item1=1 item2=1 item0=1 item1=2 item2=2
+debug: 3 3 3 5 3 4 item0=1 item1=2 item2=2 item0=2 item1=1 item2=1
+================================================================================
+
+================================================================================
+Alice : book=(count:3 value:5) hat=(count:3 value:4) ball=(count:3 value:3)
+Bob   : book=(count:3 value:4) hat=(count:3 value:3) ball=(count:3 value:5)
+--------------------------------------------------------------------------------
+Alice : smalltalk <eos>
+Bob   : smalltalk <eos>
+Alice : smalltalk <eos>
+Bob   : elicitpreference <eos>
+Alice : expresspreference food <eos>
+Bob   : expresspreference firewood <eos>
+Alice : elicitpreference firewood <eos>
+Bob   : expresspreference firewood <eos>
+Alice : elicitpreference firewood <eos>
+Bob   : expresspreference firewood <eos>
+Alice : propose food=2 water=2 firewood=1 <eos>
+Bob   : agree <eos>
+Alice : <selection>
+Alice : book=2 hat=2 ball=1
+Bob   : book=1 hat=1 ball=2
+--------------------------------------------------------------------------------
+Agreement!
+Alice : 21 points
+Bob   : 17 points
+--------------------------------------------------------------------------------
+dialog_len=12.24 sent_len=2.67 agree=100.00% advantage=1.81 time=0.045s comb_rew=37.24 alice_rew=19.52 alice_sel=96.30% alice_unique=42 bob_rew=17.71 bob_sel=3.70% bob_unique=19 full_match=0.99
+--------------------------------------------------------------------------------
+debug: 3 5 3 4 3 3 item0=2 item1=2 item2=1 item0=1 item1=1 item2=2
+debug: 3 4 3 3 3 5 item0=1 item1=1 item2=2 item0=2 item1=2 item2=1
+================================================================================
+
+================================================================================
+Alice : book=(count:3 value:3) hat=(count:3 value:4) ball=(count:3 value:5)
+Bob   : book=(count:3 value:3) hat=(count:3 value:4) ball=(count:3 value:5)
+--------------------------------------------------------------------------------
+Alice : smalltalk <eos>
+Bob   : smalltalk <eos>
+Alice : smalltalk <eos>
+Bob   : expresspreference firewood <eos>
+Alice : expresspreference firewood <eos>
+Bob   : expresspreference firewood <eos>
+Alice : propose food=1 water=1 firewood=2 <eos>
+Bob   : agree <eos>
+Alice : smalltalk <eos>
+Bob   : agree <eos>
+Alice : <selection>
+Alice : book=1 hat=1 ball=2
+Bob   : book=2 hat=2 ball=1
+--------------------------------------------------------------------------------
+Agreement!
+Alice : 17 points
+Bob   : 19 points
+--------------------------------------------------------------------------------
+dialog_len=12.18 sent_len=2.66 agree=100.00% advantage=1.64 time=0.045s comb_rew=37.18 alice_rew=19.41 alice_sel=96.43% alice_unique=42 bob_rew=17.77 bob_sel=3.57% bob_unique=19 full_match=0.99
+--------------------------------------------------------------------------------
+debug: 3 3 3 4 3 5 item0=1 item1=1 item2=2 item0=2 item1=2 item2=1
+debug: 3 3 3 4 3 5 item0=2 item1=2 item2=1 item0=1 item1=1 item2=2
+================================================================================
+
+================================================================================
+Alice : book=(count:3 value:5) hat=(count:3 value:3) ball=(count:3 value:4)
+Bob   : book=(count:3 value:4) hat=(count:3 value:5) ball=(count:3 value:3)
+--------------------------------------------------------------------------------
+Alice : smalltalk <eos>
+Bob   : elicitpreference <eos>
+Alice : expresspreference food <eos>
+Bob   : expresspreference food <eos>
+Alice : noneed water expresspreference food <eos>
+Bob   : elicitpreference <eos>
+Alice : propose food=3 water=0 <eos>
+Bob   : elicitpreference firewood <eos>
+Alice : noneed water <eos>
+Bob   : expresspreference food propose food=2 water=1 <eos>
+Alice : propose food=1 water=2 firewood=1 <eos>
+Bob   : agree <eos>
+Alice : <selection>
+Alice : book=1 hat=2 ball=1
+Bob   : book=2 hat=1 ball=2
+--------------------------------------------------------------------------------
+Agreement!
+Alice : 15 points
+Bob   : 19 points
+--------------------------------------------------------------------------------
+dialog_len=12.22 sent_len=2.68 agree=100.00% advantage=1.39 time=0.045s comb_rew=37.04 alice_rew=19.22 alice_sel=96.55% alice_unique=44 bob_rew=17.83 bob_sel=3.45% bob_unique=20 full_match=0.99
+--------------------------------------------------------------------------------
+debug: 3 5 3 3 3 4 item0=1 item1=2 item2=1 item0=2 item1=1 item2=2
+debug: 3 4 3 5 3 3 item0=2 item1=1 item2=2 item0=1 item1=2 item2=1
+================================================================================
+
+================================================================================
+Alice : book=(count:3 value:3) hat=(count:3 value:5) ball=(count:3 value:4)
+Bob   : book=(count:3 value:4) hat=(count:3 value:3) ball=(count:3 value:5)
+--------------------------------------------------------------------------------
+Bob   : smalltalk <eos>
+Alice : smalltalk <eos>
+Bob   : elicitpreference <eos>
+Alice : expresspreference water <eos>
+Bob   : expresspreference firewood <eos>
+Alice : elicitpreference firewood <eos>
+Bob   : propose water=2 firewood=2 <eos>
+Alice : propose food=1 water=3 firewood=1 <eos>
+Bob   : agree <eos>
+Alice : smalltalk <eos>
+Bob   : agree <eos>
+Alice : <selection>
+Alice : book=1 hat=3 ball=1
+Bob   : book=2 hat=0 ball=2
+--------------------------------------------------------------------------------
+Agreement!
+Alice : 22 points
+Bob   : 18 points
+--------------------------------------------------------------------------------
+dialog_len=12.21 sent_len=2.68 agree=100.00% advantage=1.50 time=0.045s comb_rew=37.17 alice_rew=19.33 alice_sel=96.67% alice_unique=45 bob_rew=17.83 bob_sel=3.33% bob_unique=21 full_match=0.99
+--------------------------------------------------------------------------------
+debug: 3 3 3 5 3 4 item0=1 item1=3 item2=1 item0=2 item1=0 item2=2
+debug: 3 4 3 3 3 5 item0=2 item1=0 item2=2 item0=1 item1=3 item2=1
+================================================================================
+
+================================================================================
+Alice : book=(count:3 value:3) hat=(count:3 value:5) ball=(count:3 value:4)
+Bob   : book=(count:3 value:5) hat=(count:3 value:4) ball=(count:3 value:3)
+--------------------------------------------------------------------------------
+Alice : smalltalk <eos>
+Bob   : smalltalk <eos>
+Alice : smalltalk <eos>
+Bob   : elicitpreference <eos>
+Alice : expresspreference water <eos>
+Bob   : expresspreference food <eos>
+Alice : expresspreference water <eos>
+Bob   : propose food=3 water=1 firewood=0 <eos>
+Alice : propose food=0 water=2 firewood=3 <eos>
+Bob   : agree <eos>
+Alice : propose food=0 water=3 firewood=0 <eos>
+Bob   : agree <eos>
+Alice : <selection>
+Alice : book=0 hat=3 ball=0
+Bob   : book=3 hat=0 ball=0
+================================================================================
+
+================================================================================
+Alice : book=(count:3 value:5) hat=(count:3 value:3) ball=(count:3 value:4)
+Bob   : book=(count:3 value:3) hat=(count:3 value:4) ball=(count:3 value:5)
+--------------------------------------------------------------------------------
+Alice : smalltalk <eos>
+Bob   : smalltalk <eos>
+Alice : smalltalk <eos>
+Bob   : elicitpreference <eos>
+Alice : expresspreference firewood propose firewood=2 <eos>
+Bob   : noneed food expresspreference firewood <eos>
+Alice : propose food=3 water=0 firewood=2 <eos>
+Bob   : agree <eos>
+Alice : propose food=3 water=0 firewood=1 <eos>
+Bob   : agree <eos>
+Alice : <selection>
+Alice : book=3 hat=0 ball=1
+Bob   : book=0 hat=3 ball=1
+================================================================================
+
+================================================================================
+Alice : book=(count:3 value:4) hat=(count:3 value:3) ball=(count:3 value:5)
+Bob   : book=(count:3 value:4) hat=(count:3 value:5) ball=(count:3 value:3)
+--------------------------------------------------------------------------------
+Bob   : smalltalk <eos>
+Alice : smalltalk <eos>
+Bob   : elicitpreference <eos>
+Alice : noneed water elicitpreference expresspreference firewood <eos>
+Bob   : expresspreference food <eos>
+Alice : expresspreference firewood propose food=1 water=1 firewood=2 <eos>
+Bob   : propose food=3 firewood=0 <eos>
+Alice : propose food=1 water=1 firewood=3 <eos>
+Bob   : agree <eos>
+Alice : smalltalk <eos>
+Bob   : agree <eos>
+Alice : <selection>
+Alice : book=1 hat=1 ball=3
+Bob   : book=2 hat=2 ball=0
+--------------------------------------------------------------------------------
+Agreement!
+Alice : 22 points
+Bob   : 18 points
+--------------------------------------------------------------------------------
+dialog_len=12.20 sent_len=2.71 agree=100.00% advantage=1.60 time=0.045s comb_rew=37.28 alice_rew=19.44 alice_sel=96.97% alice_unique=52 bob_rew=17.84 bob_sel=3.03% bob_unique=23 full_match=1.00
+--------------------------------------------------------------------------------
+debug: 3 4 3 3 3 5 item0=1 item1=1 item2=3 item0=2 item1=2 item2=0
+debug: 3 4 3 5 3 3 item0=2 item1=2 item2=0 item0=1 item1=1 item2=3
+================================================================================
+
+================================================================================
+Alice : book=(count:3 value:4) hat=(count:3 value:3) ball=(count:3 value:5)
+Bob   : book=(count:3 value:4) hat=(count:3 value:3) ball=(count:3 value:5)
+--------------------------------------------------------------------------------
+Bob   : smalltalk <eos>
+Alice : smalltalk <eos>
+Bob   : elicitpreference <eos>
+Alice : elicitpreference expresspreference firewood <eos>
+Bob   : expresspreference firewood <eos>
+Alice : propose food=1 water=2 firewood=2 <eos>
+Bob   : expresspreference firewood <eos>
+Alice : propose food=1 water=2 firewood=2 <eos>
+Bob   : agree <eos>
+Alice : agree <eos>
+Bob   : agree <eos>
+Alice : <selection>
+Alice : book=1 hat=2 ball=2
+Bob   : book=2 hat=1 ball=1
+--------------------------------------------------------------------------------
+Agreement!
+Alice : 20 points
+Bob   : 16 points
+--------------------------------------------------------------------------------
+dialog_len=12.19 sent_len=2.71 agree=100.00% advantage=1.69 time=0.045s comb_rew=37.23 alice_rew=19.46 alice_sel=97.06% alice_unique=52 bob_rew=17.77 bob_sel=2.94% bob_unique=23 full_match=1.00
+--------------------------------------------------------------------------------
+debug: 3 4 3 3 3 5 item0=1 item1=2 item2=2 item0=2 item1=1 item2=1
+debug: 3 4 3 3 3 5 item0=2 item1=1 item2=1 item0=1 item1=2 item2=2
+================================================================================
+
+================================================================================
+Alice : book=(count:3 value:4) hat=(count:3 value:3) ball=(count:3 value:5)
+Bob   : book=(count:3 value:3) hat=(count:3 value:5) ball=(count:3 value:4)
+--------------------------------------------------------------------------------
+Bob   : smalltalk <eos>
+Alice : smalltalk <eos>
+Bob   : elicitpreference <eos>
+Alice : unknown <eos>
+Bob   : elicitpreference <eos>
+Alice : elicitpreference <eos>
+Bob   : expresspreference water <eos>
+Alice : noneed water expresspreference firewood propose food=3 water=0 firewood=3 <eos>
+Bob   : agree <eos>
+Alice : agree <eos>
+Bob   : agree <eos>
+Alice : agree <eos>
+Bob   : agree <eos>
+Alice : <selection>
+Alice : book=1 hat=0 ball=3
+Bob   : book=0 hat=3 ball=0
+================================================================================
+
+================================================================================
+Alice : book=(count:3 value:4) hat=(count:3 value:3) ball=(count:3 value:5)
+Bob   : book=(count:3 value:3) hat=(count:3 value:4) ball=(count:3 value:5)
+--------------------------------------------------------------------------------
+Alice : smalltalk <eos>
+Bob   : elicitpreference <eos>
+Alice : smalltalk noneed water <eos>
+Bob   : expresspreference firewood <eos>
+Alice : elicitpreference <eos>
+Bob   : expresspreference firewood <eos>
+Alice : propose food=1 water=1 firewood=2 <eos>
+Bob   : agree <eos>
+Alice : propose firewood=2 <eos>
+Bob   : agree <eos>
+Alice : <selection>
+Alice : book=1 hat=1 ball=2
+Bob   : book=2 hat=2 ball=1
+--------------------------------------------------------------------------------
+Agreement!
+Alice : 17 points
+Bob   : 19 points
+--------------------------------------------------------------------------------
+dialog_len=12.15 sent_len=2.70 agree=100.00% advantage=1.56 time=0.044s comb_rew=37.19 alice_rew=19.37 alice_sel=97.22% alice_unique=54 bob_rew=17.81 bob_sel=2.78% bob_unique=23 full_match=0.99
+--------------------------------------------------------------------------------
+debug: 3 4 3 3 3 5 item0=1 item1=1 item2=2 item0=2 item1=2 item2=1
+debug: 3 3 3 4 3 5 item0=2 item1=2 item2=1 item0=1 item1=1 item2=2
+================================================================================
+

@@ -26,12 +26,16 @@ def main():
     parser.add_argument('--alice_type', type=str, default='llm_no_planning', 
         choices=['llm_no_planning', 'llm_self_planning', 'llm_rl_planning'],
         help='Agent type for Alice.')
+    parser.add_argument('--alice_template_gen', action='store_true', default=False,
+        help='Use templates to generate responses')
     parser.add_argument('--alice_strategy', type=str, default='generic',
         choices=['generic', 'selfish', 'fair'],
         help='agent_strategy/personality')
     parser.add_argument('--bob_type', type=str, default='llm_no_planning', 
         choices=['llm_no_planning', 'llm_self_planning', 'llm_rl_planning'],
         help='Agent type for Bob.')
+    parser.add_argument('--bob_template_gen', action='store_true', default=False,
+        help='Use templates to generate responses')
     parser.add_argument('--bob_strategy', type=str, default='generic',
         choices=['generic', 'selfish', 'fair'],
         help='agent_strategy/personality')
@@ -77,9 +81,9 @@ def main():
 
     utils.set_seed(args.seed, torch_needed=True, np_needed=True)
 
-    alice = utils.agent_builder(args.alice_type, args.alice_strategy, args.llm_response_prompt_func_alice, args, rl_module_weight_path=args.alice_model_file, name='Alice')
+    alice = utils.agent_builder(args.alice_type, args.alice_strategy, args.llm_response_prompt_func_alice, args.alice_template_gen, args, rl_module_weight_path=args.alice_model_file, name='Alice')
     
-    bob = utils.agent_builder(args.bob_type, args.bob_strategy, args.llm_response_prompt_func_bob, args, rl_module_weight_path=args.bob_model_file, name='Bob')
+    bob = utils.agent_builder(args.bob_type, args.bob_strategy, args.llm_response_prompt_func_bob, args.bob_template_gen, args, rl_module_weight_path=args.bob_model_file, name='Bob')
     dialog = Dialog([alice, bob], args)
     logger = InteractionLogger(args.dataset, verbose=args.verbose, log_file=args.log_file)
 

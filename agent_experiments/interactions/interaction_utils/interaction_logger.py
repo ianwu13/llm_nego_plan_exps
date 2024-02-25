@@ -52,12 +52,13 @@ class InteractionLogger(object):
 
     def dump_ctx(self, name, ctx):
         if self.dataset == "casino":
-            assert len(ctx) == 6, 'Expecting 3 objects'
+            print(ctx)
+            assert len(ctx) == 6, 'Casino Expecting 3 objects'
             s = ' '.join(['%s=(count:%s value:%s)' % (self.CODE2ITEM_CASINO[i][1], ctx[2 * i], ctx[2 * i + 1]) \
                 for i in range(3)])
             self._dump_with_name(name, s)
         else:  # dnd
-            assert len(ctx) == 6, 'Expecting 3 objects'
+            assert len(ctx) == 6, 'DND Expecting 3 objects'
             s = ' '.join(['%s=(count:%s value:%s)' % (self.CODE2ITEM[i][1], ctx[2 * i], ctx[2 * i + 1]) \
                 for i in range(3)])
             self._dump_with_name(name, s)

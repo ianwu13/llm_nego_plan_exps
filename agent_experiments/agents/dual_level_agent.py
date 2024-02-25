@@ -5,29 +5,49 @@ from agents.base_agent import Agent
 
 
 class DualLevelAgent(Agent):
-    def __init__(self, pg_model, p_prompt_func, g_prompt_func, planning_model, cpf, rpf=None, strategy='generic', name='AI', temperature=0):
+    def __init__(self, pg_model, p_prompt_func, g_prompt_func, planning_model, cpf, rpf=None, template_response=False, tmplt_resp_prompt_fun=None, strategy='generic', name='AI', temperature=0):
         super(DualLevelAgent, self).__init__()
         self.pg_model = pg_model  # parser/generator model
         self.p_prompt_func = p_prompt_func  # parser_prompt_func
         self.g_prompt_func = g_prompt_func  # generator_prompt_func
         self.planning_model = planning_model
         self.cpf = cpf  # "Choice prompt function"
+        self.template_response = template_response
         self.strategy = strategy
 
-        if self.planning_model.is_llm:
-            print("~~~~CHECK WHETHER MODEL IS LLM for DUAL Agent~~~")
-            assert rpf is not None
-            self.rpf = rpf  # "Response prompt function"
-        else:
-            # Check that necessary gen methods exist if GRU is used
-            assert hasattr(self.planning_model, 'context_dict'), 'planning_model must have "context_dict" attribute.'
-            assert hasattr(self.planning_model, 'word_dict'), 'planning_model must have "word_dict" attribute.'
-            assert hasattr(self.planning_model, 'forward_context'), 'planning_model must have "word_dict" method.'
-            assert hasattr(self.planning_model, 'zero_hid'), 'planning_model must have "zero_hid" method.'
-            assert hasattr(self.planning_model, 'read'), 'planning_model must have "read" method.'
-            assert hasattr(self.planning_model, 'write'), 'planning_model must have "wrtie" method.'
+        if self.template_response:
+            if self.planning_model.is_llm:
+                # print("~~~~CHECK WHETHER MODEL IS LLM for DUAL Agent~~~")
+                assert rpf is not None
+                self.rpf = rpf  # "Response prompt function"
+            else:
+                # Check that necessary gen methods exist if GRU is used
+                assert hasattr(self.planning_model, 'context_dict'), 'planning_model must have "context_dict" attribute.'
+                assert hasattr(self.planning_model, 'word_dict'), 'planning_model must have "word_dict" attribute.'
+                assert hasattr(self.planning_model, 'forward_context'), 'planning_model must have "word_dict" method.'
+                assert hasattr(self.planning_model, 'zero_hid'), 'planning_model must have "zero_hid" method.'
+                assert hasattr(self.planning_model, 'read'), 'planning_model must have "read" method.'
+                assert hasattr(self.planning_model, 'write'), 'planning_model must have "wrtie" method.'
 
-            self.gru_temperature = 1.0
+                self.gru_temperature = 1.0
+            
+            assert tmplt_resp_prompt_fun is not None
+            self.tmplt_resp_prompt_fun = tmplt_resp_prompt_fun  # "template_rephrase_prompt_funct"
+        else:
+            if self.planning_model.is_llm:
+                # print("~~~~CHECK WHETHER MODEL IS LLM for DUAL Agent~~~")
+                assert rpf is not None
+                self.rpf = rpf  # "Response prompt function"
+            else:
+                # Check that necessary gen methods exist if GRU is used
+                assert hasattr(self.planning_model, 'context_dict'), 'planning_model must have "context_dict" attribute.'
+                assert hasattr(self.planning_model, 'word_dict'), 'planning_model must have "word_dict" attribute.'
+                assert hasattr(self.planning_model, 'forward_context'), 'planning_model must have "word_dict" method.'
+                assert hasattr(self.planning_model, 'zero_hid'), 'planning_model must have "zero_hid" method.'
+                assert hasattr(self.planning_model, 'read'), 'planning_model must have "read" method.'
+                assert hasattr(self.planning_model, 'write'), 'planning_model must have "wrtie" method.'
+
+                self.gru_temperature = 1.0
 
         self.name = name
         self.human = False
@@ -99,29 +119,11 @@ class DualLevelAgent(Agent):
         if not self.planning_model.is_llm:
             # generate a new utterance; 100 max words (third arg)
             _, outs, self.da_h, da_hs = self.planning_model.write(self.da_h, self.ctx_h, 100, self.gru_temperature)
-            # decode into English words
-            resp_da = self._decode(outs, self.planning_model.word_dict)
-
-            # Generate utterance response
-            generator_prompt = self.g_prompt_func({
-                'ctx': self.ctx,
-                'strategy': self.strategy,
-                'dialogue': self.dialogue,
-                'dia_acts': self.dialogue_acts,
-                'gen_act': resp_da
-            })
-            write_utt = self.pg_model.get_model_outputs([generator_prompt])[0] # Dialogue Act
             # append new hidded states to the current list of the hidden states
             self.da_hs.append(da_hs)
-            # Store dialogue act response
-            self.dialogue_acts.append('YOU:')
-            self.dialogue_acts.extend(resp_da)
-            # Store utterance response
-            write_utt = write_utt.split()
-            self.dialogue.append('YOU:')
-            self.dialogue.extend(write_utt)
 
-            return write_utt
+            # decode into English words
+            resp_da = self._decode(outs, self.planning_model.word_dict) # Dialogue Act
         else:
             # LLM goes here
             resp_da_prompt = self.rpf({
@@ -129,8 +131,13 @@ class DualLevelAgent(Agent):
                 'dialogue': self.dialogue,
                 'dia_acts': self.dialogue_acts
             })
-            resp_da = self.pg_model.get_model_outputs([resp_da_prompt])[0]  # Dialogue Act
-            # print(resp_da)
+            resp_da = self.pg_model.get_model_outputs([resp_da_prompt])[0].split()  # Dialogue Act
+
+        # Store dialogue act response
+        self.dialogue_acts.append('YOU:')
+        self.dialogue_acts.extend(resp_da)
+
+        if not self.template_response:
             # Generate utterance response
             generator_prompt = self.g_prompt_func({
                 'ctx': self.ctx,
@@ -139,21 +146,21 @@ class DualLevelAgent(Agent):
                 'dia_acts': self.dialogue_acts,
                 'gen_act': resp_da
             })
-            
-            write_utt = self.pg_model.get_model_outputs([generator_prompt])[0]  # Dialogue Act
+            write_utt = self.pg_model.get_model_outputs([generator_prompt])[0]
             
             if write_utt.find('<eos>') == -1:
-                write_utt += ' <eos> '
+                write_utt += ' <eos>'
+        else:
+            # Generate utterance response
+            template_prompt = self.tmplt_resp_prompt_fun(resp_da, self.dialogue)
+            write_utt = self.pg_model.get_model_outputs([template_prompt])[0]
 
-            # Store dialogue act response
-            self.dialogue_acts.append('YOU:')
-            self.dialogue_acts.extend(resp_da.split())
-            # Store utterance response
-            write_utt = write_utt.split()
-            self.dialogue.append('YOU:')
-            self.dialogue.extend(write_utt)
+        # Store utterance response
+        write_utt = write_utt.split()
+        self.dialogue.append('YOU:')
+        self.dialogue.extend(write_utt)
 
-            return write_utt
+        return write_utt
     
     # SL Agent - CURRENTLY USING pg_model (LLM) TO MAKE CHOICE SELECTION
     def choose(self):
