@@ -10,6 +10,7 @@ import logging
 import numpy as np
 
 from interactions.interaction_utils.metrics import MetricsContainer
+from ...utils import get_llm_api
 
 
 class Dialog(object):
@@ -28,6 +29,12 @@ class Dialog(object):
             self.max_utts = args.max_turns
         else:
             self.max_utts = 20
+
+        if args.llm_api_choice:
+            llm_api = get_llm_api(args.llm_api_choice, args.llm_api_key)
+            self.cpf = args.cpf
+        else:
+            self.llm_api_choice = None
 
         # Set up metric tracking
         self.metrics = MetricsContainer()
@@ -290,13 +297,57 @@ class Dialog(object):
             for agent, choice, in zip(self.agents, choices):
                 storage["choices"][agent.name] = choice
         else:
-            # the conversation atleast finished nicely; now we try to get a consistent output.
-            # generate choices for each of the agents
-            for agent in self.agents:
-                choice = agent.choose()
-                choices.append(choice)
-                logger.dump_choice(agent.name, choice[: self.selection_length // 2])
-                storage["choices"][agent.name] = choice[: self.selection_length // 2]
+            if self.llm_api_choice is not None:
+                choice_prompt = self.cpf({
+                    'alice_ctx': self.agents[0].ctx,
+                    'bob_ctx': self.agents[0].ctx,
+                    'dialogue': storage["conv"]
+                })
+                # Example deal pred output: "alice food=2 water=1 firewood=1 bob food=1 water=2 firewood=2"
+                # Order should be food, water, firewood
+                choice_vals = self.pg_model.get_model_outputs(choice_prompt)[0].split()
+                
+                # Choice format: "['item0=1', 'item1=0', 'item2=3', 'item0=0', 'item1=1', 'item2=0']"
+
+                if len(choice_vals) == 8 and choice_vals[0].lower() == 'alice' and choice_vals[3].lower() == 'bob':
+                    acvs = choice_vals[1:3]
+                    bcvs = choice_vals[4:7]
+                    
+                    choice_alice = acvs + bcvs
+                    choice_bob = bcvs + acvs
+
+                    #agents[0] is alice, [1] is bob
+                    # ALICE
+                    choices.append(choice_alice)
+                    logger.dump_choice(self.agents[0].name, choice_alice[: self.selection_length // 2])
+                    storage["choices"][self.agents[0].name] = choice_alice[: self.selection_length // 2]
+
+                    # BOB
+                    choices.append(choice_bob)
+                    logger.dump_choice(self.agents[1].name, choice_bob[: self.selection_length // 2])
+                    storage["choices"][self.agents[1].name] = choice_bob[: self.selection_length // 2]
+                else:
+                    # deal cannot be extracted, assume no agreement
+                    agree, rewards = False, [0 for _ in range(len(ctxs))]
+
+                    choices = [
+                        ["<no_agreement>", "<no_agreement>", "<no_agreement>"],
+                        ["<no_agreement>", "<no_agreement>", "<no_agreement>"],
+                    ]
+
+                    storage["agreement_status"] = "no_agreement_len"
+
+                    for agent, choice, in zip(self.agents, choices):
+                        storage["choices"][agent.name] = choice
+
+            else:
+                # the conversation atleast finished nicely; now we try to get a consistent output.
+                # generate choices for each of the agents
+                for agent in self.agents:
+                    choice = agent.choose()
+                    choices.append(choice)
+                    logger.dump_choice(agent.name, choice[: self.selection_length // 2])
+                    storage["choices"][agent.name] = choice[: self.selection_length // 2]
 
             # evaluate the choices, produce agreement and a reward
             agree, rewards = self.score_choices(choices, ctxs, rw_type=self.rw_type, conf=self.conf)

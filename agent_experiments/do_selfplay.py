@@ -54,6 +54,8 @@ def main():
         help='Function ID from registry.py which generates a prompt for the llm api (if used) to generate the next response in the dialogue')
     parser.add_argument('--llm_choice_prompt_func', type=str, default=None,
         help='Function ID from registry.py which generates a prompt for the llm api (if used) to generate the final choice for a dialogue')
+    parser.add_argument('--llm_api_choice', type=str, default=None,
+        help='if set (not none), this indicates to use a single LLM to extract final deals from dialogues. Value specifies the LLM to use.')
     
     parser.add_argument('--alice_model_file', type=str, default=None,
         help='Alice model file')
