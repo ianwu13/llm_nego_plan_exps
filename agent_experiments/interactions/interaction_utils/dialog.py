@@ -10,7 +10,7 @@ import logging
 import numpy as np
 
 from interactions.interaction_utils.metrics import MetricsContainer
-from ...utils import get_llm_api
+from ...utils import get_llm_api, get_response_prompt_func
 
 
 class Dialog(object):
@@ -32,7 +32,7 @@ class Dialog(object):
 
         if args.llm_api_choice:
             llm_api = get_llm_api(args.llm_api_choice, args.llm_api_key)
-            self.cpf = args.cpf
+            self.cpf = get_response_prompt_func(args.cpf)
         else:
             self.llm_api_choice = None
 
