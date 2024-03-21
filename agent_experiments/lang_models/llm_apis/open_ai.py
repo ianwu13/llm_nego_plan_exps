@@ -74,7 +74,7 @@ class OpenAI_Api(BaseModelHandler):
             gen_out = choices[0]['text'].strip('\n')
 
             # Remove non-alphanumeric characters nad make lowercase
-            gen_out = re.sub(r'[^A-Za-z0-9<> ]+', '', gen_out).lower()
+            gen_out = re.sub(r'[^A-Za-z0-9<>. ]+', '', gen_out).lower()
 
             outputs.append(gen_out)
 
@@ -159,7 +159,7 @@ class OpenAI_Api(BaseModelHandler):
             gen_out = choices[0]['message']['content'].strip('\n').replace('\n', ' ')
 
             # Remove non-alphanumeric characters nad make lowercase
-            gen_out = re.sub(r'[^A-Za-z0-9<>=/, ]+', '', gen_out).lower()
+            gen_out = re.sub(r'[^A-Za-z0-9<>=/,. ]+', '', gen_out).lower()
 
             outputs.append(gen_out)
 
