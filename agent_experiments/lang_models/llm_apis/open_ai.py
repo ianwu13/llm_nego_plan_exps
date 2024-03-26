@@ -125,6 +125,14 @@ class OpenAI_Api(BaseModelHandler):
                         break
                 
                 if response.status_code != 200:
+                    time.sleep(60)  # Let API cool down
+                    response = requests.post(
+                        self.api_url,
+                        headers=req_headers,
+                        json=req_json
+                        )
+
+                if response.status_code != 200:
                     failed_call_id = hash(inp)
                     self.failed_calls[failed_call_id] = inp
                     p_str = str(inp).replace('\n', '')

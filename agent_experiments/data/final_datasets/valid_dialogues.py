@@ -227,3 +227,5 @@ if __name__ == '__main__':
 #python3 valid_dialogues.py --fix True --dataset casino --in_file final_casino_custformat/val.txt --valid_out_file casino_cust_valid/val_fixed.txt --invalid_out_file casino_cust_valid/val_unfixable.txt
 #python3 valid_dialogues.py --fix True --dataset casino --in_file final_casino_custformat/train.txt --valid_out_file casino_cust_valid/train_fixed.txt --invalid_out_file casino_cust_valid/train_unfixable.txt
 #python3 valid_dialogues.py --fix True --dataset casino --in_file final_casino_custformat/test.txt --valid_out_file casino_cust_valid/test_fixed.txt --invalid_out_file casino_cust_valid/test_unfixable.txt
+
+#python3 valid_dialogues.py --fix True --dataset casino --in_file ../fd_r2_jan_2024/annots_train.json --valid_out_file ../fd_r2_jan_2024/fixed_final_proposal/val_fixed.txt --invalid_out_file ../fd_r2_jan_2024/fixed_final_proposal/val_unfixable.txt

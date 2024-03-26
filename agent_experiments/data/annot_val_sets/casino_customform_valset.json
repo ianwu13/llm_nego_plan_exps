@@ -5,46 +5,46 @@
             [
                 "smalltalk",
                 "empathy coordination",
-                "elicit preference"
+                "elicitpreference"
             ]
         ],
         [
             "Hey! I'd like some more firewood to keep my doggo warm. What do you need?",
             [
-                "express preference firewood",
-                "elicit preference"
+                "expresspreference firewood",
+                "elicitpreference"
             ]
         ],
         [
             "I need firewood as well. We have a large group consisting of mostly senior citizens, including my grandma, so we'd like the firewood to keep everyone warm.",
             [
-                "express preference firewood"
+                "expresspreference firewood"
             ]
         ],
         [
             "I see. \ud83d\ude2e What are you least interested in?",
             [
-                "elicit preference"
+                "elicitpreference"
             ]
         ],
         [
             "We can make do without extra water. Can we trade two waters for an extra firewood package and an extra food package?",
             [
-                "no need water",
+                "noneed water",
                 "propose food=1 water=1 firewood=1"
             ]
         ],
         [
             "We could do without the water as well. I'm willing to trade you 3 firewood for 3 food and 2 waters",
             [
-                "no need water",
+                "noneed water",
                 "propose food=3 water=2 firewood=0"
             ]
         ],
         [
             "We need some firewood too, though! \u2639\ufe0f Let's try to make a deal that benefits us both! \ud83d\ude42 Could I have 1 firewood, 3 food, and 3 waters?",
             [
-                "express preference firewood",
+                "expresspreference firewood",
                 "empathy coordination",
                 "propose food=3 water=3 firewood=1"
             ]
@@ -53,7 +53,7 @@
             "I meant I would give you my firewood, what would you trade in return?",
             [
                 "propose firewood=0",
-                "elicit preference",
+                "elicitpreference",
                 "empathy coordination"
             ]
         ],
@@ -114,13 +114,13 @@
             [
                 "smalltalk",
                 "propose food=3",
-                "elicit preference water firewood"
+                "elicitpreference water firewood"
             ]
         ],
         [
             "I would also like a little extra food for my kids. Maybe we can split it somehow?",
             [
-                "express preference food",
+                "expresspreference food",
                 "empathy coordination"
             ]
         ],
@@ -141,7 +141,7 @@
             "No i do not need water, as i am camping near a potable stream. I would like 2 firewood. It is only fair that i get two firewood, since you are getting more supplies (5), i think i should be able to choose what 4 i should get.",
             [
                 "disagree",
-                "no need water",
+                "noneed water",
                 "propose firewood=2",
                 "vouch fairness"
             ]
@@ -195,14 +195,14 @@
         [
             "I am very excited, I'm actually going camping in a week. I drink a lot of water so it's important that I bring a lot. What about you?",
             [
-                "express preference water",
-                "elicit preference"
+                "expresspreference water",
+                "elicitpreference"
             ]
         ],
         [
             "I really am! I have been watching the weather and updates about the area I will be traveling to.  They are experiencing a severe drought, so I will be in need of some extra water as well! I planned on staying an extra couple days as well.  There is a stream nearby I believe, but I'm not sure how much it has dried up.",
             [
-                "express preference water"
+                "expresspreference water"
             ]
         ],
         [
@@ -215,7 +215,7 @@
             "Yes, I would be willing to let you have all the firewood for 2 of the cases of water.  How much food were you needing?",
             [
                 "empathy coordination",
-                "elicit preference food",
+                "elicitpreference food",
                 "propose water=1 firewood=3"
             ]
         ],
@@ -230,13 +230,13 @@
             "Let me think on that. I know there won't be much for berries or small animals to hunt for.  Is where you are going have much available for you to hunt and scavenge for?",
             [
                 "smalltalk",
-                "elicit preference food"
+                "elicitpreference food"
             ]
         ],
         [
             "It might but with the summer season hunting isn't exactly legal at the moment. I tend to camp in remote areas so going to the store for more food isn't really an option. I've already let you have extra water so I don't think it's too far of a stretch to let me have some extra food.",
             [
-                "express preference food",
+                "expresspreference food",
                 "empathy coordination"
             ]
         ],
@@ -286,7 +286,7 @@
             "now how to split the water, wish it wasn't an odd number",
             [
                 "empathy coordination",
-                "elicit preference water"
+                "elicitpreference water"
             ]
         ],
         [
@@ -344,27 +344,27 @@
         [
             "What are you most interested in getting?",
             [
-                "elicit preference"
+                "elicitpreference"
             ]
         ],
         [
             "I think food is my highest priority, What about you?",
             [
-                "express preference food",
-                "elicit preference"
+                "expresspreference food",
+                "elicitpreference"
             ]
         ],
         [
             "Food is also my highest priority, but firewood is also pretty close for me.",
             [
-                "express preference food firewood"
+                "expresspreference food firewood"
             ]
         ],
         [
             "Would you be willing to take more firewood for less food?",
             [
                 "empathy coordination",
-                "elicit preference food firewood"
+                "elicitpreference food firewood"
             ]
         ],
         [
@@ -378,7 +378,7 @@
             "So if I take 2 foods and 1 firewood, you take 1 food and 2 firewood. What would be fair for water?",
             [
                 "propose food=2 firewood=1",
-                "elicit preference water"
+                "elicitpreference water"
             ]
         ],
         [
@@ -423,14 +423,14 @@
         [
             "Hello, what are your preferences for extra supplies?  I am greatly in need of food and water.  We will be doing a lot of activity in a hot, dry climate.\ud83d\ude42",
             [
-                "elicit preference",
-                "express preference food water"
+                "elicitpreference",
+                "expresspreference food water"
             ]
         ],
         [
             "I prefer firewood because I will get cold at night. I forgot blankets \u2639\ufe0f",
             [
-                "express preference firewood"
+                "expresspreference firewood"
             ]
         ],
         [
@@ -449,21 +449,21 @@
         [
             "I see.  I also greatly need the extra food, as I indicated. Perhaps there are some convenience or grocery stores near your campground--you might then purchase extra food there and not have to carry it with you on your trip?  ",
             [
-                "express preference food",
+                "expresspreference food",
                 "undervalue food"
             ]
         ],
         [
             "I believe there won't be any convenience stores around to buy food, And I plan on staying out longer than you so I will need more food to last me, Do you need food or water more?",
             [
-                "express preference food",
-                "elicit preference food water"
+                "expresspreference food",
+                "elicitpreference food water"
             ]
         ],
         [
             "How do you know you are staying longer than me? I haven't even said how long I am staying! I am also with a big group.  \u2639\ufe0f\u2639\ufe0f  I need food the most, and I would like to take at least 2 extra waters.  I could possibly give up one of the food packages if you could part with 2 firewood.  Without extra food, I would have to do some fishing and cook the fish.",
             [
-                "express preference food",
+                "expresspreference food",
                 "propose food=2 water=2 firewood=2"
             ]
         ],
@@ -523,8 +523,8 @@
         [
             "Yes!  Would you mind sharing your highest priority item with me?  My most valued item right now is Food actually",
             [
-                "elicit preference",
-                "express preference food"
+                "elicitpreference",
+                "expresspreference food"
             ]
         ],
         [
@@ -542,13 +542,13 @@
         [
             "I  wood really like the firewood as I am afraid of the dark and would like my fire to last all night. ",
             [
-                "express preference firewood"
+                "expresspreference firewood"
             ]
         ],
         [
             "Oh that makes total sense.  I need the food so badly since I am bringing my family with me and they are one hungry bunch aha.  Would you be amenable to me having 3 food packets and you having 3 firewood packets?",
             [
-                "express preference food",
+                "expresspreference food",
                 "propose food=3 firewood=0"
             ]
         ],
@@ -556,7 +556,7 @@
             "That would work great. How about water? What is your preference for that?",
             [
                 "agree",
-                "elicit preference water"
+                "elicitpreference water"
             ]
         ],
         [
@@ -614,33 +614,33 @@
         [
             "ME as well! we are a group of big eaters, and are looking to take lots of food.",
             [
-                "express preference food"
+                "expresspreference food"
             ]
         ],
         [
             "That is fair as there is no showers or sinks at my campsite so I am looking to take water :) ",
             [
                 "vouch fairness",
-                "express preference water"
+                "expresspreference water"
             ]
         ],
         [
             "We will likely also need to take water too. Need to be able to wash up.",
             [
-                "express preference water"
+                "expresspreference water"
             ]
         ],
         [
             "That is fair, I also will need a good bit of firewood to keep warm as the campsite is in a colder area.",
             [
                 "vouch fairness",
-                "express preference firewood"
+                "expresspreference firewood"
             ]
         ],
         [
             "We dont care much for campfires. Leaves your cloths smelling for days!",
             [
-                "no need firewood"
+                "noneed firewood"
             ]
         ],
         [
@@ -679,36 +679,36 @@
             "How are you today? Did you have any preferences on the supplies we will be trading?",
             [
                 "smalltalk",
-                "elicit preference"
+                "elicitpreference"
             ]
         ],
         [
             "I am good. How about yourself? I think I would like some firewood to start off with. We like to have bigger fires. What about you?",
             [
                 "smalltalk",
-                "express preference firewood",
-                "elicit preference"
+                "expresspreference firewood",
+                "elicitpreference"
             ]
         ],
         [
             "I am good as well. That is good to hear that you like to have bigger fires as we do not care much for that. We would much rather have some extra water.",
             [
                 "smalltalk",
-                "no need firewood",
-                "express preference water"
+                "noneed firewood",
+                "expresspreference water"
             ]
         ],
         [
             "Water is a little important to us too though , if possible maybe we can split that or maybe we can get some more food in replacement.",
             [
-                "express preference water food",
+                "expresspreference water food",
                 "empathy coordination"
             ]
         ],
         [
             "That may be possible.... \ud83d\ude42 What did you have in mind for the food replacement? ",
             [
-                "elicit preference"
+                "elicitpreference"
             ]
         ],
         [
@@ -721,7 +721,7 @@
             "I dont think I am okay with that \u2639\ufe0f. Food is essential to our groups morale when camping. We would like 1 additional food preferably.",
             [
                 "disagree",
-                "express preference food",
+                "expresspreference food",
                 "propose food=1"
             ]
         ],
@@ -785,26 +785,26 @@
             "I'm also going camping with my two children and 2 of my nephews  How would you like to divide the supplies?",
             [
                 "smalltalk",
-                "elicit preference"
+                "elicitpreference"
             ]
         ],
         [
             "Well what do you need the most of?",
             [
-                "elicit preference"
+                "elicitpreference"
             ]
         ],
         [
             "I need the most firewood due to a congenital issue that results in us having poor blood circulation to our extremities, thus making them susceptible to frostbite in the cold!",
             [
-                "express preference firewood"
+                "expresspreference firewood"
             ]
         ],
         [
             "Oh dear, that sounds serious!  Well I need food the most because my children eat sooo much and I don't think I packed enough.  How about I'll give you all my firewood in exchange for all your food?",
             [
                 "empathy coordination",
-                "express preference food",
+                "expresspreference food",
                 "propose food=3 firewood=0"
             ]
         ],
@@ -855,35 +855,35 @@
         [
             "Can i kindly know your preferences please?",
             [
-                "elicit preference"
+                "elicitpreference"
             ]
         ],
         [
             "Well, I'm kind of low on water, so I'd like to get as much of that as I can. I'd like to go hiking and I don't really have enough water for a long trip. What about you?",
             [
-                "express preference water",
-                "elicit preference"
+                "expresspreference water",
+                "elicitpreference"
             ]
         ],
         [
             "Ohh nice.I also have the same issue around here.The thirst for water is growing high than ever due to drought",
             [
-                "express preference water"
+                "expresspreference water"
             ]
         ],
         [
             "Well, that's a bummer. How are you set for food? While I wouldn't mind a bit more, I'm in pretty good shape there, so I'd be willing to trade it for water. I'd hate to leave without getting a good hike in.",
             [
                 "empathy coordination",
-                "elicit preference food",
-                "no need food",
-                "express preference water"
+                "elicitpreference food",
+                "noneed food",
+                "expresspreference water"
             ]
         ],
         [
             "Hun,It's a bit of a fair deal,but due to the condition here i will need a bit more of water though foo cannot be overlooked also for survival but still to survive we take chances.So do you mind me giving you a package of food and u trading 2 pakages of water?.",
             [
-                "express preference water",
+                "expresspreference water",
                 "propose food=2 water=2"
             ]
         ],
@@ -935,14 +935,14 @@
         [
             "yes I could use some extra food since i am hiking with my kids and they all have a friend that comes along...lol",
             [
-                "express preference food"
+                "expresspreference food"
             ]
         ],
         [
             "I know how that goes...We are planning on hiking too and we could also use some extra food.",
             [
                 "smalltalk",
-                "express preference food"
+                "expresspreference food"
             ]
         ],
         [
@@ -954,14 +954,14 @@
         [
             "I really need some food, but I could also use extra firewood. It is supposed to be pretty cold at night and we would love to cook up some smores.",
             [
-                "express preference food firewood",
+                "expresspreference food firewood",
                 "smalltalk"
             ]
         ],
         [
             "I hear you we have the same issues well you can have either 2 food or 2 firewood what would you prefer?",
             [
-                "elicit preference food firewood"
+                "elicitpreference food firewood"
             ]
         ],
         [
@@ -999,27 +999,27 @@
         [
             "Hi. I'm most interested in water. What's your highest priority?",
             [
-                "express preference water",
-                "elicit preference"
+                "expresspreference water",
+                "elicitpreference"
             ]
         ],
         [
             "I really need water too. I have a young baby and will do a lot of washing.",
             [
-                "express preference water"
+                "expresspreference water"
             ]
         ],
         [
             "Okay. I'm not especially worried about food. What's your lowest priority?",
             [
-                "no need food",
-                "elicit preference"
+                "noneed food",
+                "elicitpreference"
             ]
         ],
         [
             "I have enough food too. Can I take 2 water, 1 firewood and 2 food?",
             [
-                "no need food",
+                "noneed food",
                 "propose food=2 water=2 firewood=1"
             ]
         ],
@@ -1051,7 +1051,7 @@
         [
             "If that sounds good, just tell me which bundle you want.",
             [
-                "elicit preference"
+                "elicitpreference"
             ]
         ],
         [
@@ -1113,7 +1113,7 @@
         [
             "Ok, I do too. What do you really need?",
             [
-                "elicit preference"
+                "elicitpreference"
             ]
         ],
         [
@@ -1125,7 +1125,7 @@
         [
             "I really need water though. Are you sure you need that much?",
             [
-                "express preference water",
+                "expresspreference water",
                 "undervalue water"
             ]
         ],
@@ -1157,7 +1157,7 @@
         [
             "That sounds not bad...! Though I need at least 1 more water additional to that",
             [
-                "express preference water"
+                "expresspreference water"
             ]
         ],
         [
@@ -1215,14 +1215,14 @@
             [
                 "smalltalk",
                 "empathy coordination",
-                "express preference water food"
+                "expresspreference water food"
             ]
         ],
         [
             "That sounds reasonable. I don't particularly need the food because I see that as more of a luxury but I could really use some more water. It's supposed to get really really hot on the weekend. \ud83d\ude2e",
             [
-                "no need water",
-                "express preference water"
+                "noneed water",
+                "expresspreference water"
             ]
         ],
         [
@@ -1251,7 +1251,7 @@
             "Yep and I need all 3 firewood because I'm hunting. Meat absolutely needs to be cooked. The same cannot be said about pepperoni pizza and chips for example.",
             [
                 "agree",
-                "express preference firewood",
+                "expresspreference firewood",
                 "propose firewood=3"
             ]
         ],
@@ -1279,7 +1279,7 @@
             "Hi. Why do you need so many food packages?",
             [
                 "undervalue food",
-                "elicit preference food"
+                "elicitpreference food"
             ]
         ],
         [
@@ -1292,7 +1292,7 @@
         [
             "Well I will definitely need 2 packages of food and 2 of firewood for survival.",
             [
-                "express preference food firewood",
+                "expresspreference food firewood",
                 "propose food=2 firewood=2"
             ]
         ],
@@ -1300,7 +1300,7 @@
             "I am definitely ok with giving you two of the firewood!!  Why do you need 2 packages of food?",
             [
                 "undervalue food",
-                "elicit preference food"
+                "elicitpreference food"
             ]
         ],
         [
@@ -1328,7 +1328,7 @@
             [
                 "disagree",
                 "propose food=1 water=1 firewood=3",
-                "express preference food"
+                "expresspreference food"
             ]
         ],
         [
@@ -1370,20 +1370,20 @@
         [
             "Since I have never been camping before, why do you think you need 2 firewood?",
             [
-                "elicit preference firewood",
+                "elicitpreference firewood",
                 "undervalue firewood"
             ]
         ],
         [
             "Unfortunately, I have arthritis so being sure to keep warm and the dampness away in the evening, heat is important for me.",
             [
-                "express preference firewood"
+                "expresspreference firewood"
             ]
         ],
         [
             "Ok.  I am worried about animals and bugs so I would prefer 2 firewood.  But I am happy with the 3 food\ud83d\ude42",
             [
-                "express preference firewood",
+                "expresspreference firewood",
                 "propose food=3 firewood=2"
             ]
         ],
@@ -1391,14 +1391,14 @@
             "Ok, how about we shift a bit as I hear you on the bugs and animals.  I think I can get by with one firewood and use extra covers and meds.  But, will need plenty of water and some food.  How about I take 1 firewood, 2 water and 2 food.",
             [
                 "empathy coordination",
-                "express preference food water",
+                "expresspreference food water",
                 "propose food=2 water=2 firewood=1"
             ]
         ],
         [
             "Ok, although I was thinking that I could probably find some firewood, but would prefer more water so I don't get dehydrated and can use it to wash and cook.  How about I take 1 firewood, 2 water, and 1 food",
             [
-                "express preference water",
+                "expresspreference water",
                 "propose food=1 water=2 firewood=1"
             ]
         ],
@@ -1457,34 +1457,34 @@
             "i am great, super excited about camping as well, are there any supplies that you really need?",
             [
                 "smalltalk",
-                "elicit preference"
+                "elicitpreference"
             ]
         ],
         [
             "i really need water and food. we did not get enough of those.",
             [
-                "express preference food water"
+                "expresspreference food water"
             ]
         ],
         [
             "Those are my priorities as well, how about you get all the food and two firewoods, and i get all the water and one firewood, does that sound fair?",
             [
-                "express preference food water",
+                "expresspreference food water",
                 "propose food=0 water=3 firewood=1"
             ]
         ],
         [
             "i would prefer water instead of food if possible, but i am sure we can work it out.",
             [
-                "express preference water",
-                "no need food",
+                "expresspreference water",
+                "noneed food",
                 "empathy coordination"
             ]
         ],
         [
             "water is really important for me, how about i get two waters and three firewoods and you get three foods and one water?",
             [
-                "express preference water",
+                "expresspreference water",
                 "propose food=0 water=2 firewood=3"
             ]
         ],
@@ -1523,20 +1523,20 @@
         [
             "Hello, what are your preferences for food, water, and firewood?",
             [
-                "elicit preference food water firewood"
+                "elicitpreference food water firewood"
             ]
         ],
         [
             "Hey, nice getting to interact with you. I would like to have additional packages of firewood and water",
             [
                 "smalltalk",
-                "express preference water firewood"
+                "expresspreference water firewood"
             ]
         ],
         [
             "Okay, I would like to have additional packages of food and water.",
             [
-                "express preference food water"
+                "expresspreference food water"
             ]
         ],
         [
@@ -1555,46 +1555,46 @@
             "I can't take cold and would badly need to have more firewood.",
             [
                 "disagree",
-                "express preference firewood"
+                "expresspreference firewood"
             ]
         ],
         [
             "I need more firewood to keep my food going.",
             [
                 "disagree",
-                "express preference firewood"
+                "expresspreference firewood"
             ]
         ],
         [
             "I get it, in that case I'' take additional packages of food.",
             [
-                "express preference food"
+                "expresspreference food"
             ]
         ],
         [
             "I don't think so, because I need additional packages of food in case there is an emergency.",
             [
                 "disagree",
-                "express preference food"
+                "expresspreference food"
             ]
         ],
         [
             "I was under the impression you don't have the need for additional firewood as you mentioned you need additional of food and water. Let me know how many packages of item you need.",
             [
                 "undervalue firewood",
-                "elicit preference"
+                "elicitpreference"
             ]
         ],
         [
             "You're right, I meant to say that I need additional food and water.",
             [
-                "express preference food water"
+                "expresspreference food water"
             ]
         ],
         [
             "So, let me know how much exactly do you want of each item",
             [
-                "elicit preference"
+                "elicitpreference"
             ]
         ],
         [
@@ -1684,7 +1684,7 @@
         [
             ":) Yes and you know what we are experiencing some difficulty as some people who said initially they were not going to be able to come and at the last minute are saying that they are coming so we are short on the most important items which are food and was wondering if we could speak about sharing items but due to the people who joined late if I can get food and water you can have more wood as none of us know how to really go into the wild and we do not want to turn away our last minute guests, it would be of tremendous help   ",
             [
-                "express preference food water",
+                "expresspreference food water",
                 "empathy coordination"
             ]
         ],
@@ -1692,24 +1692,24 @@
             "I'm more than willing to help you to the best of my ability. I understand and appreciate the difficult situation you find yourself in. How many packages of food and water do you think you will need for your additional guests? How much wood do you need since you are saying you don't need much?",
             [
                 "empathy coordination",
-                "elicit preference food water firewood"
+                "elicitpreference food water firewood"
             ]
         ],
         [
             "Thanks for your understanding well I think if possible then to meet the situation then how bout 3 food and 2 water then you get all the wood ? That way you can have awesome campfires lasting through the night, we will be going to sleep extra early to wake up very early so we do not need all that wood, as much as we need food to replenish our energy and be ready for another day of long walks to see as much as we can from nature \ud83d\ude42",
             [
                 "empathy coordination",
-                "no need firewood",
+                "noneed firewood",
                 "propose food=3 water=2 firewood=0"
             ]
         ],
         [
             "I agree with you that campfires are awesome and I do find them to be be quite useful. I'm not as early of a riser as you are unfortunately! \ud83d\ude42 I'm willing to accept your offer on food as long as you could please consider my needs for water. I am a very active hiker. While I don't need much food for my hikes I do require a lot of water. I once went on a hiking trip when I was new to the activity and ran out of water. I got lost and almost dehydrated! Ever since then it's been very important to me to have as much water as possible. What would it take in order for me to get as much water as possible keeping in mind that I'm willing to give you 3 food. ",
             [
-                "express preference water",
+                "expresspreference water",
                 "smalltalk",
                 "empathy coordination",
-                "no need food"
+                "noneed food"
             ]
         ],
         [

@@ -16,7 +16,7 @@ LLM_API_REG = {
     "openai_generic": ("lang_models.llm_apis.open_ai", "OpenAI_Api"),
 }
 '''
-    # TODO: THESE ARE NOT YET IMPLEMENTED
+    # THESE ARE NOT YET IMPLEMENTED
     "llama_7b": ("lang_models.llm_apis.llama", "Llama7BHandler"),
     "falcon_7b": ("lang_models.llm_apis.falcon", "Falcon7BHandler"),
     "falcon_40b": ("lang_models.llm_apis.falcon", "Falcon40BHandler"),
@@ -27,35 +27,44 @@ LLM_API_REG = {
 # Prompt List to Annotate Dialogue Instance
 # dialogue_instance (format dataset dependent) -> list["prompt_for_annot_single_utt"]
 INST2ANNOT_PROMPT_FUN_REG = {
-    "example": ("data.conversion.inst2p_functions", "example_inst2p_func"),
-    "example_dnd": ("data.conversion.inst2p_functions", "example_inst2p_func_dnd"),
-    "demo_dnd": ("data.conversion.inst2p_functions", "demo_dnd"),
-    "demo_casino": ("data.conversion.inst2p_functions", "demo_casino"),
-    "completion_dnd": ("data.conversion.inst2p_functions", "completion_dnd_annot_prompt_fun"),
-    "completion_casino": ("data.conversion.inst2p_functions", "completion_casino_annot_prompt_fun"),
-    "chat_dnd": ("data.conversion.inst2p_functions", "chat_dnd_annot_prompt_fun"),
-    "chat_casino": ("data.conversion.inst2p_functions", "chat_casino_annot_prompt_fun"),
-    # Final Annotation Prompt Functions (All Chat-Only):
-    "final_dnd_fs": ("data.conversion.inst2p_functions", "final_dnd_fs"),
-    "final_dnd_example": ("data.conversion.inst2p_functions", "final_dnd_example"),
-    "final_casino_dnd_form_fs": ("data.conversion.inst2p_functions", "final_casino_dnd_form_fs"),
-    "final_casino_dnd_form_example": ("data.conversion.inst2p_functions", "final_casino_dnd_form_example"),
-    "final_casino_cust_form_fs": ("data.conversion.inst2p_functions", "final_casino_cust_form_fs"),
-    "final_casino_cust_form_example": ("data.conversion.inst2p_functions", "final_casino_cust_form_example"),
+    # region
+    # DEVELOPEMENT TESTS
+    # "example": ("data.conversion.inst2p_functions", "example_inst2p_func"),
+    # "example_dnd": ("data.conversion.inst2p_functions", "example_inst2p_func_dnd"),
+    # "demo_dnd": ("data.conversion.inst2p_functions", "demo_dnd"),
+    # "demo_casino": ("data.conversion.inst2p_functions", "demo_casino"),
+    # "completion_dnd": ("data.conversion.inst2p_functions", "completion_dnd_annot_prompt_fun"),
+    # "completion_casino": ("data.conversion.inst2p_functions", "completion_casino_annot_prompt_fun"),
+    # "chat_dnd": ("data.conversion.inst2p_functions", "chat_dnd_annot_prompt_fun"),
+    # "chat_casino": ("data.conversion.inst2p_functions", "chat_casino_annot_prompt_fun"),
+    # # Final Annotation Prompt Functions (All Chat-Only):
+    # "final_dnd_fs": ("data.conversion.inst2p_functions", "final_dnd_fs"),
+    # "final_dnd_example": ("data.conversion.inst2p_functions", "final_dnd_example"),
+    # "final_casino_dnd_form_fs": ("data.conversion.inst2p_functions", "final_casino_dnd_form_fs"),
+    # "final_casino_dnd_form_example": ("data.conversion.inst2p_functions", "final_casino_dnd_form_example"),
+    # "final_casino_cust_form_fs": ("data.conversion.inst2p_functions", "final_casino_cust_form_fs"),
+    # "final_casino_cust_form_example": ("data.conversion.inst2p_functions", "final_casino_cust_form_example"),
 
-    # No FS Versions
-    "final_dnd_no_fs": ("data.conversion.inst2p_functions", "final_dnd_no_fs"),
-    "final_casino_dnd_form_no_fs": ("data.conversion.inst2p_functions", "final_casino_dnd_form_no_fs"),
-    "final_casino_cust_form_no_fs": ("data.conversion.inst2p_functions", "final_casino_cust_form_no_fs"),
+    # # No FS Versions
+    # "final_dnd_no_fs": ("data.conversion.inst2p_functions", "final_dnd_no_fs"),
+    # "final_casino_dnd_form_no_fs": ("data.conversion.inst2p_functions", "final_casino_dnd_form_no_fs"),
+    # "final_casino_cust_form_no_fs": ("data.conversion.inst2p_functions", "final_casino_cust_form_no_fs"),
 
-    # Description and FS
-    "final_dnd_desc_fs": ("data.conversion.inst2p_functions", "final_dnd_desc_fs"),
-    "final_casino_dnd_form_desc_fs": ("data.conversion.inst2p_functions", "final_casino_dnd_form_desc_fs"),
-    "final_casino_cust_form_desc_fs": ("data.conversion.inst2p_functions", "final_casino_cust_form_desc_fs"),
+    # # Description and FS
+    # "final_dnd_desc_fs": ("data.conversion.inst2p_functions", "final_dnd_desc_fs"),
+    # "final_casino_dnd_form_desc_fs": ("data.conversion.inst2p_functions", "final_casino_dnd_form_desc_fs"),
+    # "final_casino_cust_form_desc_fs": ("data.conversion.inst2p_functions", "final_casino_cust_form_desc_fs"),
+    # endregion
 
     # FINAL
     "finalized_dnd": ("data.conversion.inst2p_functions", "finalized_dnd"),
     "finalized_casino_cust_format": ("data.conversion.inst2p_functions", "finalized_casino_cust_format"),
+
+    # Reduced tests
+    "reduced_casino_cust_format": ("data.conversion.inst2p_functions", "reduced_casino_cust_format"),
+    "context_and_reduced_casino_cust_format": ("data.conversion.inst2p_functions", "context_and_reduced_casino_cust_format"),
+    "diahist_and_reduced_casino_cust_format": ("data.conversion.inst2p_functions", "diahist_and_reduced_casino_cust_format"),
+    "context_plus_diahist_and_reduced_casino_cust_format": ("data.conversion.inst2p_functions", "context_plus_diahist_and_reduced_casino_cust_format"),
 }
 
 # Dialogue Annotations to Formatted Line Output
@@ -82,7 +91,6 @@ RESPONSE_PROMPT_FUN_REG = {
     "dia_resp_slagent_completion_dnd": ("lang_models.llm_apis.prompting.dia_response_funcitons", "dia_resp_slagent_completion_dnd"),
     "choice_slagent_completion_dnd": ("lang_models.llm_apis.prompting.dia_response_funcitons", "choice_slagent_completion_dnd"),
     
-
     # Human-Bot
     # DND: No planning agents (Single-Level)
     "dia_resp_slagent_chatcomp_dnd": ("lang_models.llm_apis.prompting.dia_response_funcitons", "dia_resp_slagent_chatcomp_dnd"),
@@ -96,9 +104,6 @@ RESPONSE_PROMPT_FUN_REG = {
     "choice_slagent_chatcomp_dnd": ("lang_models.llm_apis.prompting.dia_response_funcitons", "choice_slagent_chatcomp_dnd"),
     "choice_slagent_chatcomp_casino": ("lang_models.llm_apis.prompting.dia_response_funcitons", "choice_slagent_chatcomp_casino"),
     
-
-
-
     "dia_resp_slagent_chatcomp_thirdperson_dnd": ("lang_models.llm_apis.prompting.dia_response_funcitons", "dia_resp_slagent_chatcomp_thirdperson_dnd"),
     "choice_slagent_chatcomp_thirdperson_dnd": ("lang_models.llm_apis.prompting.dia_response_funcitons", "choice_slagent_chatcomp_thirdperson_dnd"),
     
@@ -131,5 +136,8 @@ UTT2ACT_PROMPT_FUN_REG = {
     # Finalized versions (FROM ANNOTATION PIPELINE)
     # "example": ("lang_models.llm_apis.prompting.utt2act_functions", "example_u2a_func"),
     "final_utt2act_dnd": ("lang_models.llm_apis.prompting.utt2act_functions", "final_utt2act_dnd"),
-    "final_utt2act_casino_cust": ("lang_models.llm_apis.prompting.utt2act_functions", "final_utt2act_casino_cust")
+    "final_utt2act_casino_cust": ("lang_models.llm_apis.prompting.utt2act_functions", "final_utt2act_casino_cust"),
+
+    # CURRENT
+    "reduced_casino_cust_format": ("lang_models.llm_apis.prompting.utt2act_functions", "reduced_casino_cust_format"),
 }

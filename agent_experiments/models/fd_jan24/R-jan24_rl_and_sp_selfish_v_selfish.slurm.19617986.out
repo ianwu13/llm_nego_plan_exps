@@ -1,0 +1,415 @@
+==========================================
+SLURM_JOB_ID = 19617986
+SLURM_JOB_NODELIST = d14-05
+TMPDIR = /tmp/SLURM_19617986
+==========================================
+SELFISH_V_SELFISH TRAINING
+2024-02-21 16:15:35,136 : INFO : reinforce.py : Starting training using pytorch version:2.0.1+cu117
+2024-02-21 16:15:35,136 : INFO : reinforce.py : CUDA is enabled. Using device_id:0 version:11.7 on gpu:Tesla V100-PCIE-32GB
+2024-02-21 16:15:51,484 : INFO : reinforce.py : Creating RlAgent from alice_model: models/model_files/fd_jan24/jan24_casino_custformat_supervised_30ep.pt
+2024-02-21 16:15:51,485 : INFO : reinforce.py : Creating Bob's (not --smart_bob) LstmAgent
+2024-02-21 16:15:51,764 : INFO : reinforce.py : Initializing communication dialogue between Alice and Bob
+2024-02-21 16:15:51,777 : INFO : reinforce.py : Building word corpus, requiring minimum word frequency of 20 for dictionary
+2024-02-21 16:15:51,877 : INFO : reinforce.py : Starting Reinforcement Learning
+2024-02-21 16:15:55,951 : INFO : reinforce.py : Num: 10
+2024-02-21 16:15:56,687 : INFO : reinforce.py : Num: 20
+2024-02-21 16:15:57,461 : INFO : reinforce.py : Num: 30
+2024-02-21 16:15:58,152 : INFO : reinforce.py : Num: 40
+2024-02-21 16:15:59,138 : INFO : reinforce.py : Num: 50
+2024-02-21 16:15:59,917 : INFO : reinforce.py : Num: 60
+2024-02-21 16:16:00,858 : INFO : reinforce.py : Num: 70
+2024-02-21 16:16:01,999 : INFO : reinforce.py : Num: 80
+2024-02-21 16:16:02,694 : INFO : reinforce.py : Num: 90
+2024-02-21 16:16:03,873 : INFO : reinforce.py : Num: 100
+Namespace(data='data/fd_r2_jan_2024', unk_threshold=20, alice_model_file='models/model_files/fd_jan24/jan24_casino_custformat_supervised_30ep.pt', bob_model_file='models/model_files/fd_jan24/jan24_casino_custform_rl_selfish_4ep_rw_own_points.pt', output_model_file='../logs/jan24_casino_custform_rl_selfish_v_selfish_4ep.pt', context_file='data/fd_r2_jan_2024/selfplay.txt', temperature=0.5, cuda=True, verbose=False, seed=1, score_threshold=6, log_file='', smart_bob=False, gamma=0.95, eps=0.0, nesterov=True, momentum=0.1, lr=0.5, clip=1.0, rl_lr=0.2, rl_clip=1.0, ref_text='data/fd_r2_jan_2024/train.txt', bsz=16, sv_train_freq=4, nepoch=4, visual=False, domain='object_division', scale_rw=1.0, rw_type='own_points')
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['expresspreference', 'firewood', 'water', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['propose', 'food=2', 'water=2', 'firewood=1', '<eos>'], ['noneed', 'food', 'expresspreference', 'firewood', 'propose', 'food=1', 'water=1', 'firewood=2', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['propose', 'food=0', 'water=2', 'firewood=2', '<eos>'], ['expresspreference', 'water', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=1', 'item1=2', 'item2=2', 'item0=2', 'item1=1', 'item2=1'], ['item0=3', 'item1=1', 'item2=1', 'item0=0', 'item1=2', 'item2=2']]
+Failure
+[['smalltalk', '<eos>'], ['elicitpreference', '<eos>'], ['elicitpreference', 'expresspreference', 'food', 'water', '<eos>'], ['expresspreference', 'food', '<eos>'], ['expresspreference', 'food', '<eos>'], ['propose', 'food=0', 'water=2', 'firewood=2', '<eos>'], ['expresspreference', 'food', '<eos>'], ['propose', 'water=2', '<eos>'], ['expresspreference', 'food', '<eos>'], ['propose', 'food=2', 'water=2', 'firewood=1', '<eos>'], ['propose', 'food=2', 'water=2', 'firewood=2', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=1', 'item1=2', 'item2=1', 'item0=2', 'item1=1', 'item2=2'], ['item0=2', 'item1=1', 'item2=1', 'item0=1', 'item1=2', 'item2=2']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['expresspreference', 'firewood', 'water', '<eos>'], ['expresspreference', 'water', '<eos>'], ['expresspreference', 'firewood', 'food', 'water', 'propose', 'food=1', 'water=2', 'firewood=3', '<eos>'], ['propose', 'food=3', 'water=3', 'firewood=1', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['propose', 'food=3', 'water=0', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['agree', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=3', 'item1=1', 'item2=1', 'item0=0', 'item1=2', 'item2=2'], ['item0=1', 'item1=2', 'item2=2', 'item0=2', 'item1=1', 'item2=1']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['expresspreference', 'firewood', 'food', 'water', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['expresspreference', 'firewood', 'food', 'water', '<eos>'], ['propose', 'food=1', 'water=1', 'firewood=1', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['propose', 'water=2', 'firewood=1', '<eos>'], ['propose', 'food=1', 'water=1', 'firewood=2', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=1', 'item1=2', 'item2=1', 'item0=2', 'item1=1', 'item2=2'], ['item0=1', 'item1=1', 'item2=2', 'item0=2', 'item1=2', 'item2=1']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['elicitpreference', '<eos>'], ['noneed', 'food', 'expresspreference', 'firewood', 'water', '<eos>'], ['expresspreference', 'food', 'water', '<eos>'], ['noneed', 'food', '<eos>'], ['noneed', 'firewood', 'expresspreference', 'food', '<eos>'], ['propose', 'food=0', 'water=3', 'firewood=2', '<eos>'], ['elicitpreference', 'water', '<eos>'], ['expresspreference', 'water', '<eos>'], ['noneed', 'firewood', 'expresspreference', 'food', 'expresspreference', 'food', 'propose', 'food=2', 'water=1', '<eos>'], ['agree', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=1', 'item1=1', 'item2=3', 'item0=2', 'item1=2', 'item2=0'], ['item0=2', 'item1=1', 'item2=0', 'item0=1', 'item1=2', 'item2=3']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['expresspreference', 'firewood', 'water', 'propose', 'water=2', 'firewood=2', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=1', 'item1=2', 'item2=1', 'item0=2', 'item1=1', 'item2=2'], ['item0=2', 'item1=1', 'item2=1', 'item0=1', 'item1=2', 'item2=2']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['expresspreference', 'water', '<eos>'], ['expresspreference', 'water', '<eos>'], ['expresspreference', 'firewood', 'water', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['expresspreference', 'water', 'propose', 'food=0', 'water=3', 'firewood=1', '<eos>'], ['propose', 'food=0', 'water=3', 'firewood=2', '<eos>'], ['expresspreference', 'water', 'propose', 'food=3', 'water=2', 'firewood=1', '<eos>'], ['unknown', '<eos>'], ['propose', 'food=0', 'water=2', 'firewood=2', '<eos>'], ['agree', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=3', 'item1=1', 'item2=2', 'item0=0', 'item1=2', 'item2=1'], ['item0=0', 'item1=2', 'item2=2', 'item0=3', 'item1=1', 'item2=1']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['unknown', '<eos>'], ['expresspreference', 'firewood', 'water', '<eos>'], ['expresspreference', 'water', '<eos>'], ['propose', 'food=0', 'water=2', 'firewood=2', '<eos>'], ['elicitpreference', 'firewood', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['propose', 'food=3', 'water=3', 'firewood=1', '<eos>'], ['propose', 'food=1', 'water=0', 'firewood=2', '<eos>'], ['agree', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=3', 'item1=3', 'item2=1', 'item0=0', 'item1=0', 'item2=2'], ['item0=1', 'item1=0', 'item2=2', 'item0=2', 'item1=3', 'item2=1']]
+Failure
+[['smalltalk', 'elicitpreference', 'expresspreference', 'firewood', 'water', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=2', '<eos>'], ['smalltalk', '<eos>'], ['elicitpreference', 'water', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['noneed', 'water', 'expresspreference', 'firewood', '<eos>'], ['expresspreference', 'firewood', 'propose', 'food=1', 'water=1', 'firewood=3', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=2', '<eos>'], ['agree', '<eos>'], ['agree', '<eos>'], ['agree', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=1', 'item1=2', 'item2=1', 'item0=2', 'item1=1', 'item2=2'], ['item0=2', 'item1=1', 'item2=1', 'item0=1', 'item1=2', 'item2=2']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['elicitpreference', 'expresspreference', 'food', 'water', '<eos>'], ['noneed', 'firewood', 'expresspreference', 'food', '<eos>'], ['expresspreference', 'firewood', 'propose', 'food=2', 'water=1', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=1', '<eos>'], ['propose', 'food=2', 'water=2', 'firewood=0', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=1', 'item1=2', 'item2=2', 'item0=2', 'item1=1', 'item2=1'], ['item0=2', 'item1=2', 'item2=0', 'item0=1', 'item1=1', 'item2=3']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['elicitpreference', 'expresspreference', 'water', '<eos>'], ['noneed', 'water', 'expresspreference', 'food', 'firewood', '<eos>'], ['noneed', 'food', 'expresspreference', 'firewood', 'water', 'propose', 'food=0', 'water=3', 'firewood=2', '<eos>'], ['noneed', 'water', 'expresspreference', 'food', '<eos>'], ['propose', 'food=0', 'water=3', 'firewood=2', '<eos>'], ['noneed', 'water', 'expresspreference', 'food', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['propose', 'food=3', 'water=0', 'firewood=2', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['agree', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=2', 'item1=1', 'item2=1', 'item0=1', 'item1=2', 'item2=2'], ['item0=1', 'item1=2', 'item2=1', 'item0=2', 'item1=1', 'item2=2']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['expresspreference', 'food', '<eos>'], ['expresspreference', 'firewood', 'food', '<eos>'], ['expresspreference', 'firewood', 'food', '<eos>'], ['noneed', 'food', 'expresspreference', 'firewood', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['noneed', 'food', 'expresspreference', 'firewood', '<eos>'], ['propose', 'food=2', 'water=2', 'firewood=1', '<eos>'], ['propose', 'food=1', 'water=1', 'firewood=3', '<eos>'], ['propose', 'food=2', 'water=2', 'firewood=2', '<eos>'], ['agree', '<eos>'], ['smalltalk', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=1', 'item1=2', 'item2=2', 'item0=2', 'item1=1', 'item2=1'], ['item0=2', 'item1=2', 'item2=1', 'item0=1', 'item1=1', 'item2=2']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['expresspreference', 'food', '<eos>'], ['expresspreference', 'food', 'firewood', '<eos>'], ['propose', 'food=3', 'water=2', 'firewood=1', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['expresspreference', 'food', 'propose', 'food=3', 'water=1', 'firewood=1', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['agree', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=3', 'item1=1', 'item2=1', 'item0=0', 'item1=2', 'item2=2'], ['item0=1', 'item1=2', 'item2=2', 'item0=2', 'item1=1', 'item2=1']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['elicitpreference', '<eos>'], ['expresspreference', 'firewood', 'food', 'water', '<eos>'], ['expresspreference', 'food', 'water', 'propose', 'food=3', 'water=2', 'firewood=0', '<eos>'], ['propose', 'food=1', 'water=1', 'firewood=3', '<eos>'], ['propose', 'food=3', 'water=1', 'firewood=0', '<eos>'], ['propose', 'food=1', 'water=1', 'firewood=3', '<eos>'], ['propose', 'food=3', 'water=2', 'firewood=0', '<eos>'], ['propose', 'food=1', 'water=1', 'firewood=3', '<eos>'], ['agree', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=3', 'item1=2', 'item2=0', 'item0=0', 'item1=1', 'item2=3'], ['item0=1', 'item1=1', 'item2=3', 'item0=2', 'item1=2', 'item2=0']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['elicitpreference', '<eos>'], ['expresspreference', 'food', '<eos>'], ['expresspreference', 'water', 'propose', 'food=0', 'water=3', '<eos>'], ['noneed', 'water', 'expresspreference', 'food', '<eos>'], ['propose', 'food=0', 'water=3', 'firewood=2', '<eos>'], ['propose', 'water=0', 'firewood=3', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=1', '<eos>'], ['expresspreference', 'food', 'propose', 'food=3', 'water=1', 'firewood=0', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['agree', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=2', 'item1=1', 'item2=1', 'item0=1', 'item1=2', 'item2=2'], ['item0=0', 'item1=2', 'item2=2', 'item0=3', 'item1=1', 'item2=1']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['elicitpreference', '<eos>'], ['expresspreference', 'firewood', 'water', '<eos>'], ['elicitpreference', '<eos>'], ['expresspreference', 'firewood', 'water', '<eos>'], ['propose', 'food=3', 'water=1', 'firewood=1', '<eos>'], ['propose', 'food=0', 'water=2', 'firewood=3', '<eos>'], ['propose', 'food=3', 'water=2', 'firewood=1', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=1', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['propose', 'food=3', 'water=2', 'firewood=1', '<eos>'], ['propose', 'food=1', 'water=1', 'firewood=2', '<eos>'], ['propose', 'food=3', 'water=2', 'firewood=1', '<eos>'], ['propose', 'food=0', 'water=2', 'firewood=2', '<eos>'], ['propose', 'food=3', 'water=2', 'firewood=1', '<eos>'], ['propose', 'food=0', 'water=1', 'firewood=2', '<eos>'], ['propose', 'food=3', 'water=2', 'firewood=1', '<eos>'], ['propose', 'food=0', 'water=2', 'firewood=3', '<eos>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['<no_agreement>', '<no_agreement>', '<no_agreement>'], ['<no_agreement>', '<no_agreement>', '<no_agreement>']]
+Disagreement
+[['smalltalk', '<eos>'], ['smalltalk', 'expresspreference', 'water', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['expresspreference', 'water', '<eos>'], ['noneed', 'food', 'expresspreference', 'firewood', '<eos>'], ['noneed', 'firewood', 'expresspreference', 'food', 'water', '<eos>'], ['noneed', 'food', 'expresspreference', 'firewood', '<eos>'], ['elicitpreference', 'firewood', '<eos>'], ['propose', 'food=3', 'water=1', 'firewood=1', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['agree', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=3', 'item1=1', 'item2=1', 'item0=0', 'item1=2', 'item2=2'], ['item0=1', 'item1=2', 'item2=2', 'item0=2', 'item1=1', 'item2=1']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['expresspreference', 'firewood', 'water', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['expresspreference', 'firewood', 'propose', 'firewood=1', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['propose', 'firewood=2', '<eos>'], ['propose', 'water=2', 'firewood=1', '<eos>'], ['propose', 'food=0', 'water=2', 'firewood=1', '<eos>'], ['expresspreference', 'water', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=1', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['propose', 'food=0', 'water=2', 'firewood=2', '<eos>'], ['agree', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=3', 'item1=1', 'item2=1', 'item0=0', 'item1=2', 'item2=2'], ['item0=0', 'item1=2', 'item2=1', 'item0=3', 'item1=1', 'item2=2']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', 'elicitpreference', 'expresspreference', 'firewood', 'water', '<eos>'], ['expresspreference', 'food', '<eos>'], ['propose', 'food=0', 'water=3', 'firewood=2', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['propose', 'food=0', 'water=3', 'firewood=2', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['propose', 'food=0', 'water=3', 'firewood=1', '<eos>'], ['propose', 'food=1', 'water=3', 'firewood=1', '<eos>'], ['propose', 'food=1', 'water=1', 'firewood=2', '<eos>'], ['disagree', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=3', 'item1=0', 'item2=1', 'item0=0', 'item1=3', 'item2=2'], ['item0=1', 'item1=1', 'item2=2', 'item0=2', 'item1=2', 'item2=1']]
+Failure
+[['smalltalk', 'elicitpreference', 'expresspreference', 'water', '<eos>'], ['expresspreference', 'food', 'water', '<eos>'], ['noneed', 'firewood', 'expresspreference', 'water', '<eos>'], ['expresspreference', 'food', 'water', '<eos>'], ['expresspreference', 'food', '<eos>'], ['propose', 'food=2', 'water=0', 'firewood=3', '<eos>'], ['elicitpreference', 'firewood', '<eos>'], ['propose', 'food=2', 'water=2', 'firewood=2', '<eos>'], ['disagree', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=1', '<eos>'], ['expresspreference', 'water', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['disagree', '<eos>'], ['expresspreference', 'water', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=1', 'item1=2', 'item2=1', 'item0=2', 'item1=1', 'item2=2'], ['item0=2', 'item1=1', 'item2=1', 'item0=1', 'item1=2', 'item2=2']]
+Failure
+[['smalltalk', 'expresspreference', 'food', '<eos>'], ['noneed', 'food', 'expresspreference', 'firewood', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['expresspreference', 'food', '<eos>'], ['elicitpreference', 'water', '<eos>'], ['noneed', 'food', 'expresspreference', 'firewood', 'propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['noneed', 'water', 'expresspreference', 'firewood', 'propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['disagree', '<eos>'], ['propose', 'food=2', 'water=2', 'firewood=2', '<eos>'], ['disagree', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['disagree', '<eos>'], ['elicitpreference', 'water', '<eos>'], ['disagree', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['disagree', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=2', 'firewood=1', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['disagree', '<eos>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['<no_agreement>', '<no_agreement>', '<no_agreement>'], ['<no_agreement>', '<no_agreement>', '<no_agreement>']]
+Disagreement
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['expresspreference', 'water', '<eos>'], ['expresspreference', 'firewood', 'water', '<eos>'], ['expresspreference', 'firewood', 'water', '<eos>'], ['noneed', 'water', 'expresspreference', 'firewood', '<eos>'], ['noneed', 'firewood', 'expresspreference', 'water', '<eos>'], ['propose', 'food=1', 'water=1', 'firewood=2', '<eos>'], ['propose', 'food=3', 'water=2', 'firewood=1', '<eos>'], ['propose', 'food=0', 'water=1', 'firewood=3', '<eos>'], ['propose', 'food=0', 'water=2', 'firewood=1', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=0', 'item1=1', 'item2=2', 'item0=3', 'item1=2', 'item2=1'], ['item0=0', 'item1=2', 'item2=1', 'item0=3', 'item1=1', 'item2=2']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['elicitpreference', '<eos>'], ['expresspreference', 'food', '<eos>'], ['expresspreference', 'firewood', 'water', '<eos>'], ['noneed', 'firewood', 'expresspreference', 'food', '<eos>'], ['expresspreference', 'firewood', 'food', 'water', 'propose', 'food=0', 'water=2', 'firewood=3', '<eos>'], ['expresspreference', 'water', '<eos>'], ['noneed', 'firewood', 'expresspreference', 'firewood', 'propose', 'food=0', 'water=3', 'firewood=1', '<eos>'], ['expresspreference', 'water', '<eos>'], ['propose', 'food=3', 'water=1', 'firewood=2', '<eos>'], ['disagree', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['disagree', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['disagree', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['disagree', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=3', 'item1=1', 'item2=1', 'item0=0', 'item1=2', 'item2=2'], ['item0=1', 'item1=2', 'item2=2', 'item0=2', 'item1=1', 'item2=1']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['expresspreference', 'firewood', 'food', 'water', '<eos>'], ['noneed', 'firewood', 'expresspreference', 'water', '<eos>'], ['noneed', 'water', 'expresspreference', 'firewood', 'food', 'propose', 'food=1', 'firewood=3', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['propose', 'food=1', 'water=3', 'firewood=1', '<eos>'], ['expresspreference', 'water', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['noneed', 'firewood', 'expresspreference', 'water', '<eos>'], ['propose', 'food=1', 'water=1', 'firewood=2', '<eos>'], ['disagree', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['disagree', '<eos>'], ['propose', 'food=1', 'firewood=2', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=2', 'item1=1', 'item2=1', 'item0=1', 'item1=2', 'item2=2'], ['item0=1', 'item1=1', 'item2=2', 'item0=2', 'item1=2', 'item2=1']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['elicitpreference', 'food', 'water', '<eos>'], ['noneed', 'firewood', 'expresspreference', 'water', '<eos>'], ['expresspreference', 'firewood', 'water', 'food', 'firewood', '<eos>'], ['noneed', 'firewood', 'expresspreference', 'water', 'food', '<eos>'], ['noneed', 'food', 'expresspreference', 'water', 'propose', 'food=0', 'water=3', '<eos>'], ['elicitpreference', 'water', '<eos>'], ['propose', 'food=0', 'water=3', 'firewood=1', '<eos>'], ['propose', 'food=3', 'water=1', 'firewood=1', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['agree', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=2', 'item1=1', 'item2=1', 'item0=1', 'item1=2', 'item2=2'], ['item0=0', 'item1=2', 'item2=2', 'item0=3', 'item1=1', 'item2=1']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['expresspreference', 'food', 'water', '<eos>'], ['noneed', 'water', 'expresspreference', 'firewood', 'propose', 'food=0', 'firewood=3', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['propose', 'food=1', 'water=1', 'firewood=2', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['propose', 'water=2', 'firewood=1', '<eos>'], ['expresspreference', 'water', '<eos>'], ['expresspreference', 'firewood', 'propose', 'food=2', 'water=1', 'firewood=1', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=1', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=2', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=2', 'item1=1', 'item2=1', 'item0=1', 'item1=2', 'item2=2'], ['item0=2', 'item1=1', 'item2=2', 'item0=1', 'item1=2', 'item2=1']]
+Failure
+[['expresspreference', 'water', 'firewood', '<eos>'], ['expresspreference', 'firewood', 'food', 'water', '<eos>'], ['propose', 'food=0', 'water=3', 'firewood=2', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['expresspreference', 'water', '<eos>'], ['propose', 'water=1', 'firewood=2', '<eos>'], ['expresspreference', 'firewood', 'propose', 'food=3', 'water=1', 'firewood=1', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['expresspreference', 'water', '<eos>'], ['propose', 'food=1', 'water=1', 'firewood=2', '<eos>'], ['expresspreference', 'water', 'propose', 'food=1', 'water=2', 'firewood=1', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['expresspreference', 'water', 'propose', 'food=2', 'water=2', 'firewood=1', '<eos>'], ['propose', 'food=1', 'water=1', 'firewood=2', '<eos>'], ['expresspreference', 'water', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=3', 'firewood=0', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['expresspreference', 'water', 'propose', 'food=2', 'water=2', 'firewood=1', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['<no_agreement>', '<no_agreement>', '<no_agreement>'], ['<no_agreement>', '<no_agreement>', '<no_agreement>']]
+Disagreement
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['unknown', '<eos>'], ['noneed', 'food', 'expresspreference', 'water', '<eos>'], ['noneed', 'water', '<eos>'], ['expresspreference', 'water', 'propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=1', '<eos>'], ['propose', 'food=0', 'water=1', 'firewood=3', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=1', '<eos>'], ['propose', 'food=3', 'water=1', 'firewood=3', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=1', '<eos>'], ['propose', 'food=0', 'water=1', 'firewood=3', '<eos>'], ['propose', 'food=3', 'water=2', 'firewood=1', '<eos>'], ['propose', 'food=0', 'water=1', 'firewood=3', '<eos>'], ['propose', 'food=3', 'water=2', 'firewood=1', '<eos>'], ['propose', 'food=0', 'water=1', 'firewood=3', '<eos>'], ['agree', '<eos>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['<no_agreement>', '<no_agreement>', '<no_agreement>'], ['<no_agreement>', '<no_agreement>', '<no_agreement>']]
+Disagreement
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['expresspreference', 'firewood', 'food', '<eos>'], ['noneed', 'water', '<eos>'], ['expresspreference', 'firewood', 'food', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=1', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=2', 'item1=2', 'item2=1', 'item0=1', 'item1=1', 'item2=2'], ['item0=1', 'item1=2', 'item2=2', 'item0=2', 'item1=1', 'item2=1']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['elicitpreference', 'expresspreference', 'firewood', 'food', 'water', '<eos>'], ['noneed', 'water', 'expresspreference', 'firewood', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=1', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=2', 'firewood=1', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['noneed', 'food', 'expresspreference', 'firewood', 'propose', 'food=1', 'water=1', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=2', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=0', 'firewood=1', '<eos>'], ['propose', 'food=1', 'water=1', 'firewood=2', '<eos>'], ['expresspreference', 'water', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=1', '<eos>'], ['propose', 'food=1', 'water=1', 'firewood=2', '<eos>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['<no_agreement>', '<no_agreement>', '<no_agreement>'], ['<no_agreement>', '<no_agreement>', '<no_agreement>']]
+Disagreement
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['expresspreference', 'firewood', 'water', '<eos>'], ['expresspreference', 'firewood', 'food', 'water', '<eos>'], ['noneed', 'food', 'expresspreference', 'firewood', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['propose', 'food=2', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=1', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=1', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=2', 'firewood=1', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=2', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['agree', '<eos>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['<no_agreement>', '<no_agreement>', '<no_agreement>'], ['<no_agreement>', '<no_agreement>', '<no_agreement>']]
+Disagreement
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['expresspreference', 'food', 'water', '<eos>'], ['expresspreference', 'firewood', 'food', 'water', '<eos>'], ['noneed', 'food', 'expresspreference', 'water', '<eos>'], ['noneed', 'water', 'expresspreference', 'firewood', 'food', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=2', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['expresspreference', 'water', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['propose', 'food=1', 'water=3', 'firewood=1', '<eos>'], ['expresspreference', 'water', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=2', '<eos>'], ['expresspreference', 'firewood', 'propose', 'food=1', 'water=1', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=2', '<eos>'], ['expresspreference', 'firewood', '<eos>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['<no_agreement>', '<no_agreement>', '<no_agreement>'], ['<no_agreement>', '<no_agreement>', '<no_agreement>']]
+Disagreement
+100: dialog_len=13.60 sent_len=3.65 agree=90.67% advantage=-1.49 time=0.129s comb_rew=33.83 alice_rew=16.24 alice_sel=55.91% alice_unique=116 bob_rew=17.59 bob_sel=44.09% bob_unique=112 full_match=0.96
+2024-02-21 16:16:03,985 : INFO : reinforce.py : 100: dialog_len=13.60 sent_len=3.65 agree=90.67% advantage=-1.49 time=0.129s comb_rew=33.83 alice_rew=16.24 alice_sel=55.91% alice_unique=116 bob_rew=17.59 bob_sel=44.09% bob_unique=112 full_match=0.96
+2024-02-21 16:16:04,824 : INFO : reinforce.py : Num: 110
+2024-02-21 16:16:05,669 : INFO : reinforce.py : Num: 120
+2024-02-21 16:16:06,484 : INFO : reinforce.py : Num: 130
+2024-02-21 16:16:07,273 : INFO : reinforce.py : Num: 140
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['expresspreference', 'water', '<eos>'], ['noneed', 'water', 'expresspreference', 'food', 'firewood', '<eos>'], ['propose', 'food=2', '<eos>'], ['expresspreference', 'firewood', 'propose', 'firewood=2', '<eos>'], ['propose', 'firewood=1', '<eos>'], ['expresspreference', 'food', '<eos>'], ['propose', 'food=0', 'water=3', '<eos>'], ['expresspreference', 'food', '<eos>'], ['propose', 'food=3', 'water=0', 'firewood=3', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=0', 'item1=3', 'item2=3', 'item0=3', 'item1=0', 'item2=0'], ['item0=3', 'item1=0', 'item2=3', 'item0=0', 'item1=3', 'item2=0']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['expresspreference', 'water', '<eos>'], ['expresspreference', 'water', '<eos>'], ['expresspreference', 'firewood', 'water', '<eos>'], ['noneed', 'firewood', 'expresspreference', 'water', 'food', '<eos>'], ['noneed', 'firewood', 'expresspreference', 'water', '<eos>'], ['propose', 'food=3', 'water=1', 'firewood=3', '<eos>'], ['propose', 'food=0', 'water=2', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=3', 'item1=1', 'item2=0', 'item0=0', 'item1=2', 'item2=3'], ['item0=0', 'item1=2', 'item2=1', 'item0=3', 'item1=1', 'item2=2']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['elicitpreference', '<eos>'], ['expresspreference', 'food', '<eos>'], ['expresspreference', 'food', 'water', '<eos>'], ['expresspreference', 'water', '<eos>'], ['noneed', 'firewood', 'expresspreference', 'food', 'water', 'propose', 'food=0', 'water=3', '<eos>'], ['smalltalk', '<eos>'], ['propose', 'food=2', 'water=0', 'firewood=2', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=1', 'item1=3', 'item2=1', 'item0=2', 'item1=0', 'item2=2'], ['item0=1', 'item1=0', 'item2=2', 'item0=2', 'item1=3', 'item2=1']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['elicitpreference', '<eos>'], ['expresspreference', 'firewood', 'water', '<eos>'], ['expresspreference', 'water', '<eos>'], ['noneed', 'food', 'expresspreference', 'water', 'propose', 'food=0', 'water=2', 'firewood=3', '<eos>'], ['expresspreference', 'water', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['propose', 'food=3', 'water=1', 'firewood=2', '<eos>'], ['propose', 'food=0', 'water=2', 'firewood=2', '<eos>'], ['propose', 'water=1', '<eos>'], ['propose', 'food=3', 'water=2', 'firewood=1', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=3', 'item1=1', 'item2=2', 'item0=0', 'item1=2', 'item2=1'], ['item0=3', 'item1=2', 'item2=1', 'item0=0', 'item1=1', 'item2=2']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['elicitpreference', '<eos>'], ['elicitpreference', 'expresspreference', 'water', '<eos>'], ['noneed', 'food', '<eos>'], ['expresspreference', 'water', '<eos>'], ['expresspreference', 'water', '<eos>'], ['noneed', 'food', 'expresspreference', 'water', 'propose', 'food=0', 'water=3', '<eos>'], ['elicitpreference', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=3', 'item1=3', 'item2=1', 'item0=0', 'item1=0', 'item2=2'], ['item0=0', 'item1=3', 'item2=1', 'item0=3', 'item1=0', 'item2=2']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['unknown', '<eos>'], ['unknown', '<eos>'], ['unknown', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['expresspreference', 'firewood', 'water', '<eos>'], ['noneed', 'water', 'expresspreference', 'firewood', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['propose', 'food=1', 'water=1', 'firewood=3', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=2', 'item1=1', 'item2=1', 'item0=1', 'item1=2', 'item2=2'], ['item0=1', 'item1=2', 'item2=1', 'item0=2', 'item1=1', 'item2=2']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['elicitpreference', '<eos>'], ['expresspreference', 'food', 'water', '<eos>'], ['noneed', 'firewood', 'expresspreference', 'food', '<eos>'], ['noneed', 'firewood', 'expresspreference', 'food', '<eos>'], ['noneed', 'firewood', 'expresspreference', 'food', '<eos>'], ['propose', 'food=2', 'water=2', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=1', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=2', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=2', 'item1=2', 'item2=1', 'item0=1', 'item1=1', 'item2=2'], ['item0=2', 'item1=1', 'item2=2', 'item0=1', 'item1=2', 'item2=1']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['elicitpreference', '<eos>'], ['expresspreference', 'food', 'water', '<eos>'], ['elicitpreference', '<eos>'], ['elicitpreference', 'expresspreference', 'food', 'water', '<eos>'], ['elicitpreference', '<eos>'], ['expresspreference', 'food', '<eos>'], ['unknown', '<eos>'], ['expresspreference', 'food', '<eos>'], ['elicitpreference', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=2', 'item1=2', 'item2=2', 'item0=1', 'item1=1', 'item2=1'], ['item0=1', 'item1=2', 'item2=1', 'item0=2', 'item1=1', 'item2=2']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['elicitpreference', 'expresspreference', 'food', '<eos>'], ['expresspreference', 'food', 'firewood', '<eos>'], ['noneed', 'firewood', 'expresspreference', 'food', '<eos>'], ['expresspreference', 'firewood', 'propose', 'food=2', 'water=1', 'firewood=2', '<eos>'], ['elicitpreference', 'firewood', 'expresspreference', 'food', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=2', 'firewood=0', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=3', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=2', 'item1=1', 'item2=0', 'item0=1', 'item1=2', 'item2=3'], ['item0=1', 'item1=1', 'item2=3', 'item0=2', 'item1=2', 'item2=0']]
+Failure
+[['elicitpreference', '<eos>'], ['expresspreference', 'water', '<eos>'], ['elicitpreference', 'expresspreference', 'water', '<eos>'], ['noneed', 'firewood', 'expresspreference', 'water', 'propose', 'food=3', 'water=3', '<eos>'], ['propose', 'food=0', 'water=3', 'firewood=3', '<eos>'], ['expresspreference', 'water', 'propose', 'water=3', '<eos>'], ['propose', 'food=0', 'water=3', 'firewood=3', '<eos>'], ['propose', 'food=2', 'water=2', 'firewood=1', '<eos>'], ['propose', 'food=0', 'water=3', 'firewood=3', '<eos>'], ['propose', 'food=3', 'water=2', 'firewood=1', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=0', 'item1=1', 'item2=2', 'item0=3', 'item1=2', 'item2=1'], ['item0=3', 'item1=1', 'item2=1', 'item0=0', 'item1=2', 'item2=2']]
+Failure
+[['smalltalk', '<eos>'], ['elicitpreference', '<eos>'], ['expresspreference', 'water', '<eos>'], ['expresspreference', 'water', '<eos>'], ['noneed', 'firewood', 'expresspreference', 'food', 'water', '<eos>'], ['propose', 'food=0', 'water=3', 'firewood=3', '<eos>'], ['expresspreference', 'water', '<eos>'], ['propose', 'food=0', 'water=3', 'firewood=3', '<eos>'], ['propose', 'food=2', 'water=2', 'firewood=1', '<eos>'], ['propose', 'food=0', 'water=2', 'firewood=3', '<eos>'], ['propose', 'food=3', 'water=1', 'firewood=0', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=0', 'item1=1', 'item2=3', 'item0=3', 'item1=2', 'item2=0'], ['item0=3', 'item1=1', 'item2=0', 'item0=0', 'item1=2', 'item2=3']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['unknown', '<eos>'], ['smalltalk', '<eos>'], ['expresspreference', 'firewood', 'food', 'water', '<eos>'], ['expresspreference', 'water', '<eos>'], ['noneed', 'water', 'expresspreference', 'food', 'firewood', 'propose', 'food=0', 'water=3', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=3', 'item1=0', 'item2=2', 'item0=0', 'item1=3', 'item2=1'], ['item0=3', 'item1=0', 'item2=1', 'item0=0', 'item1=3', 'item2=2']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['expresspreference', 'food', 'water', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=2', 'firewood=1', '<eos>'], ['propose', 'food=3', 'water=1', 'firewood=0', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=1', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=2', 'firewood=1', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=2', 'item1=1', 'item2=2', 'item0=1', 'item1=2', 'item2=1'], ['item0=2', 'item1=2', 'item2=1', 'item0=1', 'item1=1', 'item2=2']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['expresspreference', 'food', '<eos>'], ['propose', 'food=1', 'water=1', 'firewood=2', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['propose', 'food=1', 'water=1', 'firewood=2', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['propose', 'food=1', 'water=1', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=2', 'firewood=1', '<eos>'], ['propose', 'food=0', 'water=3', 'firewood=3', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=1', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=2', 'item1=2', 'item2=1', 'item0=1', 'item1=1', 'item2=2'], ['item0=2', 'item1=1', 'item2=1', 'item0=1', 'item1=2', 'item2=2']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['elicitpreference', '<eos>'], ['elicitpreference', 'expresspreference', 'firewood', 'food', 'water', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['expresspreference', 'firewood', 'food', 'water', '<eos>'], ['propose', 'food=1', 'water=1', 'firewood=2', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=2', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=2', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['propose', 'water=1', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=2', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=2', 'item1=2', 'item2=1', 'item0=1', 'item1=1', 'item2=2'], ['item0=2', 'item1=1', 'item2=1', 'item0=1', 'item1=2', 'item2=2']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['unknown', '<eos>'], ['elicitpreference', '<eos>'], ['expresspreference', 'firewood', 'water', 'firewood', '<eos>'], ['noneed', 'water', 'expresspreference', 'food', '<eos>'], ['propose', 'food=0', 'water=3', 'firewood=2', '<eos>'], ['agree', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=3', 'item1=0', 'item2=1', 'item0=0', 'item1=3', 'item2=2'], ['item0=3', 'item1=3', 'item2=2', 'item0=0', 'item1=0', 'item2=1']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['expresspreference', 'firewood', 'water', '<eos>'], ['expresspreference', 'food', '<eos>'], ['propose', 'food=0', 'water=3', '<eos>'], ['propose', 'food=3', 'water=0', 'firewood=1', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=3', 'item1=1', 'item2=1', 'item0=0', 'item1=2', 'item2=2'], ['item0=0', 'item1=3', 'item2=2', 'item0=3', 'item1=0', 'item2=1']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['elicitpreference', '<eos>'], ['expresspreference', 'firewood', 'water', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['expresspreference', 'firewood', 'water', '<eos>'], ['noneed', 'water', 'expresspreference', 'firewood', 'propose', 'water=1', 'firewood=3', '<eos>'], ['noneed', 'food', 'expresspreference', 'firewood', 'propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['expresspreference', 'firewood', 'propose', 'water=1', 'firewood=3', 'agree', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['expresspreference', 'firewood', 'propose', 'water=1', 'firewood=3', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['propose', 'food=1', 'water=1', 'firewood=2', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['propose', 'water=1', 'firewood=3', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['expresspreference', 'firewood', 'propose', 'water=1', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=2', 'firewood=2', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=2', 'item1=1', 'item2=1', 'item0=1', 'item1=2', 'item2=2'], ['item0=2', 'item1=2', 'item2=1', 'item0=1', 'item1=1', 'item2=2']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['elicitpreference', '<eos>'], ['elicitpreference', 'expresspreference', 'water', 'food', '<eos>'], ['noneed', 'water', 'expresspreference', 'firewood', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['propose', 'food=0', 'water=3', 'firewood=3', '<eos>'], ['expresspreference', 'water', '<eos>'], ['unknown', '<eos>'], ['smalltalk', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=0', 'item1=3', 'item2=3', 'item0=3', 'item1=0', 'item2=0'], ['item0=3', 'item1=1', 'item2=0', 'item0=0', 'item1=2', 'item2=3']]
+Failure
+final: train_loss 0.983 train_ppl 2.672
+final: train_select_loss 0.387 train_select_ppl 1.472
+final: valid_loss 0.989 valid_ppl 2.690
+final: valid_select_loss 0.604 valid_select_ppl 1.830
+final: dialog_len=13.63 sent_len=3.64 agree=93.00% advantage=-1.90 time=0.120s comb_rew=34.73 alice_rew=16.48 alice_sel=66.42% alice_unique=144 bob_rew=18.25 bob_sel=33.58% bob_unique=138 full_match=0.97
+2024-02-21 16:16:08,401 : INFO : reinforce.py : Saving updated Alice model to ../logs/jan24_casino_custform_rl_selfish_v_selfish_4ep_rw_own_points.pt
+SUPERVISED V SELFSELF
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['elicitpreference', '<eos>'], ['expresspreference', 'food', '<eos>'], ['noneed', 'water', 'expresspreference', 'food', 'firewood', '<eos>'], ['smalltalk', '<eos>'], ['unknown', '<eos>'], ['unknown', '<eos>'], ['propose', 'food=3', 'water=3', 'firewood=0', '<eos>'], ['disagree', '<eos>'], ['propose', 'food=1', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=3', 'item1=0', 'item2=0', 'item0=0', 'item1=3', 'item2=3'], ['item0=2', 'item1=0', 'item2=3', 'item0=1', 'item1=3', 'item2=0']]
+Failure
+[['smalltalk', '<eos>'], ['elicitpreference', '<eos>'], ['expresspreference', 'food', '<eos>'], ['expresspreference', 'food', '<eos>'], ['expresspreference', 'food', '<eos>'], ['noneed', 'firewood', 'elicitpreference', 'water', 'expresspreference', 'food', '<eos>'], ['noneed', 'firewood', 'expresspreference', 'food', 'propose', 'food=3', 'water=1', 'firewood=0', '<eos>'], ['smalltalk', 'agree', '<eos>'], ['agree', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=3', 'item1=1', 'item2=0', 'item0=0', 'item1=2', 'item2=3'], ['item0=0', 'item1=1', 'item2=3', 'item0=3', 'item1=2', 'item2=0']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['elicitpreference', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['noneed', 'firewood', 'expresspreference', 'water', 'propose', 'water=3', '<eos>'], ['propose', 'food=0', 'firewood=3', '<eos>'], ['expresspreference', 'water', '<eos>'], ['expresspreference', 'water', '<eos>'], ['elicitpreference', 'firewood', '<eos>'], ['unknown', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=3', 'item1=2', 'item2=0', 'item0=0', 'item1=1', 'item2=3'], ['item0=0', 'item1=0', 'item2=3', 'item0=3', 'item1=3', 'item2=0']]
+Failure
+[['elicitpreference', '<eos>'], ['smalltalk', 'expresspreference', 'food', '<eos>'], ['expresspreference', 'water', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=1', '<eos>'], ['elicitpreference', '<eos>'], ['noneed', 'firewood', 'expresspreference', 'food', 'propose', 'food=3', 'firewood=0', '<eos>'], ['expresspreference', 'water', 'propose', 'food=2', 'water=1', 'firewood=0', '<eos>'], ['propose', 'food=2', 'water=1', '<eos>'], ['agree', '<eos>'], ['smalltalk', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=2', 'item1=1', 'item2=1', 'item0=1', 'item1=2', 'item2=2'], ['item0=2', 'item1=2', 'item2=1', 'item0=1', 'item1=1', 'item2=2']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['elicitpreference', 'firewood', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['propose', 'food=0', 'water=3', 'firewood=0', '<eos>'], ['unknown', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=0', 'item1=3', 'item2=1', 'item0=3', 'item1=0', 'item2=2'], ['item0=2', 'item1=0', 'item2=2', 'item0=1', 'item1=3', 'item2=1']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['elicitpreference', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['noneed', 'firewood', 'expresspreference', 'water', '<eos>'], ['noneed', 'food', 'expresspreference', 'firewood', 'propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['elicitpreference', 'food', 'expresspreference', 'water', '<eos>'], ['propose', 'food=2', 'water=2', 'firewood=1', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=2', 'item1=2', 'item2=1', 'item0=1', 'item1=1', 'item2=2'], ['item0=2', 'item1=1', 'item2=2', 'item0=1', 'item1=2', 'item2=1']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['noneed', 'water', 'expresspreference', 'firewood', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['expresspreference', 'firewood', 'food', '<eos>'], ['noneed', 'water', 'expresspreference', 'firewood', 'propose', 'food=0', 'water=3', 'firewood=3', '<eos>'], ['propose', 'food=0', 'water=1', 'firewood=3', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['agree', '<eos>'], ['smalltalk', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=3', 'item1=1', 'item2=1', 'item0=0', 'item1=2', 'item2=2'], ['item0=3', 'item1=2', 'item2=0', 'item0=0', 'item1=1', 'item2=3']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=0', 'item1=1', 'item2=1', 'item0=3', 'item1=2', 'item2=2'], ['item0=3', 'item1=0', 'item2=1', 'item0=0', 'item1=3', 'item2=2']]
+Failure
+[['elicitpreference', '<eos>'], ['expresspreference', 'food', '<eos>'], ['expresspreference', 'water', '<eos>'], ['elicitpreference', '<eos>'], ['expresspreference', 'water', '<eos>'], ['propose', 'food=1', 'water=2', '<eos>'], ['propose', 'food=3', 'water=1', 'firewood=0', '<eos>'], ['propose', 'food=2', 'water=2', 'firewood=0', '<eos>'], ['unknown', '<eos>'], ['unknown', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=2', 'item1=2', 'item2=0', 'item0=1', 'item1=1', 'item2=3'], ['item0=2', 'item1=1', 'item2=3', 'item0=1', 'item1=2', 'item2=0']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['elicitpreference', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['elicitpreference', 'firewood', '<eos>'], ['expresspreference', 'firewood', 'propose', 'food=1', 'water=1', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=2', 'firewood=1', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=2', 'firewood=1', '<eos>'], ['propose', 'food=0', 'water=1', 'firewood=3', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=2', 'item1=2', 'item2=0', 'item0=1', 'item1=1', 'item2=3'], ['item0=0', 'item1=1', 'item2=3', 'item0=3', 'item1=2', 'item2=0']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['expresspreference', 'water', '<eos>'], ['propose', 'food=3', 'water=0', 'firewood=3', '<eos>'], ['propose', 'food=0', 'water=3', 'firewood=2', '<eos>'], ['propose', 'food=0', 'water=0', 'firewood=3', '<eos>'], ['agree', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=0', 'item1=3', 'item2=0', 'item0=3', 'item1=0', 'item2=3'], ['item0=0', 'item1=0', 'item2=3', 'item0=3', 'item1=3', 'item2=0']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['unknown', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['noneed', 'water', 'expresspreference', 'food', 'firewood', 'propose', 'food=2', 'water=0', 'firewood=3', '<eos>'], ['agree', '<eos>'], ['unknown', '<eos>'], ['unknown', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=2', 'item1=0', 'item2=0', 'item0=1', 'item1=3', 'item2=3'], ['item0=2', 'item1=3', 'item2=0', 'item0=1', 'item1=0', 'item2=3']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['propose', 'food=3', 'water=1', 'firewood=2', '<eos>'], ['propose', 'food=0', 'water=2', 'firewood=2', '<eos>'], ['propose', 'food=3', 'water=1', 'firewood=2', '<eos>'], ['expresspreference', 'firewood', 'propose', 'water=1', 'firewood=1', '<eos>'], ['smalltalk', 'agree', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=2', 'item1=1', 'item2=2', 'item0=1', 'item1=2', 'item2=1'], ['item0=2', 'item1=1', 'item2=1', 'item0=1', 'item1=2', 'item2=2']]
+Failure
+SELFISH V SELFSELF
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['unknown', '<eos>'], ['elicitpreference', '<eos>'], ['noneed', 'firewood', 'expresspreference', 'water', 'food', '<eos>'], ['noneed', 'food', 'expresspreference', 'water', 'propose', 'food=0', 'water=3', '<eos>'], ['elicitpreference', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=1', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=1', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=1', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=1', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=1', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=1', '<eos>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['<no_agreement>', '<no_agreement>', '<no_agreement>'], ['<no_agreement>', '<no_agreement>', '<no_agreement>']]
+Disagreement
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['elicitpreference', '<eos>'], ['expresspreference', 'firewood', 'water', '<eos>'], ['expresspreference', 'water', '<eos>'], ['elicitpreference', 'water', '<eos>'], ['expresspreference', 'water', '<eos>'], ['noneed', 'food', 'expresspreference', 'firewood', 'water', 'propose', 'food=0', 'water=2', 'firewood=3', '<eos>'], ['expresspreference', 'water', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=3', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=1', '<eos>'], ['propose', 'food=1', 'water=1', 'firewood=2', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=1', '<eos>'], ['expresspreference', 'firewood', 'food', 'water', 'propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['agree', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=1', 'item1=1', 'item2=2', 'item0=2', 'item1=2', 'item2=1'], ['item0=2', 'item1=1', 'item2=1', 'item0=1', 'item1=2', 'item2=2']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['unknown', '<eos>'], ['unknown', '<eos>'], ['expresspreference', 'firewood', 'food', 'water', '<eos>'], ['noneed', 'firewood', 'expresspreference', 'food', '<eos>'], ['propose', 'food=0', 'water=2', 'firewood=2', '<eos>'], ['propose', 'food=3', 'water=1', 'firewood=0', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=3', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=0', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=3', '<eos>'], ['agree', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=1', 'item1=1', 'item2=3', 'item0=2', 'item1=2', 'item2=0'], ['item0=2', 'item1=1', 'item2=0', 'item0=1', 'item1=2', 'item2=3']]
+Failure
+[['expresspreference', 'water', 'propose', 'food=0', 'water=3', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=2', 'firewood=1', '<eos>'], ['expresspreference', 'water', '<eos>'], ['noneed', 'food', 'expresspreference', 'water', 'food', 'propose', 'food=2', 'water=2', '<eos>'], ['propose', 'food=0', 'water=3', 'firewood=3', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=1', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=1', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=1', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=1', '<eos>'], ['propose', 'food=1', 'water=1', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=2', 'firewood=1', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=2', 'item1=2', 'item2=1', 'item0=1', 'item1=1', 'item2=2'], ['item0=2', 'item1=1', 'item2=2', 'item0=1', 'item1=2', 'item2=1']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['expresspreference', 'firewood', 'water', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['noneed', 'food', 'expresspreference', 'firewood', 'food', 'water', 'propose', 'food=0', 'water=2', 'firewood=2', '<eos>'], ['propose', 'water=1', '<eos>'], ['propose', 'food=0', 'water=2', 'firewood=2', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=2', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['agree', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=1', 'item1=2', 'item2=1', 'item0=2', 'item1=1', 'item2=2'], ['item0=2', 'item1=1', 'item2=1', 'item0=1', 'item1=2', 'item2=2']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['expresspreference', 'firewood', 'food', 'water', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['expresspreference', 'firewood', 'food', '<eos>'], ['propose', 'food=0', 'water=3', 'firewood=3', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['propose', 'water=0', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['propose', 'food=1', 'water=1', 'firewood=3', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=2', '<eos>'], ['smalltalk', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=2', 'item1=1', 'item2=1', 'item0=1', 'item1=2', 'item2=2'], ['item0=1', 'item1=1', 'item2=1', 'item0=2', 'item1=2', 'item2=2']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['noneed', 'firewood', 'expresspreference', 'food', 'water', '<eos>'], ['expresspreference', 'food', 'firewood', '<eos>'], ['elicitpreference', 'firewood', 'expresspreference', 'food', 'propose', 'food=3', 'firewood=0', '<eos>'], ['propose', 'food=3', 'water=0', 'firewood=3', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=1', '<eos>'], ['propose', 'food=3', 'water=1', 'firewood=1', '<eos>'], ['propose', 'food=3', 'water=1', 'firewood=0', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=3', 'item1=1', 'item2=0', 'item0=0', 'item1=2', 'item2=3'], ['item0=0', 'item1=1', 'item2=3', 'item0=3', 'item1=2', 'item2=0']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=0', 'item1=3', 'item2=3', 'item0=3', 'item1=0', 'item2=0'], ['item0=3', 'item1=0', 'item2=1', 'item0=0', 'item1=3', 'item2=2']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['expresspreference', 'food', '<eos>'], ['expresspreference', 'firewood', 'food', 'water', '<eos>'], ['noneed', 'water', 'expresspreference', 'food', 'agree', '<eos>'], ['noneed', 'water', 'expresspreference', 'firewood', 'food', 'propose', 'food=0', 'water=2', 'firewood=3', '<eos>'], ['propose', 'food=3', 'water=1', 'firewood=0', '<eos>'], ['propose', 'food=1', 'water=1', 'firewood=3', '<eos>'], ['smalltalk', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=0', 'item1=1', 'item2=3', 'item0=3', 'item1=2', 'item2=0'], ['item0=2', 'item1=2', 'item2=0', 'item0=1', 'item1=1', 'item2=3']]
+Failure
+[['smalltalk', '<eos>'], ['expresspreference', 'food', '<eos>'], ['expresspreference', 'water', '<eos>'], ['propose', 'food=3', 'water=1', 'firewood=1', '<eos>'], ['noneed', 'food', 'expresspreference', 'water', '<eos>'], ['noneed', 'firewood', 'expresspreference', 'food', '<eos>'], ['propose', 'food=0', 'water=3', 'firewood=1', '<eos>'], ['propose', 'food=3', 'water=1', 'firewood=2', '<eos>'], ['smalltalk', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=3', 'item1=1', 'item2=2', 'item0=0', 'item1=2', 'item2=1'], ['item0=0', 'item1=2', 'item2=2', 'item0=3', 'item1=1', 'item2=1']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['expresspreference', 'food', 'water', '<eos>'], ['noneed', 'water', 'expresspreference', 'firewood', '<eos>'], ['expresspreference', 'food', '<eos>'], ['elicitpreference', 'water', '<eos>'], ['expresspreference', 'food', 'water', '<eos>'], ['noneed', 'food', 'expresspreference', 'firewood', '<eos>'], ['propose', 'food=3', 'firewood=1', '<eos>'], ['propose', 'food=0', 'firewood=3', '<eos>'], ['expresspreference', 'food', 'propose', 'food=2', 'water=1', 'firewood=1', '<eos>'], ['propose', 'food=1', 'water=1', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=2', 'firewood=1', '<eos>'], ['propose', 'food=0', 'water=3', 'firewood=3', '<eos>'], ['propose', 'water=2', 'firewood=1', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=3', 'item1=1', 'item2=1', 'item0=0', 'item1=2', 'item2=2'], ['item0=0', 'item1=1', 'item2=2', 'item0=3', 'item1=2', 'item2=1']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['unknown', '<eos>'], ['smalltalk', '<eos>'], ['elicitpreference', '<eos>'], ['expresspreference', 'firewood', 'water', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['noneed', 'water', 'expresspreference', 'firewood', 'propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=1', '<eos>'], ['propose', 'food=0', 'water=2', 'firewood=3', '<eos>'], ['propose', 'food=0', 'water=3', 'firewood=3', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=0', 'item1=0', 'item2=3', 'item0=3', 'item1=3', 'item2=0'], ['item0=0', 'item1=3', 'item2=0', 'item0=3', 'item1=0', 'item2=3']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['elicitpreference', '<eos>'], ['expresspreference', 'firewood', 'food', 'water', '<eos>'], ['expresspreference', 'water', '<eos>'], ['expresspreference', 'firewood', 'food', '<eos>'], ['expresspreference', 'water', '<eos>'], ['expresspreference', 'firewood', 'food', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=1', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['unknown', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=1', 'item1=2', 'item2=2', 'item0=2', 'item1=1', 'item2=1'], ['item0=2', 'item1=2', 'item2=1', 'item0=1', 'item1=1', 'item2=2']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['elicitpreference', '<eos>'], ['propose', 'food=3', 'water=1', 'firewood=2', '<eos>'], ['propose', 'food=0', 'water=3', 'firewood=2', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['propose', 'food=1', 'water=1', 'firewood=2', '<eos>'], ['propose', 'food=2', 'water=2', 'firewood=1', '<eos>'], ['propose', 'food=3', 'water=1', 'firewood=2', '<eos>'], ['propose', 'food=1', 'water=2', 'firewood=2', '<eos>'], ['propose', 'food=0', 'water=1', 'firewood=3', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=3', 'item1=1', 'item2=0', 'item0=0', 'item1=2', 'item2=3'], ['item0=0', 'item1=1', 'item2=3', 'item0=3', 'item1=2', 'item2=0']]
+Failure
+FAIR V SELFSELF
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['elicitpreference', '<eos>'], ['expresspreference', 'food', '<eos>'], ['expresspreference', 'food', '<eos>'], ['propose', 'food=3', 'water=0', 'firewood=3', '<eos>'], ['agree', '<eos>'], ['agree', '<eos>'], ['agree', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=3', 'item1=0', 'item2=0', 'item0=0', 'item1=3', 'item2=3'], ['item0=3', 'item1=0', 'item2=3', 'item0=0', 'item1=3', 'item2=0']]
+Failure
+[['smalltalk', '<eos>'], ['elicitpreference', '<eos>'], ['elicitpreference', 'expresspreference', 'food', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['expresspreference', 'food', '<eos>'], ['propose', 'food=0', 'firewood=3', '<eos>'], ['propose', 'food=2', 'water=1', 'firewood=0', '<eos>'], ['agree', '<eos>'], ['agree', '<eos>'], ['agree', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=1', 'item1=2', 'item2=3', 'item0=2', 'item1=1', 'item2=0'], ['item0=2', 'item1=2', 'item2=0', 'item0=1', 'item1=1', 'item2=3']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['expresspreference', 'food', '<eos>'], ['elicitpreference', '<eos>'], ['expresspreference', 'food', '<eos>'], ['propose', 'food=3', 'water=1', 'firewood=0', '<eos>'], ['agree', '<eos>'], ['smalltalk', '<eos>'], ['agree', '<eos>'], ['smalltalk', '<eos>'], ['agree', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=3', 'item1=2', 'item2=0', 'item0=0', 'item1=1', 'item2=3'], ['item0=3', 'item1=1', 'item2=0', 'item0=0', 'item1=2', 'item2=3']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['elicitpreference', '<eos>'], ['expresspreference', 'food', '<eos>'], ['expresspreference', 'water', '<eos>'], ['expresspreference', 'food', 'firewood', '<eos>'], ['elicitpreference', 'food', '<eos>'], ['noneed', 'water', 'expresspreference', 'food', 'firewood', 'propose', 'food=3', 'water=0', 'firewood=1', '<eos>'], ['propose', 'food=1', 'water=3', 'firewood=0', '<eos>'], ['propose', 'food=3', 'water=0', 'firewood=3', '<eos>'], ['agree', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=1', 'item1=3', 'item2=0', 'item0=2', 'item1=0', 'item2=3'], ['item0=3', 'item1=0', 'item2=3', 'item0=0', 'item1=3', 'item2=0']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['elicitpreference', '<eos>'], ['expresspreference', 'water', '<eos>'], ['elicitpreference', '<eos>'], ['expresspreference', 'water', '<eos>'], ['noneed', 'firewood', 'expresspreference', 'water', '<eos>'], ['unknown', '<eos>'], ['elicitpreference', '<eos>'], ['unknown', '<eos>'], ['agree', '<eos>'], ['agree', '<eos>'], ['agree', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=1', 'item1=2', 'item2=0', 'item0=2', 'item1=1', 'item2=3'], ['item0=3', 'item1=1', 'item2=2', 'item0=0', 'item1=2', 'item2=1']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['elicitpreference', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['noneed', 'firewood', 'expresspreference', 'water', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['propose', 'firewood=2', '<eos>'], ['agree', '<eos>'], ['elicitpreference', '<eos>'], ['agree', '<eos>'], ['unknown', '<eos>'], ['agree', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=1', 'item1=3', 'item2=1', 'item0=2', 'item1=0', 'item2=2'], ['item0=0', 'item1=3', 'item2=2', 'item0=3', 'item1=0', 'item2=1']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['elicitpreference', '<eos>'], ['expresspreference', 'water', '<eos>'], ['expresspreference', 'food', '<eos>'], ['propose', 'food=3', 'water=1', 'firewood=0', '<eos>'], ['agree', '<eos>'], ['smalltalk', '<eos>'], ['agree', '<eos>'], ['smalltalk', '<eos>'], ['agree', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=3', 'item1=2', 'item2=0', 'item0=0', 'item1=1', 'item2=3'], ['item0=3', 'item1=1', 'item2=0', 'item0=0', 'item1=2', 'item2=3']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['elicitpreference', '<eos>'], ['expresspreference', 'food', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['noneed', 'firewood', 'expresspreference', 'food', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['elicitpreference', 'firewood', '<eos>'], ['agree', '<eos>'], ['smalltalk', '<eos>'], ['agree', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=2', 'item1=3', 'item2=1', 'item0=1', 'item1=0', 'item2=2'], ['item0=2', 'item1=0', 'item2=1', 'item0=1', 'item1=3', 'item2=2']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['elicitpreference', '<eos>'], ['expresspreference', 'water', '<eos>'], ['expresspreference', 'water', '<eos>'], ['unknown', '<eos>'], ['elicitpreference', 'firewood', 'expresspreference', 'water', '<eos>'], ['expresspreference', 'water', '<eos>'], ['expresspreference', 'water', '<eos>'], ['propose', 'food=0', 'water=3', 'firewood=3', '<eos>'], ['agree', '<eos>'], ['elicitpreference', '<eos>'], ['agree', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=3', 'item1=0', 'item2=0', 'item0=0', 'item1=3', 'item2=3'], ['item0=0', 'item1=0', 'item2=3', 'item0=3', 'item1=3', 'item2=0']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['expresspreference', 'food', '<eos>'], ['expresspreference', 'water', '<eos>'], ['expresspreference', 'food', '<eos>'], ['propose', 'food=3', 'water=0', '<eos>'], ['elicitpreference', 'firewood', '<eos>'], ['elicitpreference', 'water', '<eos>'], ['expresspreference', 'food', '<eos>'], ['propose', 'food=3', 'water=1', 'firewood=0', '<eos>'], ['agree', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=0', 'item1=2', 'item2=0', 'item0=3', 'item1=1', 'item2=3'], ['item0=3', 'item1=1', 'item2=0', 'item0=0', 'item1=2', 'item2=3']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['elicitpreference', '<eos>'], ['expresspreference', 'food', '<eos>'], ['expresspreference', 'food', '<eos>'], ['noneed', 'water', 'expresspreference', 'food', 'firewood', 'propose', 'food=3', 'water=0', '<eos>'], ['expresspreference', 'food', 'propose', 'food=2', 'water=1', 'firewood=1', '<eos>'], ['expresspreference', 'food', 'propose', 'food=2', 'water=1', 'firewood=2', '<eos>'], ['agree', '<eos>'], ['smalltalk', '<eos>'], ['agree', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=2', 'item1=2', 'item2=1', 'item0=1', 'item1=1', 'item2=2'], ['item0=2', 'item1=1', 'item2=2', 'item0=1', 'item1=2', 'item2=1']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['elicitpreference', '<eos>'], ['expresspreference', 'water', '<eos>'], ['expresspreference', 'food', '<eos>'], ['propose', 'food=3', 'water=1', 'firewood=0', '<eos>'], ['agree', '<eos>'], ['smalltalk', '<eos>'], ['agree', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=0', 'item1=2', 'item2=0', 'item0=3', 'item1=1', 'item2=3'], ['item0=3', 'item1=1', 'item2=0', 'item0=0', 'item1=2', 'item2=3']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['expresspreference', 'food', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['expresspreference', 'food', '<eos>'], ['propose', 'food=0', 'firewood=3', '<eos>'], ['agree', '<eos>'], ['unknown', '<eos>'], ['agree', '<eos>'], ['propose', 'food=0', 'water=3', 'firewood=3', '<eos>'], ['agree', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=3', 'item1=0', 'item2=0', 'item0=0', 'item1=3', 'item2=3'], ['item0=0', 'item1=0', 'item2=3', 'item0=3', 'item1=3', 'item2=0']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['elicitpreference', '<eos>'], ['elicitpreference', 'expresspreference', 'firewood', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['elicitpreference', 'firewood', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['propose', 'food=3', 'firewood=1', '<eos>'], ['agree', '<eos>'], ['agree', '<eos>'], ['agree', '<eos>'], ['smalltalk', '<eos>'], ['agree', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=0', 'item1=3', 'item2=2', 'item0=3', 'item1=0', 'item2=1'], ['item0=3', 'item1=3', 'item2=1', 'item0=0', 'item1=0', 'item2=2']]
+Failure
+[['smalltalk', '<eos>'], ['smalltalk', '<eos>'], ['elicitpreference', '<eos>'], ['expresspreference', 'water', '<eos>'], ['expresspreference', 'food', '<eos>'], ['propose', 'food=2', 'water=1', '<eos>'], ['expresspreference', 'food', '<eos>'], ['propose', 'food=3', 'water=0', 'firewood=3', '<eos>'], ['agree', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=1', 'item1=3', 'item2=0', 'item0=2', 'item1=0', 'item2=3'], ['item0=3', 'item1=0', 'item2=3', 'item0=0', 'item1=3', 'item2=0']]
+Failure
+[['smalltalk', '<eos>'], ['elicitpreference', '<eos>'], ['elicitpreference', 'expresspreference', 'water', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['elicitpreference', '<eos>'], ['expresspreference', 'firewood', '<eos>'], ['propose', 'food=3', 'water=3', 'firewood=0', '<eos>'], ['agree', '<eos>'], ['noneed', 'firewood', 'expresspreference', 'water', '<eos>'], ['agree', '<eos>'], ['smalltalk', '<eos>'], ['agree', '<eos>'], ['<selection>']]
+88888888888888888888888888888888888888888888888888888888888888888888888888888888
+[['item0=2', 'item1=0', 'item2=3', 'item0=1', 'item1=3', 'item2=0'], ['item0=3', 'item1=3', 'item2=0', 'item0=0', 'item1=0', 'item2=3']]
+Failure

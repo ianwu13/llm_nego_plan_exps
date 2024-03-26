@@ -1,0 +1,1735 @@
+[
+    [
+        [
+            "Hello! \ud83d\ude42 Let's work together on a deal for these packages, shall we? What are you most interested in?",
+            [
+                "smalltalk",
+                "empathy coordination",
+                "elicit preference"
+            ]
+        ],
+        [
+            "Hey! I'd like some more firewood to keep my doggo warm. What do you need?",
+            [
+                "express preference firewood",
+                "elicit preference"
+            ]
+        ],
+        [
+            "I need firewood as well. We have a large group consisting of mostly senior citizens, including my grandma, so we'd like the firewood to keep everyone warm.",
+            [
+                "express preference firewood"
+            ]
+        ],
+        [
+            "I see. \ud83d\ude2e What are you least interested in?",
+            [
+                "elicit preference"
+            ]
+        ],
+        [
+            "We can make do without extra water. Can we trade two waters for an extra firewood package and an extra food package?",
+            [
+                "no need water",
+                "propose food=1 water=1 firewood=1"
+            ]
+        ],
+        [
+            "We could do without the water as well. I'm willing to trade you 3 firewood for 3 food and 2 waters",
+            [
+                "no need water",
+                "propose food=3 water=2 firewood=0"
+            ]
+        ],
+        [
+            "We need some firewood too, though! \u2639\ufe0f Let's try to make a deal that benefits us both! \ud83d\ude42 Could I have 1 firewood, 3 food, and 3 waters?",
+            [
+                "express preference firewood",
+                "empathy coordination",
+                "propose food=3 water=3 firewood=1"
+            ]
+        ],
+        [
+            "I meant I would give you my firewood, what would you trade in return?",
+            [
+                "propose firewood=0",
+                "elicit preference",
+                "empathy coordination"
+            ]
+        ],
+        [
+            "Oh sorry for the confusion. \ud83d\ude2e In that case, thank you for the generosity! \ud83d\ude42 How about if I have 3 firewood, 1 food, and 1 water?",
+            [
+                "smalltalk",
+                "propose food=1 water=1 firewood=3"
+            ]
+        ],
+        [
+            "I can do that for 3 food and 3 water?",
+            [
+                "propose food=3 water=3"
+            ]
+        ],
+        [
+            "I think we're close. Let's shake hands on this: 3 firewood, 1 food for me, and then 2 food and 3 water for you. I'll make sure your food packages have extra doggy treats! \ud83d\ude42 Is that a deal?",
+            [
+                "smalltalk",
+                "propose food=1 water=0 firewood=3"
+            ]
+        ],
+        [
+            "Submit-Deal",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "Accept-Deal",
+            [
+                "<selection>"
+            ]
+        ]
+    ],
+    [
+        [
+            "Hello. How are you?",
+            [
+                "smalltalk"
+            ]
+        ],
+        [
+            "I am good. I am pretty excited for the trip this weekend. what about you?",
+            [
+                "smalltalk"
+            ]
+        ],
+        [
+            "Very excited. It will be fun.",
+            [
+                "smalltalk"
+            ]
+        ],
+        [
+            "Yes, Hopefully the weather holds up. So I was thinking, i am bringning my two kids along with me, and they will need food, so I was thinking i could take the three foods, and either one of the firewood or water, up to you.",
+            [
+                "smalltalk",
+                "propose food=3",
+                "elicit preference water firewood"
+            ]
+        ],
+        [
+            "I would also like a little extra food for my kids. Maybe we can split it somehow?",
+            [
+                "express preference food",
+                "empathy coordination"
+            ]
+        ],
+        [
+            "Ok, I am willing to give you one food, in exchange for two firewoods, that would mean you get 3 waters, 1 food and 1 firewood. you get 5 items, while i get 4.",
+            [
+                "empathy coordination",
+                "propose food=2 water=0 firewood=2"
+            ]
+        ],
+        [
+            "If I only get 1 food, than I would like 2 firewood. So you get 2 food, 1 firewood, and 1 water.",
+            [
+                "propose food=1 water=2 firewood=2"
+            ]
+        ],
+        [
+            "No i do not need water, as i am camping near a potable stream. I would like 2 firewood. It is only fair that i get two firewood, since you are getting more supplies (5), i think i should be able to choose what 4 i should get.",
+            [
+                "disagree",
+                "no need water",
+                "propose firewood=2",
+                "vouch fairness"
+            ]
+        ],
+        [
+            "No, if you get 2 food, it's only fair that I get 2 firewood. ",
+            [
+                "disagree",
+                "propose food=1 firewood=2",
+                "vouch fairness"
+            ]
+        ],
+        [
+            "Then i will take 3 waters, and 2 food.",
+            [
+                "propose food=2 water=3"
+            ]
+        ],
+        [
+            "Okay I will take all the firewood and 1 food.",
+            [
+                "propose food=1 firewood=3"
+            ]
+        ],
+        [
+            "Submit-Deal",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "Accept-Deal",
+            [
+                "<selection>"
+            ]
+        ]
+    ],
+    [
+        [
+            "Hey there!",
+            [
+                "smalltalk"
+            ]
+        ],
+        [
+            "Hi! How are you?! You excited for your camping trip??! I sure am ready to go on mine!",
+            [
+                "smalltalk"
+            ]
+        ],
+        [
+            "I am very excited, I'm actually going camping in a week. I drink a lot of water so it's important that I bring a lot. What about you?",
+            [
+                "express preference water",
+                "elicit preference"
+            ]
+        ],
+        [
+            "I really am! I have been watching the weather and updates about the area I will be traveling to.  They are experiencing a severe drought, so I will be in need of some extra water as well! I planned on staying an extra couple days as well.  There is a stream nearby I believe, but I'm not sure how much it has dried up.",
+            [
+                "express preference water"
+            ]
+        ],
+        [
+            "That's good to hear, you always have to be careful with wild water though, it has all kind of germs. Sounds like you'll have plenty of dry firewood though. ",
+            [
+                "undervalue firewood"
+            ]
+        ],
+        [
+            "Yes, I would be willing to let you have all the firewood for 2 of the cases of water.  How much food were you needing?",
+            [
+                "empathy coordination",
+                "elicit preference food",
+                "propose water=1 firewood=3"
+            ]
+        ],
+        [
+            "I like your water and firewood arrangement. Can I have 2 of the food since you're getting 2 of the water? ",
+            [
+                "empathy coordination",
+                "propose food=2 water=1"
+            ]
+        ],
+        [
+            "Let me think on that. I know there won't be much for berries or small animals to hunt for.  Is where you are going have much available for you to hunt and scavenge for?",
+            [
+                "smalltalk",
+                "elicit preference food"
+            ]
+        ],
+        [
+            "It might but with the summer season hunting isn't exactly legal at the moment. I tend to camp in remote areas so going to the store for more food isn't really an option. I've already let you have extra water so I don't think it's too far of a stretch to let me have some extra food.",
+            [
+                "express preference food",
+                "empathy coordination"
+            ]
+        ],
+        [
+            "Okay, I can let you have 2 of the food then.  I do appreciate your generosity on the extra water.  ",
+            [
+                "empathy coordination",
+                "propose food=2",
+                "agree"
+            ]
+        ],
+        [
+            "Submit-Deal",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "Accept-Deal",
+            [
+                "<selection>"
+            ]
+        ]
+    ],
+    [
+        [
+            "Hi, I'd like 3 packages of food. I have diabetes and my blood sugar could drop.",
+            [
+                "smalltalk",
+                "propose food=3"
+            ]
+        ],
+        [
+            "oh dear, I am sorry to hear that my son is type one, I am okay with giving you all the food if you could give me all the firewood. I have hypothyroidism and it makes me get cold.",
+            [
+                "empathy coordination",
+                "propose food=0 firewood=3"
+            ]
+        ],
+        [
+            "That's a deal. ",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "now how to split the water, wish it wasn't an odd number",
+            [
+                "empathy coordination",
+                "elicit preference water"
+            ]
+        ],
+        [
+            "I'll take 1 and you can have 2 since you gave me all the food.",
+            [
+                "propose water=1",
+                "empathy coordination"
+            ]
+        ],
+        [
+            "Oh that is nice of you! I appreciate that very much! We do enjoy a good hike, so water will be good!",
+            [
+                "agree",
+                "empathy coordination"
+            ]
+        ],
+        [
+            "Sounds like we are set.",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "yeah, I hope you have a nice time camping! weather should be nice!",
+            [
+                "smalltalk"
+            ]
+        ],
+        [
+            "I hope it will be because I don't love camping! Hope you have fun too!",
+            [
+                "smalltalk"
+            ]
+        ],
+        [
+            "Have a nice day \ud83d\ude42",
+            [
+                "smalltalk"
+            ]
+        ],
+        [
+            "Submit-Deal",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "Accept-Deal",
+            [
+                "<selection>"
+            ]
+        ]
+    ],
+    [
+        [
+            "What are you most interested in getting?",
+            [
+                "elicit preference"
+            ]
+        ],
+        [
+            "I think food is my highest priority, What about you?",
+            [
+                "express preference food",
+                "elicit preference"
+            ]
+        ],
+        [
+            "Food is also my highest priority, but firewood is also pretty close for me.",
+            [
+                "express preference food firewood"
+            ]
+        ],
+        [
+            "Would you be willing to take more firewood for less food?",
+            [
+                "empathy coordination",
+                "elicit preference food firewood"
+            ]
+        ],
+        [
+            "Yes I think that sounds fair.",
+            [
+                "agree",
+                "vouch fairness"
+            ]
+        ],
+        [
+            "So if I take 2 foods and 1 firewood, you take 1 food and 2 firewood. What would be fair for water?",
+            [
+                "propose food=2 firewood=1",
+                "elicit preference water"
+            ]
+        ],
+        [
+            "What if I take two waters and you take one water then?",
+            [
+                "propose water=2"
+            ]
+        ],
+        [
+            "I think that sounds fair, since you compromised on food. Sounds like a deal!",
+            [
+                "agree",
+                "vouch fairness"
+            ]
+        ],
+        [
+            "I'm glad we could come to a compromise \ud83d\ude42",
+            [
+                "smalltalk"
+            ]
+        ],
+        [
+            "Me too \ud83d\ude42 Thanks for making it easy and pleasant. ",
+            [
+                "smalltalk"
+            ]
+        ],
+        [
+            "Submit-Deal",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "Accept-Deal",
+            [
+                "<selection>"
+            ]
+        ]
+    ],
+    [
+        [
+            "Hello, what are your preferences for extra supplies?  I am greatly in need of food and water.  We will be doing a lot of activity in a hot, dry climate.\ud83d\ude42",
+            [
+                "elicit preference",
+                "express preference food water"
+            ]
+        ],
+        [
+            "I prefer firewood because I will get cold at night. I forgot blankets \u2639\ufe0f",
+            [
+                "express preference firewood"
+            ]
+        ],
+        [
+            "Would it work for you, then, to give me the three food and three water, and I can give you all of the firewood?",
+            [
+                "propose food=3 water=3 firewood=0"
+            ]
+        ],
+        [
+            "No. Because I brought a water purifier but don't plan on hunting or fishing. So I'd be willing to give up all the water but I want 2 of the food.",
+            [
+                "disagree",
+                "propose food=2 water=0"
+            ]
+        ],
+        [
+            "I see.  I also greatly need the extra food, as I indicated. Perhaps there are some convenience or grocery stores near your campground--you might then purchase extra food there and not have to carry it with you on your trip?  ",
+            [
+                "express preference food",
+                "undervalue food"
+            ]
+        ],
+        [
+            "I believe there won't be any convenience stores around to buy food, And I plan on staying out longer than you so I will need more food to last me, Do you need food or water more?",
+            [
+                "express preference food",
+                "elicit preference food water"
+            ]
+        ],
+        [
+            "How do you know you are staying longer than me? I haven't even said how long I am staying! I am also with a big group.  \u2639\ufe0f\u2639\ufe0f  I need food the most, and I would like to take at least 2 extra waters.  I could possibly give up one of the food packages if you could part with 2 firewood.  Without extra food, I would have to do some fishing and cook the fish.",
+            [
+                "express preference food",
+                "propose food=2 water=2 firewood=2"
+            ]
+        ],
+        [
+            "No. I won't part with any firewood because I can't stand being cold, and you can have 2 foods if you have a larger group if you give me 1 water. \ud83d\ude42\ud83d\ude42",
+            [
+                "disagree",
+                "propose food=1 water=1 firewood=3"
+            ]
+        ],
+        [
+            "Sorry, that's not going to work for me.  \u2639\ufe0f You have a water purifier? Doesn't sound like extra water is necessary.  I am in a hot, dry climate.  I can give up all the firewood to you, if you can leave me the three packages of food.  I would also like 2 waters.  ",
+            [
+                "disagree",
+                "undervalue water",
+                "propose food=3 water=2 firewood=0"
+            ]
+        ],
+        [
+            "Sorry but I'm willing to give up all the water for 1 food at least. I already mentioned above that I don't plan on hunting or fishing and I plan on being out for a while. That's my final offer.",
+            [
+                "propose food=1 water=0"
+            ]
+        ],
+        [
+            "Okay, I will leave you all the firewood and 1 food, and I will take two food and three water packages. I am willing to finalize that.\u2639\ufe0f",
+            [
+                "propose food=2 water=3 firewood=0"
+            ]
+        ],
+        [
+            "Submit-Deal",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "Accept-Deal",
+            [
+                "<selection>"
+            ]
+        ]
+    ],
+    [
+        [
+            "Hi, are you excited for the camping trip?",
+            [
+                "smalltalk"
+            ]
+        ],
+        [
+            "Hello! I am very excited!\ud83d\ude42 How about you?",
+            [
+                "smalltalk"
+            ]
+        ],
+        [
+            "Yes!  Would you mind sharing your highest priority item with me?  My most valued item right now is Food actually",
+            [
+                "elicit preference",
+                "express preference food"
+            ]
+        ],
+        [
+            "I am willing to share everything.",
+            [
+                "empathy coordination"
+            ]
+        ],
+        [
+            "Awesome.  I would prefer getting 3 of my highest priority item though, and maybe you could get 3 of your highest priority item?",
+            [
+                "empathy coordination"
+            ]
+        ],
+        [
+            "I  wood really like the firewood as I am afraid of the dark and would like my fire to last all night. ",
+            [
+                "express preference firewood"
+            ]
+        ],
+        [
+            "Oh that makes total sense.  I need the food so badly since I am bringing my family with me and they are one hungry bunch aha.  Would you be amenable to me having 3 food packets and you having 3 firewood packets?",
+            [
+                "express preference food",
+                "propose food=3 firewood=0"
+            ]
+        ],
+        [
+            "That would work great. How about water? What is your preference for that?",
+            [
+                "agree",
+                "elicit preference water"
+            ]
+        ],
+        [
+            "Aha well I guess clearly my preference would be getting 2 water packages and you getting 1?  I know we can't split exactly evenly, but this way we each get our top priorities at least",
+            [
+                "propose water=2",
+                "empathy coordination"
+            ]
+        ],
+        [
+            "I would be good with that. We both would get what we really want. And I am okay with getting less water.",
+            [
+                "agree",
+                "empathy coordination"
+            ]
+        ],
+        [
+            "Submit-Deal",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "Accept-Deal",
+            [
+                "<selection>"
+            ]
+        ]
+    ],
+    [
+        [
+            "Hello!",
+            [
+                "smalltalk"
+            ]
+        ],
+        [
+            "Hello, how are you doing today?",
+            [
+                "smalltalk"
+            ]
+        ],
+        [
+            "i am doing great! how about you?",
+            [
+                "smalltalk"
+            ]
+        ],
+        [
+            "I'm doing pretty well, just preparing for this camping trip.",
+            [
+                "smalltalk"
+            ]
+        ],
+        [
+            "ME as well! we are a group of big eaters, and are looking to take lots of food.",
+            [
+                "express preference food"
+            ]
+        ],
+        [
+            "That is fair as there is no showers or sinks at my campsite so I am looking to take water :) ",
+            [
+                "vouch fairness",
+                "express preference water"
+            ]
+        ],
+        [
+            "We will likely also need to take water too. Need to be able to wash up.",
+            [
+                "express preference water"
+            ]
+        ],
+        [
+            "That is fair, I also will need a good bit of firewood to keep warm as the campsite is in a colder area.",
+            [
+                "vouch fairness",
+                "express preference firewood"
+            ]
+        ],
+        [
+            "We dont care much for campfires. Leaves your cloths smelling for days!",
+            [
+                "no need firewood"
+            ]
+        ],
+        [
+            "Alright so I think we can make a fair deal here where we both will be happy \ud83d\ude42",
+            [
+                "empathy coordination"
+            ]
+        ],
+        [
+            "Submit-Deal",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "Reject-Deal",
+            [
+                "disagree"
+            ]
+        ],
+        [
+            "Submit-Deal",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "Accept-Deal",
+            [
+                "<selection>"
+            ]
+        ]
+    ],
+    [
+        [
+            "How are you today? Did you have any preferences on the supplies we will be trading?",
+            [
+                "smalltalk",
+                "elicit preference"
+            ]
+        ],
+        [
+            "I am good. How about yourself? I think I would like some firewood to start off with. We like to have bigger fires. What about you?",
+            [
+                "smalltalk",
+                "express preference firewood",
+                "elicit preference"
+            ]
+        ],
+        [
+            "I am good as well. That is good to hear that you like to have bigger fires as we do not care much for that. We would much rather have some extra water.",
+            [
+                "smalltalk",
+                "no need firewood",
+                "express preference water"
+            ]
+        ],
+        [
+            "Water is a little important to us too though , if possible maybe we can split that or maybe we can get some more food in replacement.",
+            [
+                "express preference water food",
+                "empathy coordination"
+            ]
+        ],
+        [
+            "That may be possible.... \ud83d\ude42 What did you have in mind for the food replacement? ",
+            [
+                "elicit preference"
+            ]
+        ],
+        [
+            "You can have all the water if we can have all the food?",
+            [
+                "propose food=3 water=0"
+            ]
+        ],
+        [
+            "I dont think I am okay with that \u2639\ufe0f. Food is essential to our groups morale when camping. We would like 1 additional food preferably.",
+            [
+                "disagree",
+                "express preference food",
+                "propose food=1"
+            ]
+        ],
+        [
+            "Well you guys did say you did not care much about large fires. What if you gave all the firewood in replace for the water and you can still keep 1 food?",
+            [
+                "propose food=2 water=0 firewood=3"
+            ]
+        ],
+        [
+            "So I would get 3 water and 1 food and youd get 3 firewood and 2 food?",
+            [
+                "propose food=1 water=3 firewood=0"
+            ]
+        ],
+        [
+            "Yea that seems like an alright trade to me \ud83d\ude42",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "Hmm... alright then \ud83d\ude42.",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "Submit-Deal",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "Accept-Deal",
+            [
+                "<selection>"
+            ]
+        ]
+    ],
+    [
+        [
+            "Hello, how are you today? \ud83d\ude42",
+            [
+                "smalltalk"
+            ]
+        ],
+        [
+            "good, how are you \ud83d\ude42",
+            [
+                "smalltalk"
+            ]
+        ],
+        [
+            "Great!  I'm on a camping trip with my five children, how about you?",
+            [
+                "smalltalk"
+            ]
+        ],
+        [
+            "I'm also going camping with my two children and 2 of my nephews  How would you like to divide the supplies?",
+            [
+                "smalltalk",
+                "elicit preference"
+            ]
+        ],
+        [
+            "Well what do you need the most of?",
+            [
+                "elicit preference"
+            ]
+        ],
+        [
+            "I need the most firewood due to a congenital issue that results in us having poor blood circulation to our extremities, thus making them susceptible to frostbite in the cold!",
+            [
+                "express preference firewood"
+            ]
+        ],
+        [
+            "Oh dear, that sounds serious!  Well I need food the most because my children eat sooo much and I don't think I packed enough.  How about I'll give you all my firewood in exchange for all your food?",
+            [
+                "empathy coordination",
+                "express preference food",
+                "propose food=3 firewood=0"
+            ]
+        ],
+        [
+            "Would you be down for an arrangement where I get 2 wood, I get 1 food, and 1 water?",
+            [
+                "propose food=1 water=1 firewood=2"
+            ]
+        ],
+        [
+            "Sure that sounds good!  I hope you have a nice trip!",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "you too!",
+            [
+                "smalltalk"
+            ]
+        ],
+        [
+            "Submit-Deal",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "Accept-Deal",
+            [
+                "<selection>"
+            ]
+        ]
+    ],
+    [
+        [
+            "hello!",
+            [
+                "smalltalk"
+            ]
+        ],
+        [
+            "Hello.",
+            [
+                "smalltalk"
+            ]
+        ],
+        [
+            "Can i kindly know your preferences please?",
+            [
+                "elicit preference"
+            ]
+        ],
+        [
+            "Well, I'm kind of low on water, so I'd like to get as much of that as I can. I'd like to go hiking and I don't really have enough water for a long trip. What about you?",
+            [
+                "express preference water",
+                "elicit preference"
+            ]
+        ],
+        [
+            "Ohh nice.I also have the same issue around here.The thirst for water is growing high than ever due to drought",
+            [
+                "express preference water"
+            ]
+        ],
+        [
+            "Well, that's a bummer. How are you set for food? While I wouldn't mind a bit more, I'm in pretty good shape there, so I'd be willing to trade it for water. I'd hate to leave without getting a good hike in.",
+            [
+                "empathy coordination",
+                "elicit preference food",
+                "no need food",
+                "express preference water"
+            ]
+        ],
+        [
+            "Hun,It's a bit of a fair deal,but due to the condition here i will need a bit more of water though foo cannot be overlooked also for survival but still to survive we take chances.So do you mind me giving you a package of food and u trading 2 pakages of water?.",
+            [
+                "express preference water",
+                "propose food=2 water=2"
+            ]
+        ],
+        [
+            "Well, I tell you what, I'd be willing to take 2 packages of water and 2 of firewood and leave the rest to you, including all of the food. How does that sound?\ud83d\ude42",
+            [
+                "propose food=0 water=2 firewood=2"
+            ]
+        ],
+        [
+            "ok nice good deal",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "Well, alright, then, I think we have a deal, nice and easy. It was a pleasure doing business with you.",
+            [
+                "agree",
+                "smalltalk"
+            ]
+        ],
+        [
+            "Submit-Deal",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "Accept-Deal",
+            [
+                "<selection>"
+            ]
+        ]
+    ],
+    [
+        [
+            "hi how are you are you ready for your trip",
+            [
+                "smalltalk"
+            ]
+        ],
+        [
+            "I'm ready, I just would like to have a little extra stuff. How about you?",
+            [
+                "smalltalk"
+            ]
+        ],
+        [
+            "yes I could use some extra food since i am hiking with my kids and they all have a friend that comes along...lol",
+            [
+                "express preference food"
+            ]
+        ],
+        [
+            "I know how that goes...We are planning on hiking too and we could also use some extra food.",
+            [
+                "smalltalk",
+                "express preference food"
+            ]
+        ],
+        [
+            "well I am sure between you and me we will find a way....",
+            [
+                "empathy coordination"
+            ]
+        ],
+        [
+            "I really need some food, but I could also use extra firewood. It is supposed to be pretty cold at night and we would love to cook up some smores.",
+            [
+                "express preference food firewood",
+                "smalltalk"
+            ]
+        ],
+        [
+            "I hear you we have the same issues well you can have either 2 food or 2 firewood what would you prefer?",
+            [
+                "elicit preference food firewood"
+            ]
+        ],
+        [
+            "I would prefer 2 food. I could give you 1 food, 2 firewood and 2 water?",
+            [
+                "propose food=2 water=1 firewood=1"
+            ]
+        ],
+        [
+            "that sounds like a good deal to me, ",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "Okay, that is great. Have fun!",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "Submit-Deal",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "Accept-Deal",
+            [
+                "<selection>"
+            ]
+        ]
+    ],
+    [
+        [
+            "Hi. I'm most interested in water. What's your highest priority?",
+            [
+                "express preference water",
+                "elicit preference"
+            ]
+        ],
+        [
+            "I really need water too. I have a young baby and will do a lot of washing.",
+            [
+                "express preference water"
+            ]
+        ],
+        [
+            "Okay. I'm not especially worried about food. What's your lowest priority?",
+            [
+                "no need food",
+                "elicit preference"
+            ]
+        ],
+        [
+            "I have enough food too. Can I take 2 water, 1 firewood and 2 food?",
+            [
+                "no need food",
+                "propose food=2 water=2 firewood=1"
+            ]
+        ],
+        [
+            "How about two water, 1 firewood and 1 food, since we both value water the most?",
+            [
+                "empathy coordination",
+                "propose food=2 water=1 firewood=2"
+            ]
+        ],
+        [
+            "Is that what you want or what you are offering?",
+            [
+                "unknown"
+            ]
+        ],
+        [
+            "That's what I'm offering to you, but I think it's a fair deal, so I'd accept it myself, too.",
+            [
+                "vouch fairness"
+            ]
+        ],
+        [
+            "Fair enough.",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "If that sounds good, just tell me which bundle you want.",
+            [
+                "elicit preference"
+            ]
+        ],
+        [
+            "As you suggested, I will take 2 water 1 food and 1 firewood",
+            [
+                "propose food=1 water=2 firewood=1"
+            ]
+        ],
+        [
+            "Awesome",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "Submit-Deal",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "Accept-Deal",
+            [
+                "<selection>"
+            ]
+        ]
+    ],
+    [
+        [
+            "Hello there...! Are you excited for the camp",
+            [
+                "smalltalk"
+            ]
+        ],
+        [
+            "Hey, I am really excited! \ud83d\ude42",
+            [
+                "smalltalk"
+            ]
+        ],
+        [
+            "Wow.. Cool ",
+            [
+                "smalltalk"
+            ]
+        ],
+        [
+            "Are you prepared for the camp?",
+            [
+                "smalltalk"
+            ]
+        ],
+        [
+            "Yes A little.. But I would need extra camping items ",
+            [
+                "smalltalk"
+            ]
+        ],
+        [
+            "Ok, I do too. What do you really need?",
+            [
+                "elicit preference"
+            ]
+        ],
+        [
+            "Thanks for asking ..! I will need 3 of food, 3 of water and 2 of firewood..",
+            [
+                "propose food=3 water=3 firewood=2"
+            ]
+        ],
+        [
+            "I really need water though. Are you sure you need that much?",
+            [
+                "express preference water",
+                "undervalue water"
+            ]
+        ],
+        [
+            "Yes please ..! My son has respiratory problems I'll definitely need that \ud83d\ude21\ud83d\ude21\ud83d\ude21",
+            [
+                "unknown"
+            ]
+        ],
+        [
+            "If you really need water, then can I have 2 firewood and 3 food then?",
+            [
+                "propose food=3 water=0 firewood=2"
+            ]
+        ],
+        [
+            "No I really need food also ...at least I will take 3 food and 2 water and you can take remaining",
+            [
+                "disagree",
+                "propose food=3 water=2 firewood=0"
+            ]
+        ],
+        [
+            "I'll let you take 3 food and 1 water, and I will take the rest.",
+            [
+                "propose food=0 water=2 firewood=3"
+            ]
+        ],
+        [
+            "That sounds not bad...! Though I need at least 1 more water additional to that",
+            [
+                "express preference water"
+            ]
+        ],
+        [
+            "Okay, I will give you 3 food, 2 water, and I will take 1 water, 3 firewood",
+            [
+                "propose food=0 water=1 firewood=3"
+            ]
+        ],
+        [
+            "That makes a deal... Thank YOU...!!!! Happy camping!",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "Submit-Deal",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "Accept-Deal",
+            [
+                "<selection>"
+            ]
+        ]
+    ],
+    [
+        [
+            "n",
+            [
+                "unknown"
+            ]
+        ],
+        [
+            "Hello there I was just thinking of the upcoming camping trip.",
+            [
+                "smalltalk"
+            ]
+        ],
+        [
+            "I'm sorry about that, accidentally hit that send button lol! I was thinking about it as well. I'm pretty excited. How about you?",
+            [
+                "smalltalk"
+            ]
+        ],
+        [
+            "I was just thinking about the logistics and how to prioritize the various items.",
+            [
+                "smalltalk"
+            ]
+        ],
+        [
+            "Same here. I'll go ahead and list some of what I need and you let me know if you will need the same as well. I need some extra water for our camping trip as well as some additional food. ",
+            [
+                "smalltalk",
+                "empathy coordination",
+                "express preference water food"
+            ]
+        ],
+        [
+            "That sounds reasonable. I don't particularly need the food because I see that as more of a luxury but I could really use some more water. It's supposed to get really really hot on the weekend. \ud83d\ude2e",
+            [
+                "no need water",
+                "express preference water"
+            ]
+        ],
+        [
+            "I hear that. What do you think of if I take 3 of the food supplies and you can have two waters? ",
+            [
+                "propose food=3 water=1"
+            ]
+        ],
+        [
+            "That sounds like a fair compromise. I can get food by hunting animals, old school style. That would give you 4 total items. In that case it's only fair if I take all 3 of the firewood. 4 for me and 4 for you sounds like a good deal to me. \ud83d\ude42",
+            [
+                "agree",
+                "propose firewood=3",
+                "vouch fairness"
+            ]
+        ],
+        [
+            "That sounds fair to me! I don't know the first thing about hunting so that would be a relief on me. We took a bunch of blankets so we'll be good on firewood.  \ud83d\ude42",
+            [
+                "agree",
+                "smalltalk",
+                "vouch fairness"
+            ]
+        ],
+        [
+            "Yep and I need all 3 firewood because I'm hunting. Meat absolutely needs to be cooked. The same cannot be said about pepperoni pizza and chips for example.",
+            [
+                "agree",
+                "express preference firewood",
+                "propose firewood=3"
+            ]
+        ],
+        [
+            "Submit-Deal",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "Accept-Deal",
+            [
+                "agree"
+            ]
+        ]
+    ],
+    [
+        [
+            "Hi.  I am looking at possibly taking 3 of the food packages, 2 of the water packages and one of the firewood.  ",
+            [
+                "propose food=3 water=2 firewood=1"
+            ]
+        ],
+        [
+            "Hi. Why do you need so many food packages?",
+            [
+                "undervalue food",
+                "elicit preference food"
+            ]
+        ],
+        [
+            "Well, I have two teenage boys who will be with me.  In normal circumstances they go through a lot of food.  While camping, hiking and kayaking I know we will need plenty to keep their energy level high to do everything.\ud83d\ude42",
+            [
+                "smalltalk",
+                "empathy coordination"
+            ]
+        ],
+        [
+            "Well I will definitely need 2 packages of food and 2 of firewood for survival.",
+            [
+                "express preference food firewood",
+                "propose food=2 firewood=2"
+            ]
+        ],
+        [
+            "I am definitely ok with giving you two of the firewood!!  Why do you need 2 packages of food?",
+            [
+                "undervalue food",
+                "elicit preference food"
+            ]
+        ],
+        [
+            "I have a very fast metabolism and a dog to take care of. Thanks for the firewood.",
+            [
+                "smalltalk",
+                "empathy coordination"
+            ]
+        ],
+        [
+            "Awe!  We have a dog as well, I love dogs!!  How about if you get 1 package of food, 1 water and 2 firewood?  Would that be sufficient for you?",
+            [
+                "empathy coordination",
+                "propose food=2 water=2 firewood=1"
+            ]
+        ],
+        [
+            "I know I will need at least 2 packages of food. But you can have 2 of water.",
+            [
+                "propose food=2 water=1"
+            ]
+        ],
+        [
+            "I'm so sorry, we're getting very close to the end and will need to make a decision very soon!  We can go without any firewood so How about you get all 2 firewood, 2 water and 1 food.  I will really need at least 2 packages of food for all of us.",
+            [
+                "disagree",
+                "propose food=1 water=1 firewood=3",
+                "express preference food"
+            ]
+        ],
+        [
+            "That works for me",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "Submit-Deal",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "Accept-Deal",
+            [
+                "<selection>"
+            ]
+        ]
+    ],
+    [
+        [
+            "Hi, this is my first time camping and I want to make sure I have enough stuff.  I would like three food, three firewood, and two water.  What do you think?",
+            [
+                "smalltalk",
+                "empathy coordination",
+                "propose food=3 water=2 firewood=3"
+            ]
+        ],
+        [
+            "I have been camping a few times and pretty much know what I need to be comfortable and healthy.  Warmth and hydration are important for me.  So, I am thinking 2 firewood, 2 water and 0 food.",
+            [
+                "smalltalk",
+                "empathy coordination",
+                "propose food=0 water=2 firewood=2"
+            ]
+        ],
+        [
+            "Since I have never been camping before, why do you think you need 2 firewood?",
+            [
+                "elicit preference firewood",
+                "undervalue firewood"
+            ]
+        ],
+        [
+            "Unfortunately, I have arthritis so being sure to keep warm and the dampness away in the evening, heat is important for me.",
+            [
+                "express preference firewood"
+            ]
+        ],
+        [
+            "Ok.  I am worried about animals and bugs so I would prefer 2 firewood.  But I am happy with the 3 food\ud83d\ude42",
+            [
+                "express preference firewood",
+                "propose food=3 firewood=2"
+            ]
+        ],
+        [
+            "Ok, how about we shift a bit as I hear you on the bugs and animals.  I think I can get by with one firewood and use extra covers and meds.  But, will need plenty of water and some food.  How about I take 1 firewood, 2 water and 2 food.",
+            [
+                "empathy coordination",
+                "express preference food water",
+                "propose food=2 water=2 firewood=1"
+            ]
+        ],
+        [
+            "Ok, although I was thinking that I could probably find some firewood, but would prefer more water so I don't get dehydrated and can use it to wash and cook.  How about I take 1 firewood, 2 water, and 1 food",
+            [
+                "express preference water",
+                "propose food=1 water=2 firewood=1"
+            ]
+        ],
+        [
+            "Good thought on finding your own firewood.  I appreciate the offer of 2 firewood.  I can cut back on water for washing/cooking.  So how about I take 2 firewood, 1 water and 2 food",
+            [
+                "propose food=2 water=1 firewood=2"
+            ]
+        ],
+        [
+            "ok that sounds fine\ud83d\ude42",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "Great, thanks for understanding and working with me....and enjoy your first time camping\ud83d\ude42",
+            [
+                "agree",
+                "smalltalk"
+            ]
+        ],
+        [
+            "no problem\ud83d\ude42",
+            [
+                "smalltalk"
+            ]
+        ],
+        [
+            "Submit-Deal",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "Accept-Deal",
+            [
+                "<selection>"
+            ]
+        ]
+    ],
+    [
+        [
+            "Hello, how are you today?",
+            [
+                "smalltalk"
+            ]
+        ],
+        [
+            "hello, I am good, I am very excited about this trip. how are you?",
+            [
+                "smalltalk"
+            ]
+        ],
+        [
+            "i am great, super excited about camping as well, are there any supplies that you really need?",
+            [
+                "smalltalk",
+                "elicit preference"
+            ]
+        ],
+        [
+            "i really need water and food. we did not get enough of those.",
+            [
+                "express preference food water"
+            ]
+        ],
+        [
+            "Those are my priorities as well, how about you get all the food and two firewoods, and i get all the water and one firewood, does that sound fair?",
+            [
+                "express preference food water",
+                "propose food=0 water=3 firewood=1"
+            ]
+        ],
+        [
+            "i would prefer water instead of food if possible, but i am sure we can work it out.",
+            [
+                "express preference water",
+                "no need food",
+                "empathy coordination"
+            ]
+        ],
+        [
+            "water is really important for me, how about i get two waters and three firewoods and you get three foods and one water?",
+            [
+                "express preference water",
+                "propose food=0 water=2 firewood=3"
+            ]
+        ],
+        [
+            "i can work with 1 water 3 food and 1 firewood",
+            [
+                "propose food=3 water=1 firewood=1"
+            ]
+        ],
+        [
+            "ok that works for me",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "good, we used all the water to fix overheated car.",
+            [
+                "unknown"
+            ]
+        ],
+        [
+            "Submit-Deal",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "Accept-Deal",
+            [
+                "<selection>"
+            ]
+        ]
+    ],
+    [
+        [
+            "Hello, what are your preferences for food, water, and firewood?",
+            [
+                "elicit preference food water firewood"
+            ]
+        ],
+        [
+            "Hey, nice getting to interact with you. I would like to have additional packages of firewood and water",
+            [
+                "smalltalk",
+                "express preference water firewood"
+            ]
+        ],
+        [
+            "Okay, I would like to have additional packages of food and water.",
+            [
+                "express preference food water"
+            ]
+        ],
+        [
+            "I would take 2 packages of firewood and 1 each of water and food. Let me know your thoughts.",
+            [
+                "propose food=1 water=1 firewood=2"
+            ]
+        ],
+        [
+            "I actually need 2 packages of firewood for making more fires when camping.",
+            [
+                "propose firewood=2"
+            ]
+        ],
+        [
+            "I can't take cold and would badly need to have more firewood.",
+            [
+                "disagree",
+                "express preference firewood"
+            ]
+        ],
+        [
+            "I need more firewood to keep my food going.",
+            [
+                "disagree",
+                "express preference firewood"
+            ]
+        ],
+        [
+            "I get it, in that case I'' take additional packages of food.",
+            [
+                "express preference food"
+            ]
+        ],
+        [
+            "I don't think so, because I need additional packages of food in case there is an emergency.",
+            [
+                "disagree",
+                "express preference food"
+            ]
+        ],
+        [
+            "I was under the impression you don't have the need for additional firewood as you mentioned you need additional of food and water. Let me know how many packages of item you need.",
+            [
+                "undervalue firewood",
+                "elicit preference"
+            ]
+        ],
+        [
+            "You're right, I meant to say that I need additional food and water.",
+            [
+                "express preference food water"
+            ]
+        ],
+        [
+            "So, let me know how much exactly do you want of each item",
+            [
+                "elicit preference"
+            ]
+        ],
+        [
+            "I would like 2 packages of food and 2 packages of water.",
+            [
+                "propose food=2 water=2"
+            ]
+        ],
+        [
+            "In that case, I can take 2 packages of firewood. So , it would be a fair deal. I can share with you in case you have the need.",
+            [
+                "propose firewood=2",
+                "empathy coordination",
+                "vouch fairness"
+            ]
+        ],
+        [
+            "Okay, that is a fair deal then. It is settled.",
+            [
+                "agree",
+                "vouch fairness"
+            ]
+        ],
+        [
+            "Thank you. Have a nice day ahead!",
+            [
+                "agree",
+                "smalltalk"
+            ]
+        ],
+        [
+            "Thank you. Have a nice day ahead too!",
+            [
+                "smalltalk"
+            ]
+        ],
+        [
+            "Submit-Deal",
+            [
+                "agree"
+            ]
+        ],
+        [
+            "Accept-Deal",
+            [
+                "<selection>"
+            ]
+        ]
+    ],
+    [
+        [
+            "Hello there",
+            [
+                "smalltalk"
+            ]
+        ],
+        [
+            "Hello. How are you?",
+            [
+                "smalltalk"
+            ]
+        ],
+        [
+            "Great and yourself? Ready for this camping trip and take a break from modern civilization?",
+            [
+                "smalltalk"
+            ]
+        ],
+        [
+            "I'm doing well. Yes. This camping trip is badly needed!",
+            [
+                "smalltalk"
+            ]
+        ],
+        [
+            "Indeed we have planned to do a lot of hiking and seeing the nature that is giving to us by god it will be a great wonderful time to serve with others and deepen our faith in the lord savior ",
+            [
+                "smalltalk"
+            ]
+        ],
+        [
+            "Awesome. I couldn't agree more. I feel that camping and hiking are both such spiritual experiences. It's such a perfect time to connect with our lord and savior. I love serving others as well.\ud83d\ude42",
+            [
+                "smalltalk"
+            ]
+        ],
+        [
+            ":) Yes and you know what we are experiencing some difficulty as some people who said initially they were not going to be able to come and at the last minute are saying that they are coming so we are short on the most important items which are food and was wondering if we could speak about sharing items but due to the people who joined late if I can get food and water you can have more wood as none of us know how to really go into the wild and we do not want to turn away our last minute guests, it would be of tremendous help   ",
+            [
+                "express preference food water",
+                "empathy coordination"
+            ]
+        ],
+        [
+            "I'm more than willing to help you to the best of my ability. I understand and appreciate the difficult situation you find yourself in. How many packages of food and water do you think you will need for your additional guests? How much wood do you need since you are saying you don't need much?",
+            [
+                "empathy coordination",
+                "elicit preference food water firewood"
+            ]
+        ],
+        [
+            "Thanks for your understanding well I think if possible then to meet the situation then how bout 3 food and 2 water then you get all the wood ? That way you can have awesome campfires lasting through the night, we will be going to sleep extra early to wake up very early so we do not need all that wood, as much as we need food to replenish our energy and be ready for another day of long walks to see as much as we can from nature \ud83d\ude42",
+            [
+                "empathy coordination",
+                "no need firewood",
+                "propose food=3 water=2 firewood=0"
+            ]
+        ],
+        [
+            "I agree with you that campfires are awesome and I do find them to be be quite useful. I'm not as early of a riser as you are unfortunately! \ud83d\ude42 I'm willing to accept your offer on food as long as you could please consider my needs for water. I am a very active hiker. While I don't need much food for my hikes I do require a lot of water. I once went on a hiking trip when I was new to the activity and ran out of water. I got lost and almost dehydrated! Ever since then it's been very important to me to have as much water as possible. What would it take in order for me to get as much water as possible keeping in mind that I'm willing to give you 3 food. ",
+            [
+                "express preference water",
+                "smalltalk",
+                "empathy coordination",
+                "no need food"
+            ]
+        ],
+        [
+            "Thank you for the food and I understand we do have to think about water being by far the most important thing in life since it bascially is right \ud83d\ude42 and well how about then we go do two waters for you and one wood then so then we can have that wood for just in case and we can all be happy ?? thanks for your understanding",
+            [
+                "empathy coordination",
+                "propose water=1 firewood=2"
+            ]
+        ],
+        [
+            "Yes. Water is the most important thing in life. Thank you for offering me two waters and one wood. However, this would mean that you would be receiving 3 food, 1 water, and 2 wood. That seems too unbalanced to me. It's important for me to also let you know that wood is very crucial for me. When I was a newbie I didn't bring any wood because I figured I'm fine since I'm not scared of the dark. That night a bear snuck on me when I was sleeping. Thankfully I was able to scare it away with noise. However, ever since then I've brought a lot of wood with me so no bears can sneak up on me. I would like to counter your offer with 3 waters, 2 wood, and 0 food. This means you get 1 wood and 3 food. Does this offer work for you?",
+            [
+                "propose food=0 water=3 firewood=2"
+            ]
+        ],
+        [
+            "Walk-Away",
+            [
+                "disagree"
+            ]
+        ]
+    ]
+]

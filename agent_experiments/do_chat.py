@@ -42,6 +42,8 @@ def main():
         help='Function ID from registry.py which generates a prompt for the llm api (if used) to generate the final choice for a dialogue')      
     parser.add_argument('--model_file', type=str, default=None,
         help='model file')
+    parser.add_argument('--llm_api_choice', type=str, default=None,
+        help='if set (not none), this indicates to use a single LLM to extract final deals from dialogues. Value specifies the LLM to use.')
     parser.add_argument('--corpus_source', type=str, default=None,
         help='Path to file used to generate the corpus for GRU model (MUST BE THE SAME AS FILE USED FOR TRAINING GRU MODULE)')
 
