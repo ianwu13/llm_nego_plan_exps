@@ -17,8 +17,13 @@ Contains code (currently just structure) for experiments on incorporating dialog
     - `models/` : weights for dialogue planning models
     - *`do_chat.py`*
     - *`do_selfplay.py`*
+    - *`commd_gen_selfplay.py`*: script for generating commd of running different experiments and stored as .json and .md file
+    - *`extract.py`*: Recursively extract dialogue content from every log file into json format in the provided input directory and stored the result to provided output directory
+    - *`get_deal.py`*: detect the final deal from conversation in json format
+    - *`get_prompts.py`*:
     - *`registry.py`*: A registry for supported (dataset, model, task) triplets and required name to class mappings.
     - *`utils.py`*: Independent utilities used throughout the code.
+    - *`Makefile`*: Automaticly running all the experiment commd in commd.json file
 
     - `storage/` : SUGGESTED - for all storage, gitignored by default
         - `logs/` : log dir for the results and outputs of the tasks.
@@ -49,6 +54,16 @@ Contains code (currently just structure) for experiments on incorporating dialog
 - "UTT2ACT_PROMPT_FUN_REG"
 
 ## Selfplay - UPDATE
+- Check the required files and experiment agents parameters in commd_gen_selfplay.py and get the experiment command file by "running: python commd_gen_selfplay.py dataset_name api_key" It will generate two files for each dataset, containing the command for running the selfplay experiment. commd_selfplay_dataset.json (file for makefile to read and run) and commd_selfplay_dataset.md (for human to check command)
+
+- Running all experiment of a dataset by "make dataset_name". (e.g. make casino) The experiment result will be stored as log file under the provided output directory in commands.
+
+- Extract conversation content from log file and store as json format by running "python extract.py dataset". Make sure the input and output directory is valid.
+
+- Get the final deal from GPT by providing the conversation contents, running "python get_deal.py dataset api_key" will append the final deal to the input json file. It will also print the basic stats categorizing different deals and stored as seperate file for each agent_agent scenarios.
+
+
+
 
 - TODO
 

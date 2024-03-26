@@ -1,12 +1,13 @@
 import json
 import os
+import sys
 
-def extract(input_dir, filename, output_dir, outfilename):
+def extract(filename, outfilename):
     all_dialgue = []
     temp = []
     start_flag = False
     count = 0
-    with open(os.path.join(input_dir, filename), 'r') as f:
+    with open(filename, 'r') as f:
         for line in f:
             if "===" in line:
                 if start_flag:
@@ -28,24 +29,32 @@ def extract(input_dir, filename, output_dir, outfilename):
             cut = -1
         if "=" in each [-2]:
             cut = -2
-        temp = {"alice_pref":each[0],
-                "bob_pref": each[1],
+        temp = {"alice_pref":each[0][:-1],
+                "bob_pref": each[1][:-1],
                 "convo": each[2:cut]}
         json_data.append(temp)
     
-    with open(os.path.join(output_dir, outfilename), 'w') as f:
+    with open(outfilename, 'w') as f:
         f.write(json.dumps(json_data, indent=4))
+    print("Done with file " + filename)
 
-def main():
-    input_dir = 'llm_negotiation/llm_nego_plan_exps/agent_experiments/storage/logs/gpt-4/casino/selfplay'
-    out_dir = 'storage/convo_jsons_for_deal_detection_testing/new_final_deal'
-    if not os.path.exists(out_dir):
-        os.makedirs(out_dir)
+def extract_all(input_dir, output_dir):
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
     for filename in os.listdir(input_dir):
         if filename.endswith('.log'):
             outfilename = filename.split(".")[0]+".json"
-            extract(input_dir, filename, out_dir, outfilename)
-        print("Done with file " + filename)
+            extract(os.path.join(input_dir, filename),os.path.join(output_dir, outfilename))
+
+def main():
+    args = sys.argv[1:]
+    dataset = args[0] # "dnd" or "casino"
+    input_dir = f'storage/logs/gpt-4/{dataset}/selfplay'
+    output_dir = f'storage/extracted_conv/{dataset}/selfplay'
+    extract_all(input_dir, output_dir)
+
+    # if want to extract only one file
+    # extract(f1, f2)
 
 if __name__ == "__main__":
     main()
