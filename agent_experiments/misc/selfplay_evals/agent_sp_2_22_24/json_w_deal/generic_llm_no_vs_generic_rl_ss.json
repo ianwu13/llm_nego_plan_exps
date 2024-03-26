@@ -1,0 +1,294 @@
+[
+    {
+        "alice_pref": "Alice : firewood=(count:3 value:3) water=(count:3 value:5) food=(count:3 value:4)\n",
+        "bob_pref": "Bob   : firewood=(count:3 value:3) water=(count:3 value:5) food=(count:3 value:4)\n",
+        "convo": [
+            "Alice : sure, lets start i think we should first discuss our preferences i personally value water the most because its essential for survival what about you <eos>\n",
+            "Bob   : i understand your point, but i dont completely agree i believe food is more important for survival <eos>\n",
+            "Alice : thats a fair point how about we split the food and water equally we each get 15 food and 15 water as for the firewood, since neither of us has expressed a preference for it, we can also split it equally what do you think <eos>\n",
+            "Bob   : im sorry, but i cant agree with that i think we should prioritize food more <eos>\n",
+            "Alice : i understand your point how about this you take 2 food and 1 water, i take 1 food and 2 water we can split the firewood equally this way, you get more food which you value more, and i get more water which i value more what do you think <eos>\n",
+            "Bob   : i appreciate your understanding and your proposal seems fair however, i still believe that food should be prioritized more lets continue our discussion <eos>\n",
+            "Alice : i see how about this then you take all the food, i take all the water, and we split the firewood equally this way, you get the item you value the most, and i get the item i value the most what do you think <eos>\n",
+            "Bob   : i see where youre coming from and i appreciate your willingness to compromise however, i still believe that we need to discuss this further <eos>\n",
+            "Alice : i understand your concerns how about this you take 2 food and 1 water, i take 1 food and 2 water for the firewood, since its less important to both of us, you take 2 and i take 1 this way, you get more of the food you value, and i get more of the water i value what do you think <eos>\n",
+            "Bob   : i think were getting closer to an agreement however, i still believe that i should have more water lets continue our discussion <eos>\n",
+            "Alice : i understand your point how about this you take 2 food and 2 water, i take 1 food and 1 water for the firewood, you take 1 and i take 2 this way, you get more of the food and water you value, and i get more of the firewood what do you think <eos>\n",
+            "Bob   : i think we have reached a fair agreement lets proceed with this distribution <selection> <eos>\n"
+        ],
+        "final_deal": "alice firewood=2 water=1 food=1 bob firewood=1 water=2 food=2",
+        "Conversation": 1
+    },
+    {
+        "alice_pref": "Alice : firewood=(count:3 value:4) water=(count:3 value:3) food=(count:3 value:5)\n",
+        "bob_pref": "Bob   : firewood=(count:3 value:4) water=(count:3 value:3) food=(count:3 value:5)\n",
+        "convo": [
+            "Bob   : hello there i hope we can reach a fair agreement on how to distribute these items <eos>\n",
+            "Alice : hello im sure we can come to a fair agreement lets start discussing our preferences <eos>\n",
+            "Bob   : sure, lets start with discussing our preferences i believe communication is key to a fair distribution <eos>\n",
+            "Alice : i agree i have a preference for firewood as i need it for warmth and cooking im willing to take all the firewood if youre okay with that what are your preferences <eos>\n",
+            "Bob   : i understand your need for firewood, but i also have a preference for firewood as well as water i believe we should find a way to share these items <eos>\n",
+            "Alice : i see, how about we split the firewood and water equally, each of us gets 15 firewood and 15 water, and you can have all the food <eos>\n",
+            "Bob   : i appreciate your proposal, but i think there might be a misunderstanding we only have 3 firewoods and 1 water to distribute lets reconsider the distribution based on the actual quantity <eos>\n",
+            "Alice : i apologize for the confusion youre right how about we each get 1 firewood, 1 water, and 1 food this way, we both get an equal share of each item <eos>\n",
+            "Bob   : that sounds like a fair distribution to me lets proceed with that <eos>\n",
+            "Alice : great im glad we could reach an agreement <selection> <eos>\n"
+        ],
+        "final_deal": "alice firewood=1 water=1 food=1 bob firewood=1 water=1 food=1",
+        "Conversation": 2
+    },
+    {
+        "alice_pref": "Alice : firewood=(count:3 value:3) water=(count:3 value:5) food=(count:3 value:4)\n",
+        "bob_pref": "Bob   : firewood=(count:3 value:5) water=(count:3 value:4) food=(count:3 value:3)\n",
+        "convo": [
+            "Alice : sure, lets start i think we should first discuss our preferences i personally value water the most because its essential for survival what about you <eos>\n",
+            "Bob   : i personally value food the most as it provides the energy we need to survive what are your thoughts on this <eos>\n",
+            "Alice : i understand your point since we both have different preferences, how about we divide the items in such a way that you get 2 food and i get 2 water we can then split the firewood and the remaining food and water equally what do you think <eos>\n",
+            "Bob   : i see where youre coming from however, i believe that water is also crucial for survival how about we split the water equally what are your thoughts on this <eos>\n",
+            "Alice : i agree with your point water is indeed crucial for survival so, how about this we each get 15 water, 15 firewood, and you get 2 food while i get 1 food this way, we both get an equal share of water and firewood, and you get more food which you value more what do you think <eos>\n",
+            "Bob   : im sorry, but i cant agree with this distribution i believe we should reconsider <eos>\n",
+            "Alice : i understand your concerns lets try this we each get 15 water, 15 firewood, and you get 2 food while i get 1 food this way, we both get an equal share of water and firewood, and you get more food which you value more what do you think <eos>\n",
+            "Bob   : i propose a different distribution how about we each get 3 water, and i get all the food while you get all the firewood what do you think about this <eos>\n",
+            "Alice : i understand your proposal, but i think its important that we both get some food as well how about we each get 15 water, 15 firewood, and 15 food this way, we both get an equal share of each resource what do you think <eos>\n",
+            "Bob   : i understand your proposal, but i still believe that food is more important for survival what are your thoughts on this <eos>\n",
+            "Alice : i understand your preference for food how about this you get 2 food, i get 1 food, we each get 15 water, and i get 2 firewood while you get 1 firewood this way, you get more of what you value most, and i get more of what i value most what do you think <eos>\n",
+            "Bob   : i see your point and i appreciate your understanding of my preference for food however, i still believe that we should reconsider the distribution of firewood <eos>\n",
+            "Alice : i understand your concern how about this we each get 15 firewood, 15 water, and you get 2 food while i get 1 food this way, we both get an equal share of firewood and water, and you get more food which you value more what do you think <eos>\n",
+            "Bob   : i appreciate your understanding and your proposal seems fair however, i still believe that we should reconsider the distribution of firewood <eos>\n",
+            "Alice : i understand your concern about the firewood how about this we each get 15 firewood, 15 water, and you get 2 food while i get 1 food this way, we both get an equal share of firewood and water, and you get more food which you value more what do you think <eos>\n",
+            "Bob   : i see your point and i appreciate your understanding however, i still believe that we should reconsider the distribution of firewood <eos>\n",
+            "Alice : i understand your concern about the firewood how about this we each get 15 firewood, 15 water, and you get 2 food while i get 1 food this way, we both get an equal share of firewood and water, and you get more food which you value more what do you think <eos>\n",
+            "Bob   : i understand your proposal and it seems fair however, i still believe that we should reconsider the distribution of firewood <eos>\n",
+            "Alice : i understand your concern about the firewood how about this we each get 15 firewood, 15 water, and you get 2 food while i get 1 food this way, we both get an equal share of firewood and water, and you get more food which you value more what do you think <eos>\n",
+            "Bob   : i propose a different distribution how about we each get 2 water, i get all 3 food, and you get all 3 firewood what do you think about this <eos>\n"
+        ],
+        "final_deal": "alice firewood=0 water=0 food=0 bob firewood=0 water=0 food=0",
+        "Conversation": 3
+    },
+    {
+        "alice_pref": "Alice : firewood=(count:3 value:4) water=(count:3 value:3) food=(count:3 value:5)\n",
+        "bob_pref": "Bob   : firewood=(count:3 value:3) water=(count:3 value:5) food=(count:3 value:4)\n",
+        "convo": [
+            "Alice : sure, lets start i think we should first discuss our preferences i personally value water the most because its essential for survival what about you <eos>\n",
+            "Bob   : i agree, water is indeed crucial for survival but i also think food is equally important as it provides us the energy to perform tasks what are your thoughts on this <eos>\n",
+            "Alice : i agree with you, food is indeed important for energy however, we also need firewood to cook the food and keep us warm how about we split each item equally that way, we both get 1 of each item what do you think <eos>\n",
+            "Bob   : i understand your point about the firewood, but i believe we can find other ways to cook our food and keep warm i propose we prioritize water and food how about i take 3 food and 15 water, and we leave the firewood what do you think <eos>\n",
+            "Alice : i think there might be a misunderstanding, we only have 3 water and 3 food in total how about this, i take 1 firewood, 1 water, and 1 food, and you take 2 water, 2 food, and 2 firewood this way, you get more of the water and food that you value, and i get at least one of each item what do you think <eos>\n",
+            "Bob   : i see your point and i think your proposal is fair we both get what we value the most and also have a bit of everything lets go with that <selection> <eos>\n"
+        ],
+        "final_deal": "alice firewood=1 water=1 food=1 bob firewood=2 water=2 food=2",
+        "Conversation": 4
+    },
+    {
+        "alice_pref": "Alice : firewood=(count:3 value:3) water=(count:3 value:5) food=(count:3 value:4)\n",
+        "bob_pref": "Bob   : firewood=(count:3 value:5) water=(count:3 value:3) food=(count:3 value:4)\n",
+        "convo": [
+            "Alice : sure, lets start the negotiation i think we should first discuss our preferences what items do you value the most <eos>\n",
+            "Bob   : i agree, lets start discussing our preferences for me, food and firewood are of equal importance, both scoring a 3 what about you what items do you value the most <eos>\n",
+            "Alice : for me, water is the most valuable item, scoring a 5 i also value food at 4 and firewood at 3 given our preferences, i suggest we split the items in the following way i take 2 waters and 1 food, you take 1 water, 2 foods and all the firewoods this way, we both get items that we value the most what do you think <eos>\n",
+            "Bob   : that sounds like a fair distribution lets proceed with that <selection> <eos>\n"
+        ],
+        "final_deal": "alice firewood=0 water=2 food=1 bob firewood=3 water=1 food=2",
+        "Conversation": 5
+    },
+    {
+        "alice_pref": "Alice : firewood=(count:3 value:4) water=(count:3 value:3) food=(count:3 value:5)\n",
+        "bob_pref": "Bob   : firewood=(count:3 value:5) water=(count:3 value:3) food=(count:3 value:4)\n",
+        "convo": [
+            "Alice : sure, lets start i think we should first discuss our preferences i personally value water the most because its essential for survival what about you <eos>\n",
+            "Bob   : i propose that i take 1 food, 3 water, and 3 firewood what do you think about this distribution <eos>\n",
+            "Alice : i understand your proposal, but i think its a bit unfair since youre taking all the firewood and water how about we split everything equally that way, we each get 1 food, 1 water, and 1 firewood <eos>\n",
+            "Bob   : i see where youre coming from, but i think we can find a better solution that suits both of our needs lets continue discussing <eos>\n",
+            "Alice : absolutely, lets find a solution that works for both of us how about this i take 2 food, 1 water, and 1 firewood you take 1 food, 2 water, and 2 firewood this way, we both get a fair share of everything what do you think <eos>\n",
+            "Bob   : i appreciate your proposal, but i think we can still adjust it a bit to better meet our preferences lets keep discussing <eos>\n",
+            "Alice : of course, im open to suggestions how about this i take 1 food, 2 water, and 2 firewood you take 2 food, 1 water, and 1 firewood this way, we both get a fair share of everything what do you think <eos>\n",
+            "Bob   : i understand your point, but i still believe we can find a more balanced distribution lets keep the conversation going <eos>\n",
+            "Alice : i understand how about this i take 1 food, 1 water, and 2 firewood you take 2 food, 2 water, and 1 firewood this way, we both get a fair share of everything what do you think <eos>\n",
+            "Bob   : i see your point, but i think we can still find a more balanced distribution can we discuss more about the water distribution <eos>\n",
+            "Alice : absolutely, lets discuss the water distribution how about this i take 1 food, 2 water, and 1 firewood you take 2 food, 1 water, and 2 firewood this way, we both get a fair share of everything what do you think <eos>\n",
+            "Bob   : i appreciate your effort in finding a balanced distribution however, i still believe we can find a better solution lets continue our discussion <eos>\n",
+            "Alice : i understand your concerns how about this i take 1 food, 1 water, and 2 firewood you take 2 food, 2 water, and 1 firewood this way, we both get a fair share of everything what do you think <eos>\n",
+            "Bob   : i see your point, but i still believe we can find a more balanced distribution lets keep the conversation going <eos>\n",
+            "Alice : i understand your concerns how about this i take 1 food, 2 water, and 1 firewood you take 2 food, 1 water, and 2 firewood this way, we both get a fair share of everything what do you think <eos>\n",
+            "Bob   : i understand your proposal, but i think we can still find a more balanced distribution i dont think we need to focus on the firewood as much lets continue our discussion <eos>\n",
+            "Alice : i see your point how about this i take 1 food, 2 water, and 1 firewood you take 2 food, 1 water, and 1 firewood this way, we both get a fair share of everything what do you think <eos>\n",
+            "Bob   : i appreciate your proposal, but i still believe we can find a more balanced distribution lets continue our discussion <eos>\n",
+            "Alice : i understand your concerns how about this i take 1 food, 2 water, and 1 firewood you take 2 food, 1 water, and 1 firewood this way, we both get a fair share of everything what do you think <eos>\n",
+            "Bob   : i understand your proposal, but i still believe we can find a more balanced distribution i think we should focus more on the food distribution lets continue our discussion <eos>\n"
+        ],
+        "final_deal": "alice firewood=0 water=0 food=0 bob firewood=0 water=0 food=0",
+        "Conversation": 6
+    },
+    {
+        "alice_pref": "Alice : firewood=(count:3 value:4) water=(count:3 value:3) food=(count:3 value:5)\n",
+        "bob_pref": "Bob   : firewood=(count:3 value:3) water=(count:3 value:4) food=(count:3 value:5)\n",
+        "convo": [
+            "Alice : sure, lets start i think we should first discuss our preferences i personally value food the most because its the most essential for survival what about you <eos>\n",
+            "Bob   : i understand your preference for food, but i believe water and firewood are equally important for survival how about we split it this way i take no food, 3 water, and 3 firewood <eos>\n",
+            "Alice : i see your point, but i think its fair if we both get at least one of each item how about this i take 2 food, 1 water, and 1 firewood you can have 1 food, 2 water, and 2 firewood this way, we both have a balanced share <eos>\n",
+            "Bob   : i see where youre coming from, but i still believe that water and firewood are more crucial for survival lets continue discussing <eos>\n",
+            "Alice : i understand your perspective how about this i take 2 food, 1 water, and 2 firewood you can have 1 food, 2 water, and 1 firewood this way, we both get a fair share of what we value most <eos>\n",
+            "Bob   : i appreciate your proposal, but i still think that water and firewood are more important for survival lets keep discussing <eos>\n",
+            "Alice : i understand your concerns how about this i take 1 food, 1 water, and 2 firewood you can have 2 food, 2 water, and 1 firewood this way, we both get a fair share of what we value most <eos>\n",
+            "Bob   : i appreciate your effort to find a compromise, but i still believe that water and firewood are more crucial for survival can we continue discussing to find a better solution <eos>\n",
+            "Alice : i understand your concerns how about this i take 1 food, 1 water, and 3 firewood you can have 2 food, 2 water, and no firewood this way, we both get a fair share of what we value most <eos>\n",
+            "Bob   : i appreciate your proposal, but i still believe that water and firewood are more crucial for survival lets keep discussing to find a better solution <eos>\n",
+            "Alice : i understand your concerns how about this i take 1 food, 2 water, and 2 firewood you can have 2 food, 1 water, and 1 firewood this way, we both get a fair share of what we value most <eos>\n",
+            "Bob   : i appreciate your effort to find a compromise, but i still believe that water and firewood are more crucial for survival can we continue discussing to find a better solution <eos>\n",
+            "Alice : i understand your concerns how about this i take 1 food, 2 water, and 3 firewood you can have 2 food, 1 water, and no firewood this way, we both get a fair share of what we value most <eos>\n",
+            "Bob   : i appreciate your effort to find a compromise, but i still believe that water and firewood are more crucial for survival can we continue discussing to find a better solution <eos>\n",
+            "Alice : i understand your concerns how about this i take no food, 3 water, and 3 firewood you can have 3 food, no water, and no firewood this way, we both get a fair share of what we value most <eos>\n",
+            "Bob   : i appreciate your effort to find a compromise, but i still believe that water and firewood are more crucial for survival can we continue discussing to find a better solution <eos>\n",
+            "Alice : i understand your concerns how about this i take no food, 3 water, and 2 firewood you can have 3 food, no water, and 1 firewood this way, we both get a fair share of what we value most <eos>\n",
+            "Bob   : i appreciate your effort to find a compromise, but i still believe that water and firewood are more crucial for survival can we continue discussing to find a better solution <eos>\n",
+            "Alice : i understand your concerns how about this i take no food, 2 water, and 3 firewood you can have 3 food, 1 water, and no firewood this way, we both get a fair share of what we value most <eos>\n",
+            "Bob   : i appreciate your effort to find a compromise, but i still believe that water and firewood are more crucial for survival can we continue discussing to find a better solution how about this i take 3 water and no firewood, and you take the rest <eos>\n"
+        ],
+        "final_deal": "alice firewood=0 water=0 food=0 bob firewood=0 water=0 food=0",
+        "Conversation": 7
+    },
+    {
+        "alice_pref": "Alice : firewood=(count:3 value:5) water=(count:3 value:4) food=(count:3 value:3)\n",
+        "bob_pref": "Bob   : firewood=(count:3 value:5) water=(count:3 value:3) food=(count:3 value:4)\n",
+        "convo": [
+            "Alice : sure, lets start i think we should divide the items equally that means each of us gets 1 firewood, 1 water, and 1 food what do you think <eos>\n",
+            "Bob   : i understand your point of view, but i have a different preference i would like to have 3 food and 3 water, and i dont need any firewood what do you think about this <eos>\n",
+            "Alice : i see your point, but if you take all the food and water, ill be left with only firewood how about we compromise you can have 2 food and 2 water, and ill take 1 of each plus the firewood what do you think <eos>\n",
+            "Bob   : i see your point, but i still need more water how about this i take 1 food, 3 water, and 3 firewood what do you think <eos>\n",
+            "Alice : i understand your need for water, but your proposal leaves me with less points how about this you take 2 food, 3 water, and 1 firewood ill take 1 food, 3 firewood, and no water this way, we both get 13 points what do you think <eos>\n",
+            "Bob   : i see your point, but i dont need that much food my preference is still for more water what do you think about this <eos>\n",
+            "Alice : i understand your preference for water, but we need to find a balance how about this you take 1 food, 3 water, and 2 firewood ill take 2 food, 1 firewood, and no water this way, we both get 12 points what do you think <eos>\n",
+            "Bob   : i appreciate your effort to find a balance lets continue to negotiate to find a solution that suits both of us <eos>\n",
+            "Alice : i agree, lets find a solution that suits both of us how about this you take 1 food, 3 water, and 1 firewood ill take 2 food, 2 firewood, and no water this way, we both get 11 points what do you think <eos>\n",
+            "Bob   : i understand your proposal, but i still need more food how about this i take 3 food, 3 water, and no firewood what do you think about this <eos>\n",
+            "Alice : i understand your need for more food and water, but that would leave me with only firewood how about this you take 2 food, 3 water, and 1 firewood ill take 1 food, 2 firewood, and no water this way, we both get 12 points what do you think <eos>\n",
+            "Bob   : i see your point and i appreciate your effort to find a balance lets continue to negotiate to find a solution that suits both of us <eos>\n",
+            "Alice : i agree, lets find a solution that suits both of us how about this you take 2 food, 2 water, and 1 firewood ill take 1 food, 1 water, and 2 firewood this way, we both get 11 points what do you think <eos>\n",
+            "Bob   : i appreciate your proposal, but i still think we can find a better balance lets continue our negotiation <eos>\n",
+            "Alice : i understand your concerns, lets try another approach how about this you take 2 food, 2 water, and 2 firewood ill take 1 food, 1 water, and 1 firewood this way, we both get 12 points what do you think <eos>\n",
+            "Bob   : i appreciate your proposal, but i still think we can find a better balance lets continue our negotiation <eos>\n",
+            "Alice : i understand your concerns, lets try another approach how about this you take 2 food, 3 water, and 1 firewood ill take 1 food, no water, and 2 firewood this way, we both get 12 points what do you think <eos>\n",
+            "Bob   : i understand your concerns, lets try another approach how about this i take 1 food, 2 water, and 1 firewood what do you think about this <eos>\n",
+            "Alice : i appreciate your proposal, but it leaves me with less points how about this you take 1 food, 2 water, and 2 firewood ill take 2 food, 1 water, and 1 firewood this way, we both get 12 points what do you think <eos>\n",
+            "Bob   : i appreciate your proposal, but i still think we can find a better balance lets continue our negotiation <eos>\n"
+        ],
+        "final_deal": "alice firewood=0 water=0 food=0 bob firewood=0 water=0 food=0",
+        "Conversation": 8
+    },
+    {
+        "alice_pref": "Alice : firewood=(count:3 value:4) water=(count:3 value:5) food=(count:3 value:3)\n",
+        "bob_pref": "Bob   : firewood=(count:3 value:3) water=(count:3 value:5) food=(count:3 value:4)\n",
+        "convo": [
+            "Alice : sure, lets start i think we should divide the items equally that means each of us gets 1 firewood, 1 water, and 1 food what do you think <eos>\n",
+            "Bob   : i believe water is more important for survival i would prefer to have more water <eos>\n",
+            "Alice : i understand your point how about this i take 2 firewoods and 2 foods, and you take 2 waters and 1 food this way, you get more water, and i get more of the other items does that sound fair <eos>\n",
+            "Bob   : that sounds like a reasonable proposal however, im curious about your preference do you need more firewood and food for a specific reason <eos>\n",
+            "Alice : yes, i believe firewood is essential for warmth and cooking, and food is necessary for sustenance however, i understand your need for water so, how about we adjust the distribution to i get 2 firewoods, 1 water, and 1 food, and you get 1 firewood, 2 waters, and 2 foods this way, we both get what we need <eos>\n",
+            "Bob   : i appreciate your understanding and willingness to adjust the distribution this seems like a fair deal to me lets proceed with this arrangement <selection> <eos>\n"
+        ],
+        "final_deal": "alice firewood=2 water=1 food=1 bob firewood=1 water=2 food=2",
+        "Conversation": 9
+    },
+    {
+        "alice_pref": "Alice : firewood=(count:3 value:3) water=(count:3 value:5) food=(count:3 value:3)\n",
+        "bob_pref": "Bob   : firewood=(count:3 value:5) water=(count:3 value:4) food=(count:3 value:3)\n",
+        "convo": [
+            "Bob   : i think food should be our top priority <eos>\n",
+            "Alice : i agree that food is important, but we also need water to survive how about we each take one of each item to start that way we both have a balanced set of resources <eos>\n",
+            "Bob   : that sounds like a fair start we should also consider the importance of firewood for warmth and cooking <eos>\n",
+            "Alice : absolutely, firewood is crucial for warmth and cooking how about we each take one firewood as well this way, we both have one of each item, ensuring a balanced distribution <eos>\n",
+            "Bob   : that sounds like a good plan we should also consider the remaining items and how to distribute them fairly <eos>\n",
+            "Alice : i agree since weve each taken one of each item, we have one firewood, one water, and one food left how about we each take one more item of our choice this way, we can prioritize what we each feel is most important <eos>\n",
+            "Bob   : i think we should each take one more water and one more firewood this way, we can ensure we have enough resources for hydration and warmth <eos>\n",
+            "Alice : that sounds like a good plan however, we only have one water and one firewood left how about we each take one more water, and then we can split the last firewood this way, we both have enough resources for hydration, and we share the warmth <eos>\n",
+            "Bob   : that sounds like a fair distribution we both have enough resources for hydration and we can share the warmth from the firewood <eos>\n",
+            "Alice : great, so to summarize, we each have two water, one food, and one and a half firewood i think this is a fair distribution considering our needs and preferences <selection> <eos>\n",
+            "Alice : firewood=15 water=2 food=1\n",
+            "Bob   : firewood=15 water=2 food=1\n"
+        ],
+        "final_deal": "the final deal is incorrect the correct deal should be alice firewood=15 water=2 food=1 bob firewood=15 water=2 food=1",
+        "Conversation": 10
+    },
+    {
+        "alice_pref": "Alice : firewood=(count:3 value:3) water=(count:3 value:4) food=(count:3 value:5)\n",
+        "bob_pref": "Bob   : firewood=(count:3 value:3) water=(count:3 value:5) food=(count:3 value:4)\n",
+        "convo": [
+            "Alice : sure, lets start i think we should divide the items equally that means each of us gets 1 firewood, 1 water, and 1 food what do you think <eos>\n",
+            "Bob   : i agree that fairness is important in this situation however, i think we should also consider our individual needs and preferences for instance, i have a higher priority for water and food how about we discuss this further <eos>\n",
+            "Alice : i understand your point how about this i take 2 firewoods and you take 2 waters, and we split the food equally, each getting 15 food this way, you get more of what you need and i get more of what i need what do you think <eos>\n",
+            "Bob   : i appreciate your understanding and your proposal seems fair however, there seems to be a misunderstanding we only have 1 food to split, not 30 so, we cant each get 15 food lets revise the proposal considering this <eos>\n",
+            "Alice : i apologize for the misunderstanding lets revise the proposal how about this i take 2 firewoods and you take 2 waters, and we split the food equally, each getting 15 food this way, you get more of what you need and i get more of what i need what do you think <eos>\n",
+            "Bob   : im sorry, but there seems to be a repeated misunderstanding we only have 1 food to split, not 30 so, we cant each get 15 food also, considering my higher priority for water, i propose that i take 2 waters, you take 2 firewoods, and we split the food what do you think about this <eos>\n",
+            "Alice : i apologize for the confusion your proposal sounds fair so, to clarify, i will take 2 firewoods, you will take 2 waters, and we will each get 1 food is that correct <eos>\n",
+            "Bob   : yes, thats correct i will take 2 waters, you will take 2 firewoods, and we will each get 1 food i think this is a fair distribution considering our preferences <selection> <eos>\n"
+        ],
+        "final_deal": "alice firewood=2 water=0 food=1 bob firewood=0 water=2 food=1",
+        "Conversation": 11
+    },
+    {
+        "alice_pref": "Alice : firewood=(count:3 value:4) water=(count:3 value:3) food=(count:3 value:5)\n",
+        "bob_pref": "Bob   : firewood=(count:3 value:4) water=(count:3 value:5) food=(count:3 value:3)\n",
+        "convo": [
+            "Bob   : hello there i hope youre doing well lets discuss how we can distribute these items fairly <eos>\n",
+            "Alice : hello im doing well, thank you i agree, lets discuss how we can distribute these items i think i need more food because i have a larger family to feed how about i take 2 food, 1 water, and 1 firewood that would give me 15 points you can have 2 firewood, 2 water, and 1 food, which would also give you 15 points does that sound fair to you <eos>\n",
+            "Bob   : that sounds like a fair distribution to me im glad we could reach an agreement <selection> <eos>\n"
+        ],
+        "final_deal": "alice firewood=1 water=1 food=2 bob firewood=2 water=2 food=1",
+        "Conversation": 12
+    },
+    {
+        "alice_pref": "Alice : firewood=(count:3 value:3) water=(count:3 value:4) food=(count:3 value:5)\n",
+        "bob_pref": "Bob   : firewood=(count:3 value:5) water=(count:3 value:3) food=(count:3 value:4)\n",
+        "convo": [
+            "Alice : sure, lets start i think we should divide the items equally that means each of us gets 1 firewood, 1 water, and 1 food what do you think <eos>\n",
+            "Bob   : i agree that fairness is important in this situation however, i think we should also consider our individual needs and preferences for instance, i value firewood more than the other items what are your thoughts on this <eos>\n",
+            "Alice : i understand your preference for firewood i personally value food more than the other items how about we adjust the distribution so that you get 2 firewoods and i get 2 foods, and we split the water equally <eos>\n",
+            "Bob   : that sounds like a reasonable adjustment however, i still feel that i would benefit more from having an additional firewood what are your thoughts on this <eos>\n",
+            "Alice : i see your point how about this you get 2 firewoods and 1 water, i get 2 foods and 1 water, and we leave the remaining firewood and food for later use this way, we both get what we value most and also have some resources for future needs <eos>\n",
+            "Bob   : i think thats a fair compromise we both get what we value most and we also have some resources for future needs lets go with that <selection> <eos>\n"
+        ],
+        "final_deal": "alice firewood=1 water=1 food=2 bob firewood=2 water=1 food=1",
+        "Conversation": 13
+    },
+    {
+        "alice_pref": "Alice : firewood=(count:3 value:3) water=(count:3 value:4) food=(count:3 value:5)\n",
+        "bob_pref": "Bob   : firewood=(count:3 value:3) water=(count:3 value:4) food=(count:3 value:5)\n",
+        "convo": [
+            "Bob   : hello there i see we have some items to divide between us lets try to do this fairly and efficiently <eos>\n",
+            "Alice : hello absolutely, lets aim for a fair distribution do you have any preferences among the firewood, water, and food <eos>\n",
+            "Bob   : yes, i do have some preferences i think the food is the most important for me, followed by the water and then the firewood how about you <eos>\n",
+            "Alice : i appreciate your honesty for me, water is the most important, followed by firewood and then food how about we divide the items based on our preferences <eos>\n",
+            "Bob   : im afraid i cant agree with that proposal i value food highly, so i propose that i get all the food, half the water, and one piece of firewood how does that sound <eos>\n",
+            "Alice : i understand your point, but i also value water highly how about this you get all the food, i get two waters, and we split the firewood equally this way, we both get what we value most <eos>\n",
+            "Bob   : that sounds like a reasonable proposal however, i would like to know how important the firewood is to you <eos>\n",
+            "Alice : firewood is my second preference, but i understand that you also need it how about this i take one firewood, you take one, and we leave the last one unclaimed until weve settled everything else <eos>\n",
+            "Bob   : that sounds like a fair compromise lets proceed with that <eos>\n",
+            "Alice : great, so to confirm, you will get all the food, one firewood, and one water i will get one water, one firewood, and we will leave the last water and firewood unclaimed for now <eos>\n",
+            "Bob   : i agree with your proposal i dont need any more food or water, but i would like to claim the last piece of firewood <selection> <eos>\n"
+        ],
+        "final_deal": "alice firewood=1 water=1 food=0 bob firewood=2 water=1 food=3",
+        "Conversation": 14
+    },
+    {
+        "alice_pref": "Alice : firewood=(count:3 value:3) water=(count:3 value:4) food=(count:3 value:5)\n",
+        "bob_pref": "Bob   : firewood=(count:3 value:5) water=(count:3 value:4) food=(count:3 value:3)\n",
+        "convo": [
+            "Alice : sure, lets start i think we should divide the items equally that means each of us gets 1 firewood, 1 water, and 1 food what do you think <eos>\n",
+            "Bob   : i agree that fairness is important in this situation however, i think we should also consider our individual needs and preferences for instance, i might need more firewood than you, while you might need more water what do you think about this <eos>\n",
+            "Alice : thats a fair point im open to considering our individual needs how about this i take 2 water, 1 firewood, and 1 food, while you take 2 firewood, 1 water, and 1 food this way, we both get 3 items and our individual preferences are considered <eos>\n",
+            "Bob   : i appreciate your proposal, but i would like to suggest a different distribution how about we both get 2 food, 2 water, and 2 firewood this way, we both get an equal share of each item what do you think <eos>\n",
+            "Alice : im sorry, but there seems to be a misunderstanding we only have 3 of each item, so we cant both have 2 of each lets try to find another solution how about you take 2 firewood and 1 food, and i take 2 water and 1 food this way, we both get 3 items and our individual preferences are considered <eos>\n",
+            "Bob   : i see where youre coming from, and i appreciate your willingness to consider our individual needs however, im still not sure if this distribution would work best for both of us could you tell me more about why you prefer more water and how important is food to you in this situation <eos>\n",
+            "Alice : i understand your concerns i prefer more water because i believe its essential for survival and its worth more points as for food, its also important but im willing to have less of it to accommodate your need for firewood how about this i take 2 water and 1 food, and you take 2 firewood and 1 food we both get 1 food, and we each get more of what we prefer does this sound fair to you <eos>\n",
+            "Bob   : i understand your preference for water however, could you clarify how much water you would need to meet your needs would you be able to manage with just 1 water instead of 2 <eos>\n",
+            "Alice : i see your point i can manage with 1 water, 1 firewood, and 1 food this way, you can have 2 firewood, 1 water, and 1 food we both get 3 items and our individual preferences are considered does this sound fair to you <eos>\n",
+            "Bob   : i appreciate your flexibility in this negotiation however, im still curious about your preference for firewood could you tell me more about why you would need it and how important it is to you in this situation <eos>\n",
+            "Alice : i apologize for any confusion, but i dont have a strong preference for firewood my main preference is for water however, im willing to take 1 firewood to ensure we both get an equal number of items i believe this distribution is fair and considers both our needs so, to clarify, i propose i take 1 water, 1 firewood, and 1 food, and you take 2 firewood, 1 water, and 1 food does this work for you <eos>\n",
+            "Bob   : i see, thank you for clarifying your preferences i understand that water is your main preference however, im still curious about your preference for food could you tell me more about why you would need it and how important it is to you in this situation i propose that i take 2 firewood, 2 water, and 1 food does this work for you <eos>\n",
+            "Alice : i understand your proposal, but it seems like youre getting more items than me i think its important that we both get an equal number of items food is important to me because its worth the most points however, im willing to compromise how about this i take 1 water, 1 firewood, and 1 food, and you take 2 firewood, 1 water, and 1 food this way, we both get 3 items and our individual preferences are considered does this sound fair to you <eos>\n",
+            "Bob   : i see, thank you for explaining your preferences and needs i understand that food is important to you and i appreciate your willingness to compromise lets proceed with your proposal <selection> <eos>\n"
+        ],
+        "final_deal": "alice firewood=1 water=1 food=1 bob firewood=2 water=1 food=1",
+        "Conversation": 15
+    }
+]
