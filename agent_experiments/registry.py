@@ -85,24 +85,24 @@ INST_ANNOT2STR_PROMPT_FUN_REG = {
 # Response Generation Functions (dialogue or choice responses)
 # dialogue_state_json -> list["prompt_to_gen_response"]
 RESPONSE_PROMPT_FUN_REG = {
-    "example_dia_resp": ("lang_models.llm_apis.prompting.dia_response_funcitons", "example_dia_response_func"),
-    "example_dia_act_resp": ("lang_models.llm_apis.prompting.dia_response_funcitons", "example_dia_act_response_func"),
-    "example_choice": ("lang_models.llm_apis.prompting.dia_response_funcitons", "example_choice_func"),
-    "dia_resp_slagent_completion_dnd": ("lang_models.llm_apis.prompting.dia_response_funcitons", "dia_resp_slagent_completion_dnd"),
-    "choice_slagent_completion_dnd": ("lang_models.llm_apis.prompting.dia_response_funcitons", "choice_slagent_completion_dnd"),
+    # "example_dia_resp": ("lang_models.llm_apis.prompting.dia_response_funcitons", "example_dia_response_func"),
+    # "example_dia_act_resp": ("lang_models.llm_apis.prompting.dia_response_funcitons", "example_dia_act_response_func"),
+    # "example_choice": ("lang_models.llm_apis.prompting.dia_response_funcitons", "example_choice_func"),
+    # "dia_resp_slagent_completion_dnd": ("lang_models.llm_apis.prompting.dia_response_funcitons", "dia_resp_slagent_completion_dnd"),
+    # "choice_slagent_completion_dnd": ("lang_models.llm_apis.prompting.dia_response_funcitons", "choice_slagent_completion_dnd"),
     
     # Human-Bot
     # DND: No planning agents (Single-Level)
     "dia_resp_slagent_chatcomp_dnd": ("lang_models.llm_apis.prompting.dia_response_funcitons", "dia_resp_slagent_chatcomp_dnd"),
     # CaSiNo: No planning agents (Single-Level)
     "dia_resp_slagent_chatcomp_casino": ("lang_models.llm_apis.prompting.dia_response_funcitons", "dia_resp_slagent_chatcomp_casino"),
-    # DND Planning: with planning, function actually do act->act
-    "dia_resp_slagent_chatcomp_dnd_planning": ("lang_models.llm_apis.prompting.dia_response_funcitons", "dia_resp_slagent_chatcomp_dnd_planning"),
-    # CaSiNo Planning: with planning, function actually do act->act
-    "dia_resp_slagent_chatcomp_casino_planning": ("lang_models.llm_apis.prompting.dia_response_funcitons", "dia_resp_slagent_chatcomp_casino_planning"),
+    # # DND Planning: with planning, function actually do act->act
+    # "dia_resp_slagent_chatcomp_dnd_planning": ("lang_models.llm_apis.prompting.dia_response_funcitons", "dia_resp_slagent_chatcomp_dnd_planning"),
+    # # CaSiNo Planning: with planning, function actually do act->act
+    # "dia_resp_slagent_chatcomp_casino_planning": ("lang_models.llm_apis.prompting.dia_response_funcitons", "dia_resp_slagent_chatcomp_casino_planning"),
     
-    "choice_slagent_chatcomp_dnd": ("lang_models.llm_apis.prompting.dia_response_funcitons", "choice_slagent_chatcomp_dnd"),
-    "choice_slagent_chatcomp_casino": ("lang_models.llm_apis.prompting.dia_response_funcitons", "choice_slagent_chatcomp_casino"),
+    # "choice_slagent_chatcomp_dnd": ("lang_models.llm_apis.prompting.dia_response_funcitons", "choice_slagent_chatcomp_dnd"),
+    # "choice_slagent_chatcomp_casino": ("lang_models.llm_apis.prompting.dia_response_funcitons", "choice_slagent_chatcomp_casino"),
     
     "dia_resp_slagent_chatcomp_thirdperson_dnd": ("lang_models.llm_apis.prompting.dia_response_funcitons", "dia_resp_slagent_chatcomp_thirdperson_dnd"),
     "choice_slagent_chatcomp_thirdperson_dnd": ("lang_models.llm_apis.prompting.dia_response_funcitons", "choice_slagent_chatcomp_thirdperson_dnd"),
@@ -124,19 +124,19 @@ RESPONSE_PROMPT_FUN_REG = {
 ACT2UTT_PROMPT_FUN_REG = {
     "dnd_a2u_prompt": ("lang_models.llm_apis.prompting.act2utt_functions", "dnd_a2u_prompt"),
     "casino_a2u_prompt": ("lang_models.llm_apis.prompting.act2utt_functions", "casino_a2u_prompt"),
-    }
+}
 
 # Parser Functions (for planning)
 # dialogue_state_json -> list["prompt_to_parse_dialogue_act"]
 UTT2ACT_PROMPT_FUN_REG = {
-    "dnd_fs": ("lang_models.llm_apis.prompting.utt2act_functions", "dnd_fs"),
-    "casino_cust_form_fs": ("lang_models.llm_apis.prompting.utt2act_functions", "casino_cust_form_fs"),
+    # "dnd_fs": ("lang_models.llm_apis.prompting.utt2act_functions", "dnd_fs"),
+    # "casino_cust_form_fs": ("lang_models.llm_apis.prompting.utt2act_functions", "casino_cust_form_fs"),
     # "casino_dnd_form_fs": ("lang_models.llm_apis.prompting.utt2act_functions", "casino_dnd_form_fs"), # archive version based on final annotation prompt provided by Ian
     
     # Finalized versions (FROM ANNOTATION PIPELINE)
     # "example": ("lang_models.llm_apis.prompting.utt2act_functions", "example_u2a_func"),
     "final_utt2act_dnd": ("lang_models.llm_apis.prompting.utt2act_functions", "final_utt2act_dnd"),
-    "final_utt2act_casino_cust": ("lang_models.llm_apis.prompting.utt2act_functions", "final_utt2act_casino_cust"),
+    # "final_utt2act_casino_cust": ("lang_models.llm_apis.prompting.utt2act_functions", "final_utt2act_casino_cust"),
 
     # CURRENT
     "reduced_casino_cust_format": ("lang_models.llm_apis.prompting.utt2act_functions", "reduced_casino_cust_format"),
