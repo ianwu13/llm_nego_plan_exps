@@ -126,8 +126,9 @@ def dia_resp_slagent_chatcomp_casino(inst):
     # content_info = f'There are 3 firewoods, water and food with different priority for you. ' + reason
     content_info = f'There are {inst["ctx"][0]} firewoods, {inst["ctx"][2]} water, and {inst["ctx"][4]} food. The firewood are worth {inst["ctx"][1]} points, the water are worth {inst["ctx"][3]}, and the food are worth {inst["ctx"][5]}.'
     agent_instruct = f'Your partner has different preference for each item and you are negotiating over how to divide the items based on provided reasons. ' + strategy_sen + f' If a deal is not reached within 20 utterances, both participants recieve 0 points and fail. To indicate that a deal has been reached, output the word "<selection>"'
+    new = "Each item must be treated as a whole unit and cannot be divided into fractions. The final deal should utilize all 9 available items without exceeding this total."
     
-    system_str = content_info + " " + agent_instruct
+    system_str = content_info + " " + agent_instruct + " " + new
 
     messages = [{"role": "system", "content": system_str}]
     if len(inst['dialogue']) == 0:
@@ -291,6 +292,7 @@ def choice_slagent_chatcomp_dnd(inst):
 
 def choice_slagent_chatcomp_casino(inst):
     system_str = f'You are an assistant negotiating with the user over how to divide {inst["ctx"][0]} firewoods, {inst["ctx"][2]} water, and {inst["ctx"][4]} foods. When a participant says "<selection>", this indicates a deal has been reached. In response to this, give the agreed upon values for the deal, in the order "assistant_number_of_firewoods assistant_number_of_water assistant_number_of_food user_number_of_firewood user_number_of_water user_number_of_food" (six numbers), without any additional words. The total number of firewood, water, and food given to you and the user should equal the number available.'
+    
     messages = [{"role": "system", "content": system_str}]
     assert len(inst['dialogue']) > 0, 'Must have some dialogue to reach a deal'
 
