@@ -15,7 +15,7 @@ from ...utils import get_llm_api, get_response_prompt_func
 
 class Dialog(object):
     """Dialogue runner."""
-    def __init__(self, agents, args, scale_rw = 1.0, selection_length=6, rw_type="own_points", conf=None):
+    def __init__(self, agents, args, scale_rw = 1.0, selection_length=6, rw_type="own_points", conf=None, cpf_obj=None):
         # for now we only suppport dialog of 2 agents
         assert len(agents) == 2
         self.agents = agents
@@ -30,9 +30,9 @@ class Dialog(object):
         else:
             self.max_utts = 20
 
-        if args.llm_api_choice:
-            llm_api = get_llm_api(args.llm_api_choice, args.llm_api_key)
-            self.cpf = get_response_prompt_func(args.cpf)
+        if cpf_obj:
+            self.llm_api_choice = cpf_obj['llm']
+            self.cpf = cpf_obj['cpf']
         else:
             self.llm_api_choice = None
 
@@ -305,7 +305,7 @@ class Dialog(object):
                 })
                 # Example deal pred output: "alice food=2 water=1 firewood=1 bob food=1 water=2 firewood=2"
                 # Order should be food, water, firewood
-                choice_vals = self.pg_model.get_model_outputs(choice_prompt)[0].split()
+                choice_vals = self.llm_api_choice.get_model_outputs(choice_prompt)[0].split()
                 
                 # Choice format: "['item0=1', 'item1=0', 'item2=3', 'item0=0', 'item1=1', 'item2=0']"
 

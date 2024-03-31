@@ -52,10 +52,10 @@ def main():
         help='Function ID from registry.py which generates a prompt for the llm api (if used) to generate the next response in the dialogue')
     parser.add_argument('--llm_response_prompt_func_bob', type=str, default=None,
         help='Function ID from registry.py which generates a prompt for the llm api (if used) to generate the next response in the dialogue')
-    parser.add_argument('--llm_choice_prompt_func', type=str, default=None,
-        help='Function ID from registry.py which generates a prompt for the llm api (if used) to generate the final choice for a dialogue')
     parser.add_argument('--llm_api_choice', type=str, default=None,
         help='if set (not none), this indicates to use a single LLM to extract final deals from dialogues. Value specifies the LLM to use.')
+    parser.add_argument('--llm_choice_prompt_func', type=str, default=None,
+        help='Function ID from registry.py which generates a prompt for the llm api (if used) to generate the final choice for a dialogue')
     
     parser.add_argument('--alice_model_file', type=str, default=None,
         help='Alice model file')
@@ -86,7 +86,19 @@ def main():
     alice = utils.agent_builder(args.alice_type, args.alice_strategy, args.llm_response_prompt_func_alice, args.alice_template_gen, args, rl_module_weight_path=args.alice_model_file, name='Alice')
     
     bob = utils.agent_builder(args.bob_type, args.bob_strategy, args.llm_response_prompt_func_bob, args.bob_template_gen, args, rl_module_weight_path=args.bob_model_file, name='Bob')
-    dialog = Dialog([alice, bob], args)
+    
+    if args.llm_api_choice:
+        assert not args.llm_api_choice is None, 'args.llm_api_choice is set, cpf required'
+        cpf_llm_api = utils.get_llm_api(args.llm_api_choice, args.llm_api_key)
+        cpf = utils.get_choice_prompt_func(args.llm_api_choice) if args.llm_api_choice else None
+        cpf_obj = {
+            'llm': cpf_llm_api,
+            'cpf': cpf
+        }
+    else:
+        cpf_obj = None
+
+    dialog = Dialog([alice, bob], args, cpf_obj=cpf_obj)
     logger = InteractionLogger(args.dataset, verbose=args.verbose, log_file=args.log_file)
 
     selfplay = BotBotSelfPlay(dialog, args.dataset, args.context_file, logger=logger)

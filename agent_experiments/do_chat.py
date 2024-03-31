@@ -38,12 +38,12 @@ def main():
         help='Function ID from registry.py which converts act data into llm prompts for generating utterances (Generator)')
     parser.add_argument('--llm_response_prompt_func', type=str, default=None,
         help='Function ID from registry.py which generates a prompt for the llm api (if used) to generate the next response in the dialogue')
+    parser.add_argument('--llm_api_choice', type=str, default=None,
+        help='if set (not none), this indicates to use a single LLM to extract final deals from dialogues. Value specifies the LLM to use.')
     parser.add_argument('--llm_choice_prompt_func', type=str, default=None,
         help='Function ID from registry.py which generates a prompt for the llm api (if used) to generate the final choice for a dialogue')      
     parser.add_argument('--model_file', type=str, default=None,
         help='model file')
-    parser.add_argument('--llm_api_choice', type=str, default=None,
-        help='if set (not none), this indicates to use a single LLM to extract final deals from dialogues. Value specifies the LLM to use.')
     parser.add_argument('--corpus_source', type=str, default=None,
         help='Path to file used to generate the corpus for GRU model (MUST BE THE SAME AS FILE USED FOR TRAINING GRU MODULE)')
 
@@ -77,8 +77,19 @@ def main():
     ai = utils.agent_builder(args.ai_type, args.agent_strategy, args.llm_response_prompt_func, args.template_gen, args, rl_module_weight_path=args.model_file, name='AI')
 
     agents = [ai, human] if args.ai_starts else [human, ai]
+        
+    if args.llm_api_choice:
+        assert not args.llm_api_choice is None, 'args.llm_api_choice is set, cpf required'
+        cpf_llm_api = utils.get_llm_api(args.llm_api_choice, args.llm_api_key)
+        cpf = utils.get_choice_prompt_func(args.llm_api_choice) if args.llm_api_choice else None
+        cpf_obj = {
+            'llm': cpf_llm_api,
+            'cpf': cpf
+        }
+    else:
+        cpf_obj = None
 
-    dialog = Dialog(agents, args)
+    dialog = Dialog(agents, args, cpf_obj=cpf_obj)
     logger = InteractionLogger(args.dataset, verbose=True, log_file=args.log_file)
 
     chat = BotHumanChat(dialog, args.dataset, args.context_file, logger=logger)

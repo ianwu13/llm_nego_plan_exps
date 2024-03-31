@@ -116,7 +116,15 @@ RESPONSE_PROMPT_FUN_REG = {
     # 
     "act_act_chatcomp_dnd": ("lang_models.llm_apis.prompting.dia_response_funcitons","act_next_act_dnd"),
     # "act_act_chatcomp_casino_dnd_form": ("lang_models.llm_apis.prompting.dia_response_funcitons","act_act_chatcomp_casino_dnd_form"),
-    "act_act_chatcomp_casino_cust_form": ("lang_models.llm_apis.prompting.dia_response_funcitons","act_act_chatcomp_casino_cust_form")
+    "act_act_chatcomp_casino_cust_form": ("lang_models.llm_apis.prompting.dia_response_funcitons","act_act_chatcomp_casino_cust_form"),
+
+    # Single llm call to predict deal
+}
+
+CHOICE_PROMPT_FUN_REG = {
+    # TODO: INCLUDE ZORA PROMPTS FOR CHOICE GETTING
+    "get_casino_final_deal": (),  # TODO
+    "get_dnd_final_deal": (),  # TODO
 }
 
 # Generator Functions (for planning)

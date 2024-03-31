@@ -77,6 +77,10 @@ def get_response_prompt_func(func_id: str):
     return get_function_from_id(func_id, RESPONSE_PROMPT_FUN_REG)
 
 
+def get_choice_prompt_func(func_id: str):
+    return get_function_from_id(func_id, CHOICE_PROMPT_FUN_REG)
+
+
 def load_rl_module(weights_path: str, corpus_data_pth: str):
     # if 'torch' not in sys.modules.keys():
     #     import torch
