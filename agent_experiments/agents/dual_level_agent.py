@@ -94,6 +94,11 @@ class DualLevelAgent(Agent):
             self.da_h = self.planning_model.zero_hid(1)
 
     def read(self, inpt):
+        if '<selection>' in inpt:
+            self.dialogue_acts.append('THEM:')
+            self.dialogue_acts.append('<selection>')
+            return
+
         parser_prompt = self.p_prompt_func({
             'ctx': self.ctx,
             'dialogue': self.dialogue,

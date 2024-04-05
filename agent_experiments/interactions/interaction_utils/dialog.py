@@ -10,7 +10,6 @@ import logging
 import numpy as np
 
 from interactions.interaction_utils.metrics import MetricsContainer
-from ...utils import get_llm_api, get_response_prompt_func
 
 
 class Dialog(object):
@@ -298,9 +297,12 @@ class Dialog(object):
                 storage["choices"][agent.name] = choice
         else:
             if self.llm_api_choice is not None:
+                # NOTE: MAKE CPF FUNCTIONS ACCEPT THIS FORMAT
+                itm_cnts = [self.agents[0].ctx[0], self.agents[0].ctx[2], self.agents[0].ctx[4]]
                 choice_prompt = self.cpf({
+                    'itm_cnts': itm_cnts,
                     'alice_ctx': self.agents[0].ctx,
-                    'bob_ctx': self.agents[0].ctx,
+                    'bob_ctx': self.agents[1].ctx,
                     'dialogue': storage["conv"]
                 })
                 # Example deal pred output: "alice food=2 water=1 firewood=1 bob food=1 water=2 firewood=2"
@@ -309,9 +311,9 @@ class Dialog(object):
                 
                 # Choice format: "['item0=1', 'item1=0', 'item2=3', 'item0=0', 'item1=1', 'item2=0']"
 
-                if len(choice_vals) == 8 and choice_vals[0].lower() == 'alice' and choice_vals[3].lower() == 'bob':
+                if len(choice_vals) == 8 and choice_vals[0].lower() == 'alice' and choice_vals[4].lower() == 'bob':
                     acvs = choice_vals[1:3]
-                    bcvs = choice_vals[4:7]
+                    bcvs = choice_vals[5:8]
                     
                     choice_alice = acvs + bcvs
                     choice_bob = bcvs + acvs
@@ -339,6 +341,8 @@ class Dialog(object):
 
                     for agent, choice, in zip(self.agents, choices):
                         storage["choices"][agent.name] = choice
+                    
+                    logger.dump(' '.join(choice_vals))
 
             else:
                 # the conversation atleast finished nicely; now we try to get a consistent output.

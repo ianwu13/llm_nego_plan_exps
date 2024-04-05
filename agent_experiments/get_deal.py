@@ -10,7 +10,7 @@ def get_casino_final_deal(api, filename, outfile):
 
     for each in conversations:
         conv = "".join(each["convo"])
-        each_prompt = [{'role': 'system', 'content': 'You are are assisting the user to detect the final deal of dividing 3 units each of firewood, water, and food in a negotiation diglogue. You should get final deal in this format "Alice: firewood=X water=X food=X Bob: firewood=X water=X food=X" and fill X with corresponding numbers from conversation. If no deal reached in the end, fill all X with 0s.'}, 
+        each_prompt = [{'role': 'system', 'content': 'You are assisting the user to detect the final deal of dividing 3 units each of firewood, water, and food in a negotiation diglogue. You should get final deal in this format "Alice: firewood=X water=X food=X Bob: firewood=X water=X food=X" and fill X with corresponding numbers from conversation. If no deal reached in the end, fill all X with 0s.'}, 
             {'role': 'user', 'content': f'What is final deal for the conversation? {conv}'}]
         outs = api.get_chat_completions_out([each_prompt])
         final_deal = outs[0]

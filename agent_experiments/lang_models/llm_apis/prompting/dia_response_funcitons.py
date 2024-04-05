@@ -87,7 +87,7 @@ def dia_resp_slagent_chatcomp_dnd(inst):
         strategy_sen = f'You are a selfish negotiator and your goal is to mazimize your own points as much as possible in the agreed upon deal without caring about whether its a fair deal for your partner and their feeling.'
 
     content_info = f'There are {inst["ctx"][0]} books, {inst["ctx"][2]} hats, and {inst["ctx"][4]} balls. The books are worth {inst["ctx"][1]} points, the hats are worth {inst["ctx"][3]}, and the balls are worth {inst["ctx"][5]}.'
-    agent_instruct = f'Your partner has different values for each item and you are negotiating over how to divide the items. ' + strategy_sen + ' If a deal is not reached within 20 utterances, both participants recieve 0 points. To indicate that a deal has been reached, output the word "<selection>"'
+    agent_instruct = f'Your partner has different values for each item and you are negotiating over how to divide the items. ' + strategy_sen + ' If a deal is not reached within 20 utterances, both participants receive 0 points. To indicate that a deal has been reached, output the word "<selection>"'
     system_str = content_info + " " + agent_instruct
 
     messages = [{"role": "system", "content": system_str}]
@@ -116,7 +116,7 @@ def dia_resp_slagent_chatcomp_dnd(inst):
         return [messages]
 
 def dia_resp_slagent_chatcomp_casino(inst):
-    strategy_sen = f'You should try to reach an agreement of distributing items with your partner. '
+    strategy_sen = f'You should try to reach an agreement for distributing items with your partner. '
     if inst['strategy'] == "fair":
         strategy_sen = f'You should try to make a fair deal with your partner based on the demand and priority for both. '
     if inst['strategy'] == "selfish":
@@ -124,8 +124,8 @@ def dia_resp_slagent_chatcomp_casino(inst):
 
     # reason = " ".join(inst["ctx"][inst["ctx"].index("=")+1:])
     # content_info = f'There are 3 firewoods, water and food with different priority for you. ' + reason
-    content_info = f'There are {inst["ctx"][0]} firewoods, {inst["ctx"][2]} water, and {inst["ctx"][4]} food. The firewood are worth {inst["ctx"][1]} points, the water are worth {inst["ctx"][3]}, and the food are worth {inst["ctx"][5]}.'
-    agent_instruct = f'Your partner has different preference for each item and you are negotiating over how to divide the items based on provided reasons. ' + strategy_sen + f' If a deal is not reached within 20 utterances, both participants recieve 0 points and fail. To indicate that a deal has been reached, output the word "<selection>"'
+    content_info = f'There are {inst["ctx"][0]} firewood, {inst["ctx"][2]} water, and {inst["ctx"][4]} food. The firewood are worth {inst["ctx"][1]} points, the water are worth {inst["ctx"][3]}, and the food are worth {inst["ctx"][5]}.'
+    agent_instruct = f'Your partner has different preferences for each item and you are negotiating over how to divide the items based on the provided reasons. ' + strategy_sen + f' If a deal is not reached within 20 utterances, both participants receive 0 points and fail. To indicate that a deal has been reached, output the word "<selection>"'
     new = "Each item must be treated as a whole unit and cannot be divided into fractions. The final deal should utilize all 9 available items without exceeding this total."
     
     system_str = content_info + " " + agent_instruct + " " + new
@@ -157,7 +157,7 @@ def dia_resp_slagent_chatcomp_casino(inst):
 
 
 def dia_resp_slagent_chatcomp_thirdperson_dnd(inst):
-    strategy_sen = f'You should try to reach an agreement of distributing items with your partner. '
+    strategy_sen = f'You should try to reach an agreement for distributing items with your partner. '
     if inst['strategy'] == "fair":
         strategy_sen = f'You should try to make a fair deal with your partner based on the demand and priority for both. '
     if inst['strategy'] == "selfish":
@@ -170,7 +170,7 @@ def dia_resp_slagent_chatcomp_thirdperson_dnd(inst):
         messages.append({"role": "user", "content": f"Begin the negotiation"})
     else:
         # print(inst['dialogue']) -> ['THEM:', 'DUMMY', 'YOU:', 'DUMMY', 'THEM:', 'DUMMY', 'YOU:', 'DUMMY', 'THEM:', 'DUMMY']
-        prompt_str = f'There are {inst["ctx"][0]} books, {inst["ctx"][2]} hats, and {inst["ctx"][4]} balls. The books are worth {inst["ctx"][1]} points, the hats are worth {inst["ctx"][3]}, and the balls are worth {inst["ctx"][5]} to Alice. Bob has different values for each item and Alice and Bob are negotiating over how to divide the items. Their goal is to mazimize their own points in the agreed upon deal. If a deal is not reached within 20 turns (utterances), both participants recieve 0 points. To indicate that a deal has been reached, Alice will output the word "<selection>". Here is the current dialogue history:'
+        prompt_str = f'There are {inst["ctx"][0]} books, {inst["ctx"][2]} hats, and {inst["ctx"][4]} balls. The books are worth {inst["ctx"][1]} points, the hats are worth {inst["ctx"][3]}, and the balls are worth {inst["ctx"][5]} to Alice. Bob has different values for each item and Alice and Bob are negotiating over how to divide the items. Their goal is to mazimize their own points in the agreed upon deal. If a deal is not reached within 20 turns (utterances), both participants receive 0 points. To indicate that a deal has been reached, Alice will output the word "<selection>". Here is the current dialogue history:'
         
         sub_dict = {
             'YOU:': 'Alice:',
@@ -192,7 +192,7 @@ def dia_resp_slagent_chatcomp_thirdperson_dnd(inst):
     return [messages]
 
 def dia_resp_slagent_chatcomp_thirdperson_casino(inst):
-    strategy_sen = f'You should try to reach an agreement of distributing items with your partner. '
+    strategy_sen = f'You should try to reach an agreement for distributing items with your partner. '
     if inst['strategy'] == "fair":
         strategy_sen = f'You should try to make a fair deal with your partner based on the demand and priority for both. '
     if inst['strategy'] == "selfish":
@@ -200,8 +200,8 @@ def dia_resp_slagent_chatcomp_thirdperson_casino(inst):
 
     reason = " ".join(inst["ctx"][inst["ctx"].index("=")+1:])
     # content_info = f'There are {inst["ctx"][0]} firewoods, {inst["ctx"][2]} water, and {inst["ctx"][4]} food. The firewood are worth {inst["ctx"][1]} points, the water are worth {inst["ctx"][3]}, and the food are worth {inst["ctx"][5]}.'
-    content_info = f'There are 3 firewoods, water and food with different priority for you. ' + reason
-    agent_instruct = f'Your partner has different preference for each item and you are negotiating over how to divide the items based on provided reasons. ' + strategy_sen + f' If a deal is not reached within 20 turns (utterances), both participants recieve 0 points and fail. To indicate that a deal has been reached, output the word "<selection>"'
+    content_info = f'There are 3 firewood, water and food with different priority for you.'  # + reason
+    agent_instruct = f'Your partner has different preference for each item and you are negotiating over how to divide the items based on provided reasons. ' + strategy_sen + f' If a deal is not reached within 20 turns (utterances), both participants receive 0 points and fail. To indicate that a deal has been reached, output the word "<selection>"'
     
     system_str = content_info + " " + agent_instruct
     # print(inst['ctx']) -> ['1', '0', '1', '1', '3', '3']
@@ -211,7 +211,7 @@ def dia_resp_slagent_chatcomp_thirdperson_casino(inst):
         messages.append({"role": "user", "content": f"Begin the negotiation"})
     else:
         # print(inst['dialogue']) -> ['THEM:', 'DUMMY', 'YOU:', 'DUMMY', 'THEM:', 'DUMMY', 'YOU:', 'DUMMY', 'THEM:', 'DUMMY']
-        prompt_str = f'There are {inst["ctx"][0]} books, {inst["ctx"][2]} hats, and {inst["ctx"][4]} balls. The books are worth {inst["ctx"][1]} points, the hats are worth {inst["ctx"][3]}, and the balls are worth {inst["ctx"][5]} to Alice. Bob has different values for each item and Alice and Bob are negotiating over how to divide the items. Their goal is to mazimize their own points in the agreed upon deal. If a deal is not reached within 20 turns (utterances), both participants recieve 0 points. To indicate that a deal has been reached, Alice will output the word "<selection>". Here is the current dialogue history:'
+        prompt_str = f'There are {inst["ctx"][0]} books, {inst["ctx"][2]} hats, and {inst["ctx"][4]} balls. The books are worth {inst["ctx"][1]} points, the hats are worth {inst["ctx"][3]}, and the balls are worth {inst["ctx"][5]} to Alice. Bob has different values for each item and Alice and Bob are negotiating over how to divide the items. Their goal is to mazimize their own points in the agreed upon deal. If a deal is not reached within 20 turns (utterances), both participants receive 0 points. To indicate that a deal has been reached, Alice will output the word "<selection>". Here is the current dialogue history:'
         
         sub_dict = {
             'YOU:': 'Alice:',
@@ -236,7 +236,7 @@ def dia_resp_slagent_chatcomp_thirdperson_casino(inst):
 
 def dia_resp_slagent_generic_completion_dnd(inst):
     # You is alice
-    prompt_str = f'Alice and Bob are negotiating over how to divide books, hats, and balls. There are {inst["ctx"][0]} books, {inst["ctx"][2]} hats, and {inst["ctx"][4]} balls. The books are worth {inst["ctx"][1]} points, the hats are worth {inst["ctx"][3]}, and the balls are worth {inst["ctx"][5]} to Alice. Bob has different but unknown values for each item. Both Alice and Bobs goal is to mazimize their own points in the final deal. If a deal is not reached within 20 turns (utterances), both participants recieve 0 points. When a deal is agreed upon, the participants say "<selection>" to make a selection.'
+    prompt_str = f'Alice and Bob are negotiating over how to divide books, hats, and balls. There are {inst["ctx"][0]} books, {inst["ctx"][2]} hats, and {inst["ctx"][4]} balls. The books are worth {inst["ctx"][1]} points, the hats are worth {inst["ctx"][3]}, and the balls are worth {inst["ctx"][5]} to Alice. Bob has different but unknown values for each item. Both Alice and Bobs goal is to mazimize their own points in the final deal. If a deal is not reached within 20 turns (utterances), both participants receive 0 points. When a deal is agreed upon, the participants say "<selection>" to make a selection.'
     
     if len(inst['dialogue']) == 0:
         return prompt_str + '\nAlice: '
@@ -291,7 +291,7 @@ def choice_slagent_chatcomp_dnd(inst):
     return [messages]
 
 def choice_slagent_chatcomp_casino(inst):
-    system_str = f'You are an assistant negotiating with the user over how to divide {inst["ctx"][0]} firewoods, {inst["ctx"][2]} water, and {inst["ctx"][4]} foods. When a participant says "<selection>", this indicates a deal has been reached. In response to this, give the agreed upon values for the deal, in the order "assistant_number_of_firewoods assistant_number_of_water assistant_number_of_food user_number_of_firewood user_number_of_water user_number_of_food" (six numbers), without any additional words. The total number of firewood, water, and food given to you and the user should equal the number available.'
+    system_str = f'You are an assistant negotiating with the user over how to divide {inst["ctx"][0]} firewood, {inst["ctx"][2]} water, and {inst["ctx"][4]} foods. When a participant says "<selection>", this indicates a deal has been reached. In response to this, give the agreed upon values for the deal, in the order "assistant_number_of_firewoods assistant_number_of_water assistant_number_of_food user_number_of_firewood user_number_of_water user_number_of_food" (six numbers), without any additional words. The total number of firewood, water, and food given to you and the user should equal the number available.'
     
     messages = [{"role": "system", "content": system_str}]
     assert len(inst['dialogue']) > 0, 'Must have some dialogue to reach a deal'
@@ -359,7 +359,7 @@ def choice_slagent_chatcomp_thirdperson_dnd(inst):
         messages.append({"role": "user", "content": f"Begin the negotiation"})
     else:
         # print(inst['dialogue']) -> ['THEM:', 'DUMMY', 'YOU:', 'DUMMY', 'THEM:', 'DUMMY', 'YOU:', 'DUMMY', 'THEM:', 'DUMMY']
-        prompt_str = f'There are {inst["ctx"][0]} books, {inst["ctx"][2]} hats, and {inst["ctx"][4]} balls. The books are worth {inst["ctx"][1]} points, the hats are worth {inst["ctx"][3]}, and the balls are worth {inst["ctx"][5]} to Alice. Bob has different values for each item and Alice and Bob are negotiating over how to divide the items. Their goal is to mazimize their own points in the agreed upon deal. If a deal is not reached within 20 turns (utterances), both participants recieve 0 points. To indicate that a deal has been reached, Alice will output the word "<selection>". Here is the current dialogue history:'
+        prompt_str = f'There are {inst["ctx"][0]} books, {inst["ctx"][2]} hats, and {inst["ctx"][4]} balls. The books are worth {inst["ctx"][1]} points, the hats are worth {inst["ctx"][3]}, and the balls are worth {inst["ctx"][5]} to Alice. Bob has different values for each item and Alice and Bob are negotiating over how to divide the items. Their goal is to mazimize their own points in the agreed upon deal. If a deal is not reached within 20 turns (utterances), both participants receive 0 points. To indicate that a deal has been reached, Alice will output the word "<selection>". Here is the current dialogue history:'
         
         sub_dict = {
             'YOU:': 'Alice:',
@@ -388,7 +388,7 @@ def choice_slagent_chatcomp_thirdperson_casino(inst):
         messages.append({"role": "user", "content": f"Begin the negotiation"})
     else:
         # print(inst['dialogue']) -> ['THEM:', 'DUMMY', 'YOU:', 'DUMMY', 'THEM:', 'DUMMY', 'YOU:', 'DUMMY', 'THEM:', 'DUMMY']
-        prompt_str = f'There are {inst["ctx"][0]} books, {inst["ctx"][2]} hats, and {inst["ctx"][4]} balls. The books are worth {inst["ctx"][1]} points, the hats are worth {inst["ctx"][3]}, and the balls are worth {inst["ctx"][5]} to Alice. Bob has different values for each item and Alice and Bob are negotiating over how to divide the items. Their goal is to mazimize their own points in the agreed upon deal. If a deal is not reached within 20 turns (utterances), both participants recieve 0 points. To indicate that a deal has been reached, Alice will output the word "<selection>". Here is the current dialogue history:'
+        prompt_str = f'There are {inst["ctx"][0]} books, {inst["ctx"][2]} hats, and {inst["ctx"][4]} balls. The books are worth {inst["ctx"][1]} points, the hats are worth {inst["ctx"][3]}, and the balls are worth {inst["ctx"][5]} to Alice. Bob has different values for each item and Alice and Bob are negotiating over how to divide the items. Their goal is to mazimize their own points in the agreed upon deal. If a deal is not reached within 20 turns (utterances), both participants receive 0 points. To indicate that a deal has been reached, Alice will output the word "<selection>". Here is the current dialogue history:'
         
         sub_dict = {
             'YOU:': 'Alice:',
@@ -416,7 +416,7 @@ def choice_slagent_chatcomp_thirdperson_casino(inst):
 # TODO
 # def dia_act_chatcomp_dnd(inst):
 #     content_info = f'There are {inst["ctx"][0]} books, {inst["ctx"][2]} hats, and {inst["ctx"][4]} balls. The books are worth {inst["ctx"][1]} points, the hats are worth {inst["ctx"][3]}, and the balls are worth {inst["ctx"][5]}.'
-#     agent_instruct = f'Your partner has different values for each item and you are negotiating over how to divide the items. Your goal is to mazimize your own points in the agreed upon deal. If a deal is not reached within 20 turns (utterances), both participants recieve 0 points. To indicate that a deal has been reached, output the word "<selection>"'
+#     agent_instruct = f'Your partner has different values for each item and you are negotiating over how to divide the items. Your goal is to mazimize your own points in the agreed upon deal. If a deal is not reached within 20 turns (utterances), both participants receive 0 points. To indicate that a deal has been reached, output the word "<selection>"'
 #     system_str = content_info + " " + agent_instruct
 
 #     messages = [{"role": "system", "content": system_str}]
@@ -496,7 +496,7 @@ This is a list of possible annotation labels with descriptions. Note that "<slot
 "undervalue <slot>" - attempts to convince a partner a particular item is less important. For example, "Do you have help carrying all that extra firewood? Could be heavy" would be annotated "undervalue firewood".
 "vouch fairness" - vouches for the fairness of a deal or proposal.
 "express preference <slot>" - implies the speaker's preference for an item. For example, "I really need food" would be annotated "express preference food".
-"propose <slot>" - proposes an offer. Slots are filled based on what the speaker of the utterance gets. For example, "How about I get 2 water and you get all the food" would be labeled "propose food=0 water=2". "you can have all three water if i get all the food and firewood" would be annotated "propose food=3 water=0 firewood=3". "yes, I get 2 food 3 water and 1 firewood and you get 1 food and 2 firewood" would be annotated "propose food=2 water=3 firewood=1" because the speaker recieves 2 food, 3 water, and  1 firewood. "OK, you get 1 Food, 1 firewood and 3 waters" would be annotated "propose food=2 water=0 firewood=2" because after the partner gets their items there would be 2 food, 0 water, and 2 firewood for the speaker to recieve.
+"propose <slot>" - proposes an offer. Slots are filled based on what the speaker of the utterance gets. For example, "How about I get 2 water and you get all the food" would be labeled "propose food=0 water=2". "you can have all three water if i get all the food and firewood" would be annotated "propose food=3 water=0 firewood=3". "yes, I get 2 food 3 water and 1 firewood and you get 1 food and 2 firewood" would be annotated "propose food=2 water=3 firewood=1" because the speaker receives 2 food, 3 water, and  1 firewood. "OK, you get 1 Food, 1 firewood and 3 waters" would be annotated "propose food=2 water=0 firewood=2" because after the partner gets their items there would be 2 food, 0 water, and 2 firewood for the speaker to receive.
 "disagree" - implies disagreement or dissatisfaction with a deal.
 "agree" - showing agreement to a deal or proposal. For example, the utterances "deal" or "Submit-Deal" would both be annotated "agree".
 "unknown" - the utterance does not fit any of the above labels.'''

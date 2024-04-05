@@ -105,10 +105,10 @@ RESPONSE_PROMPT_FUN_REG = {
     # "choice_slagent_chatcomp_casino": ("lang_models.llm_apis.prompting.dia_response_funcitons", "choice_slagent_chatcomp_casino"),
     
     "dia_resp_slagent_chatcomp_thirdperson_dnd": ("lang_models.llm_apis.prompting.dia_response_funcitons", "dia_resp_slagent_chatcomp_thirdperson_dnd"),
-    "choice_slagent_chatcomp_thirdperson_dnd": ("lang_models.llm_apis.prompting.dia_response_funcitons", "choice_slagent_chatcomp_thirdperson_dnd"),
+    # NOTE: MAY STILL USE "choice_slagent_chatcomp_thirdperson_dnd": ("lang_models.llm_apis.prompting.dia_response_funcitons", "choice_slagent_chatcomp_thirdperson_dnd"),
     
     "dia_resp_slagent_chatcomp_thirdperson_casino": ("lang_models.llm_apis.prompting.dia_response_funcitons", "dia_resp_slagent_chatcomp_thirdperson_casino"),
-    "choice_slagent_chatcomp_thirdperson_casino": ("lang_models.llm_apis.prompting.dia_response_funcitons", "choice_slagent_chatcomp_thirdperson_casino"),
+    # NOTE: MAY STILL USE "choice_slagent_chatcomp_thirdperson_casino": ("lang_models.llm_apis.prompting.dia_response_funcitons", "choice_slagent_chatcomp_thirdperson_casino"),
 
    # WORK FOR NO PLANNING BUT NEED A ONE WORK FOR PLANNING
 
@@ -122,9 +122,8 @@ RESPONSE_PROMPT_FUN_REG = {
 }
 
 CHOICE_PROMPT_FUN_REG = {
-    # TODO: INCLUDE ZORA PROMPTS FOR CHOICE GETTING
-    "get_casino_final_deal": (),  # TODO
-    "get_dnd_final_deal": (),  # TODO
+    "get_casino_final_deal": ("lang_models.llm_apis.prompting.choice_prompt_functions", "get_casino_final_deal"),
+    "get_dnd_final_deal": ("lang_models.llm_apis.prompting.choice_prompt_functions", "get_dnd_final_deal"),
 }
 
 # Generator Functions (for planning)

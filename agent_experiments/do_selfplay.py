@@ -90,7 +90,7 @@ def main():
     if args.llm_api_choice:
         assert not args.llm_api_choice is None, 'args.llm_api_choice is set, cpf required'
         cpf_llm_api = utils.get_llm_api(args.llm_api_choice, args.llm_api_key)
-        cpf = utils.get_choice_prompt_func(args.llm_api_choice) if args.llm_api_choice else None
+        cpf = utils.get_choice_prompt_func(args.llm_choice_prompt_func) if args.llm_choice_prompt_func else None
         cpf_obj = {
             'llm': cpf_llm_api,
             'cpf': cpf

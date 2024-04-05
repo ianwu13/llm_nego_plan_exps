@@ -94,6 +94,11 @@ class OpenAI_Api(BaseModelHandler):
             ]
         )
         """
+        # TODO: REMOVE TMP TESTING CODE
+        # print(inputs)
+        # outputs = input()
+        # return [outputs]
+
         outputs = []
         # inputs is a list
         for inp in inputs:

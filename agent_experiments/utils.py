@@ -118,12 +118,14 @@ def get_template_funct(dataset: str):
 def agent_builder(agent_type: str, agent_strategy: str, llm_response_prompt_func_arg: str, template_gen: bool, args, rl_module_weight_path=None, name: str='AI'):
     llm_api = get_llm_api(args.llm_api, args.llm_api_key)
 
-    llm_choice_prompt_func = args.llm_choice_prompt_func
-    
     utt2act_prompt_func = args.utt2act_prompt_func
     act2utt_prompt_func = args.act2utt_prompt_func
 
-    choice_prompt_func = get_response_prompt_func(llm_choice_prompt_func)
+    if not args.llm_api_choice:
+        llm_choice_prompt_func = args.llm_choice_prompt_func
+        choice_prompt_func = get_response_prompt_func(llm_choice_prompt_func)
+    else:
+        choice_prompt_func = None
 
     if agent_type == 'llm_no_planning':
         response_prompt_func = get_response_prompt_func(llm_response_prompt_func_arg)

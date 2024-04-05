@@ -35,29 +35,34 @@ selfplay_template = {
     "--context_file": None,
     "--ref_text": None,
     "--log_file": None,
+    "--llm_api_choice": None,
+    "--llm_choice_prompt_func": None,
 }
 
 def set_dataset(dataset_name, gpt_version, api_key):
     selfplay_template["--llm_api"] = gpt_version
     selfplay_template["--llm_api_key"] = api_key
+    selfplay_template["--llm_api_choice"] = gpt_version
 
     if dataset_name == "casino":
         selfplay_template["--dataset"] = "casino"
         selfplay_template["--context_file"] = "data/raw_datasets/dummy/casino_ctx.txt"
         selfplay_template["--ref_text"] = "data/raw_datasets/dummy/casino_ref.txt"
-        selfplay_template["--llm_choice_prompt_func"] = "choice_slagent_chatcomp_thirdperson_casino"
+        # selfplay_template["--llm_choice_prompt_func"] = "choice_slagent_chatcomp_thirdperson_casino"
         selfplay_template["--utt2act_prompt_func"] = "reduced_casino_cust_format"
         selfplay_template["--act2utt_prompt_func"] = "casino_a2u_prompt"
         selfplay_template["--corpus_source"] = "data/fd_r2_jan_2024_fixed/train.txt"
+        selfplay_template["--llm_choice_prompt_func"] = "get_casino_final_deal"
     
     elif dataset_name == "dnd":
         selfplay_template["--dataset"] = "dnd"
         selfplay_template["--context_file"] = "data/raw_datasets/dummy/dnd_ctx.txt"
         selfplay_template["--ref_text"] = "data/raw_datasets/dummy/dnd_ref.txt"
-        selfplay_template["--llm_choice_prompt_func"] = "choice_slagent_chatcomp_thirdperson_dnd"
+        # selfplay_template["--llm_choice_prompt_func"] = "choice_slagent_chatcomp_thirdperson_dnd"
         selfplay_template["--utt2act_prompt_func"] = "final_utt2act_dnd"
         selfplay_template["--act2utt_prompt_func"] = "dnd_a2u_prompt"
         selfplay_template["--corpus_source"] = "data/final_datasets/R1_dnd/train.txt"
+        selfplay_template["--llm_choice_prompt_func"] = "get_dnd_final_deal"
 
     else:
         raise Exception("Undefined dataset name")
