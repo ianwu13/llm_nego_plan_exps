@@ -511,7 +511,7 @@ This is a list of possible annotation labels with descriptions. Note that "<slot
     
     return act_prompt
 
-def casino_cust_reduced_planning(inst):
+def casino_cust_reduced_llm_self_planning(inst):
     content_info = f'There are {inst["ctx"][0]} firewood, {inst["ctx"][2]} water, and {inst["ctx"][4]} food. The firewood are worth {inst["ctx"][1]} points, the water are worth {inst["ctx"][3]}, and the food are worth {inst["ctx"][5]}.'
 
     strategy_sen = f'You should try to reach an agreement for distributing items with your partner. '
