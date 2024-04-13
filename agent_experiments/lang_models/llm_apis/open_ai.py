@@ -138,15 +138,19 @@ class OpenAI_Api(BaseModelHandler):
                         )
 
                 if response.status_code != 200:
-                    failed_call_id = hash(inp)
+                    failed_call_id = hash(inp) if type(inp) != list else 'LIST_UNHASHABLE'
                     self.failed_calls[failed_call_id] = inp
                     p_str = str(inp).replace('\n', '')
+                    
                     # print("OPENAI ISSUE")
                     # print(f'Response Error Code: {response.status_code}')
                     # print()
                     # print(response.content)
                     # print()
+                    # print(inp)
+                    # print()
                     # raise Exception('OpenAI API Failed Call')
+
                     outputs.append(' '.join(['<FAILED_CALL>', str(failed_call_id), '</FAILED_CALL>']))
                     continue
 

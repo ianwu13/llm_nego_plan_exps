@@ -511,12 +511,37 @@ This is a list of possible annotation labels with descriptions. Note that "<slot
     
     return act_prompt
 
+def casino_cust_reduced_planning(inst):
+    content_info = f'There are {inst["ctx"][0]} firewood, {inst["ctx"][2]} water, and {inst["ctx"][4]} food. The firewood are worth {inst["ctx"][1]} points, the water are worth {inst["ctx"][3]}, and the food are worth {inst["ctx"][5]}.'
+
+    strategy_sen = f'You should try to reach an agreement for distributing items with your partner. '
+    if inst['strategy'] == "fair":
+        strategy_sen = f'You should try to make a fair deal with your partner based on the demand and priority for both. '
+    if inst['strategy'] == "selfish":
+        strategy_sen = f'You should try to get items with high priority to you as much as possible without caring your partner need and feelings. '
+
+    agent_instruct = f'Your partner has different preferences for each item and you are negotiating over how to divide the items based on the provided reasons. ' + strategy_sen + f' If a deal is not reached within 20 utterances, both participants receive 0 points and fail. To indicate that a deal has been reached, output the word "<selection>"'
+    user_fs_msg_str = 'Here are some examples of how annotations should look:\n' + '\n'.join([f'{t}\nANNOTATION: "{a}"' for t, a in zip(casino_cust_reduced_examples, casino_cust_reduced_multilab_annots)])
+    directive_str = 'When a history of dialogue acts (annotations) is provided to you, respond with the best set of dialogue acts to respond with.'
+
+    system_str = ' '.join([content_info, agent_instruct, user_fs_msg_str, directive_str])
+
+    system_msg = {
+        'role': 'system',
+        'content': system_str
+        # 'content': 'You are a professional annotator assisting the user in annotating utterances in a negotiation dialogue. Respond to user requests succinctly, giving only the annotation, without extra words. Possible annotations are: "smalltalk", "elicit preference", "no need", "express preference", "propose", "disagree", "agree", "unknown" A single input (utterance) may have multiple correct annotations.'
+        # 'content': 'You are a professional annotator assisting the user in annotating utterances in a negotiation dialogue. Respond to user requests succinctly, giving only the annotation, without extra words. Possible annotations are: "Empathy/Coordination", "Undervalue Partner", "Non-strategic", "Small Talk", "No-need", "Vouch Fairness", "Self/Other Need", "Elicit Preferences" A single input (utterance) may have multiple correct annotations.'
+        }
+    curr_acts = '; '.join(inst['dia_acts'])
+    act_prompt = [system_msg, {'role': 'user', 'content': f'Here is the current history of dialogue acts:\n{curr_acts}\nWhat is the best dialogue act to respond to this history with?'}]
+    return act_prompt
+
 def act_act_chatcomp_casino_cust_form(inst):
     system_msg = {
         'role': 'system',
-        'content': 'You are a professional annotator assisting the user in annotating utterances in a negotiation dialogue. Respond to user requests succinctly, giving only the annotation, without extra words. Possible annotations are: "Empathy/Coordination", "Undervalue Partner", "Non-strategic", "Small Talk", "No-need", "Vouch Fairness", "Self/Other Need", "Elicit Preferences" A single input (utterance) may have multiple correct annotations.'
+        'content': 'You are a professional annotator assisting the user in annotating utterances in a negotiation dialogue. Respond to user requests succinctly, giving only the annotation, without extra words. Possible annotations are: "smalltalk", "elicit preference, "no need", "express preference", "propose", "disagree", "agree", and "unknown". A single input (utterance) may have multiple correct annotations.'
         }
-    user_fs_msg_str = 'Here are some examples of how I want the annotations to look:\n' + '\n'.join([f'UTTERANCE: "{t}"\nANNOTATION: "{a}"' for t, a in zip(casino_dnd_format_examples, casino_dnd_format_annots)])
+    user_fs_msg_str = 'Here are some examples of how annotations should look:\n' + '\n'.join([f'{t}\nANNOTATION: "{a}"' for t, a in zip(casino_cust_reduced_examples, casino_cust_reduced_multilab_annots)])
     dialogue_hist = 'Dialogue History:'  + ' '.join(inst['dialogue'])
     item_counts = inst['ctx']
     reason = " ".join(inst["ctx"])  # reason = " ".join(inst["ctx"][inst["ctx"].index("=")+1:])

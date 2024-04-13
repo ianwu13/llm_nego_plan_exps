@@ -113,7 +113,9 @@ class Dialog(object):
         for i, n in enumerate(cnts):
             for agent_id, (choice, ctx) in enumerate(zip(choices, ctxs)):
                 try:
-                    taken = int(choice[i][-1])
+                    # TODO NOTE: ALLOWING HALF COUNTS FOR NOW
+                    # taken = int(choice[i][-1])
+                    taken = float(choice[i].split('=')[-1])
                 except:
                     raise Exception('"choice[i][-1]" should be able to be converted to an int')
                 n -= taken
@@ -312,7 +314,7 @@ class Dialog(object):
                 # Choice format: "['item0=1', 'item1=0', 'item2=3', 'item0=0', 'item1=1', 'item2=0']"
 
                 if len(choice_vals) == 8 and choice_vals[0].lower() == 'alice' and choice_vals[4].lower() == 'bob':
-                    acvs = choice_vals[1:3]
+                    acvs = choice_vals[1:4]
                     bcvs = choice_vals[5:8]
                     
                     choice_alice = acvs + bcvs

@@ -296,3 +296,57 @@ casino_cust_format = OrderedDict({
     '"disagree"': '"I dont think I am okay with that."', 
     '"agree"': '"that sounds like a good deal to me" or "Submit-Deal"' 
 })
+
+
+#CaSiNo Custom Format
+casino_cust_reduced_examples = [
+    'CONTEXT: "high priority food, low priority water, medium priority firewood" UTTERANCE: "I am good. I am pretty excited for the trip this weekend. what about you?"',
+    'CONTEXT: "medium priority food, high priority water, low priority firewood" UTTERANCE: "I am good at making fire and have a starter so I can give up all the wood."',
+    'CONTEXT: "high priority food, low priority water, medium priority firewood" UTTERANCE: "Yes!  Would you mind sharing your highest priority item with me?  My most valued item right now is Food actually"',
+    'CONTEXT: "low priority food, high priority water, medium priority firewood" UTTERANCE: "What about the food? How much food do you need for camping?"',
+    'CONTEXT: "high priority food, medium priority water, low priority firewood" UTTERANCE: "ME as well! we are a group of big eaters, and are looking to take lots of food."',
+    'CONTEXT: "low priority food, medium priority water, high priority firewood" UTTERANCE: "Hey, nice getting to interact with you. I would like to have additional packages of firewood and water"',
+    'CONTEXT: "high priority food, medium priority water, low priority firewood" UTTERANCE: "i will give you that in exchange for 1 food and 3 water with 2 firewood"',
+    'CONTEXT: "medium priority food, high priority water, low priority firewood" UTTERANCE: "I like to hike and will need additional water. Can I take one package and you can have the other two?"',
+    'CONTEXT: "medium priority food, high priority water, low priority firewood" UTTERANCE: "I dont think I am okay with that. Food is essential to our groups morale when camping. We would like 1 additional food preferably."',
+    'CONTEXT: "high priority food, low priority water, medium priority firewood" UTTERANCE: "that sounds like a good deal to me"'
+    ]
+
+casino_cust_reduced_examples_dh = [
+    'CONTEXT: "high priority food, low priority water, medium priority firewood" DIALOGUE_HISTORY: "THEM: Hello. How are you?" UTTERANCE: "I am good. I am pretty excited for the trip this weekend. what about you?"',
+    'CONTEXT: "medium priority food, high priority water, low priority firewood" DIALOGUE_HISTORY: "THEM: I do need more food than firewood, If I could get 3 food and 2 firewood. You can get 3 water and 1 firewood. YOU: I do need some food. I would like to get at least 1 food. You can still get 3 firewood. THEM: I could use water as well, so I could get 1 water, 2 food and 2 firewood" UTTERANCE: "I am good at making fire and have a starter so I can give up all the wood."',
+    'CONTEXT: "high priority food, low priority water, medium priority firewood" DIALOGUE_HISTORY: "THEM: medium priority food, low priority water, high priority firewood YOU: Hi, are you excited for the camping trip? THEM: Hello! I am very excited! How about you?" UTTERANCE: "Yes!  Would you mind sharing your highest priority item with me?  My most valued item right now is Food actually"',
+    'CONTEXT: "low priority food, high priority water, medium priority firewood" DIALOGUE_HISTORY: "THEM: I really need 3 firewood because I am always cold. YOU: If I gave you 3 firewood, would you give me 3 water? I can do without the wood, but the water is really important to stay hydrated. THEM: I can give you 2 water, but I have to have 1 to help me when I am cooking." UTTERANCE: "What about the food? How much food do you need for camping?"',
+    'CONTEXT: "high priority food, medium priority water, low priority firewood" DIALOGUE_HISTORY: "THEM: Hello, how are you doing today? YOU: i am doing great! how about you? THEM: I\'m doing pretty well, just preparing for this camping trip." UTTERANCE: "ME as well! we are a group of big eaters, and are looking to take lots of food."',
+    'CONTEXT: "low priority food, medium priority water, high priority firewood" DIALOGUE_HISTORY: "YOU: low priority food, medium priority water, high priority firewood THEM: Hello, what are your preferences for food, water, and firewood?" UTTERANCE: "Hey, nice getting to interact with you. I would like to have additional packages of firewood and water"',
+    'CONTEXT: "high priority food, medium priority water, low priority firewood" DIALOGUE_HISTORY: "THEM: In this extra package I need two food YOU: wow that is a much THEM: because of my big size I want two extra food package" UTTERANCE: "i will give you that in exchange for 1 food and 3 water with 2 firewood"',
+    'CONTEXT: "medium priority food, high priority water, low priority firewood" DIALOGUE_HISTORY: "YOU: medium priority food, high priority water, low priority firewood THEM: Hello!  I\'ve been super thirsty and as a result I was wondering if I could get all 3 packages of water?" UTTERANCE: "I like to hike and will need additional water. Can I take one package and you can have the other two?"',
+    'CONTEXT: "medium priority food, high priority water, low priority firewood" DIALOGUE_HISTORY: "THEM: Water is a little important to us too though , if possible maybe we can split that or maybe we can get some more food in replacement. YOU: That may be possible.... What did you have in mind for the food replacement?  THEM: You can have all the water if we can have all the food?" UTTERANCE: "I dont think I am okay with that. Food is essential to our groups morale when camping. We would like 1 additional food preferably."',
+    'CONTEXT: "high priority food, low priority water, medium priority firewood" DIALOGUE_HISTORY: "THEM: I really need some food, but I could also use extra firewood. It is supposed to be pretty cold at night and we would love to cook up some smores. YOU: I hear you we have the same issues well you can have either 2 food or 2 firewood what would you prefer? THEM: I would prefer 2 food. I could give you 1 food, 2 firewood and 2 water?" UTTERANCE: "that sounds like a good deal to me"'
+    ]
+
+casino_cust_reduced_annots = [
+    'smalltalk',
+    'no need firewood',
+    'elicit preference',
+    'elicit preference food',
+    'express preference food',
+    'express preference water firewood',
+    'propose food=0 water=1 firewood=3',
+    'propose water=2',
+    'disagree',
+    'agree'
+    ]
+
+casino_cust_reduced_multilab_annots = [
+    'smalltalk',
+    'no need firewood',
+    'elicit preference, express preference food',
+    'elicit preference food',
+    'smalltalk, express preference food',
+    'smalltalk, express preference water firewood',
+    'propose food=0 water=1 firewood=3',
+    'smalltalk, propose water=2',
+    'disagree, express preference food',
+    'agree'
+    ]
