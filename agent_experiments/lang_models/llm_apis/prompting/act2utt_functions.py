@@ -24,7 +24,7 @@ def dnd_a2u_prompt(inst):
         strategy_sen = f'You are a selfish negotiator and your goal is to mazimize your own points as much as possible in the agreed upon deal without caring about whether its a fair deal for your partner and their feeling.'
 
     content_info = f'There are {inst["ctx"][0]} books, {inst["ctx"][2]} hats, and {inst["ctx"][4]} balls. The books are worth {inst["ctx"][1]} points, the hats are worth {inst["ctx"][3]}, and the balls are worth {inst["ctx"][5]}.'
-    agent_instruct = f'Your partner has different values for each item and you are negotiating over how to divide the items. '+ strategy_sen + f' If a deal is not reached within 20 utterances, both participants receive 0 points. To indicate that a deal has been reached, output the word "<selection>"'
+    agent_instruct = f'Your partner might have different values for each item and you are negotiating over how to divide the items. '+ strategy_sen + f' If a deal is not reached within 20 utterances, both participants receive 0 points. To indicate that a deal has been reached, output the word "<selection>"'
     system_str = content_info + " " + agent_instruct
 
     messages = [{"role": "system", "content": system_str}]
@@ -54,9 +54,9 @@ def casino_a2u_prompt(inst):
         strategy_sen = f'You should try to get items with high priority to you as much as possible without caring your partner need and feelings. '
 
     reason = " ".join(inst["ctx"])  #reason = " ".join(inst["ctx"][inst["ctx"].index("=")+1:])
-    # content_info = f'There are {inst["ctx"][0]} firewoods, {inst["ctx"][2]} water, and {inst["ctx"][4]} food. The firewood are worth {inst["ctx"][1]} points, the water are worth {inst["ctx"][3]}, and the food are worth {inst["ctx"][5]}.'
-    content_info = f'There are 3 firewood, water and food with different priority for you.'  # + reason
-    agent_instruct = f'Your partner has different preference for each item and you are negotiating over how to divide the items based on provided reasons. ' + strategy_sen + f' If a deal is not reached within 20 utterances, both participants receive 0 points and fail. To indicate that a deal has been reached, output the word "<selection>"'
+    content_info = f'There are {inst["ctx"][0]} firewoods, {inst["ctx"][2]} water, and {inst["ctx"][4]} food. The firewood are worth {inst["ctx"][1]} points, the water are worth {inst["ctx"][3]}, and the food are worth {inst["ctx"][5]}.'
+    # content_info = f'There are 3 firewood, water and food with different priority for you.'  # + reason
+    agent_instruct = f'Your partner might have different preference for each item and you are negotiating over how to divide the items based on provided reasons. ' + strategy_sen + f' If a deal is not reached within 20 utterances, both participants receive 0 points and fail. To indicate that a deal has been reached, output the word "<selection>"'
     new = "Each item must be treated as a whole unit and cannot be divided into fractions. The final deal should utilize all 9 available items without exceeding this total."
 
     system_str = content_info + " " + agent_instruct + " " + new

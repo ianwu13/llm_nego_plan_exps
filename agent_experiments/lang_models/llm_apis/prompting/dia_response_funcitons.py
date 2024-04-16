@@ -87,7 +87,7 @@ def dia_resp_slagent_chatcomp_dnd(inst):
         strategy_sen = f'You are a selfish negotiator and your goal is to mazimize your own points as much as possible in the agreed upon deal without caring about whether its a fair deal for your partner and their feeling.'
 
     content_info = f'There are {inst["ctx"][0]} books, {inst["ctx"][2]} hats, and {inst["ctx"][4]} balls. The books are worth {inst["ctx"][1]} points, the hats are worth {inst["ctx"][3]}, and the balls are worth {inst["ctx"][5]}.'
-    agent_instruct = f'Your partner has different values for each item and you are negotiating over how to divide the items. ' + strategy_sen + ' If a deal is not reached within 20 utterances, both participants receive 0 points. To indicate that a deal has been reached, output the word "<selection>"'
+    agent_instruct = f'Your partner might have different values for each item and you are negotiating over how to divide the items. ' + strategy_sen + ' If a deal is not reached within 20 utterances, both participants receive 0 points. To indicate that a deal has been reached, output the word "<selection>"'
     system_str = content_info + " " + agent_instruct
 
     messages = [{"role": "system", "content": system_str}]
@@ -125,7 +125,7 @@ def dia_resp_slagent_chatcomp_casino(inst):
     # reason = " ".join(inst["ctx"][inst["ctx"].index("=")+1:])
     # content_info = f'There are 3 firewoods, water and food with different priority for you. ' + reason
     content_info = f'There are {inst["ctx"][0]} firewood, {inst["ctx"][2]} water, and {inst["ctx"][4]} food. The firewood are worth {inst["ctx"][1]} points, the water are worth {inst["ctx"][3]}, and the food are worth {inst["ctx"][5]}.'
-    agent_instruct = f'Your partner has different preferences for each item and you are negotiating over how to divide the items based on the provided reasons. ' + strategy_sen + f' If a deal is not reached within 20 utterances, both participants receive 0 points and fail. To indicate that a deal has been reached, output the word "<selection>"'
+    agent_instruct = f'Your partner might have different preferences for each item and you are negotiating over how to divide the items based on the provided reasons. ' + strategy_sen + f' If a deal is not reached within 20 utterances, both participants receive 0 points and fail. To indicate that a deal has been reached, output the word "<selection>"'
     new = "Each item must be treated as a whole unit and cannot be divided into fractions. The final deal should utilize all 9 available items without exceeding this total."
     
     system_str = content_info + " " + agent_instruct + " " + new
@@ -200,8 +200,9 @@ def dia_resp_slagent_chatcomp_thirdperson_casino(inst):
 
     reason = " ".join(inst["ctx"][inst["ctx"].index("=")+1:])
     # content_info = f'There are {inst["ctx"][0]} firewoods, {inst["ctx"][2]} water, and {inst["ctx"][4]} food. The firewood are worth {inst["ctx"][1]} points, the water are worth {inst["ctx"][3]}, and the food are worth {inst["ctx"][5]}.'
-    content_info = f'There are 3 firewood, water and food with different priority for you.'  # + reason
-    agent_instruct = f'Your partner has different preference for each item and you are negotiating over how to divide the items based on provided reasons. ' + strategy_sen + f' If a deal is not reached within 20 turns (utterances), both participants receive 0 points and fail. To indicate that a deal has been reached, output the word "<selection>"'
+    # content_info = f'There are 3 firewood, water and food with different priority for you.'  # + reason
+    content_info = f'There are {inst["ctx"][0]} firewood, {inst["ctx"][2]} water, and {inst["ctx"][4]} food. The firewood are worth {inst["ctx"][1]} points, the water are worth {inst["ctx"][3]}, and the food are worth {inst["ctx"][5]}.'
+    agent_instruct = f'Your partner might have different preference for each item and you are negotiating over how to divide the items based on provided reasons. ' + strategy_sen + f' If a deal is not reached within 20 turns (utterances), both participants receive 0 points and fail. To indicate that a deal has been reached, output the word "<selection>"'
     
     system_str = content_info + " " + agent_instruct
     # print(inst['ctx']) -> ['1', '0', '1', '1', '3', '3']
@@ -520,7 +521,7 @@ def casino_cust_reduced_llm_self_planning(inst):
     if inst['strategy'] == "selfish":
         strategy_sen = f'You should try to get items with high priority to you as much as possible without caring your partner need and feelings. '
 
-    agent_instruct = f'Your partner has different preferences for each item and you are negotiating over how to divide the items based on the provided reasons. ' + strategy_sen + f' If a deal is not reached within 20 utterances, both participants receive 0 points and fail. To indicate that a deal has been reached, output the word "<selection>"'
+    agent_instruct = f'Your partner might have different preferences for each item and you are negotiating over how to divide the items based on the provided reasons. ' + strategy_sen + f' If a deal is not reached within 20 utterances, both participants receive 0 points and fail. To indicate that a deal has been reached, output the word "<selection>"'
     user_fs_msg_str = 'Here are some examples of how annotations should look:\n' + '\n'.join([f'{t}\nANNOTATION: "{a}"' for t, a in zip(casino_cust_reduced_examples, casino_cust_reduced_multilab_annots)])
     directive_str = 'When a history of dialogue acts (annotations) is provided to you, respond with the best set of dialogue acts to respond with.'
 
@@ -545,7 +546,10 @@ def act_act_chatcomp_casino_cust_form(inst):
     dialogue_hist = 'Dialogue History:'  + ' '.join(inst['dialogue'])
     item_counts = inst['ctx']
     reason = " ".join(inst["ctx"])  # reason = " ".join(inst["ctx"][inst["ctx"].index("=")+1:])
-    ctx_str = f'CONTEXT: "{item_counts[0]} firewood {item_counts[2]} water {item_counts[4]} food"' + reason
+    
+    # ctx_str = f'CONTEXT: "{item_counts[0]} firewood {item_counts[2]} water {item_counts[4]} food"' + reason
+    ctx_str = f' CONTEXT: There are {inst["ctx"][0]} firewood, {inst["ctx"][2]} water, and {inst["ctx"][4]} food. The firewood are worth {inst["ctx"][1]} points, the water are worth {inst["ctx"][3]}, and the food are worth {inst["ctx"][5]}.'
+   
     curr_act = ' '.join(inst['dia_acts'])
-    act_prompt = [system_msg, {'role': 'user', 'content': user_fs_msg_str + f'Here is the context {ctx_str}' + f' What is the most likely annotated dialogue act followed by the provided dialogue act? {dialogue_hist} ANNOTATION: "{curr_act}"'}]
+    act_prompt = [system_msg, {'role': 'user', 'content': user_fs_msg_str + f'\nHere is the context {ctx_str}' + f' What is the most likely annotated dialogue act followed by the provided dialogue act? {dialogue_hist} ANNOTATION: "{curr_act}"'}]
     return act_prompt
