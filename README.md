@@ -29,31 +29,19 @@ Contains code (currently just structure) for experiments on incorporating dialog
         - `logs/` : log dir for the results and outputs of the tasks.
         - `utilities/` : additional stuff like commands and API keys for connecting to the models. - should never be pushed to the code repository.
 
-## Data Annotation - UPDATE
+## Data Annotation
 
-- TODO
+- Data annotation can be run using the `annotate/py` script. This script utilizes LLMs to annotate data. The LLM and prompt to use are specified as commnad line arguments when calling the script. Pre-implemented LLM classes and prompts with their respective argument values can be found in `registry.py`.
 
-## Adding a Dataset - UPDATE
+### Adding a Dataset
 
-- TODO
+- Pipelines have been implemented for the CaSiNo and DND datasets. Datasets are implemented as subclasses of the `BaseDatasetHandler` class found in `agent_experiments/data/datahandler.py`. To add a dataset, simply extend this class and its methods for the new datasets, and add the new class to `registry.py`. Examples of this can be seen in `agent_experiments/data/casino.py` and `agent_experiments/data/dealornodeal.py`
 
-## Adding a Data Annotation pipeline - UPDATE
+### Adding a Data Annotation pipeline
 
-- TODO
+- Annotation pipelines are specified by the command line arguments provided to `annotate.py` Beyond the LLM and dataset, the most important part is the "--inst_to_prompt_funct" argument, which specifies the function that converts a data point into a prompt to feed the LLM. Examples of these funcitons can be found in `agent_experiments/data/conversion/inst2p_functions.py`.
 
-## LLM API Usage - UPDATE
-
-### Adding LLM API
-
-- TODO
-
-### Adding Prompt Generation Funcitons - TODO
-
-- "I2ANNOT_PROMPT_FUN_REG"
-- "ACT2UTT_PROMPT_FUN_REG"
-- "UTT2ACT_PROMPT_FUN_REG"
-
-## Selfplay - UPDATE
+## Selfplay
 - Check the required files and experiment agents parameters in commd_gen_selfplay.py and get the experiment command file by "running: python commd_gen_selfplay.py dataset_name api_key" It will generate two files for each dataset, containing the command for running the selfplay experiment. commd_selfplay_dataset.json (file for makefile to read and run) and commd_selfplay_dataset.md (for human to check command)
 
 - Running all experiment of a dataset by "make dataset_name". (e.g. make casino) The experiment result will be stored as log file under the provided output directory in commands.
@@ -62,24 +50,17 @@ Contains code (currently just structure) for experiments on incorporating dialog
 
 - Get the final deal from GPT by providing the conversation contents, running "python get_deal.py dataset api_key" will append the final deal to the input json file. It will also print the basic stats categorizing different deals and stored as seperate file for each agent_agent scenarios.
 
+## Chat
 
-
-
-- TODO
-
-## Chat - UPDATE
-
-- TODO
+- bot v. bot chat cna be run using the `do_chat.py` script. Arguments to this script are essentially identical to those for `do_selfplay.py`, but can be specified seperately for each of the bots acting in the negotiations.
 
 ***
 
 # Acknowledgements
 
-Facebook code, He et al?, etc...
+https://arxiv.org/abs/1512.03385
 
-# Citation
-
-`BibTex Here`
+https://github.com/facebookresearch/end-to-end-negotiator
 
 ***
 
